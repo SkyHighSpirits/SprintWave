@@ -1,0 +1,21 @@
+DROP DATABASE IF EXISTS sprintwavedatabase;
+CREATE DATABASE sprintwavedatabase;
+USE sprintwavedatabase;
+
+DROP TABLE IF EXISTS workspaces;
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE workspaces(
+	workspace_id INT UNIQUE NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    workspace_name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE users(
+	user_id INT UNIQUE NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    user_password VARCHAR(255) NOT NULL,
+    firstname VARCHAR(255) NOT NULL,
+    lastname VARCHAR(255) NOT NULL,
+    FOREIGN KEY(workspace_id) REFERENCES workspaces(workspace_id)
+);
+
