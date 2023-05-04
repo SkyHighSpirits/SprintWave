@@ -16,6 +16,7 @@ CREATE TABLE users(
     user_password VARCHAR(255) NOT NULL,
     firstname VARCHAR(255) NOT NULL,
     lastname VARCHAR(255) NOT NULL,
+	workspace_id INT NOT NULL,
     FOREIGN KEY(workspace_id) REFERENCES workspaces(workspace_id)
 );
 
