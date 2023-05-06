@@ -13,7 +13,7 @@ body{
 }
 
 .navbar-one{
-    background: #EC0C31;
+    background: royalblue;
     height: 80px;
     width: 100%;
 }
@@ -37,6 +37,9 @@ label .logo-link{
     float: right;
     margin-right: 20px;
 }
+.navbar-one .nav-ul .nav-li{
+    margin-right: 80px;
+}
 
 .navbar-one .nav-ul li{
     display: inline-block;
@@ -53,7 +56,7 @@ label .logo-link{
 }
 
 .nav-link:hover{
-    background-color: #C12301;
+    background-color: dodgerblue;
     transition: .5s;
 }
 
@@ -61,6 +64,7 @@ label .logo-link{
 .flex-container{
     display: flex;
     height: 60px;
+    width: 100%;
     background-color: lightgrey;
     justify-content: space-between;
 }
@@ -104,7 +108,7 @@ label .logo-link{
 }
 
 .footer{
-    background-color: #EC0C31;
+    background-color: royalblue;
     padding: 70px;
     position: relative;
     width: 100%;
@@ -125,7 +129,7 @@ label .logo-link{
     position: absolute;
     left: 0;
     bottom: -10px;
-    background-color: #C12301;
+    background-color: royalblue;
     height: 2px;
     box-sizing: border-box;
     width: 50px;
@@ -148,7 +152,7 @@ label .logo-link{
 }
 
 .footer-col .footer-ul .footer-li .footer-link:hover{
-    color: #C12301;
+    color: dodgerblue;
     background-color: white;
     padding-left: 8px;
 }
@@ -157,7 +161,7 @@ label .logo-link{
     display: inline-block;
     height: 40px;
     width: 40px;
-    background-color: #C12301;
+    background-color: royalblue;
     margin: 0 10px 10px 0;
     text-align: center;
     line-height: 40px;
@@ -167,7 +171,7 @@ label .logo-link{
 }
 
 .footer-col .social-links a:hover{
-    color: #C12301;
+    color: dodgerblue;
     background-color: white;
 }
 
