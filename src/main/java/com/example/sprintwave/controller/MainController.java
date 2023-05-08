@@ -67,8 +67,8 @@ public class MainController {
         User user = new User();
         model.addAttribute("user", user);
         
-        for(User checkUser: userRepository.getAllUsers){
-            
+        for(User checkUser: userRepository.getAllUsers()){
+            // TO DO: Create CHECK for user.
         }
         
         return "redirect:/workspace";

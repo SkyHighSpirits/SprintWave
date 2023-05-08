@@ -5,6 +5,7 @@ import com.example.sprintwave.model.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
+import java.security.Permission;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,18 +42,10 @@ public class UserRepository {
                 String firstName = resultSet.getString(4);
                 String lastName = resultSet.getString(5);
                 int workspace_id = resultSet.getInt(6);
+                PermessionLevel permessionLevel = PermessionLevel.valueOf(resultSet.getString(7));
                 
-                
-                User user = new User(user_id);
-                user.setUser_id(email);
-                user.setEmail(user_password);
-                user.setUser_password();
-                user.setFirstName();
-                user.setLastName();
-                user.setWorkspace_id();
-                
+                User user = new User(user_id, email, user_password, firstName, lastName, workspace_id, permessionLevel);
                 userList.add(user);
-                
                 
             }
             
