@@ -40,6 +40,7 @@ public class MainController {
         workspace.setName(workspaceName);
         workspaceRepository.addWorkspace(workspace);
 
+
         User user = new User();
         user.setFirstName(firstName);
         user.setLastName(lastName);
