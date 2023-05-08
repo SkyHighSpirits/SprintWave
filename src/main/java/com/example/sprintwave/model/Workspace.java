@@ -10,6 +10,11 @@ public class Workspace {
 
     }
 
+    public Workspace(int workspaceID, String workspaceName)
+    {
+        this.ID = workspaceID;
+        this.name = workspaceName;
+    }
     public int getID() {
         return ID;
     }
