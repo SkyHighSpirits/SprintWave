@@ -1,6 +1,6 @@
 package com.example.sprintwave.model;
 
-enum PermessionLevel
+public enum PermessionLevel
 {
     EMPLOYEE,
     ADMINISTRATOR
