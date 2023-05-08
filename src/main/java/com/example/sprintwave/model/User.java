@@ -17,12 +17,12 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.workspace_id = workspace_id;
-        this.permessionLevel = permessionLevel;
     }
 
     public User()
     {
     }
+
 
     public int getUser_id()
     {
