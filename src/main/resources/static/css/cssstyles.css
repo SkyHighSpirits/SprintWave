@@ -17,6 +17,20 @@ body{
     height: 80px;
     width: 100%;
 }
+.backgroundimg{
+    background-image: url("../images/signup_background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh; / Set the height to cover the entire viewport */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sidebyside{
+    justify-content: space-evenly;
+
+}
 
 label.logo{
     color: white;
