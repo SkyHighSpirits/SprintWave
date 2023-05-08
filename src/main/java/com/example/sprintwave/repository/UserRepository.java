@@ -42,7 +42,16 @@ public class UserRepository {
                 String lastName = resultSet.getString(5);
                 int workspace_id = resultSet.getInt(6);
                 
-                User user = new User(user_id, email, user_password, firstName, lastName, workspace_id);
+                
+                User user = new User(user_id);
+                user.setUser_id(email);
+                user.setEmail(user_password);
+                user.setUser_password();
+                user.setFirstName();
+                user.setLastName();
+                user.setWorkspace_id();
+                
+                userList.add(user);
                 
                 
             }
