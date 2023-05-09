@@ -70,6 +70,7 @@ public class MainController {
         user.setPermessionLevel(PermissionLevel.ADMINISTRATOR);
         Workspace withIDWorkspace = workspaceRepository.getLastEntryWorkspace();
         user.setWorkspace_id(withIDWorkspace.getID());
+        userRepository.createUser(user);
         return "redirect:/workspace";
     }
     
