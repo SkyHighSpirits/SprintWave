@@ -1,7 +1,9 @@
 package com.example.sprintwave.controller;
 
+import com.example.sprintwave.model.Project;
 import com.example.sprintwave.model.User;
 import com.example.sprintwave.model.Workspace;
+import com.example.sprintwave.repository.ProjectRepository;
 import com.example.sprintwave.repository.UserRepository;
 import com.example.sprintwave.repository.WorkspaceRepository;
 
@@ -18,14 +20,15 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class MainController {
 
-
+    ProjectRepository projectRepository;
     WorkspaceRepository workspaceRepository;
     UserRepository userRepository;
 
-    public MainController(UserRepository userRepository, WorkspaceRepository workspaceRepository)
+    public MainController(UserRepository userRepository, WorkspaceRepository workspaceRepository, ProjectRepository projectRepository)
     {
         this.userRepository = userRepository;
         this.workspaceRepository = workspaceRepository;
+        this.projectRepository = projectRepository;
     }
 
     @ModelAttribute("currentuser")
@@ -98,4 +101,15 @@ public class MainController {
     public String overview() {
         return "overview";
     }
+
+    @PostMapping("/createProject")
+    public String createProject(@RequestParam("projectname") String projectName)
+    {
+        Project project = new Project();
+        project.setProjectName(projectName);
+        projectRepository.createProject(project);
+        return "redirect:/";
+    }
+
+
 }
