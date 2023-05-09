@@ -20,3 +20,11 @@ CREATE TABLE users(
     FOREIGN KEY(workspace_id) REFERENCES workspaces(workspace_id)
 );
 
+CREATE TABLE epics(
+    project_id INT NOT NULL,
+    epic_id INT UNIQUE NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+    epic_name VARCHAR(255) NOT NULL,
+    epic_description VARCHAR(255) NOT NULL,
+    FOREIGN KEY(project_id) REFERENCES projects(project_id)
+);
+
