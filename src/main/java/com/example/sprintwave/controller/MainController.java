@@ -1,11 +1,11 @@
 package com.example.sprintwave.controller;
 
-import com.example.sprintwave.model.PermissionLevel;
 import com.example.sprintwave.model.User;
 import com.example.sprintwave.model.Workspace;
 import com.example.sprintwave.repository.UserRepository;
 import com.example.sprintwave.repository.WorkspaceRepository;
 
+import com.example.sprintwave.utility.UserDataHandler;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -58,18 +58,7 @@ public class MainController {
         Workspace workspace = new Workspace();
         workspace.setName(workspaceName);
         workspaceRepository.addWorkspace(workspace);
-
-
-        User user = new User();
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setEmail(email);
-        PasswordHashing passwordHashing = new PasswordHashing();
-        String hashedpassword = passwordHashing.doHashing(password);
-        user.setUser_password(hashedpassword);
-        user.setPermessionLevel(PermissionLevel.ADMINISTRATOR);
-        Workspace withIDWorkspace = workspaceRepository.getLastEntryWorkspace();
-        user.setWorkspace_id(withIDWorkspace.getID());
+        User user = UserDataHandler.populateUserWithInformation(email, password, firstName, lastName, workspaceName, workspaceRepository);
         userRepository.createUser(user);
         return "redirect:/workspace";
     }
@@ -80,18 +69,13 @@ public class MainController {
                             @RequestParam("password") String enteredPassword,
                             Model model,
                             HttpSession session){
-        //User user = new User();
-        //model.addAttribute("user", user);
         PasswordHashing passwordHashing = new PasswordHashing();
         enteredPassword = passwordHashing.doHashing(enteredPassword);
 
+
         for(User checkUser: userRepository.getAllUsers()){
                 // TO DO: Create CHECK for user.
-            String checkEmail = checkUser.getEmail();
-            String checkPassword = checkUser.getUser_password();
-            System.out.println(checkUser);
-            System.out.println(enteredPassword);
-            if(checkEmail.equals(enteredEmail) && checkPassword.equals(enteredPassword))
+            if(UserDataHandler.checkUserInformationMatch(checkUser, enteredPassword, enteredEmail))
             {
                 model.addAttribute("currentuser",checkUser);
                 session.setAttribute("currentuser", checkUser);
@@ -100,7 +84,6 @@ public class MainController {
                 return "redirect:/";
             }
         }
-
         return "login";
 
     }
