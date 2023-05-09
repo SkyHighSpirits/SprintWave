@@ -17,6 +17,44 @@ body{
     height: 80px;
     width: 100%;
 }
+.backgroundimg{
+    background-image: url("../images/signup_background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh; / Set the height to cover the entire viewport */
+}
+.sidebyside{
+    padding-top: 4%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+.rightloginitem
+{
+    background-image: url("../images/logo.jpg");
+    background-size: 100px;
+    resize: both;
+    width: 100px;
+    height: 100px;
+}
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.leftloginitem
+{
+    height: 600px;
+    width: 30%;
+    background-color: white;
+    border-radius: 5px;
+}
 
 label.logo{
     color: white;

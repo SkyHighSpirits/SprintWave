@@ -7,22 +7,23 @@ public class User {
     private String firstName;
     private String lastName;
     private int workspace_id;
-    PermessionLevel permessionLevel;
+    PermissionLevel permissionLevel;
 
-    public User(int user_id, String email, String user_password, String firstName, String lastName, int workspace_id, PermessionLevel permessionLevel)
+    public User(int user_id, String email, String user_password, String firstName, String lastName, PermissionLevel permissionLevel, int workspace_id)
     {
         this.user_id = user_id;
         this.email = email;
         this.user_password = user_password;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.permissionLevel = permissionLevel;
         this.workspace_id = workspace_id;
-        this.permessionLevel = permessionLevel;
     }
 
     public User()
     {
     }
+
 
     public int getUser_id()
     {
@@ -84,14 +85,14 @@ public class User {
         this.workspace_id = workspace_id;
     }
 
-    public PermessionLevel getPermessionLevel()
+    public PermissionLevel getPermessionLevel()
     {
-        return permessionLevel;
+        return permissionLevel;
     }
 
-    public void setPermessionLevel(PermessionLevel permessionLevel)
+    public void setPermessionLevel(PermissionLevel permissionLevel)
     {
-        this.permessionLevel = permessionLevel;
+        this.permissionLevel = permissionLevel;
     }
 
     @Override
@@ -104,7 +105,7 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", workspace_id=" + workspace_id +
-                ", permessionLevel=" + permessionLevel +
+                ", permessionLevel=" + permissionLevel +
                 '}';
     }
 }

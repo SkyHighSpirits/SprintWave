@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{css/cssstyles.css}" href="../static/css/cssstyles.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="backgroundimg">
+        <div class="sidebyside">
+            <div class="rightloginitem">
+
+            </div>
+            <div class="leftloginitem">
+                <form action="createaccount" method="post">
+                    <label for="workspace_name">Worskpace Name:</label>
+                    <p><input id="workspace_name" name="workspacename" type="text" ></p>
+
+                    <label for="first_name_field">Fornavn:</label>
+                    <p><input id="first_name_field" name="firstname" type="text" th:value="${first_name}" ></p>
+
+                    <label for="last_name_field">Efternavn:</label>
+                    <p><input id="last_name_field" name="lastname" type="text" th:value="${last_name}"></p>
+
+                    <label for="email_field">email:</label>
+                    <p><input id="email_field" name="email" type="text" th:value="${email}"></p>
+
+                    <label for="password_field">Password:</label>
+                    <p><input id="password_field" name="password" type="text" th:value="${password}"></p>
+
+                    <p><input value="Opret Admin" type="submit"></p>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
