@@ -1,6 +1,6 @@
 package com.example.sprintwave.controller;
 
-import com.example.sprintwave.model.PermessionLevel;
+import com.example.sprintwave.model.PermissionLevel;
 import com.example.sprintwave.model.User;
 import com.example.sprintwave.model.Workspace;
 import com.example.sprintwave.repository.UserRepository;
@@ -52,7 +52,7 @@ public class MainController {
         PasswordHashing passwordHashing = new PasswordHashing();
         String hashedpassword = passwordHashing.doHashing(password);
         user.setUser_password(hashedpassword);
-        user.setPermessionLevel(PermessionLevel.ADMINISTRATOR);
+        user.setPermessionLevel(PermissionLevel.ADMINISTRATOR);
         Workspace withIDWorkspace = workspaceRepository.getLastEntryWorkspace();
         user.setWorkspace_id(withIDWorkspace.getID());
         return "redirect:/workspace";
