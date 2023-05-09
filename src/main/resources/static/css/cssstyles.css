@@ -11,6 +11,69 @@ body{
     line-height: 1.5;
 }
 
+
+/* STYLING FOR SIGNUP PAGE */
+
+.signup-background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://images.unsplash.com/photo-1464030871258-a01dfd38220a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1329&q=80");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.signup-flex-container {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    gap: 75px;
+    justify-content: space-between;
+    align-content: center;
+    padding: 50px;
+    margin: 0 auto; /* Add margin auto to center the container */
+    max-width: 900px; /* Add max-width to avoid the container exceeding the screen width */
+}
+
+.signup-flex-item {
+    background-color: white;
+    border: 1px solid black;
+    width: 350px;
+    height: 600px;
+    padding: 50px;
+}
+
+.signup-button {
+
+    display: inline-block;
+    outline: 0;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+    padding: 9px 22px;
+    font-size: 22px;
+    height: 50px;
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+    line-height: normal;
+    background: linear-gradient(90deg,#5522fa 0,#0074e4 100%);
+    border-radius: 50px;
+    transition: color .2s ease,background-color .2s ease,box-shadow .2s ease;
+:hover{
+    box-shadow: 0 0 0 0.15rem #5ceace;
+}
+
+}
+
+
+/* END OF STYLING FOR LOGIN PAGE */
+
+
 .backgroundimg{
     background-image: url("../images/signup_background.jpg");
     background-repeat: no-repeat;
