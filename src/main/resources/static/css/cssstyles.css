@@ -16,6 +16,12 @@ body{
     height: 80px;
     width: 100%;
 }
+@media(max-width: 767px){
+    .navbar-one{
+        width: 100%;
+        height: 160px;
+    }
+}
 
 label.logo{
     color: white;
@@ -64,13 +70,27 @@ label .logo-link{
     display: flex;
     height: 60px;
     width: 100%;
-    background-color: lightgrey;
+    background-color: #f4f4f4;
     justify-content: space-between;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+}
+
+@media(max-width: 1200px){
+    .flex-container{
+        width: 100%;
+        height: 120px;
+    }
+}
+
+@media(max-width: 767px){
+    .flex-container{
+        width: 100%;
+        height: 180px;
+    }
 }
 
 .flex-container div{
-    background-color: lightgrey;
+    background-color: #f4f4f4;
     height: 40px;
     width: 100px;
     border-radius: 30px;
@@ -87,7 +107,7 @@ label .logo-link{
 }
 
 .flex-container div:hover{
-    background-color: white;
+    background-color: lightgrey;
     transition: .5s;
 }
 
@@ -105,8 +125,9 @@ label .logo-link{
     width: 650px;
     height: 340px;
     position: relative;
-    color: white;
-    background-image: url("/static/images/wave1.jpg");
+    color: black;
+    background: rgb(0,81,170);
+    background: linear-gradient(90deg, rgba(0,81,170,1) 0%, rgba(53,124,207,1) 35%, rgba(126,193,232,1) 100%);
     font-size: 20px;
     text-align: center;
     line-height: 100px;
@@ -114,23 +135,15 @@ label .logo-link{
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 
-.boxone::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background-color: rgba(0, 0, 0, 0.5);
-}
+
 
 .boxtwo{
     width: 650px;
     height: 340px;
     position: relative;
-    color: white;
-    background-image: url("/static/images/wave3.jpg");
+    color: black;
+    background: rgb(231,0,0);
+    background: linear-gradient(90deg, rgba(231,0,0,1) 0%, rgba(222,64,18,1) 35%, rgba(232,192,192,1) 100%);
     font-size: 20px;
     text-align: center;
     line-height: 100px;
@@ -138,22 +151,13 @@ label .logo-link{
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 
-.boxtwo::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background-color: rgba(0, 0, 0, 0.5);
-}
 .boxthree{
     width: 650px;
     height: 340px;
     position: relative;
-    color: white;
-    background-image: url("/static/images/wave4.tiff");
+    color: black;
+    background: rgb(231,0,212);
+    background: linear-gradient(90deg, rgba(231,0,212,1) 0%, rgba(237,87,215,1) 35%, rgba(211,158,228,1) 100%);
     font-size: 20px;
     text-align: center;
     line-height: 100px;
@@ -161,22 +165,13 @@ label .logo-link{
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 
-.boxthree::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background-color: rgba(0, 0, 0, 0.5);
-}
 .boxfour{
     width: 650px;
     height: 340px;
     position: relative;
-    color: white;
-    background-image: url("/static/images/wave5.jpg");
+    color: black;
+    background: rgb(0,128,37);
+    background: linear-gradient(90deg, rgba(0,128,37,1) 0%, rgba(46,154,63,1) 35%, rgba(158,228,168,1) 100%);
     font-size: 20px;
     text-align: center;
     line-height: 100px;
@@ -184,30 +179,20 @@ label .logo-link{
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 
-.boxfour::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
 .btn{
-    color: #fff;
+    color: white;
     border: none;
     font-size: 17px;
     margin-top: 10px;
     padding: 8px 15px;
-    background-color: royalblue;
+    background-color: #333;
     border-radius: 5px;
     text-decoration: none;
 }
 
 p{
     font-size: 16px;
+    color: black;
 }
 
 .boxone:hover{
