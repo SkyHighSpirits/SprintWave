@@ -40,10 +40,9 @@ public class UserRepository {
                 String user_password = resultSet.getString(3);
                 String firstName = resultSet.getString(4);
                 String lastName = resultSet.getString(5);
-                int workspace_id = resultSet.getInt(6);
-                PermissionLevel permissionLevel = PermissionLevel.valueOf(resultSet.getString(7));
-                
-                User user = new User(user_id, email, user_password, firstName, lastName, workspace_id, permissionLevel);
+                PermissionLevel permissionLevel = PermissionLevel.valueOf(resultSet.getString(6));
+                int workspace_id = resultSet.getInt(7);
+                User user = new User(user_id, email, user_password, firstName, lastName,  permissionLevel, workspace_id);
                 userList.add(user);
                 
             }

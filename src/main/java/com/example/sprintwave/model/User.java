@@ -9,15 +9,15 @@ public class User {
     private int workspace_id;
     PermissionLevel permissionLevel;
 
-    public User(int user_id, String email, String user_password, String firstName, String lastName, int workspace_id, PermissionLevel permissionLevel)
+    public User(int user_id, String email, String user_password, String firstName, String lastName, PermissionLevel permissionLevel, int workspace_id)
     {
         this.user_id = user_id;
         this.email = email;
         this.user_password = user_password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.workspace_id = workspace_id;
         this.permissionLevel = permissionLevel;
+        this.workspace_id = workspace_id;
     }
 
     public User()
