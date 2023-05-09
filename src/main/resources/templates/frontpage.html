@@ -8,8 +8,100 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-
+<!-- skal slettes ^2 -->
+<nav class="navbar-one">
+    <label class="logo" > SPRINT WAVE </label>
+    <ul class="nav-ul">
+        <li><a class="nav-link" th:href="@{signup}" href="signup.html">Opret</a></li>
+        <li><a class="nav-link" th:href="@{login}" href="login.html">Login</a></li>
+    </ul>
+</nav>
+<!-- hertil ^2 -->
 <div th:replace="fragments/navbar :: navbar"></div>
+<div>
+<div class="row">
+    <div class="column">
+        <h2>Column 1</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt aliquam nibh, in euismod nulla.</p>
+    </div>
+    <div class="column">
+        <img src="https://via.placeholder.com/400x400" alt="Placeholder Image">
+    </div>
+</div>
+</div>
+<div class="rowpicture">
+    <div class="column2">
+        <div class="picture-container">
+            <img th:src="@{images/sprintwave2.jpg}" src="../static/images/sprintwave2.jpg" alt="earle" class="responsivepicture">
+            <div class="textoverpicture">
+                <h2>Title</h2>
+                <p>description</p>
+            </div>
+        </div>
+    </div>
+    <div class="column2">
+        <div class="picture-container">
+           <img th:src="@{images/sprintwave1.jpg}" src="../static/images/sprintwave1.jpg" alt="sprintpostit" class="responsivepicture">
+            <div class="textoverpicture">
+                <h2>Title</h2>
+                <p>description</p>
+            </div>
+    </div>
+    </div>
+    <div class="column2">
+        <div class="picture-container">
+           <img th:src="@{images/sprintwave4.jpg}" src="../static/images/sprintwave4.jpg" alt="sprintwave" class="responsivepicture">
+            <div class="textoverpicture">
+                <h2>Title</h2>
+                <p>description</p>
+            </div>
+    </div>
+    </div>
+</div>
 
+<div th:replace="fragments/footer :: footer"></div>
+<!-- skal slettes ^1 -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-col">
+                <h4>Virksomhed</h4>
+                <ul class="footer-ul">
+                    <li class="footer-li"><a class="footer-link" href="#">Om os</a></li>
+                    <li class="footer-li"><a class="footer-link" href="#">Vores service</a></li>
+                    <li class="footer-li"><a class="footer-link" href="#">Privat politik</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Få hjælp</h4>
+                <ul class="footer-ul">
+                    <li class="footer-li"><a class="footer-link" href="#">FAQ</a></li>
+                    <li class="footer-li"><a class="footer-link" href="#">Login</a></li>
+                    <li class="footer-li"><a class="footer-link" href="#">Opret</a></li>
+                    <li class="footer-li"><a class="footer-link" href="#">How does it work</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Kontakt information</h4>
+                <ul class="footer-ul">
+                    <li class="footer-li"><a class="footer-link" href="#">Adresse</a></li>
+                    <li class="footer-li"><a class="footer-link" href="#">Telefonnummer</a></li>
+                    <li class="footer-li"><a class="footer-link" href="#">Email</a></li>
+                    <li class="footer-li"><a class="footer-link" href="#">Discord</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Social media</h4>
+                <div class="social-links">
+                    <a class="footer-li" href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a class="footer-li" href="#"><i class="fab fa-twitter"></i></a>
+                    <a class="footer-li" href="#"><i class="fab fa-instagram"></i></a>
+                    <a class="footer-li" href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- hertil ^1 -->
 </body>
 </html>
