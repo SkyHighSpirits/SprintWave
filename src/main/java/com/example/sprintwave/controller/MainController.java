@@ -97,7 +97,7 @@ public class MainController {
                 session.setAttribute("currentuser", checkUser);
                 User currentuser = (User) session.getAttribute("currentuser");
 
-                return "redirect:/frontpage";
+                return "redirect:/";
             }
         }
         

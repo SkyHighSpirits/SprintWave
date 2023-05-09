@@ -51,7 +51,7 @@ public class WorkspaceRepository {
         try {
             Connection connection = DriverManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
             Statement statement = connection.createStatement();
-            final String SQL_QUERY = "SELECT * FROM workspaces ORDER BY ID DESC LIMIT 1";
+            final String SQL_QUERY = "SELECT * FROM workspaces ORDER BY workspace_id DESC LIMIT 1";
             ResultSet resultSet = statement.executeQuery(SQL_QUERY);
             while (resultSet.next()){
                 int workspaceID = resultSet.getInt(1);
