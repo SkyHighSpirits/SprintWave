@@ -175,7 +175,57 @@ label .logo-link{
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 
+#table-background
+{
+    background: linear-gradient(hsla(217, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
 
+    padding: 40px;
+}
+
+#table-container th
+{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: Left;
+    background: linear-gradient(rgba(0,81,170,1) 0%, rgba(53,124,207,1) 35%, rgba(126,193,232,1) 100%);
+    color: white;
+}
+
+#table-container {
+    border-collapse: collapse;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#table-container td, #table-container th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#table-container td
+{
+    background: white;
+    color: black;
+}
+
+#table-container td .table-link{
+    background: linear-gradient(rgba(0,81,170,1) 0%, rgba(53,124,207,1) 35%, rgba(126,193,232,1) 100%);
+    color: white;
+    padding: 7px 13px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 12px;
+}
+#table-container td .table-link:hover{
+    background: linear-gradient(90deg, hsla(238, 100%, 48%, 1) 0%, hsla(204, 73%, 66%, 1) 100%);
+    transition: .5s;
+}
+
+#table-container tr:nth-child(even){background-color: rgba(53,124,207,1)}
+
+#table-container tr:hover {background-color: #ddd;}
 
 .boxtwo{
     width: 650px;

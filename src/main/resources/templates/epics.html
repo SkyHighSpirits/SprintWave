@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{css/cssstyles.css}" href="../static/css/cssstyles.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div th:replace="fragments/navbar :: navbarthree"></div>
+
+    <div id="table-background">
+        <div id="table-container">
+            <table style="  border: 1px solid black; border-collapse: collapse;">
+                <thead>
+                <th>Epic </th>
+                <th>Description </th>
+                <th>Update Epic </th>
+                <th>Delete Epic </th>
+                </thead>
+                <tbody>
+                <tr th:each="epic : ${epics}">
+                    <td th:text="${epic.epic_name}"></td>
+                    <td th:text="${epic.epic_description}"></td>
+                    <td><a class="table-link" th:href="@{'/update/' + ${epic.epic_id}}" href="/updateepic">Update</a></td>
+                    <td><a class="table-link" th:href="@{'/delete/' + ${epic.epic_id}}" href="/deleteepic">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
