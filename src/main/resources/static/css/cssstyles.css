@@ -440,7 +440,7 @@ p{
     }
 }
 /* frontpage styles */
-.row {
+.rowfrontpage {
     display: flex;
     flex-wrap: wrap;
     background-image: url(../images/colorspectrum.jpg);
