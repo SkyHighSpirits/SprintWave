@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -58,6 +59,7 @@ public class EpicRepository {
             //set parameters
             preparedStatement.setString(1, updateEpic.getEpic_name());
             preparedStatement.setString(2, updateEpic.getEpic_description());
+            preparedStatement.setInt(3, updateEpic.getEpic_id());
             //ExecuteStatement
             preparedStatement.executeUpdate();
         }
@@ -116,6 +118,34 @@ public class EpicRepository {
     }
 
     public List<Epic> getAllEpicByProjectID(int projectID){
+        List<Epic> epicList = new ArrayList<>();
+        try {
+            //Oprette forbindelse til database
+            Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
+            //SQL statement
+            String SQL_QUERY = "SELECT * FROM epics WHERE project_id = ?";
+            //Prepared statement
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
+            //set parameters
+            preparedStatement.setInt(1, projectID);
+            //execute statement
+            ResultSet resultSet = preparedStatement.executeQuery();
+            //set resultset
+            Epic foundEpic = new Epic();
+            while(resultSet.next()) {
+                foundEpic.setProject_id(projectID);
+                foundEpic.setEpic_id(resultSet.getInt(2));
+                foundEpic.setEpic_name(resultSet.getString(3));
+                foundEpic.setEpic_description(resultSet.getString(4));
+                epicList.add(foundEpic);
+            }
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+            System.out.println("Something went wrong when getting all the epics");
+        }
 
+        return epicList;
     }
 }
