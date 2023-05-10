@@ -48,7 +48,9 @@ public class ProjectRepository
             while(resultSet.next()){
                 int projectID = resultSet.getInt(1);
                 String projectName = resultSet.getString(2);
-                Project project = new Project(projectID, projectName);
+                String projectOwner = resultSet.getString(3);
+                boolean projectStatus = resultSet.getBoolean(4); // ret dette til auto increment
+                Project project = new Project(projectID, projectName, projectOwner, projectStatus);
                 projects.add(project);
                 System.out.println(project);
             }

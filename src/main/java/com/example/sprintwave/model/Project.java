@@ -4,14 +4,19 @@ public class Project
 {
     int projectID;
     String projectName;
+    String projectOwner;
+    boolean projectStatus;
 
-    public Project(){
 
-    }
-
-    public Project(int projectID, String projectName){
+    public Project(int projectID, String projectName, String projectOwner, boolean projectStatus ){
         this.projectID =projectID;
         this.projectName = projectName;
+        this.projectOwner = projectOwner;
+        this.projectStatus = projectStatus;
+    }
+    public Project()
+    {
+
     }
 
     public int getProjectID()
@@ -32,5 +37,25 @@ public class Project
     public void setProjectName(String projectName)
     {
         this.projectName = projectName;
+    }
+
+    public String getProjectOwner()
+    {
+        return projectOwner;
+    }
+
+    public void setProjectOwner(String ownership)
+    {
+        this.projectOwner = projectOwner;
+    }
+
+    public boolean isProjectStatus()
+    {
+        return projectStatus;
+    }
+
+    public void setProjectStatus(boolean projectStatus)
+    {
+        this.projectStatus = projectStatus;
     }
 }

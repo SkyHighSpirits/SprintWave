@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 import com.example.sprintwave.utility.PasswordHashing;
+import org.apache.coyote.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -103,10 +104,12 @@ public class MainController {
     }
 
     @PostMapping("/createProject")
-    public String createProject(@RequestParam("projectname") String projectName)
+    public String createProject(@RequestParam("projectname") String projectName,
+                                @RequestParam("projectOwner") String projectOwner)
     {
         Project project = new Project();
         project.setProjectName(projectName);
+        project.setProjectOwner(projectOwner);
         projectRepository.createProject(project);
         return "redirect:/";
     }
