@@ -486,9 +486,23 @@ p{
     margin: 0;
     border: 1px solid red; /* add red border */
     box-sizing: border-box;
-    padding: 20px;
-    text-align: center;
+    padding: 10px;
+    position: relative;
 }
+
+.appfrontpage-project-deadline {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+.appfrontpage-project button {
+    position: absolute; /* add absolute positioning to child */
+    bottom: 10px; /* adjust as needed */
+    right: 10px; /* adjust as needed */
+}
+
+
 
 
 
