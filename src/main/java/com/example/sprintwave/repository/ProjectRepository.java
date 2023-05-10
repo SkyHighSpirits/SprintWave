@@ -25,16 +25,17 @@ public class ProjectRepository
     public void createProject(Project newProject){
         try{
             Connection connection = DriverManager.getConnection(DB_HOSTNAME,DB_USERNAME,DB_PASSWORD);
-                    final String CREATE_QUERY="INSERT INTO projects" + "(project_name, project_owner, project_deadline, project_description)"  + "VALUES (?,?,?,?)";// INDSÆT HER
+                    final String CREATE_QUERY="INSERT INTO projects" + "(project_name, project_owner, project_deadline, project_description, workspace_id)"  + "VALUES (?,?,?,?,?)";
             //prepare QUERY
             PreparedStatement preparedStatement = connection.prepareStatement(CREATE_QUERY);
             preparedStatement.setString(1, newProject.getProjectName());
             preparedStatement.setString(2, newProject.getProjectOwner());
             preparedStatement.setDate(3, java.sql.Date.valueOf(newProject.getDeadline()));
             preparedStatement.setString(4, newProject.getProjectDescription());
+            preparedStatement.setInt(5, newProject.getWorkspaceID());
 
             //EXECUTE QUERY
-            preparedStatement.executeQuery();
+            preparedStatement.executeUpdate();
         }catch(SQLException e){
             System.out.println("Could not add Project");
             e.printStackTrace();
