@@ -12,9 +12,9 @@ body{
 }
 
 
-/* STYLING FOR SIGNUP PAGE */
+/* END OF STYLING FOR LOGIN AND SIGNUP PAGE */
 
-.signup-background-image {
+.signup-login-background-image {
     position: fixed;
     top: 0;
     left: 0;
@@ -28,7 +28,7 @@ body{
     flex-wrap: wrap;
 }
 
-.signup-flex-container {
+.signup-login-flex-container {
     display: flex;
     gap: 100px;
     justify-content: center;
@@ -41,7 +41,7 @@ body{
     height: 100%
 }
 
-.signup-flex-item {
+.signup-login-flex-item {
     background-color: white;
     border: none;
     border-radius: 10px; /* Update the border-radius value as needed */
@@ -52,7 +52,7 @@ body{
 
 
 
-.signup-button {
+.signup-login-button {
     display: inline-block;
     outline: 0;
     border: none;
@@ -70,7 +70,7 @@ body{
     transition: color .2s ease, background-color .2s ease, box-shadow .2s ease;
 }
 
-.signup-input {
+.signup-login-input {
 
     color: rgba(0, 0, 0, .87);
     border-bottom-color: rgba(0, 0, 0, .42);
@@ -89,9 +89,7 @@ body{
     height: 40px;
 }
 
-
-
-/* END OF STYLING FOR LOGIN PAGE */
+/* END OF STYLING FOR LOGIN AND SIGNUP PAGE */
 
 
 .backgroundimg{
