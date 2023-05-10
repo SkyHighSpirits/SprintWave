@@ -460,6 +460,40 @@ p{
     }
 }
 
+/* START OF APP FRONT PAGE STYLING */
+
+.appfrontpage-main {
+    max-width: 80%; /* adjust as needed */
+    margin: auto;
+    margin-top: 50px; /* adjust as needed */
+    margin-bottom: 50px; /* adjust as needed */
+    border: 1px solid red; /* add red border */
+}
+
+.appfrontpage-project-matrix {
+    display: flex;
+    justify-content: center;
+    gap: 81px;
+    flex-wrap: wrap; /* add wrap property */
+    border: 1px solid red; /* add red border */
+    margin-bottom: 20px; /* add space below */
+    padding: 0px; /* add padding */
+}
+
+.appfrontpage-project {
+    width: 350px;
+    height: 350px;
+    margin: 0;
+    border: 1px solid red; /* add red border */
+    box-sizing: border-box;
+    padding: 20px;
+    text-align: center;
+}
+
+
+
+
+/* END OF APP FRONT PAGE STYLING */
 
 
 
