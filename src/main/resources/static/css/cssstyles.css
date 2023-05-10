@@ -472,7 +472,7 @@ p{
 
 .appfrontpage-project-matrix {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     gap: 81px;
     flex-wrap: wrap; /* add wrap property */
     border: 1px solid red; /* add red border */
@@ -490,16 +490,32 @@ p{
     position: relative;
 }
 
+.appfrontpage-create-project {
+    width: 350px;
+    height: 350px;
+    margin: 0;
+    border: 1px solid red; /* add red border */
+    box-sizing: border-box;
+    padding: 10px;
+    position: relative;
+}
+
 .appfrontpage-project-deadline {
     position: absolute;
     bottom: 10px;
     left: 10px;
+    border: 1px solid red; /* add red border */
+}
+
+.appfrontpage-project p {
+    border: 1px solid red; /* add red border */
 }
 
 .appfrontpage-project button {
     position: absolute; /* add absolute positioning to child */
     bottom: 10px; /* adjust as needed */
     right: 10px; /* adjust as needed */
+    border: 1px solid red; /* add red border */
 }
 
 
