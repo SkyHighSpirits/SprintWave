@@ -8,7 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 @Repository
 public class EpicRepository {
@@ -87,16 +89,33 @@ public class EpicRepository {
     }
 
     public Epic findEpicByID(int id){
-        //Oprette forbindelse til database
-        Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
-        //SQL statement
-        //PreparedStatement
-        //set parameters
-        //execute statement
-        //Få et epic ud fra databasen
+        Epic foundEpic = new Epic();
+        foundEpic.setEpic_id(id);
+        try {
+            //Oprette forbindelse til database
+            Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
+            //SQL statement
+            String SQL_QUERY = "SELECT * FROM epics WHERE epic_id = ?";
+            //PreparedStatement
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
+            //set parameters
+            preparedStatement.setInt(1, id);
+            //execute statement
+            ResultSet resultSet = preparedStatement.executeQuery();
+            //Få et epic ud fra databasen
+            foundEpic.setProject_id(resultSet.getInt(1));
+            foundEpic.setEpic_name(resultSet.getString(3));
+            foundEpic.setEpic_description(resultSet.getString(4));
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+            System.out.println("No epic was found by that id");
+        }
+        return foundEpic;
     }
 
-    public void getAllEpicByProjectID(){
+    public List<Epic> getAllEpicByProjectID(int projectID){
 
     }
 }
