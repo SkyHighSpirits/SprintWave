@@ -12,7 +12,7 @@ body{
 }
 
 
-/* END OF STYLING FOR LOGIN AND SIGNUP PAGE */
+/* START OF STYLING FOR LOGIN AND SIGNUP PAGE */
 
 .signup-login-background-image {
     position: fixed;
@@ -50,8 +50,6 @@ body{
     padding: 50px;
 }
 
-
-
 .signup-login-button {
     display: inline-block;
     outline: 0;
@@ -71,7 +69,6 @@ body{
 }
 
 .signup-login-input {
-
     color: rgba(0, 0, 0, .87);
     border-bottom-color: rgba(0, 0, 0, .42);
     font-size: 1rem;

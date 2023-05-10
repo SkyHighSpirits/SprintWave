@@ -8,18 +8,15 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    
-    <!-- NEW CODE BELOW -->
     <div class="signup-login-background-image">
-        
         <div class="signup-login-flex-container">
-
             <div class="signup-login-flex-item">
                 <h1>Insert logo</h1>
             </div>
+            
             <div class="signup-login-flex-item">
                 <h1>Create Workspace</h1>
-
+                
                 <form action="createaccount" method="post">
                     <label for="workspace_name">Worskpace Name:</label>
                     <p><input class="signup-input" id="workspace_name" name="workspacename" type="text" ></p>
@@ -42,38 +39,5 @@
             </div>
         </div>
     </div>
-
-    
-    
-    <!-- OLD CODE BELOW -->
-    <!-- <div class="backgroundimg">
-        <div class="sidebyside">
-            <div class="rightloginitem">
-
-            </div>
-            <div class="leftloginitem">
-                <form action="createaccount" method="post">
-                    <label for="workspace_name">Worskpace Name:</label>
-                    <p><input id="workspace_name" name="workspacename" type="text" ></p>
-
-                    <label for="first_name_field">Fornavn:</label>
-                    <p><input id="first_name_field" name="firstname" type="text" th:value="${first_name}" ></p>
-
-                    <label for="last_name_field">Efternavn:</label>
-                    <p><input id="last_name_field" name="lastname" type="text" th:value="${last_name}"></p>
-
-                    <label for="email_field">email:</label>
-                    <p><input id="email_field" name="email" type="text" th:value="${email}"></p>
-
-                    <label for="password_field">Password:</label>
-                    <p><input id="password_field" name="password" type="text" th:value="${password}"></p>
-
-                    <p><input value="Opret Admin" type="submit"></p>
-
-                </form>
-
-            </div>
-        </div>
-    </div> -->
 </body>
 </html>
