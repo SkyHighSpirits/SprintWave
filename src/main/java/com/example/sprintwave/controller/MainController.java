@@ -66,7 +66,7 @@ public class MainController {
         workspaceRepository.addWorkspace(workspace);
         User user = UserDataHandler.populateUserWithInformation(email, password, firstName, lastName, workspaceName, workspaceRepository);
         userRepository.createUser(user);
-        return "redirect:/workspace";
+        return "redirect:/appfrontpage";
     }
 
     // Login User
@@ -119,8 +119,9 @@ public class MainController {
         project.setProjectOwner(projectOwner);
         project.setProjectDescription(projectDescription);
         project.setDeadline(deadline);
+        project.setWorkspaceID(1); //todo skal rettes så dette sker automatisk.
         projectRepository.createProject(project);
-        return "redirect:/";
+        return "redirect:/appfrontpage";
     }
 
 

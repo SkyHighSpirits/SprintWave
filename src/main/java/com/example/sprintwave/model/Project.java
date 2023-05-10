@@ -9,6 +9,8 @@ public class Project
     boolean projectStatus;
     LocalDate deadline;
     String projectDescription;
+    int workspaceID;
+
 
 
 
@@ -51,7 +53,7 @@ public class Project
         return projectOwner;
     }
 
-    public void setProjectOwner(String ownership)
+    public void setProjectOwner(String projectOwner)
     {
         this.projectOwner = projectOwner;
     }
@@ -84,5 +86,15 @@ public class Project
     public void setProjectDescription(String projectDescription)
     {
         this.projectDescription = projectDescription;
+    }
+
+    public int getWorkspaceID()
+    {
+        return workspaceID;
+    }
+
+    public void setWorkspaceID(int workspaceID)
+    {
+        this.workspaceID = workspaceID;
     }
 }
