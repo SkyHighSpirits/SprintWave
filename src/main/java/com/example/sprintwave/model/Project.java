@@ -1,4 +1,5 @@
 package com.example.sprintwave.model;
+import java.time.LocalDate;
 
 public class Project
 {
@@ -6,13 +7,19 @@ public class Project
     String projectName;
     String projectOwner;
     boolean projectStatus;
+    LocalDate deadline;
+    String projectDescription;
 
 
-    public Project(int projectID, String projectName, String projectOwner, boolean projectStatus ){
+
+    public Project(int projectID, String projectName, String projectOwner, boolean projectStatus, LocalDate deadline, String projectDescription){
         this.projectID =projectID;
         this.projectName = projectName;
         this.projectOwner = projectOwner;
         this.projectStatus = projectStatus;
+        this.deadline = deadline;
+        this.projectDescription = projectDescription;
+
     }
     public Project()
     {
@@ -57,5 +64,25 @@ public class Project
     public void setProjectStatus(boolean projectStatus)
     {
         this.projectStatus = projectStatus;
+    }
+
+    public LocalDate getDeadline()
+    {
+        return deadline;
+    }
+
+    public void setDeadline(LocalDate deadline)
+    {
+        this.deadline = deadline;
+    }
+
+    public String getProjectDescription()
+    {
+        return projectDescription;
+    }
+
+    public void setProjectDescription(String projectDescription)
+    {
+        this.projectDescription = projectDescription;
     }
 }

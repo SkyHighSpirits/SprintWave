@@ -17,6 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+
 @ControllerAdvice
 @Controller
 public class MainController {
@@ -103,13 +105,20 @@ public class MainController {
         return "overview";
     }
 
-    @PostMapping("/createProject")
+    @GetMapping("/createproject")
+    public String getCreateproject() {return "createproject";}
+
+    @PostMapping("/postcreateproject")
     public String createProject(@RequestParam("projectname") String projectName,
-                                @RequestParam("projectOwner") String projectOwner)
+                                @RequestParam("projectowner") String projectOwner,
+                                @RequestParam("projectdescription") String projectDescription,
+                                @RequestParam("deadline") LocalDate deadline)
     {
         Project project = new Project();
         project.setProjectName(projectName);
         project.setProjectOwner(projectOwner);
+        project.setProjectDescription(projectDescription);
+        project.setDeadline(deadline);
         projectRepository.createProject(project);
         return "redirect:/";
     }
