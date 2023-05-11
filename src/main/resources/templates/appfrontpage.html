@@ -13,8 +13,8 @@
     <div class="appfrontpage-main">
         <h1>Active Projects</h1>
         <div class="appfrontpage-project-matrix">
-            <div class="appfrontpage-project">
-                <h3>Steffen Grøn Andersen</h3>
+            <div class="appfrontpage-project" th:each="project : ${projects}">
+                <h3 th:text="${project.}"></h3>
                 <h2>Develop CRM system for sales team</h2>
                 <p>Build a sales CRM software that helps manage customer relationships and sales pipelines.</p>
                 <div class="appfrontpage-project-deadline"><p>Deadline: 2023-05-10</p></div>
