@@ -30,14 +30,13 @@ public class EpicRepository {
             //Opret forbindelse til database
             Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
             //SQL statement
-            String SQL_QUERY = "INSERT INTO epics VALUES (?, ?, ?, ?)";
+            String SQL_QUERY = "INSERT INTO epics(project_id, epic_name, epic_description) VALUES (?, ?, ?)";
             //prepared statement
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
             //set parameters
             preparedStatement.setInt(1, newEpic.getProject_id());
-            preparedStatement.setInt(2, newEpic.getEpic_id());
-            preparedStatement.setString(3, newEpic.getEpic_name());
-            preparedStatement.setString(4, newEpic.getEpic_description());
+            preparedStatement.setString(2, newEpic.getEpic_name());
+            preparedStatement.setString(3, newEpic.getEpic_description());
             //execute query
             preparedStatement.executeUpdate();
         }
@@ -70,7 +69,7 @@ public class EpicRepository {
         }
     }
 
-    public void deleteEpic(Epic deleteEpic){
+    public void deleteEpic(int deleteEpicID){
         try {
             //Oprette forbindelse til database
             Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
@@ -79,7 +78,7 @@ public class EpicRepository {
             //PreparedStatement
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
             //set parameters
-            preparedStatement.setInt(1, deleteEpic.getEpic_id());
+            preparedStatement.setInt(1, deleteEpicID);
             //execute statement
             preparedStatement.executeQuery();
         }
@@ -117,8 +116,8 @@ public class EpicRepository {
         return foundEpic;
     }
 
-    public List<Epic> getAllEpicByProjectID(int projectID){
-        List<Epic> epicList = new ArrayList<>();
+    public ArrayList<Epic> getAllEpicByProjectID(int projectID){
+        ArrayList<Epic> epicList = new ArrayList<>();
         try {
             //Oprette forbindelse til database
             Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
