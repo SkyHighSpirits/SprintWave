@@ -104,11 +104,11 @@ public class MainController {
         return "redirect:/epics";
     }
 
-    @GetMapping("/deleteepic/{epic_id}")
-    public String deleteEpic(@PathVariable("epic_id") int epic_id) {
+    @GetMapping("/deleteepic/{epic_id}/{project_id}")
+    public String deleteEpic(@PathVariable("epic_id") int epic_id, @PathVariable("project_id") int project_id) {
         epicRepository.deleteEpic(epic_id);
 
-        return "redirect:/epics/";
+        return "redirect:/epics/" + project_id;
     }
 
     @PostMapping("/createaccount")

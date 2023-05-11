@@ -128,8 +128,9 @@ public class EpicRepository {
             //execute statement
             ResultSet resultSet = preparedStatement.executeQuery();
             //set resultset
-            Epic foundEpic = new Epic();
+
             while(resultSet.next()) {
+                Epic foundEpic = new Epic();
                 foundEpic.setProject_id(projectID);
                 foundEpic.setEpic_id(resultSet.getInt(2));
                 foundEpic.setEpic_name(resultSet.getString(3));

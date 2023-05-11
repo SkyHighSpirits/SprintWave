@@ -259,7 +259,7 @@ label .logo-link{
 
     padding: 40px;
 
-    height: 100vh;
+    height: 100%;
 
     display: flex;
     justify-content: center;
@@ -306,6 +306,7 @@ label .logo-link{
     width: 60%;
     padding: 20px;
     border-radius: 10px;
+    margin-bottom: 40px;
 }
 .epicbuttons
 {
@@ -332,10 +333,10 @@ label .logo-link{
 {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
     margin: 20px;
 }
-
-#table-container div:nth-child(even){background-color: rgba(53,124,207,1)}
 
 #table-container p:hover {background-color: #ddd;}
 
