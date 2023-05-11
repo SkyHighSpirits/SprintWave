@@ -16,13 +16,11 @@ import java.util.List;
 @Repository
 public class EpicRepository {
 
-    @Value("$spring.datasource.url")
+    @Value("${spring.datasource.url}")
     String DB_HOSTNAME;
-
-    @Value("$spring.datasource.username")
+    @Value("${spring.datasource.username}")
     String DB_USERNAME;
-
-    @Value("$spring.datasource.password")
+    @Value("${spring.datasource.password}")
     String DB_PASSWORD;
 
     public void createEpic(Epic newEpic) {

@@ -33,11 +33,12 @@ public class MainController {
     UserRepository userRepository;
     EpicRepository epicRepository;
 
-    public MainController(UserRepository userRepository, WorkspaceRepository workspaceRepository, ProjectRepository projectRepository)
+    public MainController(UserRepository userRepository, WorkspaceRepository workspaceRepository, ProjectRepository projectRepository, EpicRepository epicRepository)
     {
         this.userRepository = userRepository;
         this.workspaceRepository = workspaceRepository;
         this.projectRepository = projectRepository;
+        this.epicRepository = epicRepository;
     }
 
     @ModelAttribute("currentuser")
@@ -92,7 +93,7 @@ public class MainController {
         model.addAttribute("epic", updateEpic);
         return "epicUpdate";
     }
-    @PostMapping("/update")
+    @PostMapping("/updateepic")
     public String updateEpic(@RequestParam("project_id") int project_id,
                              @RequestParam("epic_id") int epic_id,
                              @RequestParam("epic_name") String epic_name,
@@ -103,7 +104,7 @@ public class MainController {
         return "redirect:/epics";
     }
 
-    @GetMapping("/delete/{epic_id}")
+    @GetMapping("/deleteepic/{epic_id}")
     public String deleteEpic(@PathVariable("epic_id") int epic_id) {
         epicRepository.deleteEpic(epic_id);
 
