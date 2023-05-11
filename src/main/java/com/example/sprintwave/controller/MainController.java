@@ -1,9 +1,11 @@
 package com.example.sprintwave.controller;
 
 import com.example.sprintwave.model.Epic;
+import com.example.sprintwave.model.Project;
 import com.example.sprintwave.model.User;
 import com.example.sprintwave.model.Workspace;
 import com.example.sprintwave.repository.EpicRepository;
+import com.example.sprintwave.repository.ProjectRepository;
 import com.example.sprintwave.repository.UserRepository;
 import com.example.sprintwave.repository.WorkspaceRepository;
 
@@ -12,6 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 import com.example.sprintwave.utility.PasswordHashing;
+import org.apache.coyote.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,48 +22,42 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.time.LocalDate;
+
 @ControllerAdvice
 @Controller
 public class MainController {
 
-
+    ProjectRepository projectRepository;
     WorkspaceRepository workspaceRepository;
     UserRepository userRepository;
     EpicRepository epicRepository;
 
-    public MainController(UserRepository userRepository, WorkspaceRepository workspaceRepository) {
+    public MainController(UserRepository userRepository, WorkspaceRepository workspaceRepository, ProjectRepository projectRepository)
+    {
         this.userRepository = userRepository;
         this.workspaceRepository = workspaceRepository;
+        this.projectRepository = projectRepository;
     }
 
     @ModelAttribute("currentuser")
-    public User getCurrentUser(HttpServletRequest request) {
+    public User getCurrentUser(HttpServletRequest request)
+    {
         HttpSession session = request.getSession();
         User currentUser = (User) session.getAttribute("currentuser");
         return currentUser;
     }
 
-
-
     @GetMapping("/")
-    public String getHomepage() {
+    public String getHomepage()
+    {
         return "frontpage";
     }
 
     @GetMapping("/signup")
-    public String getSignupPage() {
-        return "signup";
-    }
-
-    @GetMapping("/login")
-    public String getLoginPage()
+    public String getSignupPage()
     {
-        return "login";
-    }
-
-    @GetMapping("/overview")
-    public String overview() {
-        return "overview";
+        return "signup";
     }
 
     @GetMapping("/epics/{project_id}")
@@ -118,13 +115,14 @@ public class MainController {
                                 @RequestParam("firstname") String firstName,
                                 @RequestParam("lastname") String lastName,
                                 @RequestParam("email") String email,
-                                @RequestParam("password") String password) {
+                                @RequestParam("password") String password)
+    {
         Workspace workspace = new Workspace();
         workspace.setName(workspaceName);
         workspaceRepository.addWorkspace(workspace);
         User user = UserDataHandler.populateUserWithInformation(email, password, firstName, lastName, workspaceName, workspaceRepository);
         userRepository.createUser(user);
-        return "redirect:/workspace";
+        return "redirect:/appfrontpage";
     }
 
     // Login User
@@ -137,16 +135,50 @@ public class MainController {
         enteredPassword = passwordHashing.doHashing(enteredPassword);
 
 
-        for (User checkUser : userRepository.getAllUsers()) {
-            // TO DO: Create CHECK for user.
-            if (UserDataHandler.checkUserInformationMatch(checkUser, enteredPassword, enteredEmail)) {
-                model.addAttribute("currentuser", checkUser);
+        for(User checkUser: userRepository.getAllUsers()){
+                // TO DO: Create CHECK for user.
+            if(UserDataHandler.checkUserInformationMatch(checkUser, enteredPassword, enteredEmail))
+            {
+                model.addAttribute("currentuser",checkUser);
                 session.setAttribute("currentuser", checkUser);
                 User currentuser = (User) session.getAttribute("currentuser");
+
                 return "redirect:/";
             }
         }
+        return "login";
 
+    }
+
+    @GetMapping("/login")
+    public String getLoginPage()
+    {
         return "login";
     }
+
+    @GetMapping("/overview")
+    public String overview() {
+        return "overview";
+    }
+
+    @GetMapping("/createproject")
+    public String getCreateproject() {return "createproject";}
+
+    @PostMapping("/postcreateproject")
+    public String createProject(@RequestParam("projectname") String projectName,
+                                @RequestParam("projectowner") String projectOwner,
+                                @RequestParam("projectdescription") String projectDescription,
+                                @RequestParam("deadline") LocalDate deadline)
+    {
+        Project project = new Project();
+        project.setProjectName(projectName);
+        project.setProjectOwner(projectOwner);
+        project.setProjectDescription(projectDescription);
+        project.setDeadline(deadline);
+        project.setWorkspaceID(1); //todo skal rettes så dette sker automatisk.
+        projectRepository.createProject(project);
+        return "redirect:/appfrontpage";
+    }
+
+
 }
