@@ -108,7 +108,7 @@ public class MainController {
     public String deleteEpic(@PathVariable("epic_id") int epic_id) {
         epicRepository.deleteEpic(epic_id);
 
-        return "redirect:/epics";
+        return "redirect:/epics/";
     }
 
     @PostMapping("/createaccount")

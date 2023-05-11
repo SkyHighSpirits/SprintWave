@@ -78,7 +78,7 @@ public class EpicRepository {
             //set parameters
             preparedStatement.setInt(1, deleteEpicID);
             //execute statement
-            preparedStatement.executeQuery();
+            preparedStatement.execute();
         }
         catch(SQLException e)
         {

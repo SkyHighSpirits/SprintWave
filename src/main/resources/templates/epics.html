@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" th:href="@{css/cssstyles.css}" href="../static/css/cssstyles.css">
+    <link rel="stylesheet" th:href="@{/css/cssstyles.css}" href="../static/css/cssstyles.css">
     <link rel="stylesheet" type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -27,7 +27,7 @@
                         <p th:text="${epic.epic_description}">Launch cloud service in Denmark</p>
                         <div class="epicbuttons">
                             <a class="table-link" th:href="@{'/updateepic/' + ${epic.epic_id}}" href="/updateepic">Update</a>
-                            <a class="table-link" th:href="@{'/deleteepic' + ${epic.epic_id}}" href="/deleteepic">Delete</a>
+                            <a class="table-link" th:href="@{'/deleteepic/' + ${epic.epic_id}}" href="/deleteepic">Delete</a>
                         </div>
                     </div>
                 </div>
