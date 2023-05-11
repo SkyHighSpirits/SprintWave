@@ -51,6 +51,6 @@ INSERT INTO users (email, user_password, firstname, lastname, permission_level, 
 VALUES ('steffen@localhost.com', 'e10adc3949ba59abbe56e057f20f883e', 'Steffen', 'Andersen', 'ADMINISTRATOR',1);
 
 
-INSERT INTO projects (project_name, project_owner, project_status, project_id, workspace_id, project_deadline, project_description)
-VALUES('testProject','tommy', true, 1, 1, '2023-05-30', 'fjollefjol');
+INSERT INTO projects (project_id, project_name, project_description, project_owner, project_status, project_deadline, workspace_id)
+VALUES(1,'testProject','fjollefjol','tommy', true, '2023-05-30',1);
 

@@ -14,13 +14,14 @@ public class Project
 
 
 
-    public Project(int projectID, String projectName, String projectOwner, boolean projectStatus, LocalDate deadline, String projectDescription){
+    public Project(int projectID, String projectName,String projectDescription, String projectOwner, boolean projectStatus, LocalDate deadline,  int workspaceID){
         this.projectID =projectID;
         this.projectName = projectName;
         this.projectOwner = projectOwner;
         this.projectStatus = projectStatus;
         this.deadline = deadline;
         this.projectDescription = projectDescription;
+        this.workspaceID = workspaceID;
 
     }
     public Project()
