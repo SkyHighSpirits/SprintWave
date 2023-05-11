@@ -123,6 +123,11 @@ public class MainController {
         projectRepository.createProject(project);
         return "redirect:/appfrontpage";
     }
+    
+    @GetMapping("/appfrontpage")
+    public String getAppFrontpage(){
+        return "appfrontpage";
+    }
 
 
 }
