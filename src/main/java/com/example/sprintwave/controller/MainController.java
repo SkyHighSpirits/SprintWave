@@ -130,8 +130,8 @@ public class MainController {
     /* START OF PROJECT MAPPINGS BY STEFFEN */
     @GetMapping("/appfrontpage/{workspace_id}")
     public String getAppFrontpage(@PathVariable("workspace_id") int workspace_id, Model model){
-       // ArrayList projectList = (ArrayList)projectRepository.getAllProjects(); //TODO Skal opdateres til getAllProjectsByWorkspaceID
-       // model.addAttribute("projects", projectList);
+       ArrayList projectList = (ArrayList)projectRepository.getAllProjects(); //TODO Skal opdateres til getAllProjectsByWorkspaceID
+       model.addAttribute("projects", projectList);
         return "appfrontpage";
     }
     
