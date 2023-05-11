@@ -18,6 +18,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @ControllerAdvice
 @Controller
@@ -124,10 +126,18 @@ public class MainController {
         return "redirect:/appfrontpage";
     }
     
-    @GetMapping("/appfrontpage")
-    public String getAppFrontpage(){
+    
+    /* START OF PROJECT MAPPINGS BY STEFFEN */
+    @GetMapping("/appfrontpage/{workspace_id}")
+    public String getAppFrontpage(@PathVariable("workspace_id") int workspace_id, Model model){
+        List<Project> projectList = projectRepository.getAllProjects(); //TODO Skal opdateres til getAllProjectsByWorkspaceID
+        model.addAttribute("projects", projectList);
         return "appfrontpage";
     }
+    
+    
+    /* END OF PROJECT MAPPINGS BY STEFFEN */
+    
 
 
 }
