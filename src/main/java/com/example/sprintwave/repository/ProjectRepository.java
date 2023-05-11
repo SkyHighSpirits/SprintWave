@@ -70,4 +70,30 @@ public class ProjectRepository
         return projects;
     }
 
+    public Project findProjectById(int id){
+        Project foundProject = new Project();
+        foundProject.setProjectID(id);
+        try{
+            Connection connection = DriverManager.getConnection(DB_HOSTNAME,DB_USERNAME,DB_PASSWORD);
+            String SQL_QUERY = "SELECT * FROM projects WHERE workspace_id =?";
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
+            preparedStatement.setInt(1,id);
+            ResultSet resultset = preparedStatement.executeQuery();
+
+            foundProject.setProjectID(resultset.getInt(1));
+            foundProject.setProjectName(resultset.getString(2));
+            foundProject.setProjectDescription(resultset.getString(3));
+            foundProject.setProjectOwner(resultset.getString(4));
+            foundProject.setProjectStatus(resultset.getBoolean(5));
+            foundProject.setDeadline(resultset.getDate(6).toLocalDate());
+            //toLocalDate tilføjet for at kunne omskrive java.SQL.date fra databasen til LocalDate objet. da vi bruger localdate some dato attribut
+
+        }catch(SQLException e){
+            e.printStackTrace();
+            System.out.println("could not find project by id");
+
+        }
+        return foundProject;
+    }
+
 }
