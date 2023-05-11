@@ -577,6 +577,7 @@ p{
     box-sizing: border-box;
     padding: 10px;
     position: relative;
+    background-color: #FCF3A6;
 }
 
 .appfrontpage-project-deadline {
