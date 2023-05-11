@@ -180,36 +180,63 @@ label .logo-link{
     background: linear-gradient(hsla(217, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
 
     padding: 40px;
-}
 
-#table-container th
-{
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: Left;
-    background: linear-gradient(rgba(0,81,170,1) 0%, rgba(53,124,207,1) 35%, rgba(126,193,232,1) 100%);
-    color: white;
-}
+    height: 100vh;
 
-#table-container {
-    border-collapse: collapse;
-    width: 100%;
     display: flex;
     justify-content: center;
 }
 
-#table-container td, #table-container th {
-    border: 1px solid #ddd;
-    padding: 8px;
+.epicstitle
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: White;
+    font-size: large;
+    text-shadow: black 1px 1px;
+    margin-bottom: 30px;
 }
 
-#table-container td
+.epicstitle a
 {
-    background: white;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    background: lightseagreen;
+}
+
+.epicstitle a:hover
+{
+    background: darkgreen;
+}
+
+.epicscontainer
+{
+    padding: 20px;
+    width: 100%;
     color: black;
 }
+.epicsitem
+{
+    position: relative;
+    background: white;
+    border: solid;
+    height: 200px;
+    width: 60%;
+    padding: 20px;
+    border-radius: 10px;
+}
+.epicbuttons
+{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 
-#table-container td .table-link{
+}
+.table-link{
     background: linear-gradient(rgba(0,81,170,1) 0%, rgba(53,124,207,1) 35%, rgba(126,193,232,1) 100%);
     color: white;
     padding: 7px 13px;
@@ -218,14 +245,21 @@ label .logo-link{
     display: inline-block;
     border-radius: 12px;
 }
-#table-container td .table-link:hover{
+.table-link:hover{
     background: linear-gradient(90deg, hsla(238, 100%, 48%, 1) 0%, hsla(204, 73%, 66%, 1) 100%);
     transition: .5s;
 }
 
-#table-container tr:nth-child(even){background-color: rgba(53,124,207,1)}
+#table-container
+{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
 
-#table-container tr:hover {background-color: #ddd;}
+#table-container div:nth-child(even){background-color: rgba(53,124,207,1)}
+
+#table-container p:hover {background-color: #ddd;}
 
 .boxtwo{
     width: 650px;

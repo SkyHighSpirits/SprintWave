@@ -36,6 +36,8 @@ public class MainController {
         return currentUser;
     }
 
+
+
     @GetMapping("/")
     public String getHomepage()
     {
@@ -80,12 +82,11 @@ public class MainController {
                 model.addAttribute("currentuser",checkUser);
                 session.setAttribute("currentuser", checkUser);
                 User currentuser = (User) session.getAttribute("currentuser");
-
                 return "redirect:/";
             }
         }
-        return "login";
 
+        return "login";
     }
 
     @GetMapping("/login")

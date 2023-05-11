@@ -11,23 +11,27 @@
     <div th:replace="fragments/navbar :: navbarthree"></div>
 
     <div id="table-background">
-        <div id="table-container">
-            <table style="  border: 1px solid black; border-collapse: collapse;">
-                <thead>
-                <th>Epic </th>
-                <th>Description </th>
-                <th>Update Epic </th>
-                <th>Delete Epic </th>
-                </thead>
-                <tbody>
-                <tr th:each="epic : ${epics}">
-                    <td th:text="${epic.epic_name}"></td>
-                    <td th:text="${epic.epic_description}"></td>
-                    <td><a class="table-link" th:href="@{'/update/' + ${epic.epic_id}}" href="/updateepic">Update</a></td>
-                    <td><a class="table-link" th:href="@{'/delete/' + ${epic.epic_id}}" href="/deleteepic">Delete</a></td>
-                </tr>
-                </tbody>
-            </table>
+        <div class="epicscontainer">
+            <div class="epicstitle">
+                <h1>Epics</h1>
+
+                <a class="table-link" th:href="@{/showcreateepic}" href="/createepic.html"><H1>+</H1></a>
+            </div>
+
+
+            <div id="table-container">
+
+                <div class="epicsitem" th:each="epic : ${epics}">
+                    <div>
+                        <h2 th:text="${epic.epic_name}">EP001</h2>
+                        <p th:text="${epic.epic_description}">Launch cloud service in Denmark</p>
+                        <div class="epicbuttons">
+                            <a class="table-link" th:href="@{'/updateepic/' + ${epic.epic_id}}" href="/updateepic">Update</a>
+                            <a class="table-link" th:href="@{'/deleteepic' + ${epic.epic_id}}" href="/deleteepic">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
