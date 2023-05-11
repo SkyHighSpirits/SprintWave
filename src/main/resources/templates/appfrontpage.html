@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>App Frontpage</title>
@@ -8,8 +8,6 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div th:replace="fragments/navbar :: navbar"></div>
-
     <div class="appfrontpage-main">
         <h1>Active Projects</h1>
         <div class="appfrontpage-project-matrix">
@@ -70,6 +68,5 @@
         
     </div>
 
-    <div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>
