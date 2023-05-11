@@ -566,6 +566,7 @@ p{
     box-sizing: border-box;
     padding: 10px;
     position: relative;
+    background-color: #FCF3A6;
 }
 
 .appfrontpage-create-project {
@@ -576,6 +577,7 @@ p{
     box-sizing: border-box;
     padding: 10px;
     position: relative;
+    background-color: #FCF3A6;
 }
 
 .appfrontpage-project-deadline {
@@ -590,10 +592,25 @@ p{
 }
 
 .appfrontpage-project button {
-    position: absolute; /* add absolute positioning to child */
-    bottom: 10px; /* adjust as needed */
-    right: 10px; /* adjust as needed */
-    border: 1px solid red; /* add red border */
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    border: 1px solid red;
+    display: inline-block;
+    outline: 0;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+    padding: 5px 11px;
+    font-size: 11px;
+    height: 25px; 
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+    line-height: normal;
+    background: linear-gradient(90deg, #5522fa 0, #0074e4 100%);
+    border-radius: 25px; 
+    transition: color .2s ease, background-color .2s ease, box-shadow .2s ease;
 }
 
 
