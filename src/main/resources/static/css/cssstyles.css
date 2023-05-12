@@ -265,6 +265,19 @@ label .logo-link{
     justify-content: center;
 }
 
+#epiccreate-table-background
+{
+    background: linear-gradient(hsla(217, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
+
+    padding: 40px;
+
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+}
+
+
 .epicstitle
 {
     display: flex;
@@ -303,6 +316,17 @@ label .logo-link{
     background: white;
     border: solid;
     height: 200px;
+    width: 60%;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+.epiccreateitem
+{
+    position: relative;
+    background: white;
+    border: solid;
+    height: 250px;
     width: 60%;
     padding: 20px;
     border-radius: 10px;
