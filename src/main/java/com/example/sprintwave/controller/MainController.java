@@ -93,6 +93,7 @@ public class MainController {
         model.addAttribute("epic", updateEpic);
         return "epicUpdate";
     }
+
     @PostMapping("/updateepic")
     public String updateEpic(@RequestParam("project_id") int project_id,
                              @RequestParam("epic_id") int epic_id,
@@ -148,7 +149,6 @@ public class MainController {
             }
         }
         return "login";
-
     }
 
     @GetMapping("/login")

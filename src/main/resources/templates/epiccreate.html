@@ -26,7 +26,7 @@
           <p>Write description</p>
           <input id="epic-description-field" name="epic_description" type="text"></input>
           <div class="epicbuttons">
-            <input id="project_id-field" name="project-id" type="hidden" th:value="${epic.project_id}"></input>
+            <input id="project_id-field" name="project_id" type="hidden" th:value="${session.currentproject.getProjectID()}"></input>
           </div>
           <input class="table-link" type="submit" value="Opret epic"></input>
         </div>
