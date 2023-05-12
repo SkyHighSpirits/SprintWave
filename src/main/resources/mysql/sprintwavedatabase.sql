@@ -43,6 +43,16 @@ CREATE TABLE epics(
 
 );
 
+CREATE TABLE requirements(
+                      project_id INT NOT NULL,
+                      requirement_id INT UNIQUE NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+                      requirement_name VARCHAR(255) NOT NULL,
+                      requirement_description VARCHAR(255) NOT NULL,
+                      requirement_actor VARCHAR(255) NOT NULL,
+                      FOREIGN KEY(project_id) REFERENCES projects(project_id)
+
+);
+
 
 INSERT into workspaces (workspace_name)
 VALUES ('KEA');
