@@ -70,7 +70,7 @@ public class MainController {
 
     @GetMapping("/showcreateepic")
     public String showCreateEpic() {
-        return "createEpic";
+        return "epiccreate";
     }
 
     @PostMapping("/createepic")
