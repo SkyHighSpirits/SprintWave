@@ -14,13 +14,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 import com.example.sprintwave.utility.PasswordHashing;
-import org.apache.coyote.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import java.time.LocalDate;
 
@@ -91,7 +89,7 @@ public class MainController {
     public String showEpicUpdate(@PathVariable("epic_id") int updateID, Model model) {
         Epic updateEpic = epicRepository.findEpicByID(updateID);
         model.addAttribute("epic", updateEpic);
-        return "epicUpdate";
+        return "epicupdate";
     }
 
     @PostMapping("/updateepic")
