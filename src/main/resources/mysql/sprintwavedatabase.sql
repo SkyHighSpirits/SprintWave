@@ -54,3 +54,9 @@ VALUES ('steffen@localhost.com', 'e10adc3949ba59abbe56e057f20f883e', 'Steffen', 
 INSERT INTO projects (project_id, project_name, project_description, project_owner, project_status, project_deadline, workspace_id)
 VALUES(1,'testProject','fjollefjol','tommy', true, '2023-05-30',1);
 
+INSERT INTO epics (project_id, epic_name, epic_description)
+VALUES(1, 'EP003', 'Deploy feature Epics');
+
+INSERT INTO epics (project_id, epic_name, epic_description)
+VALUES(1, 'EP004', 'Deploy feature projects');
+
