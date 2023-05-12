@@ -1,6 +1,5 @@
 package com.example.sprintwave.repository;
 
-import com.example.sprintwave.model.Epic;
 import com.example.sprintwave.model.Requirement;
 import com.example.sprintwave.utility.ConnectionManager;
 import org.springframework.beans.factory.annotation.Value;
