@@ -9,6 +9,7 @@ DROP TABLE IF EXISTS workspaces;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS projects;
 DROP TABLE IF EXISTS epics;
+DROP TABLE IF EXISTS requirements;
 
 /* Create tables to database: Workspaces, Users, Projects, Epics. */
 CREATE TABLE workspaces(
@@ -48,11 +49,22 @@ CREATE TABLE epics(
 
 );
 
+CREATE TABLE requirements(
+                             project_id INT NOT NULL,
+                             requirement_id INT UNIQUE NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+                             requirement_name VARCHAR(255) NOT NULL,
+                             requirement_description VARCHAR(255) NOT NULL,
+                             requirement_actor VARCHAR(255) NOT NULL,
+                             FOREIGN KEY(project_id) REFERENCES projects(project_id)
+
+);
+
 /* Insert temporary data into database. */
 INSERT into workspaces
     (workspace_name)
 VALUES
     ('KEA');
+
 
 INSERT INTO users
     (email, user_password, firstname, lastname, permission_level, workspace_id)
