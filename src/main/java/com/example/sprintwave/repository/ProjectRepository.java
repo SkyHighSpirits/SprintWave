@@ -3,6 +3,7 @@ import com.example.sprintwave.model.Epic;
 import com.example.sprintwave.model.Project;
 
 
+import com.example.sprintwave.utility.ConnectionManager;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
@@ -127,6 +128,29 @@ public class ProjectRepository
             e.printStackTrace();
     }
         return projects;
+    }
+
+    public void updateProject(Project updateProject){
+        try{
+            Connection connection = ConnectionManager.getConnection(DB_HOSTNAME,DB_USERNAME,DB_PASSWORD);
+            String SQL_QUERY = "UPDATE projects SET project_name = ?, project_description = ?, project_owner = ?, project_status = ?, project_deadline = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
+
+            preparedStatement.setString(1,updateProject.getProjectName());
+            preparedStatement.setString(2, updateProject.getProjectDescription());
+            preparedStatement.setString(3, updateProject.getProjectOwner());
+            preparedStatement.setBoolean(4, updateProject.isProjectStatus());
+            LocalDate deadlineLocalDate = updateProject.getDeadline();  //henter localdate fra updateproject
+            Date deadlineSQL = Date.valueOf(deadlineLocalDate);  // konveter  localdate til java.sql.date med date.valueof
+            preparedStatement.setDate(5, deadlineSQL); //sætter den konverteret java.sql.date som project deadline
+
+            preparedStatement.executeUpdate();
+
+        }catch(SQLException e)
+        {
+            e.printStackTrace();
+            System.out.println("could not update project");
+        }
     }
 
 }
