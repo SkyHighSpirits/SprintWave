@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Create New Project</title>
+    <link rel="stylesheet" th:href="@{/css/cssstyles.css}" href="../static/css/cssstyles.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 <!-- NEW CODE -->
@@ -29,7 +32,8 @@
                     <p><input id="deadline" type="date" name="deadline" value="2000-01-01"></p>
 
                     <p><input type="hidden" name="workspaceid" th:value="${session.currentuser.getWorkspace_id()}"></p>
-                    <p><input value="opret projekt" type="submit"> </p>
+                    </br>
+                    <p><input class="signup-login-button" value="opret projekt" type="submit"> </p>
                 </form>
             </div>
         </div>
