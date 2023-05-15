@@ -3,6 +3,7 @@ import com.example.sprintwave.model.Epic;
 import com.example.sprintwave.model.Project;
 
 
+import com.example.sprintwave.utility.ConnectionManager;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
@@ -129,34 +130,27 @@ public class ProjectRepository
         return projects;
     }
 
-    public List<Project> findProjectByWorkspaceId(int id){
-        List<Project> workspaceProjects = new ArrayList<>();
-
+    public void updateProject(Project updateProject){
         try{
-            Connection connection = DriverManager.getConnection(DB_HOSTNAME,DB_USERNAME,DB_PASSWORD);
-            String SQL_QUERY = "SELECT * FROM projects WHERE workspace_id =?";
+            Connection connection = ConnectionManager.getConnection(DB_HOSTNAME,DB_USERNAME,DB_PASSWORD);
+            String SQL_QUERY = "UPDATE projects SET project_name = ?, project_description = ?, project_owner = ?, project_status = ?, project_deadline = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
-            preparedStatement.setInt(1,id);
-            ResultSet resultset = preparedStatement.executeQuery();
 
-            Project foundProject = new Project();
-            while(resultset.next())
-            {
-                foundProject.setProjectID(resultset.getInt(1));
-                foundProject.setProjectName(resultset.getString(2));
-                foundProject.setProjectDescription(resultset.getString(3));
-                foundProject.setProjectOwner(resultset.getString(4));
-                foundProject.setProjectStatus(resultset.getBoolean(5));
-                foundProject.setDeadline(resultset.getDate(6).toLocalDate());
-                workspaceProjects.add(foundProject);
-                //toLocalDate tilføjet for at kunne omskrive java.SQL.date fra databasen til LocalDate objet. da vi bruger localdate some dato attribut
-            }
-        }catch(SQLException e){
+            preparedStatement.setString(1,updateProject.getProjectName());
+            preparedStatement.setString(2, updateProject.getProjectDescription());
+            preparedStatement.setString(3, updateProject.getProjectOwner());
+            preparedStatement.setBoolean(4, updateProject.isProjectStatus());
+            LocalDate deadlineLocalDate = updateProject.getDeadline();  //henter localdate fra updateproject
+            Date deadlineSQL = Date.valueOf(deadlineLocalDate);  // konveter  localdate til java.sql.date med date.valueof
+            preparedStatement.setDate(5, deadlineSQL); //sætter den konverteret java.sql.date som project deadline
+
+            preparedStatement.executeUpdate();
+
+        }catch(SQLException e)
+        {
             e.printStackTrace();
-            System.out.println("could not find project by id");
-
+            System.out.println("could not update project");
         }
-        return workspaceProjects;
     }
 
 }
