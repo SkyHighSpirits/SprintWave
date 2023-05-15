@@ -25,8 +25,9 @@
                     <div>
                         <h2 th:text="${epic.epic_name}">EP001</h2>
                         <p th:text="${epic.epic_description}">Launch cloud service in Denmark</p>
+                        <input id="project_id-field" name="project_id" type="hidden" th:value="${epic.project_id}">
+                        <input id="epic_id-field" name="epic_id" type="hidden" th:value="${epic.epic_id}">
                         <div class="epicbuttons">
-                            <input id="project_id-field" name="project-id" type="hidden" th:value="${epic.project_id}">
                             <a class="table-link" th:href="@{'/updateepic/' + ${epic.epic_id}}" href="/epicupdate">Update</a>
                             <a class="table-link" th:href="@{'/deleteepic/' + ${epic.epic_id} + '/' + ${epic.project_id}}" href="/deleteepic">Delete</a>
                         </div>

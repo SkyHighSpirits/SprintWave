@@ -20,16 +20,17 @@
 
             <div class="epiccreateitem">
                 <div>
-                    <form action="updateepic" method="post"></form>
-                    <p>Write title</p>
-                    <input id="epic-name-field" name="epic_name" type="text" th:value="${epic.epic_name}"></input>
-                    <p>Write description</p>
-                    <input id="epic-description-field" name="epic_description" type="text" th:value="${epic.epic_description}"></input>
-                    <div class="epicbuttons">
-                        <input id="project_id-field" name="project_id" type="hidden" th:value="${session.currentproject.getProjectID()}"></input>
-                        <input id="epic_id-field" name="epic_id" type="hidden" th:value="${epic.epic_id}"></input>
-                    </div>
-                    <input class="table-link" type="submit" value="Opdater epic"></input>
+                    <form action="/updateepic" method="post">
+                        <p>Write title</p>
+                        <input id="epic-name-field" name="epic_name" type="text" th:value="${epic.epic_name}"></input>
+                        <p>Write description</p>
+                        <input id="epic-description-field" name="epic_description" type="text" th:value="${epic.epic_description}"></input>
+                        <div class="epicbuttons">
+                            <input id="project_id-field" name="project_id" type="hidden" th:value="${session.currentproject.getProjectID()}"></input>
+                            <input id="epic_id-field" name="epic_id" type="hidden" th:value="${epic.epic_id}"></input>
+                        </div>
+                        <input class="table-link" type="submit" value="Opdater epic"></input>
+                    </form>
                 </div>
             </div>
         </div>

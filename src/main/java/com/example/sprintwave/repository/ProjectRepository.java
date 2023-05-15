@@ -81,9 +81,9 @@ public class ProjectRepository
             preparedStatement.setInt(1,id);
             ResultSet resultset = preparedStatement.executeQuery();
 
-            Project foundProject = new Project();
             while(resultset.next())
             {
+                Project foundProject = new Project();
                 foundProject.setProjectID(resultset.getInt(1));
                 foundProject.setProjectName(resultset.getString(2));
                 foundProject.setProjectDescription(resultset.getString(3));
