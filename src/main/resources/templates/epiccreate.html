@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Epiccreate</title>
+    <link rel="stylesheet" th:href="@{/css/cssstyles.css}" href="../static/css/cssstyles.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div id="epiccreate-table-background">
+  <div class="epicscontainer">
+    <div class="epicstitle">
+      <h1>Create a new epic</h1>
+
+    </div>
+
+
+    <div id="table-container">
+
+      <div class="epiccreateitem">
+        <div>
+          <form action="createepic" method="post"></form>
+          <p>Write title</p>
+          <input id="epic-name-field" name="epic_name" type="text"></input>
+          <p>Write description</p>
+          <input id="epic-description-field" name="epic_description" type="text"></input>
+          <div class="epicbuttons">
+            <input id="project_id-field" name="project_id" type="hidden" th:value="${session.currentproject.getProjectID()}"></input>
+          </div>
+          <input class="table-link" type="submit" value="Opret epic"></input>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</body>
+</html>

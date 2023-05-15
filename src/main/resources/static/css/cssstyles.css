@@ -129,7 +129,7 @@ input[type=text] {
 }
 
 .navbar-one{
-    background: royalblue;
+    background: #ffffff;
     height: 80px;
     width: 100%;
 }
@@ -142,7 +142,7 @@ input[type=text] {
 }
 
 label.logo{
-    color: white;
+    color: black;
     font-size: 35px;
     line-height: 80px;
     padding: 0 50px;
@@ -171,7 +171,7 @@ label .logo-link{
 }
 
 .navbar-one .nav-ul li a{
-    color: white;
+    color: black;
     font-size: 17px;
     padding: 7px 13px;
     border-radius: 25px;
@@ -253,6 +253,114 @@ label .logo-link{
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 
+#table-background
+{
+    background: linear-gradient(hsla(217, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
+
+    padding: 40px;
+
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+}
+
+#epiccreate-table-background
+{
+    background: linear-gradient(hsla(217, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
+
+    padding: 40px;
+
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+}
+
+
+.epicstitle
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: White;
+    font-size: large;
+    text-shadow: black 1px 1px;
+    margin-bottom: 30px;
+}
+
+.epicstitle a
+{
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    background: lightseagreen;
+}
+
+.epicstitle a:hover
+{
+    background: darkgreen;
+}
+
+.epicscontainer
+{
+    padding: 20px;
+    width: 100%;
+    color: black;
+}
+.epicsitem
+{
+    position: relative;
+    background: white;
+    border: solid;
+    height: 200px;
+    width: 60%;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+.epiccreateitem
+{
+    position: relative;
+    background: white;
+    border: solid;
+    height: 250px;
+    width: 60%;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+.epicbuttons
+{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+
+}
+.table-link{
+    background: linear-gradient(rgba(0,81,170,1) 0%, rgba(53,124,207,1) 35%, rgba(126,193,232,1) 100%);
+    color: white;
+    padding: 7px 13px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 12px;
+}
+.table-link:hover{
+    background: linear-gradient(90deg, hsla(238, 100%, 48%, 1) 0%, hsla(204, 73%, 66%, 1) 100%);
+    transition: .5s;
+}
+
+#table-container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+}
 
 
 .boxtwo{
@@ -360,7 +468,7 @@ p{
 }
 
 .footer{
-    background-color: royalblue;
+    background-color: #FAFAFA;
     padding: 70px;
     position: relative;
     width: 100%;
@@ -369,7 +477,7 @@ p{
 
 .footer-col h4{
     font-size: 18px;
-    color: white;
+    color: black;
     text-transform: capitalize;
     margin-bottom: 35px;
     font-weight: 500;
@@ -394,10 +502,10 @@ p{
 .footer-col .footer-ul .footer-li .footer-link{
     font-size: 16px;
     text-transform: capitalize;
-    color: #ffffff;
+    color: black;
     text-decoration: none;
     font-weight: 300;
-    color: #F1F1F1;
+    color: black;
     display: block;
     transition: all 0.3s ease;
     border-radius: 12px;
@@ -566,6 +674,7 @@ p{
     box-sizing: border-box;
     padding: 10px;
     position: relative;
+    background-color: #FCF3A6;
 }
 
 .appfrontpage-create-project {
@@ -576,6 +685,7 @@ p{
     box-sizing: border-box;
     padding: 10px;
     position: relative;
+    background-color: #FCF3A6;
 }
 
 .appfrontpage-project-deadline {
@@ -590,10 +700,25 @@ p{
 }
 
 .appfrontpage-project button {
-    position: absolute; /* add absolute positioning to child */
-    bottom: 10px; /* adjust as needed */
-    right: 10px; /* adjust as needed */
-    border: 1px solid red; /* add red border */
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    border: 1px solid red;
+    display: inline-block;
+    outline: 0;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+    padding: 5px 11px;
+    font-size: 11px;
+    height: 25px; 
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+    line-height: normal;
+    background: linear-gradient(90deg, #5522fa 0, #0074e4 100%);
+    border-radius: 25px; 
+    transition: color .2s ease, background-color .2s ease, box-shadow .2s ease;
 }
 
 

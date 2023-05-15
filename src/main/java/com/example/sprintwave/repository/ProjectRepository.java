@@ -53,12 +53,13 @@ public class ProjectRepository
             while(resultSet.next()){
                 int projectID = resultSet.getInt(1);
                 String projectName = resultSet.getString(2);
-                String projectOwner = resultSet.getString(3);
-                boolean projectStatus = resultSet.getBoolean(4);
-                java.sql.Date deadlineDate = resultSet.getDate(5);
+                String projectDescription = resultSet.getString(3);
+                String projectOwner = resultSet.getString(4);
+                boolean projectStatus = resultSet.getBoolean(5);
+                java.sql.Date deadlineDate = resultSet.getDate(6);
                 LocalDate deadline = deadlineDate.toLocalDate(); // skal testes!!!
-                String projectDescription = resultSet.getString(6);
-                Project project = new Project(projectID, projectName, projectOwner, projectStatus, deadline, projectDescription);
+                int workspaceID = resultSet.getInt(7);
+                Project project = new Project(projectID, projectName, projectDescription, projectOwner, projectStatus, deadline, workspaceID);
                 projects.add(project);
                 System.out.println(project);
             }
