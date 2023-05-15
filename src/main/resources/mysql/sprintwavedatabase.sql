@@ -1,12 +1,16 @@
+
+/* Create and use database */
 DROP DATABASE IF EXISTS sprintwavedatabase;
 CREATE DATABASE sprintwavedatabase;
 USE sprintwavedatabase;
 
+/* Delete database and tables if they exist */
 DROP TABLE IF EXISTS workspaces;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS projects;
 DROP TABLE IF EXISTS epics;
 
+/* Create tables to database: Workspaces, Users, Projects, Epics. */
 CREATE TABLE workspaces(
                            workspace_id INT UNIQUE NOT NULL AUTO_INCREMENT PRIMARY KEY,
                            workspace_name VARCHAR(255) NOT NULL
@@ -44,20 +48,20 @@ CREATE TABLE epics(
 
 );
 
-
+/* Insert temporary data into database. */
 INSERT into workspaces
-(workspace_name)
+    (workspace_name)
 VALUES
     ('KEA');
 
 INSERT INTO users
-(email, user_password, firstname, lastname, permission_level, workspace_id)
+    (email, user_password, firstname, lastname, permission_level, workspace_id)
 VALUES
     ('steffen@localhost.com', 'e10adc3949ba59abbe56e057f20f883e', 'Steffen', 'Andersen', 'ADMINISTRATOR',1);
 
 
 INSERT INTO projects
-(project_id, project_name, project_description, project_owner, project_status, project_deadline, workspace_id)
+    (project_id, project_name, project_description, project_owner, project_status, project_deadline, workspace_id)
 VALUES
     (1,'Develop CRM system for sales team', 'A sales CRM software that helps manage customer relationships and sales pipelines','Steffen Grøn Andersen', true, '2023-05-30',1),
     (2,'Migrate legacy database to cloud-based platform', 'Move existing databases to the cloud for better scalability and accessibility.','Steffen Grøn Andersen', true, '2023-05-30',1),
@@ -66,7 +70,7 @@ VALUES
     (5,'Build custom e-commerce platform with inventory management', 'Develop a custom platform for online sales, order processing, and inventory management.','Steffen Grøn Andersen', true, '2023-05-30',1);
 
 INSERT INTO epics
-(project_id, epic_name, epic_description)
+    (project_id, epic_name, epic_description)
 VALUES
     (1, 'EP003', 'Deploy feature Epics'),
     (1, 'EP004', 'Deploy feature projects');
