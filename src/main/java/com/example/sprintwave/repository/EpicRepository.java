@@ -101,10 +101,16 @@ public class EpicRepository {
             preparedStatement.setInt(1, id);
             //execute statement
             ResultSet resultSet = preparedStatement.executeQuery();
-            //Få et epic ud fra databasen
-            foundEpic.setProject_id(resultSet.getInt(1));
-            foundEpic.setEpic_name(resultSet.getString(3));
-            foundEpic.setEpic_description(resultSet.getString(4));
+
+            if(resultSet.next())
+            {
+                //Få et epic ud fra databasen
+                foundEpic.setProject_id(resultSet.getInt(1));
+                foundEpic.setEpic_id(resultSet.getInt(2));
+                foundEpic.setEpic_name(resultSet.getString(3));
+                foundEpic.setEpic_description(resultSet.getString(4));
+            }
+
         }
         catch(SQLException e)
         {
