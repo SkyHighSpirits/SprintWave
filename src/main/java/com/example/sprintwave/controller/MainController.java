@@ -83,16 +83,14 @@ public class MainController {
 
     @PostMapping("/createepic")
     public String createEpic(@RequestParam("project_id") int project_id,
-                             @RequestParam("epic_id") int epic_id,
                              @RequestParam("epic_name") String epic_name,
                              @RequestParam("epic_description") String epic_description) {
         Epic epic = new Epic();
         epic.setProject_id(project_id);
-        epic.setEpic_id(epic_id);
         epic.setEpic_name(epic_name);
         epic.setEpic_description(epic_description);
         epicRepository.createEpic(epic);
-        return "redirect:/epics";
+        return "redirect:/epics/" + project_id;
     }
 
     @GetMapping("/updateepic/{epic_id}")
@@ -110,7 +108,7 @@ public class MainController {
         Epic updateEpic = new Epic(project_id, epic_id, epic_name, epic_description);
         epicRepository.updateEpic(updateEpic);
 
-        return "redirect:/epics";
+        return "redirect:/epics/" + project_id;
     }
 
     @GetMapping("/deleteepic/{epic_id}/{project_id}")
