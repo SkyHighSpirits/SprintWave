@@ -198,6 +198,28 @@ public class MainController {
         projectRepository.createProject(project);
         return "redirect:/appfrontpage/" + workspaceID;
     }
+
+    @GetMapping("/updateproject/{projectID}")
+    public String showUpdateProject(@PathVariable("projectID") int updateID, Model model){
+        Project updateProject = projectRepository.findProjectByID(updateID);
+        model.addAttribute("project", updateProject);
+        return "modifyproject";
+    }
+
+
+    @PostMapping("/updateproject")
+    public String updateProject(@RequestParam("project_id") int projectID,
+                                @RequestParam("projectname") String projectName,
+                                @RequestParam("projectdescription") String projectDescription,
+                                @RequestParam("projectowner") String projectOwner,
+                                @RequestParam("projectstatus") boolean projectStatus,
+                                @RequestParam("projectdeadline") LocalDate deadline,
+                                @RequestParam("workspaceID") int workspaceID) {
+        Project updateProject = new Project(projectID, projectName, projectDescription, projectOwner, projectStatus, deadline, workspaceID);
+        projectRepository.updateProject(updateProject);
+
+        return "redirect:/appfrontpage/" + workspaceID;
+    }
     
     
     /* START OF PROJECT MAPPINGS BY STEFFEN */

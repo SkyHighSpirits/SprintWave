@@ -152,5 +152,29 @@ public class ProjectRepository
             System.out.println("could not update project");
         }
     }
+    public Project findProjectByID(int id){
+        Project foundProject = new Project();
+        foundProject.setProjectID(id);
+        try{
+            Connection connection = ConnectionManager.getConnection(DB_HOSTNAME,DB_USERNAME,DB_PASSWORD);
+            String SQL_QUERY = "SELECT * FROM projects WHERE project_id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            foundProject.setProjectID(resultSet.getInt(1));
+            foundProject.setProjectName(resultSet.getString(2));
+            foundProject.setProjectDescription(resultSet.getString(3));
+            foundProject.setProjectOwner(resultSet.getString(4));
+            foundProject.setProjectStatus(resultSet.getBoolean(5));
+            foundProject.setDeadline(resultSet.getDate(6).toLocalDate());
+            foundProject.setWorkspaceID(resultSet.getInt(7));
+
+        }catch(SQLException e){
+            e.printStackTrace();
+            System.out.println("could not find Project");
+        }
+        return foundProject;
+    }
+
 
 }
