@@ -170,7 +170,7 @@ public class MainController {
 
     @GetMapping("/overview/{projectID}")
     public String overview(@PathVariable("projectID") int projectID, HttpSession session, Model model) {
-        Project currentproject = new Project();
+        Project currentproject = projectRepository.findProjectByID(projectID);
         currentproject.setProjectID(projectID);
         model.addAttribute("currentproject",currentproject);
         session.setAttribute("currentproject",currentproject);
@@ -198,9 +198,10 @@ public class MainController {
     }
 
     @GetMapping("/updateproject/{projectID}")
-    public String showUpdateProject(@PathVariable("projectID") int updateID, Model model){
+    public String showUpdateProject(@PathVariable("projectID") int updateID, Model model, HttpSession session){
         Project updateProject = projectRepository.findProjectByID(updateID);
         model.addAttribute("project", updateProject);
+        session.setAttribute("currentproject", updateProject);
         return "/modifyproject";
     }
 

@@ -20,27 +20,28 @@
     <div class="signup-login-flex-item">
       <h1>Update Project</h1>
 
-      <form action="updateproject" method="post">
-        <label for="project_name">New Project name</label>
-        <p><input id="project_name" name="projectname" type="text"></p>
+      <form action="/updateproject" method="post">
+        <label for="projectname">New Project name</label>
+        <p><input id="projectname" name="projectname" type="text"></p>
 
-        <label for="project_description">New Project Description</label>
-        <p><input id="project_description" name="projectdescription" type="text"></p>
+        <label for="projectdescription">New Project Description</label>
+        <p><input id="projectdescription" name="projectdescription" type="text"></p>
 
-        <label for="project_owner">New Project Owner</label>
-        <p><input id="project_owner" name="projectowner" type="text"></p>
+        <label for="projectowner">New Project Owner</label>
+        <p><input id="projectowner" name="projectowner" type="text"></p>
+
+
 
         <label for="deadline">New Deadline</label>
-        <p><input id="deadline" type="date" name="deadline" value="2000-01-01"></p>
+        <p><input id="deadline" type="date" name="projectdeadline" value="2000-01-01"></p>
 
-        <label for="status">Status</label>
-        <p><input id="status" type="button" name="status" value="Inactive"> </p>
 
-        <p><input type="hidden" name="workspaceid" th:value="${session.currentuser.getWorkspace_id()}"></p>
+        <p><input type="hidden" name="projectstatus"  th:value="${session.currentproject.isProjectStatus()}"></p>
+        <p><input type="hidden" name="project_id" th:value="${session.currentproject.getProjectID()}"></p>
+        <p><input type="hidden" name="workspaceID" th:value="${session.currentuser.getWorkspace_id()}"></p>
         </br>
-        <input class="signup-login-button" value="Update Project" type="submit">
+        <input class="signup-login-button" type="submit" value="Opdater Project"></input>
 
-        <p><a class="appfrontpage-modify-project-button"  th:href="@{'/updateproject'}" href="/appfrontpage"> Modify Project</a> </p>
       </form>
     </div>
   </div>
