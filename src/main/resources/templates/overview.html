@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Overview</title>
-  <link rel="stylesheet" th:href="@{css/cssstyles.css}" href="../static/css/cssstyles.css">
+  <link rel="stylesheet" th:href="@{/css/cssstyles.css}" href="../static/css/cssstyles.css">
   <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -23,7 +23,7 @@
   <div class="boxone">
     <h3>Epics</h3>
     <p>Ting ting</p>
-    <a href="#" class="btn">Go to</a>
+    <a th:href="@{'/epics/' + ${session.currentproject.getProjectID()}}" class="btn">Go to</a>
   </div>
   <div class="boxtwo">
     <h3>Requirements</h3>
