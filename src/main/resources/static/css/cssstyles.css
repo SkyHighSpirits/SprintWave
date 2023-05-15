@@ -41,6 +41,22 @@ body{
     height: 100%
 }
 
+.signup-login-flex-item:first-child {
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.login-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .signup-login-flex-item {
     background-color: white;
     border: none;

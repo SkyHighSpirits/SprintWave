@@ -12,7 +12,9 @@
     <div class="signup-login-background-image">
         <div class="signup-login-flex-container">
             <div class="signup-login-flex-item">
-                <h1>Insert logo</h1>
+                <h1>Create new project</h1>
+                <img th:src="@{images/sprintwavewhitelogo.png}" src="../static/images/sprintwavewhitelogo.png" alt="logo" height="125px">
+
             </div>
     
             <div class="signup-login-flex-item">
@@ -33,7 +35,7 @@
 
                     <p><input type="hidden" name="workspaceid" th:value="${session.currentuser.getWorkspace_id()}"></p>
                     </br>
-                    <p><input class="signup-login-button" value="opret projekt" type="submit"> </p>
+                    <p><input class="signup-login-button" value="Create Project" type="submit"> </p>
                 </form>
             </div>
         </div>
