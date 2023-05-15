@@ -133,17 +133,21 @@ public class ProjectRepository
     public void updateProject(Project updateProject){
         try{
             Connection connection = ConnectionManager.getConnection(DB_HOSTNAME,DB_USERNAME,DB_PASSWORD);
-            String SQL_QUERY = "UPDATE projects SET project_name = ?, project_description = ?, project_owner = ?, project_status = ?, project_deadline = ?";
+            String SQL_QUERY = "UPDATE projects SET project_name = ?, project_description = ?, project_owner = ?, project_status = ?, project_deadline = ?, workspace_id = ? WHERE project_id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
+
 
             preparedStatement.setString(1,updateProject.getProjectName());
             preparedStatement.setString(2, updateProject.getProjectDescription());
             preparedStatement.setString(3, updateProject.getProjectOwner());
             preparedStatement.setBoolean(4, updateProject.isProjectStatus());
-            LocalDate deadlineLocalDate = updateProject.getDeadline();  //henter localdate fra updateproject
+            /*LocalDate deadlineLocalDate = updateProject.getDeadline();  //henter localdate fra updateproject
             Date deadlineSQL = Date.valueOf(deadlineLocalDate);  // konveter  localdate til java.sql.date med date.valueof
-            preparedStatement.setDate(5, deadlineSQL); //sætter den konverteret java.sql.date som project deadline
 
+             */
+            preparedStatement.setDate(5, java.sql.Date.valueOf(updateProject.getDeadline())); //sætter den konverteret java.sql.date som project deadline
+            preparedStatement.setInt(6,updateProject.getWorkspaceID());
+            preparedStatement.setInt(7,updateProject.getProjectID());
             preparedStatement.executeUpdate();
 
         }catch(SQLException e)

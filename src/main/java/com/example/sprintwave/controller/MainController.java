@@ -217,6 +217,17 @@ public class MainController {
         Project updateProject = new Project(projectID, projectName, projectDescription, projectOwner, projectStatus, deadline, workspaceID);
         projectRepository.updateProject(updateProject);
 
+       /*Project existingProject = projectRepository.findProjectByID(projectID);
+
+        existingProject.setProjectName(projectName);
+        existingProject.setProjectDescription(projectDescription);
+        existingProject.setProjectOwner(projectOwner);
+        existingProject.setProjectStatus(projectStatus);
+        existingProject.setDeadline(deadline);
+        existingProject.setWorkspaceID(workspaceID);
+
+        projectRepository.updateProject(existingProject);
+        */
         return "redirect:/appfrontpage/" + workspaceID;
     }
     
