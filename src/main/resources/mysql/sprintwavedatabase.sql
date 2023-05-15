@@ -5,6 +5,7 @@ USE sprintwavedatabase;
 DROP TABLE IF EXISTS workspaces;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS projects;
+DROP TABLE IF EXISTS requirements;
 
 
 CREATE TABLE workspaces(
