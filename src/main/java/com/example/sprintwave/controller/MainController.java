@@ -1,13 +1,7 @@
 package com.example.sprintwave.controller;
 
-import com.example.sprintwave.model.Epic;
-import com.example.sprintwave.model.Project;
-import com.example.sprintwave.model.User;
-import com.example.sprintwave.model.Workspace;
-import com.example.sprintwave.repository.EpicRepository;
-import com.example.sprintwave.repository.ProjectRepository;
-import com.example.sprintwave.repository.UserRepository;
-import com.example.sprintwave.repository.WorkspaceRepository;
+import com.example.sprintwave.model.*;
+import com.example.sprintwave.repository.*;
 
 import com.example.sprintwave.utility.UserDataHandler;
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,12 +27,18 @@ public class MainController {
     UserRepository userRepository;
     EpicRepository epicRepository;
 
-    public MainController(UserRepository userRepository, WorkspaceRepository workspaceRepository, ProjectRepository projectRepository, EpicRepository epicRepository)
+    TechnicalTaskRepository technicalTaskRepository;
+
+    UserstoriesRepository userstoriesRepository;
+
+    public MainController(UserRepository userRepository, WorkspaceRepository workspaceRepository, ProjectRepository projectRepository, EpicRepository epicRepository, UserstoriesRepository userstoriesRepository, TechnicalTaskRepository technicalTaskRepository)
     {
         this.userRepository = userRepository;
         this.workspaceRepository = workspaceRepository;
         this.projectRepository = projectRepository;
         this.epicRepository = epicRepository;
+        this.userstoriesRepository = userstoriesRepository;
+        this.technicalTaskRepository = technicalTaskRepository;
     }
 
     @ModelAttribute("currentuser")
@@ -207,7 +207,28 @@ public class MainController {
     }
     
     /* END OF PROJECT MAPPINGS BY STEFFEN */
-    
+
+    /* START OF USERSTORY MAPPINGS BY NICOLAI */
+    @GetMapping("/backlog/{project_id}")
+    public String showBacklogPage(@PathVariable("project_id") int project_id, Model model)
+    {
+        ArrayList<Userstory> relevantUserstories = userstoriesRepository.getAllUserstoriesFromProjectID(project_id);
+        ArrayList<TechnicalTask> relevantTechnicalTasks = new ArrayList<>();
+        for(Userstory userstory: relevantUserstories)
+        {
+            ArrayList<TechnicalTask> temporarytasks = technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstory.getId());
+            for(TechnicalTask technicalTask: temporarytasks)
+            {
+                relevantTechnicalTasks.add(technicalTask);
+            }
+        }
+        model.addAttribute("userstories", relevantUserstories);
+        model.addAttribute("technicaltasks", relevantTechnicalTasks);
+
+        return "/backlog";
+    }
+
+     /* END OF USERSTORY MAPPINGS BY NICOLAI */
 
 
 }

@@ -281,6 +281,15 @@ label .logo-link{
     justify-content: center;
 }
 
+#backlog-background
+{
+    background: linear-gradient(180deg, hsla(298, 100%, 48%, 1) 0%, hsla(332, 100%, 50%, 1) 100%);
+    padding: 40px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 #epiccreate-table-background
 {
     background: linear-gradient(hsla(217, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
@@ -294,7 +303,7 @@ label .logo-link{
 }
 
 
-.epicstitle
+.overlaytitle
 {
     display: flex;
     flex-direction: row;
@@ -305,7 +314,19 @@ label .logo-link{
     margin-bottom: 30px;
 }
 
-.epicstitle a
+.overlaytitle2
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-left: 21%;
+    color: White;
+    font-size: large;
+    text-shadow: black 1px 1px;
+    margin-bottom: 30px;
+}
+
+.overlaytitle a
 {
     text-align: center;
     width: 50px;
@@ -315,9 +336,14 @@ label .logo-link{
     background: lightseagreen;
 }
 
-.epicstitle a:hover
+.overlaytitle a:hover
 {
     background: darkgreen;
+}
+
+.push-left-20
+{
+    margin-left: 36%;
 }
 
 .epicscontainer
@@ -326,12 +352,12 @@ label .logo-link{
     width: 100%;
     color: black;
 }
-.epicsitem
+.columnitems
 {
     position: relative;
     background: white;
     border: solid;
-    height: 200px;
+    height: auto;
     width: 60%;
     padding: 20px;
     border-radius: 10px;
@@ -369,7 +395,7 @@ label .logo-link{
     transition: .5s;
 }
 
-#table-container
+.table-container
 {
     display: flex;
     justify-content: center;

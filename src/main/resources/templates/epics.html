@@ -12,16 +12,16 @@
 
     <div id="table-background">
         <div class="epicscontainer">
-            <div class="epicstitle">
+            <div class="overlaytitle">
                 <h1>Epics</h1>
 
                 <a class="table-link" th:href="@{/showcreateepic}" href="/epiccreate.html"><H1>+</H1></a>
             </div>
 
 
-            <div id="table-container">
+            <div class="table-container">
 
-                <div class="epicsitem" th:each="epic : ${epics}">
+                <div class="columnitems" th:each="epic : ${epics}">
                     <div>
                         <h2 th:text="${epic.epic_name}">EP001</h2>
                         <p th:text="${epic.epic_description}">Launch cloud service in Denmark</p>
