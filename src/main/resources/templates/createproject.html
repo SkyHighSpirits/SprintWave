@@ -28,6 +28,7 @@
                     <label for="deadline">Deadline</label>
                     <p><input id="deadline" type="date" name="deadline" value="2000-01-01"></p>
 
+                    <p><input type="hidden" name="workspaceid" th:value="${session.currentuser.getWorkspace_id()}"></p>
                     <p><input value="opret projekt" type="submit"> </p>
                 </form>
             </div>

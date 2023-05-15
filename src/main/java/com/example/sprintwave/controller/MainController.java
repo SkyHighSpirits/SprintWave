@@ -49,6 +49,14 @@ public class MainController {
         return currentUser;
     }
 
+    @ModelAttribute("currentproject")
+    public Project getCurrentProject(HttpServletRequest request)
+    {
+        HttpSession session = request.getSession();
+        Project currentProject = (Project) session.getAttribute("currentproject");
+        return currentProject;
+    }
+
     @GetMapping("/")
     public String getHomepage()
     {
@@ -117,14 +125,20 @@ public class MainController {
                                 @RequestParam("firstname") String firstName,
                                 @RequestParam("lastname") String lastName,
                                 @RequestParam("email") String email,
-                                @RequestParam("password") String password)
+                                @RequestParam("password") String password,
+                                Model model,
+                                HttpSession session)
     {
         Workspace workspace = new Workspace();
         workspace.setName(workspaceName);
         workspaceRepository.addWorkspace(workspace);
         User user = UserDataHandler.populateUserWithInformation(email, password, firstName, lastName, workspaceName, workspaceRepository);
         userRepository.createUser(user);
-        return "redirect:/appfrontpage";
+
+        model.addAttribute("currentuser",user);
+        session.setAttribute("currentuser", user);
+        User currentuser = (User) session.getAttribute("currentuser");
+        return "redirect:/appfrontpage/" + currentuser.getWorkspace_id();
     }
 
     // Login User
@@ -138,14 +152,13 @@ public class MainController {
 
 
         for(User checkUser: userRepository.getAllUsers()){
-                // TO DO: Create CHECK for user.
             if(UserDataHandler.checkUserInformationMatch(checkUser, enteredPassword, enteredEmail))
             {
                 model.addAttribute("currentuser",checkUser);
                 session.setAttribute("currentuser", checkUser);
                 User currentuser = (User) session.getAttribute("currentuser");
 
-                return "redirect:/";
+                return "redirect:/appfrontpage/" + currentuser.getWorkspace_id();
             }
         }
         return "login";
@@ -157,8 +170,12 @@ public class MainController {
         return "login";
     }
 
-    @GetMapping("/overview")
-    public String overview() {
+    @GetMapping("/overview/{projectID}")
+    public String overview(@PathVariable("projectID") int projectID, HttpSession session, Model model) {
+        Project currentproject = new Project();
+        currentproject.setProjectID(projectID);
+        model.addAttribute("currentproject",currentproject);
+        session.setAttribute("currentproject",currentproject);
         return "overview";
     }
 
@@ -169,23 +186,24 @@ public class MainController {
     public String createProject(@RequestParam("projectname") String projectName,
                                 @RequestParam("projectowner") String projectOwner,
                                 @RequestParam("projectdescription") String projectDescription,
-                                @RequestParam("deadline") LocalDate deadline)
+                                @RequestParam("deadline") LocalDate deadline,
+                                @RequestParam("workspaceid") int workspaceID)
     {
         Project project = new Project();
         project.setProjectName(projectName);
         project.setProjectOwner(projectOwner);
         project.setProjectDescription(projectDescription);
         project.setDeadline(deadline);
-        project.setWorkspaceID(1); //todo skal rettes så dette sker automatisk.
+        project.setWorkspaceID(workspaceID);
         projectRepository.createProject(project);
-        return "redirect:/appfrontpage";
+        return "redirect:/appfrontpage/" + workspaceID;
     }
     
     
     /* START OF PROJECT MAPPINGS BY STEFFEN */
     @GetMapping("/appfrontpage/{workspace_id}")
     public String getAppFrontpage(@PathVariable("workspace_id") int workspace_id, Model model){
-       ArrayList projectList = (ArrayList)projectRepository.getAllProjects(); //TODO Skal opdateres til getAllProjectsByWorkspaceID
+       ArrayList projectList = (ArrayList)projectRepository.findProjectByWorkspaceId(workspace_id); //TODO Skal opdateres til getAllProjectsByWorkspaceID
        model.addAttribute("projects", projectList);
         return "appfrontpage";
     }

@@ -1,4 +1,5 @@
 package com.example.sprintwave.repository;
+import com.example.sprintwave.model.Epic;
 import com.example.sprintwave.model.Project;
 
 
@@ -40,6 +41,63 @@ public class ProjectRepository
             System.out.println("Could not add Project");
             e.printStackTrace();
         }
+    }
+
+    /*
+    public Project getProjectByID(int projectID)
+    {
+        Project foundProject = new Project();
+        foundProject.setProjectID(projectID);
+        try
+        {
+
+            Connection connection = DriverManager.getConnection(DB_HOSTNAME,DB_USERNAME,DB_PASSWORD);
+            Statement statement = connection.createStatement();
+            final String SQL_QUERY = "SELECT * FROM projects WHERE project_id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
+            preparedStatement.setInt(1, foundProject.getProjectID());
+            //execute statement
+            ResultSet resultSet = preparedStatement.executeQuery();
+            //Få et epic ud fra databasen
+
+        } catch (SQLException e)
+        {
+            System.out.println("Could not query database");
+            e.printStackTrace();
+        }
+
+    }
+
+     */
+
+    public List<Project> findProjectByWorkspaceId(int id){
+        List<Project> workspaceProjects = new ArrayList<>();
+
+        try{
+            Connection connection = DriverManager.getConnection(DB_HOSTNAME,DB_USERNAME,DB_PASSWORD);
+            String SQL_QUERY = "SELECT * FROM projects WHERE workspace_id =?";
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
+            preparedStatement.setInt(1,id);
+            ResultSet resultset = preparedStatement.executeQuery();
+
+            Project foundProject = new Project();
+            while(resultset.next())
+            {
+                foundProject.setProjectID(resultset.getInt(1));
+                foundProject.setProjectName(resultset.getString(2));
+                foundProject.setProjectDescription(resultset.getString(3));
+                foundProject.setProjectOwner(resultset.getString(4));
+                foundProject.setProjectStatus(resultset.getBoolean(5));
+                foundProject.setDeadline(resultset.getDate(6).toLocalDate());
+                workspaceProjects.add(foundProject);
+                //toLocalDate tilføjet for at kunne omskrive java.SQL.date fra databasen til LocalDate objet. da vi bruger localdate some dato attribut
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+            System.out.println("could not find project by id");
+
+        }
+        return workspaceProjects;
     }
 
     public List<Project> getAllProjects()
