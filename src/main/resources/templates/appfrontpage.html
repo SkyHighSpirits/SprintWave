@@ -18,14 +18,16 @@
                 <h2 th:text="${project.projectName}"></h2>
                 <p th:text="${project.projectDescription}"></p>
                 <div class="appfrontpage-project-deadline"><p>Deadline: 2023-05-10</p></div>
-                <a th:href="@{'/overview/' + ${project.projectID}}" href="/overview">Go to project</a>
+
+                <a class="appfrontpage-modify-project-button"  href="/modifyproject">Modify Project</a>
+                <a class="appfrontpage-project-button" th:href="@{'/overview/' + ${project.projectID}}" href="/overview">Go to project</a>
             </div>            
             <div class="appfrontpage-create-project">
                 <h2>Create New Project</h2>
                 <p>New ideas spawn new projects.</p>
 
 
-                <a th:href="@{'/createproject'}">Create Project</a>
+                <a class="appfrontpage-project-button" th:href="@{'/createproject'}">Create Project</a>
             </div>
         </div>
         
