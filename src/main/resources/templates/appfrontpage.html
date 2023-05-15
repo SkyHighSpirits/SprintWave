@@ -19,7 +19,7 @@
                 <p th:text="${project.projectDescription}"></p>
                 <div class="appfrontpage-project-deadline"><p>Deadline: 2023-05-10</p></div>
 
-                <a class="appfrontpage-modify-project-button"  href="/modifyproject">Modify Project</a>
+                <a class="appfrontpage-modify-project-button"  th:href="@{'/updateproject/' + ${project.projectID}}" href="modifyproject"> Modify Project</a>
                 <a class="appfrontpage-project-button" th:href="@{'/overview/' + ${project.projectID}}" href="/overview">Go to project</a>
             </div>            
             <div class="appfrontpage-create-project">

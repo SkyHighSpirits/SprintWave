@@ -38,7 +38,9 @@
 
         <p><input type="hidden" name="workspaceid" th:value="${session.currentuser.getWorkspace_id()}"></p>
         </br>
-        <p><input class="signup-login-button" value="Update Project" type="submit"> </p>
+        <input class="signup-login-button" value="Update Project" type="submit">
+
+        <p><a class="appfrontpage-modify-project-button"  th:href="@{'/updateproject'}" href="/appfrontpage"> Modify Project</a> </p>
       </form>
     </div>
   </div>

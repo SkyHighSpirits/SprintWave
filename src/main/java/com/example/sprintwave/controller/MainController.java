@@ -201,7 +201,7 @@ public class MainController {
     public String showUpdateProject(@PathVariable("projectID") int updateID, Model model){
         Project updateProject = projectRepository.findProjectByID(updateID);
         model.addAttribute("project", updateProject);
-        return "modifyproject";
+        return "/modifyproject";
     }
 
 
