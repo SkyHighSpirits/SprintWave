@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Update Userstory</title>
+  <link rel="stylesheet" th:href="@{/css/cssstyles.css}" href="../static/css/cssstyles.css">
+  <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div id="backlog-background2">
+  <div class="epicscontainer">
+    <div class="overlaytitle2">
+      <h1>Update Userstory</h1>
+    </div>
+    <div class="table-container">
+      <div class="columnitems">
+        <div>
+
+          <form action="/updateuserstory" method="post">
+            <p>Write userstory name</p>
+            <input id="userstory-name-field" name="userstory_name" type="text" th:value="${userstory.getName()}">
+
+            <p>Write userstory Description</p>
+            <input id="userstory-description-field" name="userstory_description" type="text" th:value="${userstory.getDescription()}"></input>
+
+            <div class="epicbuttons">
+              <input id="project_id_field" name="project_id" type="hidden" th:value="${session.currentproject.getProjectID()}"></input>
+              <input id="userstory_id_field" name="userstory_id" type="hidden" th:value="${userstory.getId()}"></input>
+              <input id="userstory_released_field" name="userstory_released" type="hidden" th:value="${userstory.isReleased()}"></input>
+            </div>
+            <input class="table-link" type="submit" value="Update Userstory"></input>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>

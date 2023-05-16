@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BacklogCreateTask</title>
+  <link rel="stylesheet" th:href="@{/css/cssstyles.css}" href="../static/css/cssstyles.css">
+  <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div id="backlog-background2">
+  <div class="epicscontainer">
+    <div class="overlaytitle2">
+      <h1>Update task <span th:text="${technicaltask.name}"></span></h1>
+
+    </div>
+    <div class="table-container">
+      <div class="columnitems">
+        <div>
+
+          <form action="/updatetask" method="post">
+            <input id="technicaltask_id" name="technicaltask_id" type="hidden" th:value="${technicaltask.getId()}"></input>
+            <p>Write Task Name</p>
+            <input id="task-name-field" name="technicaltask_name" type="text" th:value="${technicaltask.getName()}">
+            <p>Write Task Description</p>
+            <input id="task-description-field" name="technicaltask_description" type="text" th:value="${technicaltask.getDescription()}"></input>
+
+            <div class="epicbuttons">
+              <input id="userstory_id" name="userstory_id" type="hidden" th:value="${technicaltask.getUserstory_id()}"></input>
+              <input id="technicaltask_released" name="technicaltask_released" type="hidden" th:value="${technicaltask.isReleased()}"></input>
+            </div>
+            <input class="table-link" type="submit" value="Update Task"></input>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>

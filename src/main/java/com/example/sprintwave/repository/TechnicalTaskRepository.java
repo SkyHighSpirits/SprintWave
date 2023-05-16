@@ -25,7 +25,7 @@ public class TechnicalTaskRepository {
 
     public ArrayList<TechnicalTask> getAllTechnicalTasksFromUserstoryID(int id)
     {
-        ArrayList<TechnicalTask> tecnicaltasks = new ArrayList<>();
+        ArrayList<TechnicalTask> technicalTasks = new ArrayList<>();
         try
         {
             Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
@@ -42,7 +42,7 @@ public class TechnicalTaskRepository {
                 technicalTask.setName(resultSet.getString(3));
                 technicalTask.setDescription(resultSet.getString(4));
                 technicalTask.setReleased(resultSet.getBoolean(5));
-                tecnicaltasks.add(technicalTask);
+                technicalTasks.add(technicalTask);
             }
         }
         catch(SQLException e)
@@ -50,7 +50,7 @@ public class TechnicalTaskRepository {
             System.out.println("Could not query userstories from database");
             e.printStackTrace();
         }
-        return tecnicaltasks;
+        return technicalTasks;
     }
 
     public ArrayList<TechnicalTask> getAllTechnicalTasks()
@@ -86,8 +86,8 @@ public class TechnicalTaskRepository {
     {
         try {
             Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
-            final String SQL_CREATE = "INSERT INTO userstories" +
-                    "(userstory_id,userstory_name,userstory_description, userstory_released)" +
+            final String SQL_CREATE = "INSERT INTO technicaltasks" +
+                    "(userstory_id, technicaltask_name, technicaltask_description, technicaltask_released)" +
                     "VALUES (?,?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE);
             preparedStatement.setInt(1, technicalTask.getUserstory_id());
@@ -100,6 +100,79 @@ public class TechnicalTaskRepository {
         {
             System.out.println("Could not create new technicalTask in database");
             e.printStackTrace();
+        }
+    }
+
+    public TechnicalTask getSpecificTechnicalTaskFromID(int task_id)
+    {
+        TechnicalTask technicalTask = new TechnicalTask();
+        try
+        {
+            Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
+            final String SQL_QUERY = "SELECT * FROM technicaltasks WHERE technicaltask_id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
+            preparedStatement.setInt(1, task_id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next())
+            {
+                technicalTask.setId(resultSet.getInt(1));
+                technicalTask.setUserstory_id(resultSet.getInt(2));
+                technicalTask.setName(resultSet.getString(3));
+                technicalTask.setDescription(resultSet.getString(4));
+                technicalTask.setReleased(resultSet.getBoolean(5));
+            }
+        }
+        catch(SQLException e)
+        {
+            System.out.println("Could not query technicaltask from database");
+            e.printStackTrace();
+        }
+        return technicalTask;
+    }
+
+    public void updateTechnicalTask(TechnicalTask technicalTask)
+    {
+        try {
+            //Oprette forbindelse til database
+            Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
+            //SQL statement
+            String SQL_QUERY = "UPDATE technicaltasks SET userstory_id = ? ,technicaltask_name = ?, technicaltask_description = ?, technicaltask_released = ? WHERE technicaltask_id = ?";
+            //PreparedStatement
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
+            //set parameters
+            preparedStatement.setInt(1, technicalTask.getUserstory_id());
+            preparedStatement.setString(2, technicalTask.getName());
+            preparedStatement.setString(3, technicalTask.getDescription());
+            preparedStatement.setBoolean(4, technicalTask.isReleased());
+            preparedStatement.setInt(5, technicalTask.getId());
+            //ExecuteStatement
+            preparedStatement.executeUpdate();
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+            System.out.println("Did not update the epic");
+        }
+    }
+
+    public void deleteTechnicalTask(int deleteTaskId){
+        try {
+            //Oprette forbindelse til database
+            Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
+            //SQL statement
+            String SQL_QUERY = "DELETE FROM technicaltasks WHERE technicaltask_id = ?";
+            //PreparedStatement
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
+            //set parameters
+            preparedStatement.setInt(1, deleteTaskId);
+            //execute statement
+            preparedStatement.execute();
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+            System.out.println("Did not delete the Task");
         }
     }
 

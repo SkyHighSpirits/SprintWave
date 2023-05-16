@@ -68,8 +68,8 @@ CREATE TABLE userstories(
                             FOREIGN KEY(project_id) REFERENCES projects(project_id)
 );
 
-CREATE TABLE tecnicaltasks(
-                            tecnicaltask_id INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE technicaltasks(
+                            technicaltask_id INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
                             userstory_id INT NOT NULL,
                             technicaltask_name VARCHAR(255) NOT NULL,
                             technicaltask_description VARCHAR(255) NOT NULL,

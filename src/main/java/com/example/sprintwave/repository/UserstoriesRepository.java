@@ -1,5 +1,6 @@
 package com.example.sprintwave.repository;
 
+import com.example.sprintwave.model.TechnicalTask;
 import com.example.sprintwave.model.User;
 import com.example.sprintwave.model.Userstory;
 import com.example.sprintwave.utility.ConnectionManager;
@@ -100,6 +101,30 @@ public class UserstoriesRepository {
         }
         return userstory;
 
+    }
+
+    public void updateUserstory(Userstory userstory)
+    {
+        try {
+            //Oprette forbindelse til database
+            Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
+            //SQL statement
+            String SQL_QUERY = "UPDATE userstories SET userstory_name = ?, userstory_description = ?, userstory_released = ? WHERE userstory_id = ?";
+            //PreparedStatement
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
+            //set parameters
+            preparedStatement.setString(1, userstory.getName());
+            preparedStatement.setString(2, userstory.getDescription());
+            preparedStatement.setBoolean(3, userstory.isReleased());
+            preparedStatement.setInt(4, userstory.getId());
+            //ExecuteStatement
+            preparedStatement.executeUpdate();
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+            System.out.println("Did not update the userstory");
+        }
     }
 
     public void deleteUserstory(int deleteUserstoryID){

@@ -262,5 +262,89 @@ public class MainController {
         return "redirect:/backlog/" + backlogProjectId;
     }
 
+    @PostMapping("/createtask")
+    public String createTask(@RequestParam("userstory_id") int userstory_id,
+                             @RequestParam("technicaltask_name") String technicaltask_name,
+                             @RequestParam("technicaltask_description") String technicaltask_description, HttpSession session) {
+        TechnicalTask technicalTask = new TechnicalTask();
+        technicalTask.setUserstory_id(userstory_id);
+        technicalTask.setName(technicaltask_name);
+        technicalTask.setDescription(technicaltask_description);
+        technicalTask.setReleased(false);
+        technicalTaskRepository.createNewTecnicalTask(technicalTask);
+        return "redirect:/backlog/" + ((Project) session.getAttribute("currentproject")).getProjectID();
+    }
+
+    @GetMapping("/showcreatetask/{userstory_id}")
+    public String showCreateTask(@PathVariable("userstory_id") int userstory_id, Model model) {
+        model.addAttribute("parentuserstory", userstoriesRepository.getSpecificUserstoryByID(userstory_id));
+
+        return "backlogcreatetask";
+    }
+
+    @GetMapping("/updatetask/{technicaltask_id}")
+    public String showUpdateTask(@PathVariable("technicaltask_id") int task_id, Model model) {
+        model.addAttribute("technicaltask", technicalTaskRepository.getSpecificTechnicalTaskFromID(task_id));
+
+        return "backlogupdatetask";
+    }
+
+    @PostMapping("/updatetask")
+    public String updateTechnicalTask(@RequestParam("technicaltask_id") int technicaltask_id,
+                             @RequestParam("userstory_id") int userstory_id,
+                             @RequestParam("technicaltask_name") String technicaltask_name,
+                             @RequestParam("technicaltask_description") String technicaltask_description,
+                             @RequestParam("technicaltask_released") Boolean technicaltask_released, HttpSession session)
+    {
+        TechnicalTask technicalTask = new TechnicalTask(technicaltask_id, userstory_id, technicaltask_name, technicaltask_description, technicaltask_released);
+        technicalTaskRepository.updateTechnicalTask(technicalTask);
+
+        return "redirect:/backlog/" + ((Project) session.getAttribute("currentproject")).getProjectID();
+    }
+
+    @GetMapping("/deletetask/{technicaltask_id}")
+    public String deleteTechnicalTask(@PathVariable("technicaltask_id") int task_id, HttpSession session) {
+        technicalTaskRepository.deleteTechnicalTask(task_id);
+        return "redirect:/backlog/" + ((Project) session.getAttribute("currentproject")).getProjectID();
+    }
+
+    @GetMapping("/showcreateuserstory")
+    public String showCreateUserstory() {
+        return "backlogcreateuserstory";
+    }
+
+    @PostMapping("/createuserstory")
+    public String createUserStory(@RequestParam("project_id") int project_id,
+                                  @RequestParam("userstory_name") String userstory_name,
+                                  @RequestParam("userstory_description") String userstory_description, HttpSession session) {
+        Userstory userstory = new Userstory();
+        userstory.setProject_id(project_id);
+        userstory.setName(userstory_name);
+        userstory.setDescription(userstory_description);
+        userstory.setReleased(false);
+        userstoriesRepository.createNewUserstory(userstory);
+        return "redirect:/backlog/" + ((Project) session.getAttribute("currentproject")).getProjectID();
+    }
+
+    @PostMapping("/updateuserstory")
+    public String updateUserstory(@RequestParam("userstory_id") int userstory_id,
+                                      @RequestParam("project_id") int project_id,
+                                      @RequestParam("userstory_name") String userstory_name,
+                                      @RequestParam("userstory_description") String userstory_description,
+                                      @RequestParam("userstory_released") Boolean userstory_released, HttpSession session)
+    {
+        Userstory userstory = new TechnicalTask(userstory_id, project_id, userstory_name, userstory_description, userstory_released);
+        userstoriesRepository.updateUserstory(userstory);
+
+        return "redirect:/backlog/" + ((Project) session.getAttribute("currentproject")).getProjectID();
+    }
+
+    @GetMapping("/updateuserstory/{userstory_id}")
+    public String showUpdateUserstory(@PathVariable("userstory_id") int userstory_id, Model model) {
+        model.addAttribute("userstory", userstoriesRepository.getSpecificUserstoryByID(userstory_id));
+
+        return "backlogupdateuserstory";
+    }
+
      /* END OF USERSTORY MAPPINGS BY NICOLAI */
 }
