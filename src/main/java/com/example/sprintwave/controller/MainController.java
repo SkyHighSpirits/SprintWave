@@ -254,7 +254,13 @@ public class MainController {
         return "/backlog";
     }
 
+    @GetMapping("/deleteuserstory/{userstory_id}")
+    public String deleteUserstory(@PathVariable("userstory_id") int userstory_id) {
+        int backlogProjectId = userstoriesRepository.getSpecificUserstoryByID(userstory_id).getProject_id();
+        userstoriesRepository.deleteUserstory(userstory_id);
+
+        return "redirect:/backlog/" + backlogProjectId;
+    }
+
      /* END OF USERSTORY MAPPINGS BY NICOLAI */
-
-
 }

@@ -73,4 +73,53 @@ public class UserstoriesRepository {
         }
     }
 
+    public Userstory getSpecificUserstoryByID(int ID)
+    {
+        Userstory userstory = new Userstory();
+        try
+        {
+            Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
+            final String SQL_QUERY = "SELECT * FROM userstories WHERE userstory_id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
+            preparedStatement.setInt(1, ID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next())
+            {
+                userstory.setId(resultSet.getInt(1));
+                userstory.setProject_id(resultSet.getInt(2));
+                userstory.setName(resultSet.getString(3));
+                userstory.setDescription(resultSet.getString(4));
+                userstory.setReleased(resultSet.getBoolean(5));
+            }
+        }
+        catch(SQLException e)
+        {
+            System.out.println("Could not query userstories from database");
+            e.printStackTrace();
+        }
+        return userstory;
+
+    }
+
+    public void deleteUserstory(int deleteUserstoryID){
+        try {
+            //Oprette forbindelse til database
+            Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
+            //SQL statement
+            String SQL_QUERY = "DELETE FROM Userstories WHERE userstory_id = ?";
+            //PreparedStatement
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
+            //set parameters
+            preparedStatement.setInt(1, deleteUserstoryID);
+            //execute statement
+            preparedStatement.execute();
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+            System.out.println("Did not delete the Userstory");
+        }
+    }
+
 }
