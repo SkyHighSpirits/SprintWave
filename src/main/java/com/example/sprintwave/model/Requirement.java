@@ -8,12 +8,17 @@ public class Requirement {
     private String requirement_actor;
 
 
-    public Requirement(int project_id, int requirement_id, String requirement_name, String requirement_description, String requirement_actor) {
+    private boolean funcNonFunc;
+
+
+    public Requirement(int project_id, int requirement_id, String requirement_name, String requirement_description, String requirement_actor, boolean funcNonFunc) {
         this.project_id = project_id;
         this.requirement_id = requirement_id;
         this.requirement_name = requirement_name;
         this.requirement_description = requirement_description;
         this.requirement_actor = requirement_actor;
+        this.funcNonFunc = funcNonFunc;
+
     }
 
     public Requirement() {
@@ -59,6 +64,14 @@ public class Requirement {
         this.requirement_actor = requirement_actor;
     }
 
+    public boolean isFuncNonFunc() {
+        return funcNonFunc;
+    }
+
+    public void setFuncNonFunc(boolean funcNonFunc) {
+        this.funcNonFunc = funcNonFunc;
+    }
+
     @Override
     public String toString() {
         return "Requirement{" +
@@ -67,6 +80,9 @@ public class Requirement {
                 ", requirement_name='" + requirement_name + '\'' +
                 ", requirement_description='" + requirement_description + '\'' +
                 ", requirement_actor='" + requirement_actor + '\'' +
+                ", funcNonFunc=" + funcNonFunc +
                 '}';
     }
 }
+
+

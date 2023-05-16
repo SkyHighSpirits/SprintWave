@@ -23,6 +23,7 @@ public class RequirementRepository {
     @Value("${spring.datasource.password}")
     String DB_PASSWORD;
 
+
     public void createRequirement(Requirement newRequirement) {
         try {
             //Opret forbindelse til database
@@ -141,6 +142,7 @@ public class RequirementRepository {
                 foundRequirement.setRequirement_name(resultSet.getString(3));
                 foundRequirement.setRequirement_description(resultSet.getString(4));
                 foundRequirement.setRequirement_actor(resultSet.getString(5));
+                foundRequirement.setFuncNonFunc(resultSet.getBoolean(6));
                 requirementList.add(foundRequirement);
             }
         }

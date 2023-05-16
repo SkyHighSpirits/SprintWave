@@ -102,8 +102,9 @@ public class MainController {
                                     @RequestParam("requirement_id") int requirement_id,
                                     @RequestParam("requirement_name") String requirement_name,
                                     @RequestParam("requirement_description") String requirement_description,
-                                    @RequestParam("requirement_actor") String requirement_actor) {
-        Requirement updateRequirement = new Requirement(project_id, requirement_id, requirement_name, requirement_description, requirement_actor);
+                                    @RequestParam("requirement_actor") String requirement_actor,
+                                    @RequestParam("funcNonFunc") boolean funcNonfunc) {
+        Requirement updateRequirement = new Requirement(project_id, requirement_id, requirement_name, requirement_description, requirement_actor, funcNonfunc);
         requirementRepository.updateRequirement(updateRequirement);
         return "redirect:/requirements/" + project_id;
     }
