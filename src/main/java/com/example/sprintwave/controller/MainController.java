@@ -212,18 +212,44 @@ public class MainController {
     @GetMapping("/backlog/{project_id}")
     public String showBacklogPage(@PathVariable("project_id") int project_id, Model model)
     {
+
         ArrayList<Userstory> relevantUserstories = userstoriesRepository.getAllUserstoriesFromProjectID(project_id);
-        ArrayList<TechnicalTask> relevantTechnicalTasks = new ArrayList<>();
+        ArrayList<Userstory> notreleasedUserstories = new ArrayList<>();
+        ArrayList<Userstory> notreleasedTechnicalTasks = new ArrayList<>();
+        ArrayList<Userstory> releasedUserstories = new ArrayList<>();
+        ArrayList<TechnicalTask> releasedTechnicalTasks = new ArrayList<>();
+
+        ArrayList<TechnicalTask> temporarytasks = new ArrayList<>();
+
         for(Userstory userstory: relevantUserstories)
         {
-            ArrayList<TechnicalTask> temporarytasks = technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstory.getId());
-            for(TechnicalTask technicalTask: temporarytasks)
+            temporarytasks.addAll(technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstory.getId()));
+            if(!userstory.isReleased())
             {
-                relevantTechnicalTasks.add(technicalTask);
+                notreleasedUserstories.add(userstory);
+            }
+            else
+            {
+                releasedUserstories.add(userstory);
             }
         }
-        model.addAttribute("userstories", relevantUserstories);
-        model.addAttribute("technicaltasks", relevantTechnicalTasks);
+        for(TechnicalTask technicalTask: temporarytasks)
+        {
+            if(!technicalTask.isReleased())
+            {
+                notreleasedTechnicalTasks.add(technicalTask);
+            }
+            else
+            {
+                releasedTechnicalTasks.add(technicalTask);
+            }
+
+        }
+
+        model.addAttribute("notreleaseduserstories", notreleasedUserstories);
+        model.addAttribute("notreleasedtechnicaltasks", notreleasedTechnicalTasks);
+        model.addAttribute("releaseduserstories", releasedUserstories);
+        model.addAttribute("releasedtechnicaltasks", releasedTechnicalTasks);
 
         return "/backlog";
     }
