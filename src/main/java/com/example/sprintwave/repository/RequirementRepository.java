@@ -104,10 +104,12 @@ public class RequirementRepository {
             //execute statement
             ResultSet resultSet = preparedStatement.executeQuery();
             //Få et epic ud fra databasen
-            foundRequirement.setProject_id(resultSet.getInt(1));
-            foundRequirement.setRequirement_name(resultSet.getString(3));
-            foundRequirement.setRequirement_description(resultSet.getString(4));
-            foundRequirement.setRequirement_actor(resultSet.getString(5));
+            if(resultSet.next()) {
+                foundRequirement.setProject_id(resultSet.getInt(1));
+                foundRequirement.setRequirement_name(resultSet.getString(3));
+                foundRequirement.setRequirement_description(resultSet.getString(4));
+                foundRequirement.setRequirement_actor(resultSet.getString(5));
+            }
         }
         catch(SQLException e)
         {

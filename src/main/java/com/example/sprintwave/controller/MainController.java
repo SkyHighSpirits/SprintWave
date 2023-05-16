@@ -93,7 +93,7 @@ public class MainController {
     @GetMapping("/updaterequirement/{requirement_id}")
     public String showUpdateRequirement(@PathVariable("requirement_id") int requirement_id, Model model) {
         Requirement foundRequirement = requirementRepository.findRequirementByID(requirement_id);
-        model.addAttribute("requirements", foundRequirement);
+        model.addAttribute("requirement", foundRequirement);
         return "requirementupdate";
     }
 
