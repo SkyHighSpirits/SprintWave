@@ -28,13 +28,20 @@ public class MainController {
     EpicRepository epicRepository;
     RequirementRepository requirementRepository;
 
-    public MainController(UserRepository userRepository, WorkspaceRepository workspaceRepository, ProjectRepository projectRepository, EpicRepository epicRepository, RequirementRepository requirementRepository)
+    TechnicalTaskRepository technicalTaskRepository;
+
+    UserstoriesRepository userstoriesRepository;
+
+
+    public MainController(UserRepository userRepository, WorkspaceRepository workspaceRepository, ProjectRepository projectRepository, EpicRepository epicRepository, RequirementRepository requirementRepository, UserstoriesRepository userstoriesRepository, TechnicalTaskRepository technicalTaskRepository)
     {
         this.userRepository = userRepository;
         this.workspaceRepository = workspaceRepository;
         this.projectRepository = projectRepository;
         this.epicRepository = epicRepository;
         this.requirementRepository = requirementRepository;
+        this.userstoriesRepository = userstoriesRepository;
+        this.technicalTaskRepository = technicalTaskRepository;
     }
 
     @ModelAttribute("currentuser")
@@ -255,7 +262,28 @@ public class MainController {
     }
     
     /* END OF PROJECT MAPPINGS BY STEFFEN */
-    
+
+    /* START OF USERSTORY MAPPINGS BY NICOLAI */
+    @GetMapping("/backlog/{project_id}")
+    public String showBacklogPage(@PathVariable("project_id") int project_id, Model model)
+    {
+        ArrayList<Userstory> relevantUserstories = userstoriesRepository.getAllUserstoriesFromProjectID(project_id);
+        ArrayList<TechnicalTask> relevantTechnicalTasks = new ArrayList<>();
+        for(Userstory userstory: relevantUserstories)
+        {
+            ArrayList<TechnicalTask> temporarytasks = technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstory.getId());
+            for(TechnicalTask technicalTask: temporarytasks)
+            {
+                relevantTechnicalTasks.add(technicalTask);
+            }
+        }
+        model.addAttribute("userstories", relevantUserstories);
+        model.addAttribute("technicaltasks", relevantTechnicalTasks);
+
+        return "/backlog";
+    }
+
+     /* END OF USERSTORY MAPPINGS BY NICOLAI */
 
 
 }

@@ -12,11 +12,11 @@
 <div th:replace="fragments/navbar :: navbarthree"></div>
 
 <div class="flex-container">
-  <div><a class="navtwo-link" href="#">Overview<a/></div>
-  <div><a class="navtwo-link" href="#">Epics<a/></div>
-  <div><a class="navtwo-link" href="#">Requirements<a/></div>
-  <div><a class="navtwo-link" href="#">Backlog<a/></div>
-  <div><a class="navtwo-link" href="#">Sprints<a/></div>
+  <div><a class="navtwo-link" href="#">Overview</a></div>
+  <div><a class="navtwo-link" href="#">Epics</a></div>
+  <div><a class="navtwo-link" href="#">Requirements</a></div>
+  <div><a class="navtwo-link" href="#">Backlog</a></div>
+  <div><a class="navtwo-link" href="#">Sprints</a></div>
 </div>
 
 <div class="overviewcontainer">
@@ -35,7 +35,7 @@
   <div class="boxthree">
     <h3>Backlog</h3>
     <p>Ting ting</p>
-    <a href="#" class="btn">Go to</a>
+    <a th:href="@{'/backlog/' + ${session.currentproject.getProjectID()}}" class="btn">Go to</a>
   </div>
   <div class="boxfour">
     <h3>Sprints</h3>

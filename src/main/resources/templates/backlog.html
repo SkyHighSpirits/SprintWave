@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Epics</title>
+  <link rel="stylesheet" th:href="@{/css/cssstyles.css}" href="../static/css/cssstyles.css">
+  <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbarthree"></div>
+
+<div id="backlog-background">
+  <div class="epicscontainer">
+    <div class="overlaytitle2">
+      <h1>Product Backlog</h1>
+      <a class="table-link push-left-20" th:href="@{'/showcreateusecase/'}" href="/createuserstory"><h2>New Usecase</h2></a>
+    </div>
+
+        <div class="table-container">
+          <div class="columnitems" th:each="userstory : ${userstories}">
+            <div>
+              <h2 th:text="${userstory.name}">US001</h2>
+              <p th:text="${userstory.description}">As an administrator I want to see the database, so that I can edit the database</p>
+              <div th:each="technicaltask : ${technicaltasks}">
+                <div th:if="${userstory.id} == ${technicaltask.getUserstory_id()}">
+                  <h3 th:text="${technicaltask.name}">TEC001</h3>
+                  <p th:text="${technicaltask.description}">Connect to azure database</p>
+                </div>
+                <br>
+              </div>
+              <div class="epicbuttons">
+                <a class="table-link" value="Add Technical Task" th:href="@{'/showaddtechnicaltask'}" href="/showaddtechhinaltask">Add Task</a>
+                <a class="table-link" th:href="@{'/updateuserstory/' + ${userstory.id}}" href="/updateuserstory">Update Usecase</a>
+                <a class="table-link" th:href="@{'/deleteuserstory/' + ${userstory.id}}" href="/deleteuserstory">Delete</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+    <div class="overlaytitle2">
+      <h1>Released Backlog</h1>
+      </div>
+        <div class="table-container">
+          <div class="columnitems" th:each="userstory : ${userstories}">
+            <div>
+              <h2 th:text="${userstory.name}">US001</h2>
+              <p th:text="${userstory.description}">As an administrator I want to see the database, so that I can edit the database</p>
+              <div th:each="technicaltask : ${technicaltasks}">
+                <h3 th:text="${technicaltask.name}">TEC001</h3>
+                <p th:text="${technicaltask.description}">Connect to azure database</p>
+              </div>
+              <div class="epicbuttons">
+                <a class="table-link" th:href="@{'/updateuserstory/' + ${userstory.id}}" href="/updateuserstory">Update Usecase</a>
+                <a class="table-link" th:href="@{'/deleteuserstory/' + ${userstory.id}}" href="/deleteuserstory">Delete</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+</body>
+</html>

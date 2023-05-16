@@ -59,6 +59,26 @@ CREATE TABLE requirements(
 
 );
 
+CREATE TABLE userstories(
+                            userstory_id INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
+                            project_id INT NOT NULL,
+                            userstory_name VARCHAR(255) NOT NULL,
+                            userstory_description VARCHAR(255) NOT NULL,
+                            userstory_released BOOLEAN NOT NULL,
+                            FOREIGN KEY(project_id) REFERENCES projects(project_id)
+);
+
+CREATE TABLE tecnicaltasks(
+                            tecnicaltask_id INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
+                            userstory_id INT NOT NULL,
+                            technicaltask_name VARCHAR(255) NOT NULL,
+                            technicaltask_description VARCHAR(255) NOT NULL,
+                            technicaltask_released BOOLEAN NOT NULL,
+                            FOREIGN KEY(userstory_id) REFERENCES userstories(userstory_id)
+);
+
+
+
 /* Insert temporary data into database. */
 INSERT into workspaces
     (workspace_name)
@@ -86,3 +106,21 @@ INSERT INTO epics
 VALUES
     (1, 'EP003', 'Deploy feature Epics'),
     (1, 'EP004', 'Deploy feature projects');
+
+INSERT INTO userstories
+    (project_id, userstory_name, userstory_description, userstory_released)
+VALUES
+    (1, 'US001', 'As a drunkard I want to be able to buy beer, so that I can stay drunk', false),
+    (1, 'US002', 'As a cyclist I want to be able to maintain my bike, so that I can keep using it', false),
+    (1, 'US003', 'As a beaver I want to be able to chew wood, so that I can create my dam', false);
+
+INSERT INTO tecnicaltasks
+    (userstory_id, technicaltask_name, technicaltask_description, technicaltask_released)
+VALUES
+    (1, 'TEC001','Earn Money', false),
+    (1, 'TEC002','Buy beer', false),
+    (2, 'TEC003','Buy WD40', false),
+    (2, 'TEC004','Use WD40 on rusty parts of the bike', false),
+    (3, 'TEC005','Eat Well', false),
+    (3, 'TEC006','Sharpen Teeth', false),
+    (3, 'TEC007','Chew Wood', false);
