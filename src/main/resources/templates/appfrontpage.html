@@ -17,7 +17,8 @@
                 <h3 th:text="${project.projectOwner}"></h3>
                 <h2 th:text="${project.projectName}"></h2>
                 <p th:text="${project.projectDescription}"></p>
-                <div class="appfrontpage-project-deadline"><p>Deadline: 2023-05-10</p></div>
+                <p th:text="${project.deadline}"></p>
+                <div class="appfrontpage-project-deadline"><p th:text="${project.deadline}"></p></div>
 
                 <a class="appfrontpage-modify-project-button"  th:href="@{'/updateproject/' + ${project.projectID}}" href="modifyproject"> Modify Project</a>
                 <a class="appfrontpage-project-button" th:href="@{'/overview/' + ${project.projectID}}" href="/overview">Go to project</a>
