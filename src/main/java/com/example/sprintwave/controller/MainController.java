@@ -170,7 +170,7 @@ public class MainController {
 
     @GetMapping("/overview/{projectID}")
     public String overview(@PathVariable("projectID") int projectID, HttpSession session, Model model) {
-        Project currentproject = new Project();
+        Project currentproject = projectRepository.findProjectByID(projectID);
         currentproject.setProjectID(projectID);
         model.addAttribute("currentproject",currentproject);
         session.setAttribute("currentproject",currentproject);
@@ -194,6 +194,30 @@ public class MainController {
         project.setDeadline(deadline);
         project.setWorkspaceID(workspaceID);
         projectRepository.createProject(project);
+        return "redirect:/appfrontpage/" + workspaceID;
+    }
+
+    @GetMapping("/updateproject/{projectID}")
+    public String showUpdateProject(@PathVariable("projectID") int updateID, Model model, HttpSession session){
+        Project updateProject = projectRepository.findProjectByID(updateID);
+        model.addAttribute("project", updateProject);
+        session.setAttribute("currentproject", updateProject);
+        return "/modifyproject";
+    }
+
+
+    @PostMapping("/updateproject")
+    public String updateProject(@RequestParam("project_id") int projectID,
+                                @RequestParam("projectname") String projectName,
+                                @RequestParam("projectdescription") String projectDescription,
+                                @RequestParam("projectowner") String projectOwner,
+                                @RequestParam("projectstatus") boolean projectStatus,
+                                @RequestParam("projectdeadline") LocalDate deadline,
+                                @RequestParam("workspaceID") int workspaceID) {
+        Project updateProject = new Project(projectID, projectName, projectDescription, projectOwner, projectStatus, deadline, workspaceID);
+        projectRepository.updateProject(updateProject);
+
+
         return "redirect:/appfrontpage/" + workspaceID;
     }
     
