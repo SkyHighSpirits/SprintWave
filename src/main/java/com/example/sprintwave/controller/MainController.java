@@ -1,13 +1,7 @@
 package com.example.sprintwave.controller;
 
-import com.example.sprintwave.model.Epic;
-import com.example.sprintwave.model.Project;
-import com.example.sprintwave.model.User;
-import com.example.sprintwave.model.Workspace;
-import com.example.sprintwave.repository.EpicRepository;
-import com.example.sprintwave.repository.ProjectRepository;
-import com.example.sprintwave.repository.UserRepository;
-import com.example.sprintwave.repository.WorkspaceRepository;
+import com.example.sprintwave.model.*;
+import com.example.sprintwave.repository.*;
 
 import com.example.sprintwave.utility.UserDataHandler;
 import jakarta.servlet.http.HttpServletRequest;
@@ -32,13 +26,15 @@ public class MainController {
     WorkspaceRepository workspaceRepository;
     UserRepository userRepository;
     EpicRepository epicRepository;
+    RequirementRepository requirementRepository;
 
-    public MainController(UserRepository userRepository, WorkspaceRepository workspaceRepository, ProjectRepository projectRepository, EpicRepository epicRepository)
+    public MainController(UserRepository userRepository, WorkspaceRepository workspaceRepository, ProjectRepository projectRepository, EpicRepository epicRepository, RequirementRepository requirementRepository)
     {
         this.userRepository = userRepository;
         this.workspaceRepository = workspaceRepository;
         this.projectRepository = projectRepository;
         this.epicRepository = epicRepository;
+        this.requirementRepository = requirementRepository;
     }
 
     @ModelAttribute("currentuser")
@@ -67,6 +63,13 @@ public class MainController {
     public String getSignupPage()
     {
         return "signup";
+    }
+
+    @GetMapping("/requirements/{project_id}")
+    public String requirement(@PathVariable("project_id") int project_id, Model model) {
+        ArrayList<Requirement> requirementList = requirementRepository.getAllRequirementByProjectID(project_id);
+        model.addAttribute("requirements", requirementList);
+        return "requirements";
     }
 
     @GetMapping("/epics/{project_id}")
