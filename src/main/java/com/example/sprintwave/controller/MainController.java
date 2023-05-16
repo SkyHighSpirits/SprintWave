@@ -72,6 +72,50 @@ public class MainController {
         return "requirements";
     }
 
+    @GetMapping("/showcreaterequirement")
+    public String showCreateRequirement() {
+        return "requirementcreate";
+    }
+    @PostMapping("/createrequirement")
+    public String createRequirement(@RequestParam("project_id") int project_id,
+                                    @RequestParam("requirement_name") String requirement_name,
+                                    @RequestParam("requirement_description") String requirement_description,
+                                    @RequestParam("requirement_actor") String requirement_actor) {
+        Requirement requirement = new Requirement();
+        requirement.setProject_id(project_id);
+        requirement.setRequirement_name(requirement_name);
+        requirement.setRequirement_description(requirement_description);
+        requirement.setRequirement_actor(requirement_actor);
+        requirementRepository.createRequirement(requirement);
+        return "redirect:/requirements/" + project_id;
+    }
+
+    @GetMapping("/updaterequirement/{requirement_id}")
+    public String showUpdateRequirement(@PathVariable("requirement_id") int requirement_id, Model model) {
+        Requirement foundRequirement = requirementRepository.findRequirementByID(requirement_id);
+        model.addAttribute("requirements", foundRequirement);
+        return "requirementupdate";
+    }
+
+    @PostMapping("/updaterequirement")
+    public String updateRequirement(@RequestParam("project_id") int project_id,
+                                    @RequestParam("requirement_id") int requirement_id,
+                                    @RequestParam("requirement_name") String requirement_name,
+                                    @RequestParam("requirement_description") String requirement_description,
+                                    @RequestParam("requirement_actor") String requirement_actor) {
+        Requirement updateRequirement = new Requirement(project_id, requirement_id, requirement_name, requirement_description, requirement_actor);
+        requirementRepository.updateRequirement(updateRequirement);
+        return "redirect:/requirements/" + project_id;
+    }
+
+    @GetMapping("/deleterequirement/{requirement_id}/{project_id}")
+    public String deleteRequirement(@PathVariable("requirement_id") int requirement_id,
+                                    @PathVariable("project_id") int project_id) {
+        requirementRepository.deleteRequirement(requirement_id);
+        return "redirect:/requirements/" + project_id;
+
+    }
+
     @GetMapping("/epics/{project_id}")
     public String epic(@PathVariable("project_id") int project_id, Model model) {
         ArrayList<Epic> epicList = epicRepository.getAllEpicByProjectID(project_id);
