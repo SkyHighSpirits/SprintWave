@@ -13,7 +13,7 @@
     <div class="appfrontpage-main">
         <h1>Active Projects</h1>
         <div class="appfrontpage-project-matrix">
-            <div class="appfrontpage-project" th:each="project : ${projects}">
+            <div class="appfrontpage-project" th:each="project : ${projects}" th:block th:if="${project.projectStatus}">
                 <h3 th:text="${project.projectOwner}"></h3>
                 <h2 th:text="${project.projectName}"></h2>
                 <p th:text="${project.projectDescription}"></p>
@@ -22,6 +22,7 @@
 
                 <a class="appfrontpage-modify-project-button"  th:href="@{'/updateproject/' + ${project.projectID}}" href="modifyproject"> Modify Project</a>
                 <a class="appfrontpage-project-button" th:href="@{'/overview/' + ${project.projectID}}" href="/overview">Go to project</a>
+                    </th:block>
             </div>            
             <div class="appfrontpage-create-project">
                 <h2>Create New Project</h2>
@@ -31,10 +32,20 @@
                 <a class="appfrontpage-project-button" th:href="@{'/createproject'}">Create Project</a>
             </div>
         </div>
-        
+
         <h1>Inactive Projects</h1>
-        <div class="appfrontpage-project-matrix"></div>
-        
+        <div class="appfrontpage-project-matrix">
+            <div class="appfrontpage-project" th:each="project : ${projects}" th:unless="${project.projectStatus}">
+                <h3 th:text="${project.projectOwner}"></h3>
+                <h2 th:text="${project.projectName}"></h2>
+                <p th:text="${project.projectDescription}"></p>
+                <p th:text="${project.deadline}"></p>
+                <div class="appfrontpage-project-deadline"><p th:text="${project.deadline}"></p></div>
+
+                <a class="appfrontpage-modify-project-button"  th:href="@{'/updateproject/' + ${project.projectID}}" href="modifyproject"> Modify Project</a>
+                <a class="appfrontpage-project-button" th:href="@{'/overview/' + ${project.projectID}}" href="/overview">Go to project</a>
+            </div>
+        </div>
     </div>
     <div th:replace="fragments/footer :: footer"></div>
 </body>

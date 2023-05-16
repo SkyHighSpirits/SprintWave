@@ -141,10 +141,6 @@ public class ProjectRepository
             preparedStatement.setString(2, updateProject.getProjectDescription());
             preparedStatement.setString(3, updateProject.getProjectOwner());
             preparedStatement.setBoolean(4, updateProject.isProjectStatus());
-            /*LocalDate deadlineLocalDate = updateProject.getDeadline();  //henter localdate fra updateproject
-            Date deadlineSQL = Date.valueOf(deadlineLocalDate);  // konveter  localdate til java.sql.date med date.valueof
-
-             */
             preparedStatement.setDate(5, java.sql.Date.valueOf(updateProject.getDeadline())); //sætter den konverteret java.sql.date som project deadline
             preparedStatement.setInt(6,updateProject.getWorkspaceID());
             preparedStatement.setInt(7,updateProject.getProjectID());
