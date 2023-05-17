@@ -416,7 +416,7 @@ label .logo-link{
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    border-radius: 12px;
+    border-radius: 1px;
 }
 .table-link:hover{
     background: linear-gradient(90deg, hsla(238, 100%, 48%, 1) 0%, hsla(204, 73%, 66%, 1) 100%);
