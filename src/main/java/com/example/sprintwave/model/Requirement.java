@@ -6,14 +6,19 @@ public class Requirement {
     private String requirement_name;
     private String requirement_description;
     private String requirement_actor;
+    private String funcNonFuncChoice;
+    private boolean funcNonFunc = false;
 
 
-    public Requirement(int project_id, int requirement_id, String requirement_name, String requirement_description, String requirement_actor) {
+    public Requirement(int project_id, int requirement_id, String requirement_name, String requirement_description, String requirement_actor, String funcNonFuncChoice, boolean funcNonFunc) {
         this.project_id = project_id;
         this.requirement_id = requirement_id;
         this.requirement_name = requirement_name;
         this.requirement_description = requirement_description;
         this.requirement_actor = requirement_actor;
+        this.funcNonFuncChoice = funcNonFuncChoice;
+        this.funcNonFunc = funcNonFunc;
+
     }
 
     public Requirement() {
@@ -59,6 +64,23 @@ public class Requirement {
         this.requirement_actor = requirement_actor;
     }
 
+    public boolean isFuncNonFunc() {
+        return funcNonFunc;
+    }
+
+    public void setFuncNonFunc(boolean funcNonFunc) {
+        this.funcNonFunc = funcNonFunc;
+    }
+
+    public String getFuncNonFuncChoice() {
+        return funcNonFuncChoice;
+    }
+
+    public void setFuncNonFuncChoice(String funcNonFuncChoice) {
+        this.funcNonFuncChoice = funcNonFuncChoice;
+    }
+
+
     @Override
     public String toString() {
         return "Requirement{" +
@@ -67,6 +89,10 @@ public class Requirement {
                 ", requirement_name='" + requirement_name + '\'' +
                 ", requirement_description='" + requirement_description + '\'' +
                 ", requirement_actor='" + requirement_actor + '\'' +
+                ", funcNonFuncChoice='" + funcNonFuncChoice + '\'' +
+                ", funcNonFunc=" + funcNonFunc +
                 '}';
     }
 }
+
+

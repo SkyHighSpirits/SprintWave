@@ -98,4 +98,18 @@ public class Project
     {
         this.workspaceID = workspaceID;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Project{" +
+                "projectID=" + projectID +
+                ", projectName='" + projectName + '\'' +
+                ", projectOwner='" + projectOwner + '\'' +
+                ", projectStatus=" + projectStatus +
+                ", deadline=" + deadline +
+                ", projectDescription='" + projectDescription + '\'' +
+                ", workspaceID=" + workspaceID +
+                '}';
+    }
 }

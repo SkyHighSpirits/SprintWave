@@ -26,17 +26,20 @@ public class MainController {
     WorkspaceRepository workspaceRepository;
     UserRepository userRepository;
     EpicRepository epicRepository;
+    RequirementRepository requirementRepository;
 
     TechnicalTaskRepository technicalTaskRepository;
 
     UserstoriesRepository userstoriesRepository;
 
-    public MainController(UserRepository userRepository, WorkspaceRepository workspaceRepository, ProjectRepository projectRepository, EpicRepository epicRepository, UserstoriesRepository userstoriesRepository, TechnicalTaskRepository technicalTaskRepository)
+
+    public MainController(UserRepository userRepository, WorkspaceRepository workspaceRepository, ProjectRepository projectRepository, EpicRepository epicRepository, RequirementRepository requirementRepository, UserstoriesRepository userstoriesRepository, TechnicalTaskRepository technicalTaskRepository)
     {
         this.userRepository = userRepository;
         this.workspaceRepository = workspaceRepository;
         this.projectRepository = projectRepository;
         this.epicRepository = epicRepository;
+        this.requirementRepository = requirementRepository;
         this.userstoriesRepository = userstoriesRepository;
         this.technicalTaskRepository = technicalTaskRepository;
     }
@@ -67,6 +70,66 @@ public class MainController {
     public String getSignupPage()
     {
         return "signup";
+    }
+
+    @GetMapping("/requirements/{project_id}")
+    public String requirement(@PathVariable("project_id") int project_id, Model model) {
+        ArrayList<Requirement> requirementList = requirementRepository.getAllRequirementByProjectID(project_id);
+        model.addAttribute("requirements", requirementList);
+        return "requirements";
+    }
+
+    @GetMapping("/showcreaterequirement")
+    public String showCreateRequirement() {
+        return "requirementcreate";
+    }
+    @PostMapping("/createrequirement")
+    public String createRequirement(@RequestParam("project_id") int project_id,
+                                    @RequestParam("requirement_name") String requirement_name,
+                                    @RequestParam("requirement_description") String requirement_description,
+                                    @RequestParam("requirement_actor") String requirement_actor,
+                                    @RequestParam("funcNonFuncChoice") String funcNonFuncChoice) {
+        Requirement requirement = new Requirement();
+        requirement.setProject_id(project_id);
+        requirement.setRequirement_name(requirement_name);
+        requirement.setRequirement_description(requirement_description);
+        requirement.setRequirement_actor(requirement_actor);
+        requirement.setFuncNonFuncChoice(funcNonFuncChoice);
+        requirementRepository.createRequirement(requirement);
+        return "redirect:/requirements/" + project_id;
+    }
+
+    @GetMapping("/updaterequirement/{requirement_id}")
+    public String showUpdateRequirement(@PathVariable("requirement_id") int requirement_id, Model model) {
+        Requirement foundRequirement = requirementRepository.findRequirementByID(requirement_id);
+        model.addAttribute("requirement", foundRequirement);
+        return "requirementupdate";
+    }
+
+    @PostMapping("/updaterequirement")
+    public String updateRequirement(@RequestParam("project_id") int project_id,
+                                    @RequestParam("requirement_id") int requirement_id,
+                                    @RequestParam("requirement_name") String requirement_name,
+                                    @RequestParam("requirement_description") String requirement_description,
+                                    @RequestParam("requirement_actor") String requirement_actor,
+                                    @RequestParam("funcNonFuncChoice") String funcNonFuncChoice) {
+        Requirement updateRequirement = new Requirement();
+        updateRequirement.setProject_id(project_id);
+        updateRequirement.setRequirement_id(requirement_id);
+        updateRequirement.setRequirement_name(requirement_name);
+        updateRequirement.setRequirement_description(requirement_description);
+        updateRequirement.setRequirement_actor(requirement_actor);
+        updateRequirement.setFuncNonFuncChoice(funcNonFuncChoice);
+        requirementRepository.updateRequirement(updateRequirement);
+        return "redirect:/requirements/" + project_id;
+    }
+
+    @GetMapping("/deleterequirement/{requirement_id}/{project_id}")
+    public String deleteRequirement(@PathVariable("requirement_id") int requirement_id,
+                                    @PathVariable("project_id") int project_id) {
+        requirementRepository.deleteRequirement(requirement_id);
+        return "redirect:/requirements/" + project_id;
+
     }
 
     @GetMapping("/epics/{project_id}")
@@ -170,7 +233,7 @@ public class MainController {
 
     @GetMapping("/overview/{projectID}")
     public String overview(@PathVariable("projectID") int projectID, HttpSession session, Model model) {
-        Project currentproject = new Project();
+        Project currentproject = projectRepository.findProjectByID(projectID);
         currentproject.setProjectID(projectID);
         model.addAttribute("currentproject",currentproject);
         session.setAttribute("currentproject",currentproject);
@@ -194,6 +257,30 @@ public class MainController {
         project.setDeadline(deadline);
         project.setWorkspaceID(workspaceID);
         projectRepository.createProject(project);
+        return "redirect:/appfrontpage/" + workspaceID;
+    }
+
+    @GetMapping("/updateproject/{projectID}")
+    public String showUpdateProject(@PathVariable("projectID") int updateID, Model model, HttpSession session){
+        Project updateProject = projectRepository.findProjectByID(updateID);
+        model.addAttribute("project", updateProject);
+        session.setAttribute("currentproject", updateProject);
+        return "/modifyproject";
+    }
+
+
+    @PostMapping("/updateproject")
+    public String updateProject(@RequestParam("project_id") int projectID,
+                                @RequestParam("projectname") String projectName,
+                                @RequestParam("projectdescription") String projectDescription,
+                                @RequestParam("projectowner") String projectOwner,
+                                @RequestParam("projectstatus") boolean projectStatus,
+                                @RequestParam("projectdeadline") LocalDate deadline,
+                                @RequestParam("workspaceID") int workspaceID) {
+        Project updateProject = new Project(projectID, projectName, projectDescription, projectOwner, projectStatus, deadline, workspaceID);
+        projectRepository.updateProject(updateProject);
+
+
         return "redirect:/appfrontpage/" + workspaceID;
     }
     

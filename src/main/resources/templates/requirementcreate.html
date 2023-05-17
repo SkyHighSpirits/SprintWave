@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Requirementcreate</title>
+    <link rel="stylesheet" th:href="@{/css/cssstyles.css}" href="../static/css/cssstyles.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div id="requirements-background">
+    <div class="epicscontainer">
+        <div class="overlaytitle">
+            <h1>Create a new requirement</h1>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <div class="epiccreateitem">
+                <div>
+                    <form action="createrequirement" method="post">
+
+                        <p>Write title</p>
+                        <input id="requirement-name-field" name="requirement_name" type="text"></input>
+                        <p>Write description</p>
+                        <input id="requirement-description-field" name="requirement_description" type="text"></input>
+                        <p>Write actor</p>
+                        <input id="requirement-actor-field" name="requirement_actor" type="text"></input>
+                        <p>Choose functional or non-functional</p>
+                        <select name="funcNonFuncChoice" id="funcNonFuncChoice">
+                            <option value="Functional">Functional</option>
+                            <option value="Non-functional">Non-functional</option>
+                        </select>
+                        <div class="epicbuttons">
+                            <input id="project_id-field" name="project_id" type="hidden" th:value="${session.currentproject.getProjectID()}"></input>
+                        </div>
+                        <input class="table-link" type="submit" value="Opret requirement"></input>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>
