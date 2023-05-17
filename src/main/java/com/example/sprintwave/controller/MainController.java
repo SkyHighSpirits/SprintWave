@@ -1,13 +1,7 @@
 package com.example.sprintwave.controller;
 
-import com.example.sprintwave.model.Epic;
-import com.example.sprintwave.model.Project;
-import com.example.sprintwave.model.User;
-import com.example.sprintwave.model.Workspace;
-import com.example.sprintwave.repository.EpicRepository;
-import com.example.sprintwave.repository.ProjectRepository;
-import com.example.sprintwave.repository.UserRepository;
-import com.example.sprintwave.repository.WorkspaceRepository;
+import com.example.sprintwave.model.*;
+import com.example.sprintwave.repository.*;
 
 import com.example.sprintwave.utility.UserDataHandler;
 import jakarta.servlet.http.HttpServletRequest;
@@ -32,13 +26,22 @@ public class MainController {
     WorkspaceRepository workspaceRepository;
     UserRepository userRepository;
     EpicRepository epicRepository;
+    RequirementRepository requirementRepository;
 
-    public MainController(UserRepository userRepository, WorkspaceRepository workspaceRepository, ProjectRepository projectRepository, EpicRepository epicRepository)
+    TechnicalTaskRepository technicalTaskRepository;
+
+    UserstoriesRepository userstoriesRepository;
+
+
+    public MainController(UserRepository userRepository, WorkspaceRepository workspaceRepository, ProjectRepository projectRepository, EpicRepository epicRepository, RequirementRepository requirementRepository, UserstoriesRepository userstoriesRepository, TechnicalTaskRepository technicalTaskRepository)
     {
         this.userRepository = userRepository;
         this.workspaceRepository = workspaceRepository;
         this.projectRepository = projectRepository;
         this.epicRepository = epicRepository;
+        this.requirementRepository = requirementRepository;
+        this.userstoriesRepository = userstoriesRepository;
+        this.technicalTaskRepository = technicalTaskRepository;
     }
 
     @ModelAttribute("currentuser")
@@ -67,6 +70,66 @@ public class MainController {
     public String getSignupPage()
     {
         return "signup";
+    }
+
+    @GetMapping("/requirements/{project_id}")
+    public String requirement(@PathVariable("project_id") int project_id, Model model) {
+        ArrayList<Requirement> requirementList = requirementRepository.getAllRequirementByProjectID(project_id);
+        model.addAttribute("requirements", requirementList);
+        return "requirements";
+    }
+
+    @GetMapping("/showcreaterequirement")
+    public String showCreateRequirement() {
+        return "requirementcreate";
+    }
+    @PostMapping("/createrequirement")
+    public String createRequirement(@RequestParam("project_id") int project_id,
+                                    @RequestParam("requirement_name") String requirement_name,
+                                    @RequestParam("requirement_description") String requirement_description,
+                                    @RequestParam("requirement_actor") String requirement_actor,
+                                    @RequestParam("funcNonFuncChoice") String funcNonFuncChoice) {
+        Requirement requirement = new Requirement();
+        requirement.setProject_id(project_id);
+        requirement.setRequirement_name(requirement_name);
+        requirement.setRequirement_description(requirement_description);
+        requirement.setRequirement_actor(requirement_actor);
+        requirement.setFuncNonFuncChoice(funcNonFuncChoice);
+        requirementRepository.createRequirement(requirement);
+        return "redirect:/requirements/" + project_id;
+    }
+
+    @GetMapping("/updaterequirement/{requirement_id}")
+    public String showUpdateRequirement(@PathVariable("requirement_id") int requirement_id, Model model) {
+        Requirement foundRequirement = requirementRepository.findRequirementByID(requirement_id);
+        model.addAttribute("requirement", foundRequirement);
+        return "requirementupdate";
+    }
+
+    @PostMapping("/updaterequirement")
+    public String updateRequirement(@RequestParam("project_id") int project_id,
+                                    @RequestParam("requirement_id") int requirement_id,
+                                    @RequestParam("requirement_name") String requirement_name,
+                                    @RequestParam("requirement_description") String requirement_description,
+                                    @RequestParam("requirement_actor") String requirement_actor,
+                                    @RequestParam("funcNonFuncChoice") String funcNonFuncChoice) {
+        Requirement updateRequirement = new Requirement();
+        updateRequirement.setProject_id(project_id);
+        updateRequirement.setRequirement_id(requirement_id);
+        updateRequirement.setRequirement_name(requirement_name);
+        updateRequirement.setRequirement_description(requirement_description);
+        updateRequirement.setRequirement_actor(requirement_actor);
+        updateRequirement.setFuncNonFuncChoice(funcNonFuncChoice);
+        requirementRepository.updateRequirement(updateRequirement);
+        return "redirect:/requirements/" + project_id;
+    }
+
+    @GetMapping("/deleterequirement/{requirement_id}/{project_id}")
+    public String deleteRequirement(@PathVariable("requirement_id") int requirement_id,
+                                    @PathVariable("project_id") int project_id) {
+        requirementRepository.deleteRequirement(requirement_id);
+        return "redirect:/requirements/" + project_id;
+
     }
 
     @GetMapping("/epics/{project_id}")
@@ -231,7 +294,28 @@ public class MainController {
     }
     
     /* END OF PROJECT MAPPINGS BY STEFFEN */
-    
+
+    /* START OF USERSTORY MAPPINGS BY NICOLAI */
+    @GetMapping("/backlog/{project_id}")
+    public String showBacklogPage(@PathVariable("project_id") int project_id, Model model)
+    {
+        ArrayList<Userstory> relevantUserstories = userstoriesRepository.getAllUserstoriesFromProjectID(project_id);
+        ArrayList<TechnicalTask> relevantTechnicalTasks = new ArrayList<>();
+        for(Userstory userstory: relevantUserstories)
+        {
+            ArrayList<TechnicalTask> temporarytasks = technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstory.getId());
+            for(TechnicalTask technicalTask: temporarytasks)
+            {
+                relevantTechnicalTasks.add(technicalTask);
+            }
+        }
+        model.addAttribute("userstories", relevantUserstories);
+        model.addAttribute("technicaltasks", relevantTechnicalTasks);
+
+        return "/backlog";
+    }
+
+     /* END OF USERSTORY MAPPINGS BY NICOLAI */
 
 
 }
