@@ -6,15 +6,17 @@ public class Requirement {
     private String requirement_name;
     private String requirement_description;
     private String requirement_actor;
+    private String funcNonFuncChoice;
     private boolean funcNonFunc = false;
 
 
-    public Requirement(int project_id, int requirement_id, String requirement_name, String requirement_description, String requirement_actor, boolean funcNonFunc) {
+    public Requirement(int project_id, int requirement_id, String requirement_name, String requirement_description, String requirement_actor, String funcNonFuncChoice, boolean funcNonFunc) {
         this.project_id = project_id;
         this.requirement_id = requirement_id;
         this.requirement_name = requirement_name;
         this.requirement_description = requirement_description;
         this.requirement_actor = requirement_actor;
+        this.funcNonFuncChoice = funcNonFuncChoice;
         this.funcNonFunc = funcNonFunc;
 
     }
