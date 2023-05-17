@@ -38,9 +38,9 @@ public class RequirementRepository {
             preparedStatement.setString(3, newRequirement.getRequirement_description());
             preparedStatement.setString(4, newRequirement.getRequirement_actor());
             preparedStatement.setString(5, newRequirement.getFuncNonFuncChoice());
-            if(newRequirement.getFuncNonFuncChoice() == "Functional"){
+            if(newRequirement.getFuncNonFuncChoice().equals("Functional")){
                 newRequirement.setFuncNonFunc(true);
-            } else if (newRequirement.getFuncNonFuncChoice() == "Non-functional") {
+            } else if (newRequirement.getFuncNonFuncChoice().equals("Non-functional")) {
                 newRequirement.setFuncNonFunc(false);
             }
             preparedStatement.setBoolean(6, newRequirement.isFuncNonFunc());
@@ -67,9 +67,9 @@ public class RequirementRepository {
             preparedStatement.setString(2, updateRequirement.getRequirement_description());
             preparedStatement.setString(3, updateRequirement.getRequirement_actor());
             preparedStatement.setString(4, updateRequirement.getFuncNonFuncChoice());
-            if(updateRequirement.getFuncNonFuncChoice() == "Functional"){
+            if(updateRequirement.getFuncNonFuncChoice().equals("Functional")){
                 updateRequirement.setFuncNonFunc(true);
-            } else if (updateRequirement.getFuncNonFuncChoice() == "Non-functional") {
+            } else if (updateRequirement.getFuncNonFuncChoice().equals("Non-functional")) {
                 updateRequirement.setFuncNonFunc(false);
             }
             preparedStatement.setBoolean(5, updateRequirement.isFuncNonFunc());
