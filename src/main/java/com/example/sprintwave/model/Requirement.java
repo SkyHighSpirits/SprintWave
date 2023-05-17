@@ -72,6 +72,15 @@ public class Requirement {
         this.funcNonFunc = funcNonFunc;
     }
 
+    public String getFuncNonFuncChoice() {
+        return funcNonFuncChoice;
+    }
+
+    public void setFuncNonFuncChoice(String funcNonFuncChoice) {
+        this.funcNonFuncChoice = funcNonFuncChoice;
+    }
+
+
     @Override
     public String toString() {
         return "Requirement{" +
@@ -80,6 +89,7 @@ public class Requirement {
                 ", requirement_name='" + requirement_name + '\'' +
                 ", requirement_description='" + requirement_description + '\'' +
                 ", requirement_actor='" + requirement_actor + '\'' +
+                ", funcNonFuncChoice='" + funcNonFuncChoice + '\'' +
                 ", funcNonFunc=" + funcNonFunc +
                 '}';
     }

@@ -27,8 +27,11 @@
                         <input id="requirement-description-field" name="requirement_description" type="text" th:value="${requirement.requirement_description}"></input>
                         <p>Write actor</p>
                         <input id="requirement-actor-field" name="requirement_actor" type="text" th:value="${requirement.requirement_actor}"></input>
-                        <p>Check = Functional - Uncheck = Non-functional</p>
-                        <input id="funcNonFunc-field" name="funcNonFunc" type="checkbox" th:value="${requirement.funcNonFunc}"></input>
+                        <p>Choose functional or non-functional</p>
+                        <select id="funcNonFuncChoice" name="funcNonFuncChoice" th:value="${requirement.funcNonFuncChoice}">
+                            <option value="Functional">Functional</option>
+                            <option value="Non-functional">Non-functional</option>
+                        </select>
                         <div class="epicbuttons">
                             <input id="project_id-field" name="project_id" type="hidden" th:value="${session.currentproject.getProjectID()}"></input>
                             <input id="requirement_id-field" name="requirement_id" type="hidden" th:value="${requirement.requirement_id}"></input>

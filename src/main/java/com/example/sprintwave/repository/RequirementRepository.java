@@ -29,7 +29,7 @@ public class RequirementRepository {
             //Opret forbindelse til database
             Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
             //SQL statement
-            String SQL_QUERY = "INSERT INTO requirements(project_id, requirement_name, requirement_description, requirement_actor, funcNonFunc) VALUES (?, ?, ?, ?, ?)";
+            String SQL_QUERY = "INSERT INTO requirements(project_id, requirement_name, requirement_description, requirement_actor, funcNonFuncChoice, funcNonFunc) VALUES (?, ?, ?, ?, ?, ?)";
             //prepared statement
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
             //set parameters
@@ -37,7 +37,13 @@ public class RequirementRepository {
             preparedStatement.setString(2, newRequirement.getRequirement_name());
             preparedStatement.setString(3, newRequirement.getRequirement_description());
             preparedStatement.setString(4, newRequirement.getRequirement_actor());
-            preparedStatement.setBoolean(5, newRequirement.isFuncNonFunc());
+            preparedStatement.setString(5, newRequirement.getFuncNonFuncChoice());
+            if(newRequirement.getFuncNonFuncChoice() == "Functional"){
+                newRequirement.setFuncNonFunc(true);
+            } else if (newRequirement.getFuncNonFuncChoice() == "Non-functional") {
+                newRequirement.setFuncNonFunc(false);
+            }
+            preparedStatement.setBoolean(6, newRequirement.isFuncNonFunc());
             //execute query
             preparedStatement.executeUpdate();
         }
@@ -53,14 +59,21 @@ public class RequirementRepository {
             //Oprette forbindelse til database
             Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
             //SQL statement
-            String SQL_QUERY = "UPDATE requirements SET requirement_name = ?, requirement_description = ?, requirement_actor = ? WHERE requirement_id = ?";
+            String SQL_QUERY = "UPDATE requirements SET requirement_name = ?, requirement_description = ?, requirement_actor = ?, funcNonFuncChoice = ?, funcNonFunc = ? WHERE requirement_id = ?";
             //PreparedStatement
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
             //set parameters
             preparedStatement.setString(1, updateRequirement.getRequirement_name());
             preparedStatement.setString(2, updateRequirement.getRequirement_description());
             preparedStatement.setString(3, updateRequirement.getRequirement_actor());
-            preparedStatement.setInt(4, updateRequirement.getRequirement_id());
+            preparedStatement.setString(4, updateRequirement.getFuncNonFuncChoice());
+            if(updateRequirement.getFuncNonFuncChoice() == "Functional"){
+                updateRequirement.setFuncNonFunc(true);
+            } else if (updateRequirement.getFuncNonFuncChoice() == "Non-functional") {
+                updateRequirement.setFuncNonFunc(false);
+            }
+            preparedStatement.setBoolean(5, updateRequirement.isFuncNonFunc());
+            preparedStatement.setInt(6, updateRequirement.getRequirement_id());
             //ExecuteStatement
             preparedStatement.executeUpdate();
         }
@@ -111,6 +124,8 @@ public class RequirementRepository {
                 foundRequirement.setRequirement_name(resultSet.getString(3));
                 foundRequirement.setRequirement_description(resultSet.getString(4));
                 foundRequirement.setRequirement_actor(resultSet.getString(5));
+                foundRequirement.setFuncNonFuncChoice(resultSet.getString(6));
+                foundRequirement.setFuncNonFunc(resultSet.getBoolean(7));
             }
         }
         catch(SQLException e)
@@ -143,7 +158,8 @@ public class RequirementRepository {
                 foundRequirement.setRequirement_name(resultSet.getString(3));
                 foundRequirement.setRequirement_description(resultSet.getString(4));
                 foundRequirement.setRequirement_actor(resultSet.getString(5));
-                foundRequirement.setFuncNonFunc(resultSet.getBoolean(6));
+                foundRequirement.setFuncNonFuncChoice(resultSet.getString(6));
+                foundRequirement.setFuncNonFunc(resultSet.getBoolean(7));
                 requirementList.add(foundRequirement);
             }
         }

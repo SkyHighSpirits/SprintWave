@@ -88,13 +88,13 @@ public class MainController {
                                     @RequestParam("requirement_name") String requirement_name,
                                     @RequestParam("requirement_description") String requirement_description,
                                     @RequestParam("requirement_actor") String requirement_actor,
-                                    @RequestParam("funcNonFunc") boolean funcNonFunc) {
+                                    @RequestParam("funcNonFuncChoice") String funcNonFuncChoice) {
         Requirement requirement = new Requirement();
         requirement.setProject_id(project_id);
         requirement.setRequirement_name(requirement_name);
         requirement.setRequirement_description(requirement_description);
         requirement.setRequirement_actor(requirement_actor);
-        requirement.setFuncNonFunc(funcNonFunc);
+        requirement.setFuncNonFuncChoice(funcNonFuncChoice);
         requirementRepository.createRequirement(requirement);
         return "redirect:/requirements/" + project_id;
     }
@@ -112,8 +112,14 @@ public class MainController {
                                     @RequestParam("requirement_name") String requirement_name,
                                     @RequestParam("requirement_description") String requirement_description,
                                     @RequestParam("requirement_actor") String requirement_actor,
-                                    @RequestParam("funcNonFunc") boolean funcNonfunc) {
-        Requirement updateRequirement = new Requirement(project_id, requirement_id, requirement_name, requirement_description, requirement_actor, funcNonfunc);
+                                    @RequestParam("funcNonFuncChoice") String funcNonFuncChoice) {
+        Requirement updateRequirement = new Requirement();
+        updateRequirement.setProject_id(project_id);
+        updateRequirement.setRequirement_id(requirement_id);
+        updateRequirement.setRequirement_name(requirement_name);
+        updateRequirement.setRequirement_description(requirement_description);
+        updateRequirement.setRequirement_actor(requirement_actor);
+        updateRequirement.setFuncNonFuncChoice(funcNonFuncChoice);
         requirementRepository.updateRequirement(updateRequirement);
         return "redirect:/requirements/" + project_id;
     }
