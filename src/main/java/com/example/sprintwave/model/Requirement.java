@@ -6,9 +6,7 @@ public class Requirement {
     private String requirement_name;
     private String requirement_description;
     private String requirement_actor;
-
-
-    private boolean funcNonFunc;
+    private boolean funcNonFunc = false;
 
 
     public Requirement(int project_id, int requirement_id, String requirement_name, String requirement_description, String requirement_actor, boolean funcNonFunc) {

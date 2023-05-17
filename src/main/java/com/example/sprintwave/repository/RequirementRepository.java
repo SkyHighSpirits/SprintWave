@@ -29,7 +29,7 @@ public class RequirementRepository {
             //Opret forbindelse til database
             Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
             //SQL statement
-            String SQL_QUERY = "INSERT INTO requirements(project_id, requirement_name, requirement_description, requirement_actor) VALUES (?, ?, ?, ?)";
+            String SQL_QUERY = "INSERT INTO requirements(project_id, requirement_name, requirement_description, requirement_actor, funcNonFunc) VALUES (?, ?, ?, ?, ?)";
             //prepared statement
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
             //set parameters
@@ -37,6 +37,7 @@ public class RequirementRepository {
             preparedStatement.setString(2, newRequirement.getRequirement_name());
             preparedStatement.setString(3, newRequirement.getRequirement_description());
             preparedStatement.setString(4, newRequirement.getRequirement_actor());
+            preparedStatement.setBoolean(5, newRequirement.isFuncNonFunc());
             //execute query
             preparedStatement.executeUpdate();
         }

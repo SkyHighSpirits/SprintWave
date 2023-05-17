@@ -21,13 +21,34 @@
 
         <div class="table-container">
 
-            <div class="columnitems" th:each="requirement : ${requirements}">
+            <h3>Functional requirements</h3>
+            <div class="columnitems" th:each="requirement : ${requirements}" th:block th:if="${requirement.funcNonFunc}">
                 <div>
                     <h2 th:text="${requirement.requirement_name}">EP001</h2>
                     <p th:text="${requirement.requirement_description}">Launch cloud service in Denmark</p>
                     <p th:text="${requirement.requirement_actor}">Launch cloud service in Denmark</p>
                     <input id="project_id-field" name="project_id" type="hidden" th:value="${requirement.project_id}">
                     <input id="requirement_id-field" name="requirement_id" type="hidden" th:value="${requirement.requirement_id}">
+                    <input id="funcNonFunc-field" name="funcNonFunc_id" type="hidden" th:value="${requirement.funcNonFunc}">
+                    <div class="epicbuttons">
+                        <a class="table-link" th:href="@{'/updaterequirement/' + ${requirement.requirement_id}}" href="/requirementupdate">Update</a>
+                        <a class="table-link" th:href="@{'/deleterequirement/' + ${requirement.requirement_id} + '/' + ${requirement.project_id}}" href="/deleterequirement">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-container">
+
+            <h3>Non-functional requirements</h3>
+            <div class="columnitems" th:each="requirement : ${requirements}" th:unless="${requirement.funcNonFunc}">
+                <div>
+                    <h2 th:text="${requirement.requirement_name}">EP001</h2>
+                    <p th:text="${requirement.requirement_description}">Launch cloud service in Denmark</p>
+                    <p th:text="${requirement.requirement_actor}">Launch cloud service in Denmark</p>
+                    <input id="project_id-field2" name="project_id" type="hidden" th:value="${requirement.project_id}">
+                    <input id="requirement_id-field2" name="requirement_id" type="hidden" th:value="${requirement.requirement_id}">
+                    <input id="funcNonFunc-field2" name="funcNonFunc_id" type="hidden" th:value="${requirement.funcNonFunc}">
                     <div class="epicbuttons">
                         <a class="table-link" th:href="@{'/updaterequirement/' + ${requirement.requirement_id}}" href="/requirementupdate">Update</a>
                         <a class="table-link" th:href="@{'/deleterequirement/' + ${requirement.requirement_id} + '/' + ${requirement.project_id}}" href="/deleterequirement">Delete</a>

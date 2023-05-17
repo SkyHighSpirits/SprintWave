@@ -55,6 +55,7 @@ CREATE TABLE requirements(
                              requirement_name VARCHAR(255) NOT NULL,
                              requirement_description VARCHAR(255) NOT NULL,
                              requirement_actor VARCHAR(255) NOT NULL,
+                             funcNonFunc BOOLEAN,
                              FOREIGN KEY(project_id) REFERENCES projects(project_id)
 
 );

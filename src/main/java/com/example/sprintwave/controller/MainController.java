@@ -87,12 +87,14 @@ public class MainController {
     public String createRequirement(@RequestParam("project_id") int project_id,
                                     @RequestParam("requirement_name") String requirement_name,
                                     @RequestParam("requirement_description") String requirement_description,
-                                    @RequestParam("requirement_actor") String requirement_actor) {
+                                    @RequestParam("requirement_actor") String requirement_actor,
+                                    @RequestParam("funcNonFunc") boolean funcNonFunc) {
         Requirement requirement = new Requirement();
         requirement.setProject_id(project_id);
         requirement.setRequirement_name(requirement_name);
         requirement.setRequirement_description(requirement_description);
         requirement.setRequirement_actor(requirement_actor);
+        requirement.setFuncNonFunc(funcNonFunc);
         requirementRepository.createRequirement(requirement);
         return "redirect:/requirements/" + project_id;
     }
