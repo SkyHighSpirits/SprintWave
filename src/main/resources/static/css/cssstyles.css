@@ -278,6 +278,22 @@ label .logo-link{
     padding: 40px;
 
     height: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+}
+
+#requirements-background{
+    background: rgb(231,0,0);
+    background: linear-gradient(90deg, rgba(231,0,0,1) 0%, rgba(222,64,18,1) 35%, rgba(232,192,192,1) 100%);
+
+    width: 100%;
+
+    padding: 40px;
+
+    height: 100%;
+    min-height: 100vh;
 
     display: flex;
     justify-content: center;
@@ -404,6 +420,10 @@ label .logo-link{
     align-items: center;
     flex-direction: column;
     margin: 20px;
+}
+
+.funcNonFunctext{
+    color: white;
 }
 
 

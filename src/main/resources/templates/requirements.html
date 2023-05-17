@@ -10,7 +10,7 @@
 <body>
 <div th:replace="fragments/navbar :: navbarthree"></div>
 
-<div id="table-background">
+<div id="requirements-background">
     <div class="epicscontainer">
         <div class="overlaytitle">
             <h1>Requirements</h1>
@@ -21,7 +21,7 @@
 
         <div class="table-container">
 
-            <h3>Functional requirements</h3>
+            <h3 class="funcNonFunctext">Functional requirements</h3>
             <div class="columnitems" th:each="requirement : ${requirements}" th:block th:if="${requirement.funcNonFunc}">
                 <div>
                     <h2 th:text="${requirement.requirement_name}">EP001</h2>
@@ -41,7 +41,7 @@
 
         <div class="table-container">
 
-            <h3>Non-functional requirements</h3>
+            <h3 class="funcNonFunctext">Non-functional requirements</h3>
             <div class="columnitems" th:each="requirement : ${requirements}" th:unless="${requirement.funcNonFunc}">
                 <div>
                     <h2 th:text="${requirement.requirement_name}">EP001</h2>
