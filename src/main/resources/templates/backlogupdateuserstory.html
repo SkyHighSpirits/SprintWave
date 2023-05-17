@@ -23,11 +23,13 @@
 
             <p>Write userstory Description</p>
             <input id="userstory-description-field" name="userstory_description" type="text" th:value="${userstory.getDescription()}"></input>
-
+            <p>Assign Storypoints</p>
+            <input id="userstory-points-field" name="userstory_points" type="number" th:value="${userstory.getPoints()}"></input>
             <div class="epicbuttons">
               <input id="project_id_field" name="project_id" type="hidden" th:value="${session.currentproject.getProjectID()}"></input>
               <input id="userstory_id_field" name="userstory_id" type="hidden" th:value="${userstory.getId()}"></input>
               <input id="userstory_released_field" name="userstory_released" type="hidden" th:value="${userstory.isReleased()}"></input>
+              <input id="userstory_status_field" name="userstory_status" type="hidden" th:value="${userstory.getStatus().toString()}"></input>
             </div>
             <input class="table-link" type="submit" value="Update Userstory"></input>
           </form>

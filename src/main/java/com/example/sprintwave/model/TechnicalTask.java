@@ -5,8 +5,8 @@ public class TechnicalTask extends Userstory{
 
     private int userstory_id;
 
-    public TechnicalTask(int id, int userstory_id, String name, String description, boolean released) {
-        super(id, 0, name, description, released);
+    public TechnicalTask(int id, int userstory_id, String name, String description, boolean released, int points, Status status) {
+        super(id, 0, name, description, released, points, status);
         this.userstory_id = userstory_id;
     }
 
@@ -24,13 +24,4 @@ public class TechnicalTask extends Userstory{
     }
 
 
-    @Override
-    public String toString() {
-        return "TechnicalTask{" +
-                "id=" + getId() +
-                ", name='" + getName() + '\'' +
-                ", description='" + getDescription() + '\'' +
-                ", userstory_id=" + userstory_id +
-                '}';
-    }
 }

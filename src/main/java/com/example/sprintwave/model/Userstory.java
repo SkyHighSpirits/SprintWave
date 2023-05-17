@@ -7,18 +7,29 @@ public class Userstory {
     private String name;
     private String description;
     private boolean released;
+    private int points;
 
-    public Userstory(int id, int project_id, String name, String description, boolean released) {
+
+    private Status status;
+
+    public Userstory()
+    {
+
+    }
+
+    public Userstory(int id, int project_id, String name, String description, boolean released, int points, Status status) {
         this.id = id;
         this.project_id = project_id;
         this.name = name;
         this.description = description;
         this.released = released;
+        this.points = points;
+        this.status = status;
     }
 
-    public Userstory()
+    public String getStatusAsString()
     {
-
+        return getStatus().toString();
     }
 
     public boolean isReleased() {
@@ -61,6 +72,22 @@ public class Userstory {
         this.description = description;
     }
 
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "Userstory{" +
@@ -69,6 +96,8 @@ public class Userstory {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", released=" + released +
+                ", points=" + points +
+                ", status=" + status +
                 '}';
     }
 

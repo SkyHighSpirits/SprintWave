@@ -10,6 +10,8 @@ DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS projects;
 DROP TABLE IF EXISTS epics;
 DROP TABLE IF EXISTS requirements;
+DROP TABLE IF EXISTS technicaltasks;
+DROP TABLE IF EXISTS userstories;
 
 /* Create tables to database: Workspaces, Users, Projects, Epics. */
 CREATE TABLE workspaces(
@@ -65,35 +67,39 @@ CREATE TABLE userstories(
                             userstory_name VARCHAR(255) NOT NULL,
                             userstory_description VARCHAR(255) NOT NULL,
                             userstory_released BOOLEAN NOT NULL,
+                            userstory_points INT NOT NULL,
+                            userstory_status INT NOT NULL,
                             FOREIGN KEY(project_id) REFERENCES projects(project_id)
 );
 
 CREATE TABLE technicaltasks(
-                            technicaltask_id INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
-                            userstory_id INT NOT NULL,
-                            technicaltask_name VARCHAR(255) NOT NULL,
-                            technicaltask_description VARCHAR(255) NOT NULL,
-                            technicaltask_released BOOLEAN NOT NULL,
-                            FOREIGN KEY(userstory_id) REFERENCES userstories(userstory_id)
+                               technicaltask_id INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
+                               userstory_id INT NOT NULL,
+                               technicaltask_name VARCHAR(255) NOT NULL,
+                               technicaltask_description VARCHAR(255) NOT NULL,
+                               technicaltask_released BOOLEAN NOT NULL,
+                               technicaltask_points INT NOT NULL,
+                               technicaltask_status INT NOT NULL,
+                               FOREIGN KEY(userstory_id) REFERENCES userstories(userstory_id) ON DELETE CASCADE
 );
 
 
 
 /* Insert temporary data into database. */
 INSERT into workspaces
-    (workspace_name)
+(workspace_name)
 VALUES
     ('KEA');
 
 
 INSERT INTO users
-    (email, user_password, firstname, lastname, permission_level, workspace_id)
+(email, user_password, firstname, lastname, permission_level, workspace_id)
 VALUES
     ('steffen@localhost.com', 'e10adc3949ba59abbe56e057f20f883e', 'Steffen', 'Andersen', 'ADMINISTRATOR',1);
 
 
 INSERT INTO projects
-    (project_id, project_name, project_description, project_owner, project_status, project_deadline, workspace_id)
+(project_id, project_name, project_description, project_owner, project_status, project_deadline, workspace_id)
 VALUES
     (1,'Develop CRM system for sales team', 'A sales CRM software that helps manage customer relationships and sales pipelines','Steffen Grøn Andersen', true, '2023-05-30',1),
     (2,'Migrate legacy database to cloud-based platform', 'Move existing databases to the cloud for better scalability and accessibility.','Steffen Grøn Andersen', true, '2023-05-30',1),
@@ -102,25 +108,25 @@ VALUES
     (5,'Build custom e-commerce platform with inventory management', 'Develop a custom platform for online sales, order processing, and inventory management.','Steffen Grøn Andersen', true, '2023-05-30',1);
 
 INSERT INTO epics
-    (project_id, epic_name, epic_description)
+(project_id, epic_name, epic_description)
 VALUES
     (1, 'EP003', 'Deploy feature Epics'),
     (1, 'EP004', 'Deploy feature projects');
 
 INSERT INTO userstories
-    (project_id, userstory_name, userstory_description, userstory_released)
+(project_id, userstory_name, userstory_description, userstory_released, userstory_points, userstory_status)
 VALUES
-    (1, 'US001', 'As a drunkard I want to be able to buy beer, so that I can stay drunk', false),
-    (1, 'US002', 'As a cyclist I want to be able to maintain my bike, so that I can keep using it', false),
-    (1, 'US003', 'As a beaver I want to be able to chew wood, so that I can create my dam', false);
+    (1, 'US001', 'As a drunkard I want to be able to buy beer, so that I can stay drunk', false, 64, 1),
+    (1, 'US002', 'As a cyclist I want to be able to maintain my bike, so that I can keep using it', true, 51, 1),
+    (1, 'US003', 'As a beaver I want to be able to chew wood, so that I can create my dam', false, 100, 1);
 
-INSERT INTO tecnicaltasks
-    (userstory_id, technicaltask_name, technicaltask_description, technicaltask_released)
+INSERT INTO technicaltasks
+(userstory_id, technicaltask_name, technicaltask_description, technicaltask_released, technicaltask_points, technicaltask_status)
 VALUES
-    (1, 'TEC001','Earn Money', false),
-    (1, 'TEC002','Buy beer', false),
-    (2, 'TEC003','Buy WD40', false),
-    (2, 'TEC004','Use WD40 on rusty parts of the bike', false),
-    (3, 'TEC005','Eat Well', false),
-    (3, 'TEC006','Sharpen Teeth', false),
-    (3, 'TEC007','Chew Wood', false);
+    (1, 'TEC001','Earn Money', false, 32, 1),
+    (1, 'TEC002','Buy beer', false, 32, 1),
+    (2, 'TEC003','Buy WD40', true, 30, 1),
+    (2, 'TEC004','Use WD40 on rusty parts of the bike', true, 21, 1),
+    (3, 'TEC005','Eat Well', false, 25, 1),
+    (3, 'TEC006','Sharpen Teeth', false, 25, 1),
+    (3, 'TEC007','Chew Wood', false, 50, 1);

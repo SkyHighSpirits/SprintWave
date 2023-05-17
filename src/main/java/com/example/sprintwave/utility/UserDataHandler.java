@@ -1,6 +1,7 @@
 package com.example.sprintwave.utility;
 
 import com.example.sprintwave.model.PermissionLevel;
+import com.example.sprintwave.model.Status;
 import com.example.sprintwave.model.User;
 import com.example.sprintwave.model.Workspace;
 import com.example.sprintwave.repository.WorkspaceRepository;
@@ -37,5 +38,108 @@ public class UserDataHandler {
         Workspace withIDWorkspace = workspaceRepository.getLastEntryWorkspace();
         user.setWorkspace_id(withIDWorkspace.getID());
         return user;
+    }
+
+    public static int limitPoints(int points)
+    {
+        if(points > 100)
+        {
+            return 100;
+        }
+        else if(points >= 1 && points <= 100)
+        {
+            return points;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+
+    public static Status convertIntToStatus(int status_index) {
+        Status status = null;
+        switch (status_index) {
+            case 1:
+                status = Status.sprintbacklog;
+                break;
+            case 2:
+                status = Status.doing;
+                break;
+            case 3:
+                status = Status.testing;
+                break;
+            case 4:
+                status = Status.done;
+                break;
+            default:
+                System.out.println("Could not convert number to status. Check if status entered is over 4 or below 1.");
+        }
+        return status;
+    }
+
+    public static int convertStatusToInt(Status status)
+    {
+        int statusIndex = 0;
+        switch (status)
+        {
+            case sprintbacklog:
+            {
+                statusIndex = 1;
+                break;
+            }
+            case doing:
+            {
+                statusIndex = 2;
+                break;
+            }
+            case testing:
+            {
+                statusIndex = 3;
+                break;
+            }
+            case done:
+            {
+                statusIndex = 4;
+                break;
+            }
+            default:
+            {
+                System.out.println("could not convert status enum to int, check if status is null");
+            }
+        }
+        return statusIndex;
+    }
+
+    public static Status convertStringToStatus(String Stringstatus)
+    {
+        Status status = null;
+        switch (Stringstatus)
+        {
+            case "sprintbacklog":
+            {
+                status = Status.sprintbacklog;
+                break;
+            }
+            case "doing":
+            {
+                status = Status.doing;
+                break;
+            }
+            case "testing":
+            {
+                status = Status.testing;
+                break;
+            }
+            case "done":
+            {
+                status = Status.done;
+                break;
+            }
+            default:
+            {
+                System.out.println("could not convert status enum to int, check if status is null");
+            }
+        }
+        return status;
     }
 }
