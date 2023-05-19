@@ -1,12 +1,11 @@
 package com.example.sprintwave.utility;
 
-import com.example.sprintwave.model.PermissionLevel;
-import com.example.sprintwave.model.Status;
-import com.example.sprintwave.model.User;
-import com.example.sprintwave.model.Workspace;
+import com.example.sprintwave.model.*;
 import com.example.sprintwave.repository.WorkspaceRepository;
 
-public class UserDataHandler {
+import java.util.ArrayList;
+
+public class DataHandler {
 
     public static boolean checkUserInformationMatch(User checkUser, String enteredPassword, String enteredEmail)
     {
@@ -75,6 +74,57 @@ public class UserDataHandler {
                 System.out.println("Could not convert number to status. Check if status entered is over 4 or below 1.");
         }
         return status;
+    }
+
+    public static ArrayList<TechnicalTask> divideArrayIntoStatusSpecificArrays(ArrayList<TechnicalTask> allTechnicalTasks, Status status)
+    {
+        // TODO: If we have the time, make this method more efficient and shorter
+        ArrayList<TechnicalTask> newListOfTasksForSpecificStatus = new ArrayList<>();
+        for (TechnicalTask technicalTask: allTechnicalTasks)
+        {
+            switch (status)
+            {
+                case sprintbacklog:
+                {
+                    if(technicalTask.getStatus() == Status.sprintbacklog)
+                    {
+                        newListOfTasksForSpecificStatus.add(technicalTask);
+                    }
+                    break;
+                }
+                case doing:
+                {
+                    if(technicalTask.getStatus() == Status.doing)
+                    {
+                        newListOfTasksForSpecificStatus.add(technicalTask);
+                    }
+                    break;
+                }
+                case testing:
+                {
+                    if(technicalTask.getStatus() == Status.testing)
+                    {
+                        newListOfTasksForSpecificStatus.add(technicalTask);
+                    }
+                    break;
+                }
+                case done:
+                {
+                    if(technicalTask.getStatus() == Status.done)
+                    {
+                        newListOfTasksForSpecificStatus.add(technicalTask);
+                    }
+                    break;
+                }
+                default:
+                {
+                    System.out.println("Could not divide array correctly, check if status is provided");
+                }
+            }
+        }
+        System.out.println("Created new list of technicaltasks with status: " + status.toString());
+        System.out.println("Status of element 1 is: " + newListOfTasksForSpecificStatus.get(1).getStatus().toString());
+        return newListOfTasksForSpecificStatus;
     }
 
     public static int convertStatusToInt(Status status)

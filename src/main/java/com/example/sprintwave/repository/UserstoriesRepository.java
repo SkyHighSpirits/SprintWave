@@ -1,10 +1,8 @@
 package com.example.sprintwave.repository;
 
-import com.example.sprintwave.model.TechnicalTask;
-import com.example.sprintwave.model.User;
 import com.example.sprintwave.model.Userstory;
 import com.example.sprintwave.utility.ConnectionManager;
-import com.example.sprintwave.utility.UserDataHandler;
+import com.example.sprintwave.utility.DataHandler;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
@@ -44,7 +42,7 @@ public class UserstoriesRepository {
                 userstory.setDescription(resultSet.getString(4));
                 userstory.setReleased(resultSet.getBoolean(5));
                 userstory.setPoints(resultSet.getInt(6));
-                userstory.setStatus(UserDataHandler.convertIntToStatus(resultSet.getInt(7)));
+                userstory.setStatus(DataHandler.convertIntToStatus(resultSet.getInt(7)));
                 userstories.add(userstory);
             }
         }
@@ -69,7 +67,7 @@ public class UserstoriesRepository {
             preparedStatement.setString(3, userstory.getDescription());
             preparedStatement.setBoolean(4, userstory.isReleased());
             preparedStatement.setInt(5, userstory.getPoints());
-            preparedStatement.setInt(6, UserDataHandler.convertStatusToInt(userstory.getStatus()));
+            preparedStatement.setInt(6, DataHandler.convertStatusToInt(userstory.getStatus()));
             preparedStatement.executeUpdate();
         }
         catch (SQLException e)
@@ -98,7 +96,7 @@ public class UserstoriesRepository {
                 userstory.setDescription(resultSet.getString(4));
                 userstory.setReleased(resultSet.getBoolean(5));
                 userstory.setPoints(resultSet.getInt(6));
-                userstory.setStatus(UserDataHandler.convertIntToStatus(resultSet.getInt(7)));
+                userstory.setStatus(DataHandler.convertIntToStatus(resultSet.getInt(7)));
             }
         }
         catch(SQLException e)
@@ -124,7 +122,7 @@ public class UserstoriesRepository {
             preparedStatement.setString(2, userstory.getDescription());
             preparedStatement.setBoolean(3, userstory.isReleased());
             preparedStatement.setInt(4, userstory.getPoints());
-            preparedStatement.setInt(5, UserDataHandler.convertStatusToInt(userstory.getStatus()));
+            preparedStatement.setInt(5, DataHandler.convertStatusToInt(userstory.getStatus()));
             preparedStatement.setInt(6, userstory.getId());
             //ExecuteStatement
             preparedStatement.executeUpdate();

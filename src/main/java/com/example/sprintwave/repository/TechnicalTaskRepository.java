@@ -1,9 +1,8 @@
 package com.example.sprintwave.repository;
 
 import com.example.sprintwave.model.TechnicalTask;
-import com.example.sprintwave.model.Userstory;
 import com.example.sprintwave.utility.ConnectionManager;
-import com.example.sprintwave.utility.UserDataHandler;
+import com.example.sprintwave.utility.DataHandler;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
@@ -44,7 +43,7 @@ public class TechnicalTaskRepository {
                 technicalTask.setDescription(resultSet.getString(4));
                 technicalTask.setReleased(resultSet.getBoolean(5));
                 technicalTask.setPoints(resultSet.getInt(6));
-                technicalTask.setStatus(UserDataHandler.convertIntToStatus(resultSet.getInt(7)));
+                technicalTask.setStatus(DataHandler.convertIntToStatus(resultSet.getInt(7)));
                 technicalTasks.add(technicalTask);
             }
         }
@@ -75,7 +74,7 @@ public class TechnicalTaskRepository {
                 technicalTask.setDescription(resultSet.getString(4));
                 technicalTask.setReleased(resultSet.getBoolean(5));
                 technicalTask.setPoints(resultSet.getInt(6));
-                technicalTask.setStatus(UserDataHandler.convertIntToStatus(resultSet.getInt(7)));
+                technicalTask.setStatus(DataHandler.convertIntToStatus(resultSet.getInt(7)));
                 technicaltasks.add(technicalTask);
             }
         }
@@ -100,7 +99,7 @@ public class TechnicalTaskRepository {
             preparedStatement.setString(3, technicalTask.getDescription());
             preparedStatement.setBoolean(4, technicalTask.isReleased());
             preparedStatement.setInt(5, technicalTask.getPoints());
-            preparedStatement.setInt(6, UserDataHandler.convertStatusToInt(technicalTask.getStatus()));
+            preparedStatement.setInt(6, DataHandler.convertStatusToInt(technicalTask.getStatus()));
             preparedStatement.executeUpdate();
         }
         catch (SQLException e)
@@ -129,7 +128,7 @@ public class TechnicalTaskRepository {
                 technicalTask.setDescription(resultSet.getString(4));
                 technicalTask.setReleased(resultSet.getBoolean(5));
                 technicalTask.setPoints(resultSet.getInt(6));
-                technicalTask.setStatus(UserDataHandler.convertIntToStatus(resultSet.getInt(7)));
+                technicalTask.setStatus(DataHandler.convertIntToStatus(resultSet.getInt(7)));
             }
         }
         catch(SQLException e)
@@ -155,7 +154,7 @@ public class TechnicalTaskRepository {
             preparedStatement.setString(3, technicalTask.getDescription());
             preparedStatement.setBoolean(4, technicalTask.isReleased());
             preparedStatement.setInt(5, technicalTask.getPoints());
-            preparedStatement.setInt(6, UserDataHandler.convertStatusToInt(technicalTask.getStatus()));
+            preparedStatement.setInt(6, DataHandler.convertStatusToInt(technicalTask.getStatus()));
             preparedStatement.setInt(7, technicalTask.getId());
             //ExecuteStatement
             preparedStatement.executeUpdate();

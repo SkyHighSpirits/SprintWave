@@ -3,7 +3,7 @@ package com.example.sprintwave.controller;
 import com.example.sprintwave.model.*;
 import com.example.sprintwave.repository.*;
 
-import com.example.sprintwave.utility.UserDataHandler;
+import com.example.sprintwave.utility.DataHandler;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @ControllerAdvice
 @Controller
@@ -193,7 +191,7 @@ public class MainController {
         Workspace workspace = new Workspace();
         workspace.setName(workspaceName);
         workspaceRepository.addWorkspace(workspace);
-        User user = UserDataHandler.populateUserWithInformation(email, password, firstName, lastName, workspaceName, workspaceRepository);
+        User user = DataHandler.populateUserWithInformation(email, password, firstName, lastName, workspaceName, workspaceRepository);
         userRepository.createUser(user);
 
         model.addAttribute("currentuser",user);
@@ -213,7 +211,7 @@ public class MainController {
 
 
         for(User checkUser: userRepository.getAllUsers()){
-            if(UserDataHandler.checkUserInformationMatch(checkUser, enteredPassword, enteredEmail))
+            if(DataHandler.checkUserInformationMatch(checkUser, enteredPassword, enteredEmail))
             {
                 model.addAttribute("currentuser",checkUser);
                 session.setAttribute("currentuser", checkUser);
@@ -360,8 +358,8 @@ public class MainController {
         technicalTask.setName(technicaltask_name);
         technicalTask.setDescription(technicaltask_description);
         technicalTask.setReleased(false);
-        technicalTask.setPoints(UserDataHandler.limitPoints(technicaltask_points));
-        technicalTask.setStatus(UserDataHandler.convertStringToStatus(technicaltask_status));
+        technicalTask.setPoints(DataHandler.limitPoints(technicaltask_points));
+        technicalTask.setStatus(DataHandler.convertStringToStatus(technicaltask_status));
         technicalTaskRepository.createNewTecnicalTask(technicalTask);
         return "redirect:/backlog/" + ((Project) session.getAttribute("currentproject")).getProjectID();
     }
@@ -389,7 +387,7 @@ public class MainController {
                              @RequestParam("technicaltask_points") int technicaltask_points,
                              @RequestParam("technicaltask_status") String technicaltask_status, HttpSession session)
     {
-        TechnicalTask technicalTask = new TechnicalTask(technicaltask_id, userstory_id, technicaltask_name, technicaltask_description, technicaltask_released, technicaltask_points, UserDataHandler.convertStringToStatus(technicaltask_status));
+        TechnicalTask technicalTask = new TechnicalTask(technicaltask_id, userstory_id, technicaltask_name, technicaltask_description, technicaltask_released, technicaltask_points, DataHandler.convertStringToStatus(technicaltask_status));
         technicalTaskRepository.updateTechnicalTask(technicalTask);
 
         return "redirect:/backlog/" + ((Project) session.getAttribute("currentproject")).getProjectID();
@@ -415,7 +413,7 @@ public class MainController {
         userstory.setProject_id(project_id);
         userstory.setName(userstory_name);
         userstory.setDescription(userstory_description);
-        userstory.setPoints(UserDataHandler.limitPoints(userstory_points));
+        userstory.setPoints(DataHandler.limitPoints(userstory_points));
         userstory.setStatus(Status.sprintbacklog);
         userstory.setReleased(false);
         userstoriesRepository.createNewUserstory(userstory);
@@ -432,7 +430,7 @@ public class MainController {
                                   @RequestParam("userstory_status") String userstory_status,
                                   HttpSession session)
     {
-        Userstory userstory = new TechnicalTask(userstory_id, project_id, userstory_name, userstory_description, userstory_released, userstory_points, UserDataHandler.convertStringToStatus(userstory_status));
+        Userstory userstory = new TechnicalTask(userstory_id, project_id, userstory_name, userstory_description, userstory_released, userstory_points, DataHandler.convertStringToStatus(userstory_status));
         userstoriesRepository.updateUserstory(userstory);
 
         return "redirect:/backlog/" + ((Project) session.getAttribute("currentproject")).getProjectID();
