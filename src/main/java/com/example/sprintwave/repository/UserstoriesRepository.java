@@ -43,6 +43,7 @@ public class UserstoriesRepository {
                 userstory.setReleased(resultSet.getBoolean(5));
                 userstory.setPoints(resultSet.getInt(6));
                 userstory.setStatus(DataHandler.convertIntToStatus(resultSet.getInt(7)));
+                userstory.setSprint_id(resultSet.getInt(8));
                 userstories.add(userstory);
             }
         }
@@ -59,8 +60,8 @@ public class UserstoriesRepository {
         try {
             Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
             final String SQL_CREATE = "INSERT INTO userstories" +
-                    "(project_id,userstory_name,userstory_description, userstory_released, userstory_points, userstory_status)" +
-                    "VALUES (?,?,?,?,?,?)";
+                    "(project_id,userstory_name,userstory_description, userstory_released, userstory_points, userstory_status, sprint_id)" +
+                    "VALUES (?,?,?,?,?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE);
             preparedStatement.setInt(1, userstory.getProject_id());
             preparedStatement.setString(2, userstory.getName());
@@ -68,6 +69,7 @@ public class UserstoriesRepository {
             preparedStatement.setBoolean(4, userstory.isReleased());
             preparedStatement.setInt(5, userstory.getPoints());
             preparedStatement.setInt(6, DataHandler.convertStatusToInt(userstory.getStatus()));
+            preparedStatement.setInt(7, userstory.getSprint_id());
             preparedStatement.executeUpdate();
         }
         catch (SQLException e)
@@ -97,6 +99,7 @@ public class UserstoriesRepository {
                 userstory.setReleased(resultSet.getBoolean(5));
                 userstory.setPoints(resultSet.getInt(6));
                 userstory.setStatus(DataHandler.convertIntToStatus(resultSet.getInt(7)));
+                userstory.setSprint_id(resultSet.getInt(8));
             }
         }
         catch(SQLException e)
@@ -114,7 +117,7 @@ public class UserstoriesRepository {
             //Oprette forbindelse til database
             Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
             //SQL statement
-            String SQL_QUERY = "UPDATE userstories SET userstory_name = ?, userstory_description = ?, userstory_released = ?, userstory_points = ?, userstory_status = ? WHERE userstory_id = ?";
+            String SQL_QUERY = "UPDATE userstories SET userstory_name = ?, userstory_description = ?, userstory_released = ?, userstory_points = ?, userstory_status = ?, sprint_id = ? WHERE userstory_id = ?";
             //PreparedStatement
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
             //set parameters
@@ -123,7 +126,9 @@ public class UserstoriesRepository {
             preparedStatement.setBoolean(3, userstory.isReleased());
             preparedStatement.setInt(4, userstory.getPoints());
             preparedStatement.setInt(5, DataHandler.convertStatusToInt(userstory.getStatus()));
-            preparedStatement.setInt(6, userstory.getId());
+            preparedStatement.setInt(6, userstory.getSprint_id());
+            preparedStatement.setInt(7, userstory.getId());
+
             //ExecuteStatement
             preparedStatement.executeUpdate();
         }
@@ -139,7 +144,7 @@ public class UserstoriesRepository {
             //Oprette forbindelse til database
             Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
             //SQL statement
-            String SQL_QUERY = "DELETE FROM Userstories WHERE userstory_id = ?";
+            String SQL_QUERY = "DELETE FROM userstories WHERE userstory_id = ?";
             //PreparedStatement
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
             //set parameters

@@ -24,6 +24,8 @@
               <input id="task-description-field" name="technicaltask_description" type="text" placeholder="Create HTML Frontpage"></input>
               <p>Assign storypoints</p>
               <input id="task-point-field" name="technicaltask_points" type="number" placeholder="13"></input>
+              <p>Assign sprint (optional)</p>
+              <input id="task-sprint-field" name="sprint_id" type="number" th:value="${parentuserstory.getSprint_id()}"></input>
               <div class="epicbuttons">
                 <input id="project_id_field" name="userstory_id" type="hidden" th:value="${parentuserstory.getId()}"></input>
                 <input id="task_status_field" name="technicaltask_status" type="hidden" th:value="${parentuserstory.getStatus().toString()}"></input>

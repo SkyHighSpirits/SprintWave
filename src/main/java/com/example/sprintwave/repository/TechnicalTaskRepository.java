@@ -44,6 +44,7 @@ public class TechnicalTaskRepository {
                 technicalTask.setReleased(resultSet.getBoolean(5));
                 technicalTask.setPoints(resultSet.getInt(6));
                 technicalTask.setStatus(DataHandler.convertIntToStatus(resultSet.getInt(7)));
+                technicalTask.setSprint_id(resultSet.getInt(8));
                 technicalTasks.add(technicalTask);
             }
         }
@@ -75,6 +76,7 @@ public class TechnicalTaskRepository {
                 technicalTask.setReleased(resultSet.getBoolean(5));
                 technicalTask.setPoints(resultSet.getInt(6));
                 technicalTask.setStatus(DataHandler.convertIntToStatus(resultSet.getInt(7)));
+                technicalTask.setSprint_id(resultSet.getInt(8));
                 technicaltasks.add(technicalTask);
             }
         }
@@ -91,8 +93,8 @@ public class TechnicalTaskRepository {
         try {
             Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
             final String SQL_CREATE = "INSERT INTO technicaltasks" +
-                    "(userstory_id, technicaltask_name, technicaltask_description, technicaltask_released, technicaltask_points, technicaltask_status)" +
-                    "VALUES (?,?,?,?,?,?)";
+                    "(userstory_id, technicaltask_name, technicaltask_description, technicaltask_released, technicaltask_points, technicaltask_status, sprint_id)" +
+                    "VALUES (?,?,?,?,?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE);
             preparedStatement.setInt(1, technicalTask.getUserstory_id());
             preparedStatement.setString(2, technicalTask.getName());
@@ -100,6 +102,7 @@ public class TechnicalTaskRepository {
             preparedStatement.setBoolean(4, technicalTask.isReleased());
             preparedStatement.setInt(5, technicalTask.getPoints());
             preparedStatement.setInt(6, DataHandler.convertStatusToInt(technicalTask.getStatus()));
+            preparedStatement.setInt(7, technicalTask.getSprint_id());
             preparedStatement.executeUpdate();
         }
         catch (SQLException e)
@@ -129,6 +132,7 @@ public class TechnicalTaskRepository {
                 technicalTask.setReleased(resultSet.getBoolean(5));
                 technicalTask.setPoints(resultSet.getInt(6));
                 technicalTask.setStatus(DataHandler.convertIntToStatus(resultSet.getInt(7)));
+                technicalTask.setSprint_id(resultSet.getInt(8));
             }
         }
         catch(SQLException e)
@@ -145,7 +149,7 @@ public class TechnicalTaskRepository {
             //Oprette forbindelse til database
             Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
             //SQL statement
-            String SQL_QUERY = "UPDATE technicaltasks SET userstory_id = ? ,technicaltask_name = ?, technicaltask_description = ?, technicaltask_released = ?, technicaltask_points = ?, technicaltask_status = ? WHERE technicaltask_id = ?";
+            String SQL_QUERY = "UPDATE technicaltasks SET userstory_id = ? ,technicaltask_name = ?, technicaltask_description = ?, technicaltask_released = ?, technicaltask_points = ?, technicaltask_status = ?, sprint_id = ? WHERE technicaltask_id = ?";
             //PreparedStatement
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
             //set parameters
@@ -156,6 +160,7 @@ public class TechnicalTaskRepository {
             preparedStatement.setInt(5, technicalTask.getPoints());
             preparedStatement.setInt(6, DataHandler.convertStatusToInt(technicalTask.getStatus()));
             preparedStatement.setInt(7, technicalTask.getId());
+            preparedStatement.setInt(8, technicalTask.getSprint_id());
             //ExecuteStatement
             preparedStatement.executeUpdate();
         }

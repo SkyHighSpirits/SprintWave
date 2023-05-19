@@ -24,8 +24,10 @@
             <input id="task-name-field" name="technicaltask_name" type="text" th:value="${technicaltask.getName()}">
             <p>Write Task Description</p>
             <input id="task-description-field" name="technicaltask_description" type="text" th:value="${technicaltask.getDescription()}"></input>
-            <p>Assign Points</p>
-            <input id="task-points-field" name="technicaltask_points" type="text" th:value="${technicaltask.getPoints()}"></input>
+            <p>Reassign Points</p>
+            <input id="task-points-field" name="technicaltask_points" type="number" th:value="${technicaltask.getPoints()}"></input>
+            <p>Reassign sprint</p>
+            <input id="task-sprint-field" name="sprint_id" type="number" th:value="${technicaltask.getSprint_id()}"></input>
             <div class="epicbuttons">
               <input id="userstory_id" name="userstory_id" type="hidden" th:value="${technicaltask.getUserstory_id()}"></input>
               <input id="technicaltask_released" name="technicaltask_released" type="hidden" th:value="${technicaltask.isReleased()}"></input>

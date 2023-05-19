@@ -8,9 +8,9 @@ public class Userstory {
     private String description;
     private boolean released;
     private int points;
-
-
     private Status status;
+
+    private int sprint_id;
 
     public Userstory()
     {
@@ -86,6 +86,15 @@ public class Userstory {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+
+    public int getSprint_id() {
+        return sprint_id;
+    }
+
+    public void setSprint_id(int sprint_id) {
+        this.sprint_id = sprint_id;
     }
 
     @Override

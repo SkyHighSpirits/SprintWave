@@ -14,7 +14,7 @@ public class Project
 
 
 
-    public Project(int projectID, String projectName,String projectDescription, String projectOwner, boolean projectStatus, LocalDate deadline,  int workspaceID){
+    public Project(int projectID, String projectName,String projectDescription, String projectOwner, boolean projectStatus, LocalDate deadline, int workspaceID){
         this.projectID =projectID;
         this.projectName = projectName;
         this.projectOwner = projectOwner;
