@@ -851,12 +851,59 @@ p{
 
 .sprint-board-item {
     border: 2px dotted red;
-    display:flex;
+    display: flex;
+    flex-direction: column;
+    height: 298px;
+    width: 298px;
+    position: relative;
+    box-sizing: border-box;
 }
 
+.sprint-board-item-button-left {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+.sprint-board-item-button-right {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
 
 /* End of SPRWINT PAGE styling */
 
+/* Start of TEST PAGE styling */
+div {
+    border: 1px dotted red;
+}
+
+.test-body {
+    width: 80%;
+    margin: 0 auto; /* Center horizontally */
+    display: flex;
+}
+
+.test-column {
+    flex: 1; /* Occupies equal space within test-body */
+    box-sizing: border-box; /* Include padding and border in width calculation */
+    display: flex;
+    flex-direction: column;
+    position: relative; /* Establishes a positioning context for absolute positioning */
+    padding-bottom: 20px; /* Add some padding to the bottom */
+}
+
+.test-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%; /* Make the footer stretch across the entire column */
+}
+
+
+
+
+
+/* End of TEST PAGE styling */
 
 
 
