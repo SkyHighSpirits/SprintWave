@@ -809,83 +809,18 @@ p{
 /* END OF APP FRONT PAGE STYLING */
 
 /* Start of SPRINT PAGE styling */
-.sprint-main {
-    width: 80%;
-    margin: 0 auto; /* This centers the container horizontally */
-    border: 2px dotted red;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.sprint-header {
-    border: 2px dotted red;
-}
-
-.sprint-board-columns {
-    border: 2px dotted red;
-    display:flex;
-    width: 1210px;
-}
-
-.sprint-board-header {
-    border: 2px dotted red;
-}
-
-.sprint-column {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    border: 2px dotted red;
-}
-
-.sprint-board-column-header {
-    border: 2px dotted red;
-    display: flex;
-}
-
-.sprint-board-column-footer {
-    border: 2px dotted red;
-    display: flex;
-}
-
-.sprint-board-item {
-    border: 2px dotted red;
-    display: flex;
-    flex-direction: column;
-    height: 298px;
-    width: 298px;
-    position: relative;
-    box-sizing: border-box;
-}
-
-.sprint-board-item-button-left {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-}
-
-.sprint-board-item-button-right {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-}
-
-/* End of SPRWINT PAGE styling */
-
-/* Start of TEST PAGE styling */
 div {
     border: 1px dotted red;
 }
 
-.test-body {
+.sprint-board {
     width: 80%;
     margin: 0 auto; /* Center horizontally */
     display: flex;
 }
 
-.test-column {
-    flex: 1; /* Occupies equal space within test-body */
+.sprint-column {
+    flex: 1; /* Occupies equal space within sprint-board */
     box-sizing: border-box; /* Include padding and border in width calculation */
     display: flex;
     flex-direction: column;
@@ -893,17 +828,34 @@ div {
     padding-bottom: 20px; /* Add some padding to the bottom */
 }
 
-.test-footer {
+.sprint-footer {
     position: absolute;
     bottom: 0;
     width: 100%; /* Make the footer stretch across the entire column */
 }
 
+.sprint-item {
+    position: relative;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sprint-item-content {
+    flex: 1;
+    position: relative;
+    padding-bottom: 20px; /* Add bottom padding to create space between <p> and buttons */
+}
+
+.sprint-item-buttons {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    right: 10px;
+}
 
 
 
-
-/* End of TEST PAGE styling */
-
-
-
+/* End of SPRINT PAGE styling */
