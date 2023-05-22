@@ -19,17 +19,30 @@
             <div class="sprint-header">Sprint Backlog</div>
         
             <div class="sprint-item" th:each="userstory : ${userstoriesinproject}">
-                <h3 th:text="${userstory.points}">Points</h3>
-                <h2 th:text="${userstory.name}">Name</h2>
+                <h3 th:text="${userstory.points}"></h3>
+                <h2 th:text="${userstory.name}"></h2>
                 <div class="sprint-item-content">
-                    <p th:each="${userstory.description}">Description......</p>
+                    <p th:text="${userstory.description}"></p>
                     <div class="sprint-item-buttons">
                         <button>Left</button>
                         <button>Right</button>
                     </div>
                 </div>
             </div>
-        
+
+            <div class="sprint-item" th:each="technicaltask : ${technicaltasksinproject}">
+                <h3 th:text="${technicaltask.points}"></h3>
+                <h2 th:text="${technicaltask.name}"></h2>
+                <div class="sprint-item-content">
+                    <p th:text="${technicaltask.description}"></p>
+                    <div class="sprint-item-buttons">
+                        <button>Left</button>
+                        <button>Right</button>
+                    </div>
+                </div>
+            </div>
+            
+            
             <div class="sprint-footer">Sprint Backlog Points Sum:</div>
         </div>
     
@@ -37,10 +50,22 @@
             <div class="sprint-header">Doing</div>
 
             <div class="sprint-item" th:each="userstory : ${userstoriesinproject}">
-                <h3 th:text="${userstory.points}">Points</h3>
-                <h2 th:text="${userstory.name}">Name</h2>
+                <h3 th:text="${userstory.points}"></h3>
+                <h2 th:text="${userstory.name}"></h2>
                 <div class="sprint-item-content">
-                    <p th:each="${userstory.description}">Description......</p>
+                    <p th:text="${userstory.description}"></p>
+                    <div class="sprint-item-buttons">
+                        <button>Left</button>
+                        <button>Right</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sprint-item" th:each="technicaltask : ${technicaltasksinproject}">
+                <h3 th:text="${technicaltask.points}"></h3>
+                <h2 th:text="${technicaltask.name}"></h2>
+                <div class="sprint-item-content">
+                    <p th:text="${technicaltask.description}"></p>
                     <div class="sprint-item-buttons">
                         <button>Left</button>
                         <button>Right</button>
@@ -55,10 +80,22 @@
             <div class="sprint-header">Test</div>
 
             <div class="sprint-item" th:each="userstory : ${userstoriesinproject}">
-                <h3 th:text="${userstory.points}">Points</h3>
-                <h2 th:text="${userstory.name}">Name</h2>
+                <h3 th:text="${userstory.points}"></h3>
+                <h2 th:text="${userstory.name}"></h2>
                 <div class="sprint-item-content">
-                    <p th:each="${userstory.description}">Description......</p>
+                    <p th:text="${userstory.description}"></p>
+                    <div class="sprint-item-buttons">
+                        <button>Left</button>
+                        <button>Right</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sprint-item" th:each="technicaltask : ${technicaltasksinproject}">
+                <h3 th:text="${technicaltask.points}"></h3>
+                <h2 th:text="${technicaltask.name}"></h2>
+                <div class="sprint-item-content">
+                    <p th:text="${technicaltask.description}"></p>
                     <div class="sprint-item-buttons">
                         <button>Left</button>
                         <button>Right</button>
@@ -73,10 +110,22 @@
             <div class="sprint-header">Done</div>
 
             <div class="sprint-item" th:each="userstory : ${userstoriesinproject}">
-                <h3 th:text="${userstory.points}">Points</h3>
-                <h2 th:text="${userstory.name}">Name</h2>
+                <h3 th:text="${userstory.points}"></h3>
+                <h2 th:text="${userstory.name}"></h2>
                 <div class="sprint-item-content">
-                    <p th:each="${userstory.description}">Description......</p>
+                    <p th:text="${userstory.description}"></p>
+                    <div class="sprint-item-buttons">
+                        <button>Left</button>
+                        <button>Right</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sprint-item" th:each="technicaltask : ${technicaltasksinproject}">
+                <h3 th:text="${technicaltask.points}"></h3>
+                <h2 th:text="${technicaltask.name}"></h2>
+                <div class="sprint-item-content">
+                    <p th:text="${technicaltask.description}"></p>
                     <div class="sprint-item-buttons">
                         <button>Left</button>
                         <button>Right</button>

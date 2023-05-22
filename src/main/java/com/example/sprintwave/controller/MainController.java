@@ -497,6 +497,7 @@ public class MainController {
         //TODO: Find all userstories for a given project and add to a model - TEST
         ArrayList<Userstory> relevantUserstories = userstoriesRepository.getAllUserstoriesFromProjectID(project_id);
         model.addAttribute("userstoriesinproject",userstoriesInProject);
+        System.out.println(userstoriesInProject);
 
         //TODO: Find all technicalTasks for a given project and add to a model - TEST
         for(Userstory userstory: relevantUserstories)

@@ -817,6 +817,8 @@ div {
     width: 80%;
     margin: 0 auto; /* Center horizontally */
     display: flex;
+    margin-bottom: 20px; /* Add bottom margin */
+
 }
 
 
