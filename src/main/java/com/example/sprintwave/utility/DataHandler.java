@@ -3,6 +3,7 @@ package com.example.sprintwave.utility;
 import com.example.sprintwave.model.*;
 import com.example.sprintwave.repository.WorkspaceRepository;
 
+import java.sql.Array;
 import java.util.ArrayList;
 
 public class DataHandler {
@@ -76,6 +77,7 @@ public class DataHandler {
         return status;
     }
 
+    /*
     public static ArrayList<TechnicalTask> divideArrayIntoStatusSpecificArrays(ArrayList<TechnicalTask> allTechnicalTasks, Status status)
     {
         // TODO: If we have the time, make this method more efficient and shorter
@@ -126,6 +128,8 @@ public class DataHandler {
         System.out.println("Status of element 1 is: " + newListOfTasksForSpecificStatus.get(1).getStatus().toString());
         return newListOfTasksForSpecificStatus;
     }
+
+     */
 
     public static int convertStatusToInt(Status status)
     {

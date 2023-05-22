@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 @Repository
 public class SprintRepository {
@@ -74,5 +75,37 @@ public class SprintRepository {
             return null;
         }
         return foundSprint;
+    }
+
+    public ArrayList<Sprint> getAllSprintsByProjectID(int projectID){
+        ArrayList<Sprint> sprintList = new ArrayList<>();
+        try {
+            //Oprette forbindelse til database
+            Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
+            //SQL statement
+            String SQL_QUERY = "SELECT * FROM sprints WHERE project_id = ?";
+            //Prepared statement
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
+            //set parameters
+            preparedStatement.setInt(1, projectID);
+            //execute statement
+            ResultSet resultSet = preparedStatement.executeQuery();
+            //set resultset
+
+            while(resultSet.next()) {
+                Sprint foundSprint = new Sprint();
+                foundSprint.setSprintId(resultSet.getInt(1));
+                foundSprint.setSprintName(resultSet.getString(2));
+                foundSprint.setProjectId(resultSet.getInt(3));
+                sprintList.add(foundSprint);
+            }
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+            System.out.println("Could not query database for sprints");
+        }
+
+        return sprintList;
     }
 }

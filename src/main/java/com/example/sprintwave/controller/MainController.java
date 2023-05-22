@@ -463,6 +463,7 @@ public class MainController {
         return "backlogupdateuserstory";
     }
 
+    /* END OF USERSTORY MAPPINGS BY NICOLAI */
 
     @PostMapping("/createsprint")
     public String createDefaultSprintIfNotExists(@RequestParam("spint_id") int newSprintID, @RequestParam("spint_name") String newSprintName, HttpSession session)
@@ -473,5 +474,83 @@ public class MainController {
         return "redirect:/backlog/" + currentProject.getProjectID();
     }
 
-     /* END OF USERSTORY MAPPINGS BY NICOLAI */
+    /* START OF SPRINT BACKLOG MAPPINGS BY NICOLAI */
+
+    @GetMapping("/sprints")
+    public String showSprints(Model model, HttpSession session)
+    {
+        //TODO: Get the project id of the current opened project - TEST
+        Project currentProject = (Project) session.getAttribute("currentproject");
+        int project_id = currentProject.getProjectID();
+
+        //TODO: Define and initialize arrays for models - TEST
+        ArrayList<Sprint> sprintsInProject;
+
+        ArrayList<TechnicalTask> technicaltasksInProject = new ArrayList<>();
+
+        ArrayList<Userstory> userstoriesInProject = new ArrayList<>();
+
+        //TODO: Find all sprints for a given project and add to a model - TEST
+        sprintsInProject = sprintRepository.getAllSprintsByProjectID(project_id);
+        model.addAttribute("sprintsinproject", sprintsInProject);
+
+        //TODO: Find all userstories for a given project and add to a model - TEST
+        ArrayList<Userstory> relevantUserstories = userstoriesRepository.getAllUserstoriesFromProjectID(project_id);
+        model.addAttribute("userstoriesinproject",userstoriesInProject);
+
+        //TODO: Find all technicalTasks for a given project and add to a model - TEST
+        for(Userstory userstory: relevantUserstories)
+        {
+            //TODO: If a userstory is released, then all technicaltasks are released
+            if(userstory.getStatus() == Status.done)
+            {
+                for(TechnicalTask technicalTask: technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstory.getId()))
+                {
+                    technicalTask.setStatus(Status.done);
+                    technicalTask.setReleased(true);
+                    technicalTaskRepository.updateTechnicalTask(technicalTask);
+                }
+            }
+            //TODO: If all technicaltasks are done, userstory is released - TEST
+            boolean userstoryIsReleased = true;
+            for(TechnicalTask technicalTask: technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstory.getId()))
+            {
+                if(technicalTask.getStatus() != Status.done);
+                {
+                    userstoryIsReleased = false;
+                }
+            }
+            userstory.setReleased(userstoryIsReleased);
+            if(userstoryIsReleased)
+            {
+                userstory.setStatus(Status.done);
+            }
+            userstoriesRepository.updateUserstory(userstory);
+
+            //As technicaltask belong to a userstory within the current project ID, we put all technicaltasks for the userstory into the arraylist
+            technicaltasksInProject.addAll(technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstory.getId()));
+        }
+        //DONE
+        model.addAttribute("technicaltasksinproject", technicaltasksInProject);
+
+        return "sprints";
+    }
+
+    @PostMapping("/moveleft")
+    public String moveTaskOrUserstoryLeft()
+    {
+        //TODO: Make functionality of moving tasks or userstories left on board
+        return "redirect:/sprints";
+    }
+
+    @PostMapping("/moveright")
+    public String moveTaskOrUserstoryRight()
+    {
+        //TODO: Make functionality of moving tasks or userstories right on board
+        return "redirect:/sprints";
+    }
+    /* END OF SPRINT BACKLOG MAPPINGS BY NICOLAI */
+
+
+
 }
