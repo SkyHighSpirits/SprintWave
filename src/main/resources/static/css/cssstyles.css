@@ -819,6 +819,7 @@ div {
     display: flex;
 }
 
+
 .sprint-column {
     flex: 1; /* Occupies equal space within sprint-board */
     box-sizing: border-box; /* Include padding and border in width calculation */

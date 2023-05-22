@@ -8,33 +8,39 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="sprint-board">
+
+    <div th:replace="fragments/navbar :: navbarthree"></div>
+
+    <div class="sprint-board" th:each="sprint : ${sprintsinproject}">
+        <div class="sprint-headline">
+            <h1 th:text="${sprint.sprintName}">Hello</h1>
+        </div>
         <div class="sprint-column">
             <div class="sprint-header">Sprint Backlog</div>
-            <div class="sprint-item">
-                <h3>Points:</h3>
-                <h2>Name</h2>
+        
+            <div class="sprint-item" th:each="userstory : ${userstoriesinproject}">
+                <h3 th:text="${userstory.points}">Points</h3>
+                <h2 th:text="${userstory.name}">Name</h2>
                 <div class="sprint-item-content">
-                    <p>Description</p>
+                    <p th:each="${userstory.description}">Description......</p>
                     <div class="sprint-item-buttons">
                         <button>Left</button>
                         <button>Right</button>
                     </div>
                 </div>
             </div>
-    
-    
+        
             <div class="sprint-footer">Sprint Backlog Points Sum:</div>
         </div>
     
         <div class="sprint-column">
             <div class="sprint-header">Doing</div>
 
-            <div class="sprint-item">
-                <h3>Points:</h3>
-                <h2>Name</h2>
+            <div class="sprint-item" th:each="userstory : ${userstoriesinproject}">
+                <h3 th:text="${userstory.points}">Points</h3>
+                <h2 th:text="${userstory.name}">Name</h2>
                 <div class="sprint-item-content">
-                    <p>Description</p>
+                    <p th:each="${userstory.description}">Description......</p>
                     <div class="sprint-item-buttons">
                         <button>Left</button>
                         <button>Right</button>
@@ -48,29 +54,29 @@
         <div class="sprint-column">
             <div class="sprint-header">Test</div>
 
-            <div class="sprint-item">
-                <h3>Points:</h3>
-                <h2>Name</h2>
+            <div class="sprint-item" th:each="userstory : ${userstoriesinproject}">
+                <h3 th:text="${userstory.points}">Points</h3>
+                <h2 th:text="${userstory.name}">Name</h2>
                 <div class="sprint-item-content">
-                    <p>Description</p>
+                    <p th:each="${userstory.description}">Description......</p>
                     <div class="sprint-item-buttons">
                         <button>Left</button>
                         <button>Right</button>
                     </div>
                 </div>
             </div>
-                        
+            
             <div class="sprint-footer">Test Points Sum:</div>
         </div>
     
         <div class="sprint-column">
             <div class="sprint-header">Done</div>
 
-            <div class="sprint-item">
-                <h3>Points:</h3>
-                <h2>Name</h2>
+            <div class="sprint-item" th:each="userstory : ${userstoriesinproject}">
+                <h3 th:text="${userstory.points}">Points</h3>
+                <h2 th:text="${userstory.name}">Name</h2>
                 <div class="sprint-item-content">
-                    <p>Description</p>
+                    <p th:each="${userstory.description}">Description......</p>
                     <div class="sprint-item-buttons">
                         <button>Left</button>
                         <button>Right</button>
