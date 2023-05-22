@@ -479,6 +479,12 @@ label .logo-link{
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 
+.description-text{
+    line-height: 1.5;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
 .btn{
     color: white;
     border: none;
