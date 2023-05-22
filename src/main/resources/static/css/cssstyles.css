@@ -851,8 +851,27 @@ p{
 
 .sprint-board-item {
     border: 2px dotted red;
-    display:flex;
+    display: flex;
+    flex-direction: column;
+    height: 298px;
+    width: 298px;
+    position: relative;
+    box-sizing: border-box;
 }
+
+.sprint-board-item-button-left {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+.sprint-board-item-button-right {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+
 
 
 /* End of SPRWINT PAGE styling */
