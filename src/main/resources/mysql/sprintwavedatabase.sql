@@ -63,11 +63,12 @@ CREATE TABLE requirements(
 
 );
 
-CREATE TABLE sprints(
-                        sprint_id INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
-                        sprint_name VARCHAR(255) NOT NULL,
-                        project_id INT NOT NULL,
-                        FOREIGN KEY(project_id) REFERENCES projects(project_id) ON DELETE CASCADE
+CREATE TABLE sprints (
+                         sprint_id INT NOT NULL,
+                         sprint_name VARCHAR(255) NOT NULL,
+                         project_id INT NOT NULL,
+                         PRIMARY KEY (sprint_id, project_id),
+                         FOREIGN KEY (project_id) REFERENCES projects (project_id) ON DELETE CASCADE
 );
 
 CREATE TABLE userstories(
@@ -129,9 +130,11 @@ VALUES
     (1, 'EP004', 'Deploy feature projects');
 
 INSERT INTO sprints
-(sprint_name, project_id)
+(sprint_id, sprint_name, project_id)
 VALUES
-    ('SP001', 1);
+    (1,'SP001', 1),
+    (2,'SP002', 1),
+    (3,'SP003', 1);
 
 INSERT INTO userstories
 (project_id, userstory_name, userstory_description, userstory_released, userstory_points, userstory_status, sprint_id)
