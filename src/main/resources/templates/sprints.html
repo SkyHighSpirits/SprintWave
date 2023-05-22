@@ -1,10 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Sprints</title>
+    <link rel="stylesheet" th:href="@{/css/cssstyles.css}" href="../static/css/cssstyles.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <div class="sprint-main">
+        <div class="sprint-header">
+            <span><h1>Sprints</h1></span>
+            <span><h1>Add Sprint</h1></span>
+            
+            <div class="sprint-board">
+                <div class="sprint-board-header">
+                    <h1>Sprint Board 1</h1>    
+                </div>
+                
+                <div class="sprint-board-columns">
+                    <div class="sprint-column">
+                        <div class="sprint-board-column-header">
+                            <h1>Sprint Backlog</h1>
+                        </div>
+
+                        <div class="sprint-board-item">
+                            <h2>Name</h2>
+                            <h2>Points:</h2>
+                            <p>Description</p>
+                        </div>
+                        
+                        <div class="sprint-board-column-footer">
+                            <h1>Sum: 100</h1>
+                        </div>
+                    </div>
+                    <div class="sprint-column">
+                        <div class="sprint-board-column-header">
+                            <h1>Sprint Doing</h1></div>
+                        <div class="sprint-board-item">
+                            <h2>Name</h2>
+                            <h2>Points:</h2>
+                            <p>Description</p>
+                        </div>
+
+                    </div>
+                    <div class="sprint-column">
+                        <h1>Sprint Test</h1>
+                    </div>
+                    <div class="sprint-column">
+                        <h1>Sprint Done</h1>
+                    </div>
+                </div>
+                
+                
+            </div>
+
+            <div class="sprint-board">
+                <h1>Sprint Board 2</h1>
+            </div>
+        </div><!-- Content of the div goes here -->
+    </div>
+
+
 
 </body>
 </html>

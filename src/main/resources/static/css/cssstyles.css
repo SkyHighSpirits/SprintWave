@@ -809,6 +809,55 @@ p{
 
 /* END OF APP FRONT PAGE STYLING */
 
+/* Start of SPRINT PAGE styling */
+.sprint-main {
+    width: 80%;
+    margin: 0 auto; /* This centers the container horizontally */
+    border: 2px dotted red;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.sprint-header {
+    border: 2px dotted red;
+}
+
+.sprint-board-columns {
+    border: 2px dotted red;
+    display:flex;
+    width: 1210px;
+}
+
+.sprint-board-header {
+    border: 2px dotted red;
+}
+
+.sprint-column {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    border: 2px dotted red;
+}
+
+.sprint-board-column-header {
+    border: 2px dotted red;
+    display: flex;
+}
+
+.sprint-board-column-footer {
+    border: 2px dotted red;
+    display: flex;
+}
+
+.sprint-board-item {
+    border: 2px dotted red;
+    display:flex;
+}
+
+
+/* End of SPRWINT PAGE styling */
+
 
 
 
