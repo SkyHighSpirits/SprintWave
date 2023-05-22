@@ -30,8 +30,10 @@ public class MainController {
 
     UserstoriesRepository userstoriesRepository;
 
+    SprintRepository sprintRepository;
 
-    public MainController(UserRepository userRepository, WorkspaceRepository workspaceRepository, ProjectRepository projectRepository, EpicRepository epicRepository, RequirementRepository requirementRepository, UserstoriesRepository userstoriesRepository, TechnicalTaskRepository technicalTaskRepository)
+
+    public MainController(UserRepository userRepository, WorkspaceRepository workspaceRepository, ProjectRepository projectRepository, EpicRepository epicRepository, RequirementRepository requirementRepository, UserstoriesRepository userstoriesRepository, TechnicalTaskRepository technicalTaskRepository, SprintRepository sprintRepository)
     {
         this.userRepository = userRepository;
         this.workspaceRepository = workspaceRepository;
@@ -40,6 +42,7 @@ public class MainController {
         this.requirementRepository = requirementRepository;
         this.userstoriesRepository = userstoriesRepository;
         this.technicalTaskRepository = technicalTaskRepository;
+        this.sprintRepository = sprintRepository;
     }
 
     @ModelAttribute("currentuser")
@@ -422,8 +425,17 @@ public class MainController {
         userstory.setStatus(Status.sprintbacklog);
         userstory.setReleased(false);
         userstory.setSprint_id(sprint_id);
+
+        //create an empty sprint if the sprint does not exist allready
+        Project currentProject = (Project) session.getAttribute("currentproject");
+        if(sprintRepository.getSprintByIDAndProjectID(1, currentProject.getProjectID()) != null)
+        {
+            Sprint defaultSprint = new Sprint(1, "SP001", currentProject.getProjectID());
+            sprintRepository.createSprint(defaultSprint);
+        }
+
         userstoriesRepository.createNewUserstory(userstory);
-        return "redirect:/backlog/" + ((Project) session.getAttribute("currentproject")).getProjectID();
+        return "redirect:/backlog/" + currentProject.getProjectID();
     }
 
     @PostMapping("/updateuserstory")
@@ -451,14 +463,15 @@ public class MainController {
         return "backlogupdateuserstory";
     }
 
-    /*
-    @GetMapping("/sprints")
-    public String showSprints(Model model)
-    {
-        model.
-    }
 
-     */
+    @PostMapping("/createsprint")
+    public String createDefaultSprintIfNotExists(@RequestParam("spint_id") int newSprintID, @RequestParam("spint_name") String newSprintName, HttpSession session)
+    {
+        Project currentProject = (Project) session.getAttribute("currentproject");
+        Sprint newSprint = new Sprint(newSprintID, newSprintName, currentProject.getProjectID());
+        sprintRepository.createSprint(newSprint);
+        return "redirect:/backlog/" + currentProject.getProjectID();
+    }
 
      /* END OF USERSTORY MAPPINGS BY NICOLAI */
 }
