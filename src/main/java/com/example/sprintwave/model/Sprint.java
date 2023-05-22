@@ -6,10 +6,10 @@ public class Sprint {
     private int projectId;
     private String sprintName;
 
-    public Sprint(int sprintId, int projectId, String sprintName) {
+    public Sprint(int sprintId, String sprintName, int projectId) {
         this.sprintId = sprintId;
-        this.projectId = projectId;
         this.sprintName = sprintName;
+        this.projectId = projectId;
     }
 
     public Sprint()
