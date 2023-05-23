@@ -17,7 +17,20 @@
         </div>
         <div class="sprint-column">
             <div class="sprint-header">Sprint Backlog</div>
-        
+
+<!--            <div class="sprint-item" th:each="userstory : ${userstoriesinproject}">
+                <h3>Points: </h3>
+                <h2>As a user I want a nice style so that I can be positive</h2>
+                <div class="sprint-item-content">
+                    <p>Users currently don't feel attracted to the design. We need to change that! Hint: Turn blue into green.</p>
+                    <div class="sprint-item-buttons">
+                        <button>Left</button>
+                        <button>Right</button>
+                    </div>
+                </div>
+            </div>
+            
+-->
             <div class="sprint-item" th:each="userstory : ${userstoriesinproject}">
                 <h3 th:text="${userstory.points}"></h3>
                 <h2 th:text="${userstory.name}"></h2>
@@ -30,7 +43,7 @@
                 </div>
             </div>
 
-            <div class="sprint-item" th:each="technicaltask : ${technicaltasksinproject}">
+            <div class="sprint-item" th:each="technicaltask : ${technicaltasksinproject}" th:if="(${#strings.equals(technicaltask.status, 'sprintbacklog')}) and (${technicaltask.getSprint_id()} == ${sprint.getSprintId()})">
                 <h3 th:text="${technicaltask.points}"></h3>
                 <h2 th:text="${technicaltask.name}"></h2>
                 <div class="sprint-item-content">
@@ -61,7 +74,7 @@
                 </div>
             </div>
 
-            <div class="sprint-item" th:each="technicaltask : ${technicaltasksinproject}">
+            <div class="sprint-item" th:each="technicaltask : ${technicaltasksinproject}" th:if="(${#strings.equals(technicaltask.status, 'doing')}) and (${technicaltask.getSprint_id()} == ${sprint.getSprintId()})">
                 <h3 th:text="${technicaltask.points}"></h3>
                 <h2 th:text="${technicaltask.name}"></h2>
                 <div class="sprint-item-content">
@@ -91,7 +104,7 @@
                 </div>
             </div>
 
-            <div class="sprint-item" th:each="technicaltask : ${technicaltasksinproject}">
+            <div class="sprint-item" th:each="technicaltask : ${technicaltasksinproject}" th:if="(${#strings.equals(technicaltask.status, 'testing')}) and (${technicaltask.getSprint_id()} == ${sprint.getSprintId()})">
                 <h3 th:text="${technicaltask.points}"></h3>
                 <h2 th:text="${technicaltask.name}"></h2>
                 <div class="sprint-item-content">
@@ -121,7 +134,7 @@
                 </div>
             </div>
 
-            <div class="sprint-item" th:each="technicaltask : ${technicaltasksinproject}">
+            <div class="sprint-item" th:each="technicaltask : ${technicaltasksinproject}" th:if="(${#strings.equals(technicaltask.status, 'done')}) and (${technicaltask.getSprint_id()} == ${sprint.getSprintId()})">
                 <h3 th:text="${technicaltask.points}"></h3>
                 <h2 th:text="${technicaltask.name}"></h2>
                 <div class="sprint-item-content">

@@ -13,7 +13,7 @@
     <div class="appfrontpage-main">
         <h1>Active Projects</h1>
         <div class="appfrontpage-project-matrix">
-            <div class="appfrontpage-project" th:each="project : ${projects}" th:block th:if="${project.projectStatus}">
+            <div class="appfrontpage-project" th:each="project : ${projects}" th:if="${project.projectStatus}">
                 <h3 th:text="${project.projectOwner}"></h3>
                 <h2 th:text="${project.projectName}"></h2>
                 <p th:text="${project.projectDescription}"></p>
