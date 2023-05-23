@@ -77,8 +77,8 @@ public class DataHandler {
         return status;
     }
 
-    /*
-    public static ArrayList<TechnicalTask> divideArrayIntoStatusSpecificArrays(ArrayList<TechnicalTask> allTechnicalTasks, Status status)
+
+    public ArrayList<TechnicalTask> divideArrayIntoStatusSpecificArrays(ArrayList<TechnicalTask> allTechnicalTasks, Status status, Sprint sprint)
     {
         // TODO: If we have the time, make this method more efficient and shorter
         ArrayList<TechnicalTask> newListOfTasksForSpecificStatus = new ArrayList<>();
@@ -88,7 +88,7 @@ public class DataHandler {
             {
                 case sprintbacklog:
                 {
-                    if(technicalTask.getStatus() == Status.sprintbacklog)
+                    if(technicalTask.getStatus() == Status.sprintbacklog && technicalTask.getSprint_id() == sprint.getSprintId())
                     {
                         newListOfTasksForSpecificStatus.add(technicalTask);
                     }
@@ -96,7 +96,7 @@ public class DataHandler {
                 }
                 case doing:
                 {
-                    if(technicalTask.getStatus() == Status.doing)
+                    if(technicalTask.getStatus() == Status.doing && technicalTask.getSprint_id() == sprint.getSprintId())
                     {
                         newListOfTasksForSpecificStatus.add(technicalTask);
                     }
@@ -104,7 +104,7 @@ public class DataHandler {
                 }
                 case testing:
                 {
-                    if(technicalTask.getStatus() == Status.testing)
+                    if(technicalTask.getStatus() == Status.testing && technicalTask.getSprint_id() == sprint.getSprintId())
                     {
                         newListOfTasksForSpecificStatus.add(technicalTask);
                     }
@@ -112,7 +112,7 @@ public class DataHandler {
                 }
                 case done:
                 {
-                    if(technicalTask.getStatus() == Status.done)
+                    if(technicalTask.getStatus() == Status.done && technicalTask.getSprint_id() == sprint.getSprintId())
                     {
                         newListOfTasksForSpecificStatus.add(technicalTask);
                     }
@@ -129,7 +129,6 @@ public class DataHandler {
         return newListOfTasksForSpecificStatus;
     }
 
-     */
 
     public static int convertStatusToInt(Status status)
     {

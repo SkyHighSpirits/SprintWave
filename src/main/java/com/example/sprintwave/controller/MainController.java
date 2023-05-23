@@ -3,6 +3,7 @@ package com.example.sprintwave.controller;
 import com.example.sprintwave.model.*;
 import com.example.sprintwave.repository.*;
 
+import com.example.sprintwave.utility.Calculations;
 import com.example.sprintwave.utility.DataHandler;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -484,14 +485,14 @@ public class MainController {
         Project currentProject = (Project) session.getAttribute("currentproject");
         int project_id = currentProject.getProjectID();
 
-        //TODO: Define and initialize arrays for models - TEST
+        //TODO: Define and initialize arrays for models - DONE
         ArrayList<Sprint> sprintsInProject;
 
         ArrayList<TechnicalTask> technicaltasksInProject = new ArrayList<>();
 
         ArrayList<Userstory> userstoriesInProject = new ArrayList<>();
 
-        //TODO: Find all sprints for a given project and add to a model - TEST
+        //TODO: Find all sprints for a given project and add to a model - DONE
         sprintsInProject = sprintRepository.getAllSprintsByProjectID(project_id);
         model.addAttribute("sprintsinproject", sprintsInProject);
 
@@ -500,7 +501,14 @@ public class MainController {
         model.addAttribute("userstoriesinproject",userstoriesInProject);
         System.out.println(userstoriesInProject);
 
-        //TODO: Find all technicalTasks for a given project and add to a model - TEST
+        //TODO: Get an send an object of Datahandler and Calculator
+        DataHandler datahandler = new DataHandler();
+        model.addAttribute("datahandler", datahandler);
+        Calculations calculations = new Calculations();
+        model.addAttribute("calculator", calculations);
+
+
+        //TODO: Find all technicalTasks for a given project and add to a model - DONE
         for(Userstory userstory: relevantUserstories)
         {
             //TODO: If a userstory is released, then all technicaltasks are released
