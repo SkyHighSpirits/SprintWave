@@ -74,7 +74,7 @@
                 </div>
             </div>
 
-            <div class="sprint-item" th:each="technicaltask : ${technicaltasksinproject}" th:if="${#strings.equals(technicaltask.status, 'doing')}">
+            <div class="sprint-item" th:each="technicaltask : ${technicaltasksinproject}" th:if="(${#strings.equals(technicaltask.status, 'doing')}) and (${technicaltask.getSprint_id()} == ${sprint.getSprintId()})">
                 <h3 th:text="${technicaltask.points}"></h3>
                 <h2 th:text="${technicaltask.name}"></h2>
                 <div class="sprint-item-content">
@@ -104,7 +104,7 @@
                 </div>
             </div>
 
-            <div class="sprint-item" th:each="technicaltask : ${technicaltasksinproject}" th:if="${#strings.equals(technicaltask.status, 'testing')}">
+            <div class="sprint-item" th:each="technicaltask : ${technicaltasksinproject}" th:if="(${#strings.equals(technicaltask.status, 'testing')}) and (${technicaltask.getSprint_id()} == ${sprint.getSprintId()})">
                 <h3 th:text="${technicaltask.points}"></h3>
                 <h2 th:text="${technicaltask.name}"></h2>
                 <div class="sprint-item-content">
@@ -134,7 +134,7 @@
                 </div>
             </div>
 
-            <div class="sprint-item" th:each="technicaltask : ${technicaltasksinproject}" th:if="${#strings.equals(technicaltask.status, 'done')}">
+            <div class="sprint-item" th:each="technicaltask : ${technicaltasksinproject}" th:if="(${#strings.equals(technicaltask.status, 'done')}) and (${technicaltask.getSprint_id()} == ${sprint.getSprintId()})">
                 <h3 th:text="${technicaltask.points}"></h3>
                 <h2 th:text="${technicaltask.name}"></h2>
                 <div class="sprint-item-content">
