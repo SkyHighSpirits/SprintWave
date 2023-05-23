@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.HTML;
 import java.util.ArrayList;
 
 import java.time.LocalDate;
@@ -576,7 +577,29 @@ public class MainController {
         userstoriesRepository.updateUserstoryWithIntStatus(movingTechnicalTask, status++);
         return "redirect:/sprints";
     }
+
+    @PostMapping("/createsprint")
+    public String createSprint(@RequestParam("sprint_id") int sprintID,
+                               @RequestParam("sprint_name") String sprintName, HttpSession session)
+    {
+        Sprint sprint = new Sprint();
+        sprint.setSprintId(sprintID);
+        sprint.setSprintName(sprintName);
+        Project currentproject = (Project) session.getAttribute("currentproject");
+        sprint.setProjectId(currentproject.getProjectID());
+        sprintRepository.createSprint(sprint);
+        return "redirect:/sprints";
+    }
+
+    @GetMapping("/showcreatesprint")
+    public String showCreateSprint()
+    {
+        return "sprintcreate";
+    }
+
     /* END OF SPRINT BACKLOG MAPPINGS BY NICOLAI */
+
+
 
 
 
