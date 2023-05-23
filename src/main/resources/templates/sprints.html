@@ -37,20 +37,20 @@
                 <div class="sprint-item-content">
                     <p th:text="${userstory.description}"></p>
                     <div class="sprint-item-buttons">
-                        <button>Left</button>
-                        <button>Right</button>
+                        <button><img th:src="@{images/left-arrow.png}" src="../static/images/left-arrow.png"></button>
+                        <button><img  th:src="@{images/right-arrow.png}" src="../static/images/right-arrow.png"></button>
                     </div>
                 </div>
             </div>
 
             <div class="sprint-item" th:each="technicaltask : ${technicaltasksinproject}" th:if="(${#strings.equals(technicaltask.status, 'sprintbacklog')}) and (${technicaltask.getSprint_id()} == ${sprint.getSprintId()})">
-                <h3 th:text="${technicaltask.points}"></h3>
-                <h2 th:text="${technicaltask.name}"></h2>
+                <h3 th:text="${technicaltask.points}">Points:</h3>
+                <h2 th:text="${technicaltask.name}">Name</h2>
                 <div class="sprint-item-content">
-                    <p th:text="${technicaltask.description}"></p>
+                    <p th:text="${technicaltask.description}">Description</p>
                     <div class="sprint-item-buttons">
-                        <button>Left</button>
-                        <button>Right</button>
+                        <button><img th:src="@{images/left-arrow.png}" src="../static/images/left-arrow.png"></button>
+                        <button><img  th:src="@{images/right-arrow.png}" src="../static/images/right-arrow.png"></button>
                     </div>
                 </div>
             </div>
@@ -68,8 +68,8 @@
                 <div class="sprint-item-content">
                     <p th:text="${userstory.description}"></p>
                     <div class="sprint-item-buttons">
-                        <button>Left</button>
-                        <button>Right</button>
+                        <button><img th:src="@{images/left-arrow.png}" src="../static/images/left-arrow.png"></button>          
+                        <button><img  th:src="@{images/right-arrow.png}" src="../static/images/right-arrow.png"></button>
                     </div>
                 </div>
             </div>
@@ -80,8 +80,8 @@
                 <div class="sprint-item-content">
                     <p th:text="${technicaltask.description}"></p>
                     <div class="sprint-item-buttons">
-                        <button>Left</button>
-                        <button>Right</button>
+                        <button><img th:src="@{images/left-arrow.png}" src="../static/images/left-arrow.png"></button>
+                        <button><img  th:src="@{images/right-arrow.png}" src="../static/images/right-arrow.png"></button>
                     </div>
                 </div>
             </div>
@@ -98,8 +98,8 @@
                 <div class="sprint-item-content">
                     <p th:text="${userstory.description}"></p>
                     <div class="sprint-item-buttons">
-                        <button>Left</button>
-                        <button>Right</button>
+                        <button><img th:src="@{images/left-arrow.png}" src="../static/images/left-arrow.png"></button>
+                        <button><img  th:src="@{images/right-arrow.png}" src="../static/images/right-arrow.png"></button>
                     </div>
                 </div>
             </div>
@@ -110,8 +110,8 @@
                 <div class="sprint-item-content">
                     <p th:text="${technicaltask.description}"></p>
                     <div class="sprint-item-buttons">
-                        <button>Left</button>
-                        <button>Right</button>
+                        <button><img th:src="@{images/left-arrow.png}" src="../static/images/left-arrow.png"></button>
+                        <button><img  th:src="@{images/right-arrow.png}" src="../static/images/right-arrow.png"></button>
                     </div>
                 </div>
             </div>
@@ -128,9 +128,8 @@
                 <div class="sprint-item-content">
                     <p th:text="${userstory.description}"></p>
                     <div class="sprint-item-buttons">
-                        <button>Left</button>
-                        <button>Right</button>
-                    </div>
+                        <button><img th:src="@{images/left-arrow.png}" src="../static/images/left-arrow.png"></button>
+                        <button><img  th:src="@{images/right-arrow.png}" src="../static/images/right-arrow.png"></button>                    </div>
                 </div>
             </div>
 
@@ -140,8 +139,8 @@
                 <div class="sprint-item-content">
                     <p th:text="${technicaltask.description}"></p>
                     <div class="sprint-item-buttons">
-                        <button>Left</button>
-                        <button>Right</button>
+                        <button><img th:src="@{images/left-arrow.png}" src="../static/images/left-arrow.png"></button>
+                        <button><img  th:src="@{images/right-arrow.png}" src="../static/images/right-arrow.png"></button>
                     </div>
                 </div>
             </div>
