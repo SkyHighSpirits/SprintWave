@@ -147,9 +147,9 @@ INSERT INTO technicaltasks
 	(userstory_id, technicaltask_name, technicaltask_description, technicaltask_released, technicaltask_points, technicaltask_status, sprint_id)
 VALUES
     (1, 'TEC001','Earn Money', false, 32, 1, 1),
-    (1, 'TEC002','Buy beer', false, 32, 1, 1),
-    (2, 'TEC003','Buy WD40', true, 30, 1, 2),
-    (2, 'TEC004','Use WD40 on rusty parts of the bike', true, 21, 1, 2),
-    (3, 'TEC005','Eat Well', false, 25, 1, 3),
-    (3, 'TEC006','Sharpen Teeth', false, 25, 1, 3),
+    (1, 'TEC002','Buy beer', false, 32, 2, 1),
+    (2, 'TEC003','Buy WD40', true, 30, 2, 2),
+    (2, 'TEC004','Use WD40 on rusty parts of the bike', true, 21, 3, 2),
+    (3, 'TEC005','Eat Well', false, 25, 3, 3),
+    (3, 'TEC006','Sharpen Teeth', false, 25, 3, 3),
     (3, 'TEC007','Chew Wood', false, 50, 1, 1);
