@@ -18,19 +18,6 @@
         <div class="sprint-column">
             <div class="sprint-header">Sprint Backlog</div>
 
-<!--            <div class="sprint-item" th:each="userstory : ${userstoriesinproject}">
-                <h3>Points: </h3>
-                <h2>As a user I want a nice style so that I can be positive</h2>
-                <div class="sprint-item-content">
-                    <p>Users currently don't feel attracted to the design. We need to change that! Hint: Turn blue into green.</p>
-                    <div class="sprint-item-buttons">
-                        <button>Left</button>
-                        <button>Right</button>
-                    </div>
-                </div>
-            </div>
-            
--->
             <div class="sprint-item" th:each="userstory : ${userstoriesinproject}">
                 <h3 th:text="${userstory.points}"></h3>
                 <h2 th:text="${userstory.name}"></h2>
@@ -38,7 +25,7 @@
                     <p th:text="${userstory.description}"></p>
                     <div class="sprint-item-buttons">
                         <button><img th:src="@{images/left-arrow.png}" src="../static/images/left-arrow.png"></button>
-                        <button><img  th:src="@{images/right-arrow.png}" src="../static/images/right-arrow.png"></button>
+                        <button><img th:src="@{images/right-arrow.png}" src="../static/images/right-arrow.png"></button>
                     </div>
                 </div>
             </div>
@@ -49,8 +36,8 @@
                 <div class="sprint-item-content">
                     <p th:text="${technicaltask.description}">Description</p>
                     <div class="sprint-item-buttons">
-                        <button><img th:src="@{images/left-arrow.png}" src="../static/images/left-arrow.png"></button>
-                        <button><img  th:src="@{images/right-arrow.png}" src="../static/images/right-arrow.png"></button>
+                        <a th:href="@{'/moveuserstoryleft' + ${technicaltask.getStatus()}}"><img th:src="@{images/left-arrow.png}" src="../static/images/left-arrow.png"></a>
+                        <a th:href="@{'/moveuserstoryright' + ${technicaltask.getStatus()}}"><img  th:src="@{images/right-arrow.png}" src="../static/images/right-arrow.png"></a>
                     </div>
                 </div>
             </div>
@@ -80,9 +67,8 @@
                 <div class="sprint-item-content">
                     <p th:text="${technicaltask.description}"></p>
                     <div class="sprint-item-buttons">
-                        <button><img th:src="@{images/left-arrow.png}" src="../static/images/left-arrow.png"></button>
-                        <button><img  th:src="@{images/right-arrow.png}" src="../static/images/right-arrow.png"></button>
-                    </div>
+                        <a th:href="@{'/moveuserstoryleft' + ${technicaltask.getStatus()}}"><img th:src="@{images/left-arrow.png}" src="../static/images/left-arrow.png"></a>
+                        <a th:href="@{'/moveuserstoryright' + ${technicaltask.getStatus()}}"><img  th:src="@{images/right-arrow.png}" src="../static/images/right-arrow.png"></a>                    </div>
                 </div>
             </div>
             
@@ -110,8 +96,8 @@
                 <div class="sprint-item-content">
                     <p th:text="${technicaltask.description}"></p>
                     <div class="sprint-item-buttons">
-                        <button><img th:src="@{images/left-arrow.png}" src="../static/images/left-arrow.png"></button>
-                        <button><img  th:src="@{images/right-arrow.png}" src="../static/images/right-arrow.png"></button>
+                        <a th:href="@{'/moveuserstoryleft' + ${technicaltask.getStatus()}}"><img th:src="@{images/left-arrow.png}" src="../static/images/left-arrow.png"></a>
+                        <a th:href="@{'/moveuserstoryright' + ${technicaltask.getStatus()}}"><img  th:src="@{images/right-arrow.png}" src="../static/images/right-arrow.png"></a>
                     </div>
                 </div>
             </div>
@@ -129,7 +115,8 @@
                     <p th:text="${userstory.description}"></p>
                     <div class="sprint-item-buttons">
                         <button><img th:src="@{images/left-arrow.png}" src="../static/images/left-arrow.png"></button>
-                        <button><img  th:src="@{images/right-arrow.png}" src="../static/images/right-arrow.png"></button>                    </div>
+                        <button><img  th:src="@{images/right-arrow.png}" src="../static/images/right-arrow.png"></button>
+                    </div>
                 </div>
             </div>
 
@@ -139,8 +126,8 @@
                 <div class="sprint-item-content">
                     <p th:text="${technicaltask.description}"></p>
                     <div class="sprint-item-buttons">
-                        <button><img th:src="@{images/left-arrow.png}" src="../static/images/left-arrow.png"></button>
-                        <button><img  th:src="@{images/right-arrow.png}" src="../static/images/right-arrow.png"></button>
+                        <a th:href="@{'/moveuserstoryleft' + ${technicaltask.getStatus()}}"><img th:src="@{images/left-arrow.png}" src="../static/images/left-arrow.png"></a>
+                        <a th:href="@{'/moveuserstoryright' + ${technicaltask.getStatus()}}"><img  th:src="@{images/right-arrow.png}" src="../static/images/right-arrow.png"></a>
                     </div>
                 </div>
             </div>
