@@ -139,6 +139,34 @@ public class UserstoriesRepository {
         }
     }
 
+    public void updateUserstoryWithIntStatus(Userstory userstory, int status)
+    {
+        try {
+            //Oprette forbindelse til database
+            Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
+            //SQL statement
+            String SQL_QUERY = "UPDATE userstories SET userstory_name = ?, userstory_description = ?, userstory_released = ?, userstory_points = ?, userstory_status = ?, sprint_id = ? WHERE userstory_id = ?";
+            //PreparedStatement
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
+            //set parameters
+            preparedStatement.setString(1, userstory.getName());
+            preparedStatement.setString(2, userstory.getDescription());
+            preparedStatement.setBoolean(3, userstory.isReleased());
+            preparedStatement.setInt(4, userstory.getPoints());
+            preparedStatement.setInt(5, status);
+            preparedStatement.setInt(6, userstory.getSprint_id());
+            preparedStatement.setInt(7, userstory.getId());
+
+            //ExecuteStatement
+            preparedStatement.executeUpdate();
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+            System.out.println("Did not update the userstory");
+        }
+    }
+
     public void deleteUserstory(int deleteUserstoryID){
         try {
             //Oprette forbindelse til database

@@ -537,17 +537,43 @@ public class MainController {
         return "sprints";
     }
 
-    @PostMapping("/moveleft")
-    public String moveTaskOrUserstoryLeft()
+    @PostMapping("/moveuserstoryleft")
+    public String moveOrUserstoryLeft(@RequestParam("userstoryid") int UserstoryID)
     {
         //TODO: Make functionality of moving tasks or userstories left on board
+        Userstory movingUserstory = userstoriesRepository.getSpecificUserstoryByID(UserstoryID);
+        int status = DataHandler.convertStatusToInt(movingUserstory.getStatus());
+        userstoriesRepository.updateUserstoryWithIntStatus(movingUserstory, status--);
         return "redirect:/sprints";
     }
 
-    @PostMapping("/moveright")
-    public String moveTaskOrUserstoryRight()
+    @PostMapping("/moveuserstoryright")
+    public String moveUserstoryRight(@RequestParam("userstoryid") int UserstoryID)
     {
         //TODO: Make functionality of moving tasks or userstories right on board
+        Userstory movingUserstory = userstoriesRepository.getSpecificUserstoryByID(UserstoryID);
+        int status = DataHandler.convertStatusToInt(movingUserstory.getStatus());
+        userstoriesRepository.updateUserstoryWithIntStatus(movingUserstory, status++);
+        return "redirect:/sprints";
+    }
+
+    @PostMapping("/movetechnicaltaskleft")
+    public String moveTechnicaltaskLeft(@RequestParam("technicaltaskid") int TechnicaltaskID)
+    {
+        //TODO: Make functionality of moving tasks or userstories left on board
+        TechnicalTask movingTechnicalTask = technicalTaskRepository.getSpecificTechnicalTaskFromID(TechnicaltaskID);
+        int status = DataHandler.convertStatusToInt(movingTechnicalTask.getStatus());
+        userstoriesRepository.updateUserstoryWithIntStatus(movingTechnicalTask, status--);
+        return "redirect:/sprints";
+    }
+
+    @PostMapping("/movetechnicaltaskright")
+    public String moveTechnicaltaskRight(@RequestParam("technicaltaskid") int TechnicaltaskID)
+    {
+        //TODO: Make functionality of moving tasks or userstories right on board
+        TechnicalTask movingTechnicalTask = technicalTaskRepository.getSpecificTechnicalTaskFromID(TechnicaltaskID);
+        int status = DataHandler.convertStatusToInt(movingTechnicalTask.getStatus());
+        userstoriesRepository.updateUserstoryWithIntStatus(movingTechnicalTask, status++);
         return "redirect:/sprints";
     }
     /* END OF SPRINT BACKLOG MAPPINGS BY NICOLAI */
