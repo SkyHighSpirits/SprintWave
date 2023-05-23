@@ -430,7 +430,7 @@ public class MainController {
 
         //create an empty sprint if the sprint does not exist allready
         Project currentProject = (Project) session.getAttribute("currentproject");
-        if(sprintRepository.getSprintByIDAndProjectID(1, currentProject.getProjectID()) != null)
+        if(sprintRepository.getSprintByIDAndProjectID(1, currentProject.getProjectID()) == null)
         {
             Sprint defaultSprint = new Sprint(1, "SP001", currentProject.getProjectID());
             sprintRepository.createSprint(defaultSprint);
@@ -467,6 +467,7 @@ public class MainController {
 
     /* END OF USERSTORY MAPPINGS BY NICOLAI */
 
+    /*
     @PostMapping("/createsprint")
     public String createDefaultSprintIfNotExists(@RequestParam("spint_id") int newSprintID, @RequestParam("spint_name") String newSprintName, HttpSession session)
     {
@@ -475,6 +476,8 @@ public class MainController {
         sprintRepository.createSprint(newSprint);
         return "redirect:/backlog/" + currentProject.getProjectID();
     }
+    */
+
 
     /* START OF SPRINT BACKLOG MAPPINGS BY NICOLAI */
 
@@ -526,6 +529,10 @@ public class MainController {
             for(TechnicalTask technicalTask: technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstory.getId()))
             {
                 if(technicalTask.getStatus() != Status.done);
+                {
+                    userstoryIsReleased = false;
+                }
+                if((technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstory.getId()).size() < 1))
                 {
                     userstoryIsReleased = false;
                 }
