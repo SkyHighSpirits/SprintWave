@@ -818,6 +818,7 @@ div {
     margin: 0 auto; /* Center horizontally */
     display: flex;
     margin-bottom: 20px; /* Add bottom margin */
+    gap: 10px;
 
 }
 
@@ -829,6 +830,8 @@ div {
     flex-direction: column;
     position: relative; /* Establishes a positioning context for absolute positioning */
     padding-bottom: 20px; /* Add some padding to the bottom */
+    background-color: #F4F5F7; /* Add light grey background color */
+
 }
 
 .sprint-footer {
@@ -842,6 +845,8 @@ div {
     height: 300px;
     display: flex;
     flex-direction: column;
+    margin: 10px 10px 10px 10px;
+    background-color: #FFFFFF;
 }
 
 .sprint-item-content {
