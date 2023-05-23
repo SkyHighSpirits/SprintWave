@@ -171,6 +171,34 @@ public class TechnicalTaskRepository {
         }
     }
 
+    public void updateTechnicalTaskUsingIntStatus(TechnicalTask technicalTask, int status)
+    {
+        try {
+            //Oprette forbindelse til database
+            Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
+            //SQL statement
+            String SQL_QUERY = "UPDATE technicaltasks SET userstory_id = ? ,technicaltask_name = ?, technicaltask_description = ?, technicaltask_released = ?, technicaltask_points = ?, technicaltask_status = ?, sprint_id = ? WHERE technicaltask_id = ?";
+            //PreparedStatement
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
+            //set parameters
+            preparedStatement.setInt(1, technicalTask.getUserstory_id());
+            preparedStatement.setString(2, technicalTask.getName());
+            preparedStatement.setString(3, technicalTask.getDescription());
+            preparedStatement.setBoolean(4, technicalTask.isReleased());
+            preparedStatement.setInt(5, technicalTask.getPoints());
+            preparedStatement.setInt(6, status);
+            preparedStatement.setInt(7, technicalTask.getId());
+            preparedStatement.setInt(8, technicalTask.getSprint_id());
+            //ExecuteStatement
+            preparedStatement.executeUpdate();
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+            System.out.println("Did not update the epic");
+        }
+    }
+
     public void deleteTechnicalTask(int deleteTaskId){
         try {
             //Oprette forbindelse til database
