@@ -32,6 +32,7 @@ public class PasswordHashing {
         }
         return "";
     }
+
 }
 
     /*public String doHash(String password) {
