@@ -160,8 +160,30 @@ public class TechnicalTaskRepository {
             preparedStatement.setInt(5, technicalTask.getPoints());
             preparedStatement.setInt(6, DataHandler.convertStatusToInt(technicalTask.getStatus()));
             preparedStatement.setInt(7, technicalTask.getId());
-            System.out.println("Sprint id: " + technicalTask.getSprint_id());
             preparedStatement.setInt(8, technicalTask.getSprint_id());
+            //ExecuteStatement
+            preparedStatement.executeUpdate();
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+            System.out.println("Did not update the epic");
+        }
+    }
+
+    public void updateTechnicalTaskReleasedAndStatus(TechnicalTask technicalTask)
+    {
+        try {
+            //Oprette forbindelse til database
+            Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
+            //SQL statement
+            String SQL_QUERY = "UPDATE technicaltasks SET technicaltask_released = ?, technicaltask_status = ? WHERE technicaltask_id = ?";
+            //PreparedStatement
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
+            //set parameters
+            preparedStatement.setBoolean(1, technicalTask.isReleased());
+            preparedStatement.setInt(2, DataHandler.convertStatusToInt(technicalTask.getStatus()));
+            preparedStatement.setInt(3, technicalTask.getId());
             //ExecuteStatement
             preparedStatement.executeUpdate();
         }

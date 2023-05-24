@@ -518,21 +518,24 @@ public class MainController {
         //TODO: Find all technicalTasks for a given project and add to a model - DONE
         for(Userstory userstory: userstoriesInProject)
         {
-            //TODO: If a userstory is released, then all technicaltasks are released
+
+            //TODO: If a userstory is released, then all technicaltasks are released - Test
             if(userstory.getStatus() == Status.done)
             {
                 for(TechnicalTask technicalTask: technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstory.getId()))
                 {
+
                     technicalTask.setStatus(Status.done);
                     technicalTask.setReleased(true);
-                    technicalTaskRepository.updateTechnicalTask(technicalTask);
+
+                    technicalTaskRepository.updateTechnicalTaskReleasedAndStatus(technicalTask);
                 }
             }
             //TODO: If all technicaltasks are done, userstory is released - TEST
             boolean userstoryIsReleased = true;
             for(TechnicalTask technicalTask: technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstory.getId()))
             {
-                if(technicalTask.getStatus() != Status.done);
+                if(technicalTask.getStatus() != Status.done)
                 {
                     userstoryIsReleased = false;
                 }
@@ -551,6 +554,8 @@ public class MainController {
             //As technicaltask belong to a userstory within the current project ID, we put all technicaltasks for the userstory into the arraylist
             technicaltasksInProject.addAll(technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstory.getId()));
         }
+
+
         //DONE
         model.addAttribute("technicaltasksinproject", technicaltasksInProject);
 
@@ -563,7 +568,14 @@ public class MainController {
         //TODO: Make functionality of moving tasks or userstories left on board
         Userstory movingUserstory = userstoriesRepository.getSpecificUserstoryByID(userstoryID);
         int status = DataHandler.convertStatusToInt(movingUserstory.getStatus());
-        status--;
+        if(status == 1)
+        {
+            //Do nothing
+        }
+        else
+        {
+            status--;
+        }
         userstoriesRepository.updateUserstoryWithIntStatus(movingUserstory, status);
         return "redirect:/sprints";
     }
@@ -574,7 +586,14 @@ public class MainController {
         //TODO: Make functionality of moving tasks or userstories right on board
         Userstory movingUserstory = userstoriesRepository.getSpecificUserstoryByID(userstoryID);
         int status = DataHandler.convertStatusToInt(movingUserstory.getStatus());
-        status++;
+        if(status == 4)
+        {
+            //Do nothing
+        }
+        else
+        {
+            status++;
+        }
         userstoriesRepository.updateUserstoryWithIntStatus(movingUserstory, status);
         return "redirect:/sprints";
     }
@@ -585,7 +604,14 @@ public class MainController {
         //TODO: Make functionality of moving tasks or userstories left on board
         TechnicalTask movingTechnicalTask = technicalTaskRepository.getSpecificTechnicalTaskFromID(TechnicaltaskID);
         int status = DataHandler.convertStatusToInt(movingTechnicalTask.getStatus());
-        status--;
+        if(status == 1)
+        {
+            //Do nothing
+        }
+        else
+        {
+            status--;
+        }
         technicalTaskRepository.updateTechnicalTaskUsingIntStatus(movingTechnicalTask, status);
         return "redirect:/sprints";
     }
@@ -596,7 +622,14 @@ public class MainController {
         //TODO: Make functionality of moving tasks or userstories right on board
         TechnicalTask movingTechnicalTask = technicalTaskRepository.getSpecificTechnicalTaskFromID(TechnicaltaskID);
         int status = DataHandler.convertStatusToInt(movingTechnicalTask.getStatus());
-        status++;
+        if(status == 4)
+        {
+            //Do nothing
+        }
+        else
+        {
+            status++;
+        }
         technicalTaskRepository.updateTechnicalTaskUsingIntStatus(movingTechnicalTask, status);
         return "redirect:/sprints";
     }
