@@ -622,6 +622,7 @@ public class MainController {
         else if(status == 4)
         {
             status--;
+            movingTechnicalTask.setReleased(false);
             Userstory parentUserstory = userstoriesRepository.getSpecificUserstoryByID(movingTechnicalTask.getUserstory_id());
             parentUserstory.setReleased(false);
             userstoriesRepository.updateUserstoryWithIntStatus(parentUserstory, status);
