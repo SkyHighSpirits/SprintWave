@@ -3,6 +3,7 @@ package com.example.sprintwave.utility;
 import com.example.sprintwave.model.*;
 import com.example.sprintwave.repository.WorkspaceRepository;
 
+import java.sql.Array;
 import java.util.ArrayList;
 
 public class DataHandler {
@@ -76,7 +77,8 @@ public class DataHandler {
         return status;
     }
 
-    public static ArrayList<TechnicalTask> divideArrayIntoStatusSpecificArrays(ArrayList<TechnicalTask> allTechnicalTasks, Status status)
+
+    public ArrayList<TechnicalTask> divideArrayIntoStatusSpecificArrays(ArrayList<TechnicalTask> allTechnicalTasks, String status, Sprint sprint)
     {
         // TODO: If we have the time, make this method more efficient and shorter
         ArrayList<TechnicalTask> newListOfTasksForSpecificStatus = new ArrayList<>();
@@ -84,33 +86,33 @@ public class DataHandler {
         {
             switch (status)
             {
-                case sprintbacklog:
+                case "sprintbacklog":
                 {
-                    if(technicalTask.getStatus() == Status.sprintbacklog)
+                    if(technicalTask.getStatus() == Status.sprintbacklog && technicalTask.getSprint_id() == sprint.getSprintId())
                     {
                         newListOfTasksForSpecificStatus.add(technicalTask);
                     }
                     break;
                 }
-                case doing:
+                case "doing":
                 {
-                    if(technicalTask.getStatus() == Status.doing)
+                    if(technicalTask.getStatus() == Status.doing && technicalTask.getSprint_id() == sprint.getSprintId())
                     {
                         newListOfTasksForSpecificStatus.add(technicalTask);
                     }
                     break;
                 }
-                case testing:
+                case "testing":
                 {
-                    if(technicalTask.getStatus() == Status.testing)
+                    if(technicalTask.getStatus() == Status.testing && technicalTask.getSprint_id() == sprint.getSprintId())
                     {
                         newListOfTasksForSpecificStatus.add(technicalTask);
                     }
                     break;
                 }
-                case done:
+                case "done":
                 {
-                    if(technicalTask.getStatus() == Status.done)
+                    if(technicalTask.getStatus() == Status.done && technicalTask.getSprint_id() == sprint.getSprintId())
                     {
                         newListOfTasksForSpecificStatus.add(technicalTask);
                     }
@@ -122,10 +124,9 @@ public class DataHandler {
                 }
             }
         }
-        System.out.println("Created new list of technicaltasks with status: " + status.toString());
-        System.out.println("Status of element 1 is: " + newListOfTasksForSpecificStatus.get(1).getStatus().toString());
         return newListOfTasksForSpecificStatus;
     }
+
 
     public static int convertStatusToInt(Status status)
     {

@@ -8,16 +8,16 @@ public class Userstory {
     private String description;
     private boolean released;
     private int points;
-
-
     private Status status;
+
+    private int sprint_id;
 
     public Userstory()
     {
 
     }
 
-    public Userstory(int id, int project_id, String name, String description, boolean released, int points, Status status) {
+    public Userstory(int id, int project_id, String name, String description, boolean released, int points, Status status, int sprint_id) {
         this.id = id;
         this.project_id = project_id;
         this.name = name;
@@ -25,6 +25,7 @@ public class Userstory {
         this.released = released;
         this.points = points;
         this.status = status;
+        this.sprint_id = sprint_id;
     }
 
     public String getStatusAsString()
@@ -86,6 +87,15 @@ public class Userstory {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+
+    public int getSprint_id() {
+        return sprint_id;
+    }
+
+    public void setSprint_id(int sprint_id) {
+        this.sprint_id = sprint_id;
     }
 
     @Override

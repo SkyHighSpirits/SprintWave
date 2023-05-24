@@ -44,33 +44,6 @@ public class ProjectRepository
         }
     }
 
-    /*
-    public Project getProjectByID(int projectID)
-    {
-        Project foundProject = new Project();
-        foundProject.setProjectID(projectID);
-        try
-        {
-
-            Connection connection = DriverManager.getConnection(DB_HOSTNAME,DB_USERNAME,DB_PASSWORD);
-            Statement statement = connection.createStatement();
-            final String SQL_QUERY = "SELECT * FROM projects WHERE project_id = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
-            preparedStatement.setInt(1, foundProject.getProjectID());
-            //execute statement
-            ResultSet resultSet = preparedStatement.executeQuery();
-            //Få et epic ud fra databasen
-
-        } catch (SQLException e)
-        {
-            System.out.println("Could not query database");
-            e.printStackTrace();
-        }
-
-    }
-
-     */
-
     public List<Project> findProjectByWorkspaceId(int id){
         List<Project> workspaceProjects = new ArrayList<>();
 

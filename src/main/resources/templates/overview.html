@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
+<body th:if="${session.currentuser}">
 
 <div th:replace="fragments/navbar :: navbarthree"></div>
 
@@ -40,7 +40,7 @@
   <div class="boxfour">
     <h3>Sprints</h3>
     <p class="description-text">A sprint refers to a fixed timebox or iteration during which a specific amount of work is completed. It is a time-bound period, typically lasting between one to four weeks, during which the Scrum team focuses on delivering a potentially shippable increment of the product.</p>
-    <a href="#" class="btn">Go to</a>
+    <a th:href="@{'/sprints'}" class="btn">Go to</a>
   </div>
 </div>
 

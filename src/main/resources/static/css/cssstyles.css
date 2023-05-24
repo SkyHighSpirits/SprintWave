@@ -144,11 +144,13 @@ input[type=text] {
     border-radius: 5px;
 }
 
-.navbar-one{
+.navbar-one {
     background: #ffffff;
     height: 80px;
     width: 100%;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2); /* Adjust the values to control the shadow effect */
 }
+
 
 @media(max-width: 767px){
     .navbar-one{
@@ -435,7 +437,6 @@ label .logo-link{
 .funcNonFunctext{
     color: white;
 }
-
 
 .boxtwo{
     width: 650px;
@@ -815,6 +816,113 @@ p{
 
 /* END OF APP FRONT PAGE STYLING */
 
+/* Start of SPRINT PAGE styling */
+
+
+.sprint-board {
+    width: 80%;
+    margin: 0 auto; /* Center horizontally */
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px; /* Add bottom margin */
+    gap: 10px;
+
+}
+
+
+.sprint-column {
+    flex: 1; /* Occupies equal space within sprint-board */
+    box-sizing: border-box; /* Include padding and border in width calculation */
+    display: flex;
+    flex-direction: column;
+    position: relative; /* Establishes a positioning context for absolute positioning */
+    padding-bottom: 20px; /* Add some padding to the bottom */
+    background-color: #F4F5F7; /* Add light grey background color */
+    border-radius: 5px;
+
+}
+
+.sprint-header {
+    padding: 10px; /* Add some padding */
+    font-size: 18px; /* Increase the font size */
+    font-weight: bold; /* Add bold font weight */
+    text-align: center; /* Center the text horizontally */
+}
+
+.sprint-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%; /* Make the footer stretch across the entire column */ 
+    font-size: 18px; /* Increase the font size */
+    font-weight: bold; /* Add bold font weight */
+    text-align: center; /* Center the text horizontally */
+}
+
+.sprint-item {
+    position: relative;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 10px 10px 10px;
+    background-color: #FFFFFF;
+    border-radius: 5px; /* Add rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a small shadow */
+    padding: 5px 5px 5px 5px;
+}
+
+.sprint-item-content {
+    flex: 1;
+    position: relative;
+    padding-bottom: 20px; /* Add bottom padding to create space between <p> and buttons */
+}
+
+.sprint-item-buttons {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    right: 10px;
+}
+
+.moveright input[type="submit"]
+ {
+    background-image: url(../images/right-arrow.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    border: none;
+    width: 29px; /* change width and height to the size of the image */
+    height: 29px;
+    color: transparent;
+    text-indent: 100%; /* hide the submit button text */
+    white-space: nowrap;
+}
+
+.moveright input[type="submit"]:hover
+{
+    border: solid;
+}
+
+.moveleft input[type="submit"]
+{
+    background-image: url(../images/left-arrow.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    border: none;
+    width: 29px; /* change width and height to the size of the image */
+    height: 29px;
+    color: transparent;
+    text-indent: 100%; /* hide the submit button text */
+    white-space: nowrap;
+}
+
+.moveleft input[type="submit"]:hover
+{
+    border: solid;
+}
 
 
 
+/* End of SPRINT PAGE styling */

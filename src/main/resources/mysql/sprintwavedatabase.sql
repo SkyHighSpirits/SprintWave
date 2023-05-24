@@ -10,8 +10,10 @@ DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS projects;
 DROP TABLE IF EXISTS epics;
 DROP TABLE IF EXISTS requirements;
-DROP TABLE IF EXISTS technicaltasks;
+DROP TABLE IF EXISTS sprints;
 DROP TABLE IF EXISTS userstories;
+DROP TABLE IF EXISTS technicaltasks;
+
 
 /* Create tables to database: Workspaces, Users, Projects, Epics. */
 CREATE TABLE workspaces(
@@ -63,6 +65,14 @@ CREATE TABLE requirements(
 
 );
 
+CREATE TABLE sprints (
+                         sprint_id INT NOT NULL,
+                         sprint_name VARCHAR(255) NOT NULL,
+                         project_id INT NOT NULL,
+                         PRIMARY KEY (sprint_id, project_id),
+                         FOREIGN KEY (project_id) REFERENCES projects (project_id) ON DELETE CASCADE
+);
+
 CREATE TABLE userstories(
                             userstory_id INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
                             project_id INT NOT NULL,
@@ -71,7 +81,9 @@ CREATE TABLE userstories(
                             userstory_released BOOLEAN NOT NULL,
                             userstory_points INT NOT NULL,
                             userstory_status INT NOT NULL,
-                            FOREIGN KEY(project_id) REFERENCES projects(project_id)
+                            sprint_id INT,
+                            FOREIGN KEY(project_id) REFERENCES projects(project_id),
+                            FOREIGN KEY(sprint_id) REFERENCES sprints(sprint_id)
 );
 
 CREATE TABLE technicaltasks(
@@ -82,7 +94,9 @@ CREATE TABLE technicaltasks(
                                technicaltask_released BOOLEAN NOT NULL,
                                technicaltask_points INT NOT NULL,
                                technicaltask_status INT NOT NULL,
-                               FOREIGN KEY(userstory_id) REFERENCES userstories(userstory_id) ON DELETE CASCADE
+                               sprint_id INT,
+                               FOREIGN KEY(userstory_id) REFERENCES userstories(userstory_id) ON DELETE CASCADE,
+                               FOREIGN KEY(sprint_id) REFERENCES sprints(sprint_id)
 );
 
 
@@ -101,34 +115,41 @@ VALUES
 
 
 INSERT INTO projects
-(project_id, project_name, project_description, project_owner, project_status, project_deadline, workspace_id)
+	(project_id, project_name, project_description, project_owner, project_status, project_deadline, workspace_id)
 VALUES
     (1,'Develop CRM system for sales team', 'A sales CRM software that helps manage customer relationships and sales pipelines','Steffen Grøn Andersen', true, '2023-05-30',1),
-    (2,'Migrate legacy database to cloud-based platform', 'Move existing databases to the cloud for better scalability and accessibility.','Steffen Grøn Andersen', true, '2023-05-30',1),
-    (3,'Implement cybersecurity measures for client portal', 'Implement security measures to protect client data in online portals.','Steffen Grøn Andersen', true, '2023-05-30',1),
-    (4,'Enhance website user experience with responsive design', 'Optimize website for mobile devices and improve user experience.','Steffen Grøn Andersen', true, '2023-05-30',1),
-    (5,'Build custom e-commerce platform with inventory management', 'Develop a custom platform for online sales, order processing, and inventory management.','Steffen Grøn Andersen', true, '2023-05-30',1);
+    (2,'Migrate legacy database to cloud-based platform', 'Move existing databases to the cloud for better scalability and accessibility.','Steffen Grøn Andersen', false, '2023-05-30',1),
+    (3,'Implement cybersecurity measures for client portal', 'Implement security measures to protect client data in online portals.','Steffen Grøn Andersen', false, '2023-05-30',1);
+
 
 INSERT INTO epics
-(project_id, epic_name, epic_description)
+	(project_id, epic_name, epic_description)
 VALUES
-    (1, 'EP003', 'Deploy feature Epics'),
-    (1, 'EP004', 'Deploy feature projects');
+    (1, 'EP001: User Management', 'Enable the creation, authentication, and management of user accounts with role-based access control for the CRM system.'),
+    (1, 'EP002: Lead Management', 'Implement features to capture, track, and qualify leads, allowing the sales team to efficiently manage their pipeline and prioritize opportunities.'),
+    (1, 'EP003: Reporting and Analytics', 'Develop comprehensive reporting and analytics capabilities, enabling the sales team to gain valuable insights and make data-driven decisions for improved performance.');
+
+INSERT INTO sprints
+	(sprint_id, sprint_name, project_id)
+VALUES
+    (1,'SP001', 1),
+    (2,'SP002', 1),
+    (3,'SP003', 1);
 
 INSERT INTO userstories
-(project_id, userstory_name, userstory_description, userstory_released, userstory_points, userstory_status)
+	(project_id, userstory_name, userstory_description, userstory_released, userstory_points, userstory_status, sprint_id)
 VALUES
-    (1, 'US001', 'As a drunkard I want to be able to buy beer, so that I can stay drunk', false, 64, 1),
-    (1, 'US002', 'As a cyclist I want to be able to maintain my bike, so that I can keep using it', true, 51, 1),
-    (1, 'US003', 'As a beaver I want to be able to chew wood, so that I can create my dam', false, 100, 1);
+    (1, 'US001', 'As a drunkard I want to be able to buy beer, so that I can stay drunk', false, 64, 1, 1),
+    (1, 'US002', 'As a cyclist I want to be able to maintain my bike, so that I can keep using it', true, 51, 1, 1),
+    (1, 'US003', 'As a beaver I want to be able to chew wood, so that I can create my dam', false, 100, 1, 1);
 
 INSERT INTO technicaltasks
-(userstory_id, technicaltask_name, technicaltask_description, technicaltask_released, technicaltask_points, technicaltask_status)
+	(userstory_id, technicaltask_name, technicaltask_description, technicaltask_released, technicaltask_points, technicaltask_status, sprint_id)
 VALUES
-    (1, 'TEC001','Earn Money', false, 32, 1),
-    (1, 'TEC002','Buy beer', false, 32, 1),
-    (2, 'TEC003','Buy WD40', true, 30, 1),
-    (2, 'TEC004','Use WD40 on rusty parts of the bike', true, 21, 1),
-    (3, 'TEC005','Eat Well', false, 25, 1),
-    (3, 'TEC006','Sharpen Teeth', false, 25, 1),
-    (3, 'TEC007','Chew Wood', false, 50, 1);
+    (1, 'TEC001','Earn Money', false, 32, 1, 1),
+    (1, 'TEC002','Buy beer', false, 32, 2, 1),
+    (2, 'TEC003','Buy WD40', true, 30, 2, 2),
+    (2, 'TEC004','Use WD40 on rusty parts of the bike', true, 21, 3, 2),
+    (3, 'TEC005','Eat Well', false, 25, 3, 3),
+    (3, 'TEC006','Sharpen Teeth', false, 25, 3, 3),
+    (3, 'TEC007','Chew Wood', false, 50, 1, 1);
