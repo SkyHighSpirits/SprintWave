@@ -563,7 +563,7 @@ public class MainController {
     }
 
     @PostMapping("/moveuserstoryleft")
-    public String moveOrUserstoryLeft(@RequestParam("userstoryid") int userstoryID)
+    public String moveUserstoryLeft(@RequestParam("userstoryid") int userstoryID)
     {
         //TODO: Make functionality of moving tasks or userstories left on board
         Userstory movingUserstory = userstoriesRepository.getSpecificUserstoryByID(userstoryID);
@@ -572,11 +572,22 @@ public class MainController {
         {
             //Do nothing
         }
+        else if(status == 4)
+        {
+            status--;
+            for(TechnicalTask technicalTask: technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstoryID))
+            {
+                technicalTask.setReleased(false);
+                technicalTask.setStatus(DataHandler.convertIntToStatus(status));
+                technicalTaskRepository.updateTechnicalTaskReleasedAndStatus(technicalTask);
+            }
+        }
         else
         {
             status--;
         }
         userstoriesRepository.updateUserstoryWithIntStatus(movingUserstory, status);
+
         return "redirect:/sprints";
     }
 
@@ -607,6 +618,13 @@ public class MainController {
         if(status == 1)
         {
             //Do nothing
+        }
+        else if(status == 4)
+        {
+            status--;
+            Userstory parentUserstory = userstoriesRepository.getSpecificUserstoryByID(movingTechnicalTask.getUserstory_id());
+            parentUserstory.setReleased(false);
+            userstoriesRepository.updateUserstoryWithIntStatus(parentUserstory, status);
         }
         else
         {
