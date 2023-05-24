@@ -879,6 +879,44 @@ p{
     right: 10px;
 }
 
+.moveright input[type="submit"]
+ {
+    background-image: url(../images/right-arrow.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    border: none;
+    width: 29px; /* change width and height to the size of the image */
+    height: 29px;
+    color: transparent;
+    text-indent: 100%; /* hide the submit button text */
+    white-space: nowrap;
+}
+
+.moveright input[type="submit"]:hover
+{
+    border: solid;
+}
+
+.moveleft input[type="submit"]
+{
+    background-image: url(../images/left-arrow.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    border: none;
+    width: 29px; /* change width and height to the size of the image */
+    height: 29px;
+    color: transparent;
+    text-indent: 100%; /* hide the submit button text */
+    white-space: nowrap;
+}
+
+.moveleft input[type="submit"]:hover
+{
+    border: solid;
+}
+
 
 
 /* End of SPRINT PAGE styling */

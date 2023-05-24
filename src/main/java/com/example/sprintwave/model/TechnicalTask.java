@@ -5,8 +5,8 @@ public class TechnicalTask extends Userstory{
 
     private int userstory_id;
 
-    public TechnicalTask(int id, int userstory_id, String name, String description, boolean released, int points, Status status) {
-        super(id, 0, name, description, released, points, status);
+    public TechnicalTask(int id, int userstory_id, String name, String description, boolean released, int points, Status status, int sprint_id) {
+        super(id, 0, name, description, released, points, status, sprint_id);
         this.userstory_id = userstory_id;
     }
 

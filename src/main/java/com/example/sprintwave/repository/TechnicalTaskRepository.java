@@ -160,6 +160,7 @@ public class TechnicalTaskRepository {
             preparedStatement.setInt(5, technicalTask.getPoints());
             preparedStatement.setInt(6, DataHandler.convertStatusToInt(technicalTask.getStatus()));
             preparedStatement.setInt(7, technicalTask.getId());
+            System.out.println("Sprint id: " + technicalTask.getSprint_id());
             preparedStatement.setInt(8, technicalTask.getSprint_id());
             //ExecuteStatement
             preparedStatement.executeUpdate();
@@ -177,25 +178,20 @@ public class TechnicalTaskRepository {
             //Oprette forbindelse til database
             Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
             //SQL statement
-            String SQL_QUERY = "UPDATE technicaltasks SET userstory_id = ? ,technicaltask_name = ?, technicaltask_description = ?, technicaltask_released = ?, technicaltask_points = ?, technicaltask_status = ?, sprint_id = ? WHERE technicaltask_id = ?";
+            String SQL_QUERY = "UPDATE technicaltasks SET technicaltask_status = ? WHERE technicaltask_id = ?";
             //PreparedStatement
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
             //set parameters
-            preparedStatement.setInt(1, technicalTask.getUserstory_id());
-            preparedStatement.setString(2, technicalTask.getName());
-            preparedStatement.setString(3, technicalTask.getDescription());
-            preparedStatement.setBoolean(4, technicalTask.isReleased());
-            preparedStatement.setInt(5, technicalTask.getPoints());
-            preparedStatement.setInt(6, status);
-            preparedStatement.setInt(7, technicalTask.getId());
-            preparedStatement.setInt(8, technicalTask.getSprint_id());
+            preparedStatement.setInt(1, status);
+            preparedStatement.setInt(2, technicalTask.getId());
+            System.out.println("Sprint id: " + technicalTask.getSprint_id());
             //ExecuteStatement
             preparedStatement.executeUpdate();
         }
         catch(SQLException e)
         {
             e.printStackTrace();
-            System.out.println("Did not update the epic");
+            System.out.println("Did not update the technicaltask");
         }
     }
 

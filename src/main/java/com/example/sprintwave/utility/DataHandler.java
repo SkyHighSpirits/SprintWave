@@ -78,7 +78,7 @@ public class DataHandler {
     }
 
 
-    public ArrayList<TechnicalTask> divideArrayIntoStatusSpecificArrays(ArrayList<TechnicalTask> allTechnicalTasks, Status status, Sprint sprint)
+    public ArrayList<TechnicalTask> divideArrayIntoStatusSpecificArrays(ArrayList<TechnicalTask> allTechnicalTasks, String status, Sprint sprint)
     {
         // TODO: If we have the time, make this method more efficient and shorter
         ArrayList<TechnicalTask> newListOfTasksForSpecificStatus = new ArrayList<>();
@@ -86,7 +86,7 @@ public class DataHandler {
         {
             switch (status)
             {
-                case sprintbacklog:
+                case "sprintbacklog":
                 {
                     if(technicalTask.getStatus() == Status.sprintbacklog && technicalTask.getSprint_id() == sprint.getSprintId())
                     {
@@ -94,7 +94,7 @@ public class DataHandler {
                     }
                     break;
                 }
-                case doing:
+                case "doing":
                 {
                     if(technicalTask.getStatus() == Status.doing && technicalTask.getSprint_id() == sprint.getSprintId())
                     {
@@ -102,7 +102,7 @@ public class DataHandler {
                     }
                     break;
                 }
-                case testing:
+                case "testing":
                 {
                     if(technicalTask.getStatus() == Status.testing && technicalTask.getSprint_id() == sprint.getSprintId())
                     {
@@ -110,7 +110,7 @@ public class DataHandler {
                     }
                     break;
                 }
-                case done:
+                case "done":
                 {
                     if(technicalTask.getStatus() == Status.done && technicalTask.getSprint_id() == sprint.getSprintId())
                     {
@@ -124,8 +124,6 @@ public class DataHandler {
                 }
             }
         }
-        System.out.println("Created new list of technicaltasks with status: " + status.toString());
-        System.out.println("Status of element 1 is: " + newListOfTasksForSpecificStatus.get(1).getStatus().toString());
         return newListOfTasksForSpecificStatus;
     }
 

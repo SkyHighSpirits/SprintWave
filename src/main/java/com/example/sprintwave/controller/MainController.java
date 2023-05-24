@@ -5,6 +5,7 @@ import com.example.sprintwave.repository.*;
 
 import com.example.sprintwave.utility.Calculations;
 import com.example.sprintwave.utility.DataHandler;
+import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -395,7 +396,7 @@ public class MainController {
                              @RequestParam("technicaltask_status") String technicaltask_status,
                              @RequestParam("sprint_id") int sprint_id, HttpSession session)
     {
-        TechnicalTask technicalTask = new TechnicalTask(technicaltask_id, userstory_id, technicaltask_name, technicaltask_description, technicaltask_released, technicaltask_points, DataHandler.convertStringToStatus(technicaltask_status));
+        TechnicalTask technicalTask = new TechnicalTask(technicaltask_id, userstory_id, technicaltask_name, technicaltask_description, technicaltask_released, technicaltask_points, DataHandler.convertStringToStatus(technicaltask_status), sprint_id);
         technicalTask.setSprint_id(sprint_id);
         technicalTaskRepository.updateTechnicalTask(technicalTask);
 
@@ -428,6 +429,8 @@ public class MainController {
         userstory.setReleased(false);
         userstory.setSprint_id(sprint_id);
 
+        System.out.println("Sprint id: " + sprint_id);
+
         //create an empty sprint if the sprint does not exist allready
         Project currentProject = (Project) session.getAttribute("currentproject");
         if(sprintRepository.getSprintByIDAndProjectID(1, currentProject.getProjectID()) == null)
@@ -451,8 +454,9 @@ public class MainController {
                                   @RequestParam("sprint_id") int sprint_id,
                                   HttpSession session)
     {
-        Userstory userstory = new TechnicalTask(userstory_id, project_id, userstory_name, userstory_description, userstory_released, userstory_points, DataHandler.convertStringToStatus(userstory_status));
+        Userstory userstory = new TechnicalTask(userstory_id, project_id, userstory_name, userstory_description, userstory_released, userstory_points, DataHandler.convertStringToStatus(userstory_status), sprint_id);
         userstory.setSprint_id(sprint_id);
+        System.out.println("Sprint id: " + sprint_id);
         userstoriesRepository.updateUserstory(userstory);
 
         return "redirect:/backlog/" + ((Project) session.getAttribute("currentproject")).getProjectID();
@@ -500,7 +504,7 @@ public class MainController {
         model.addAttribute("sprintsinproject", sprintsInProject);
 
         //TODO: Find all userstories for a given project and add to a model - TEST
-        ArrayList<Userstory> relevantUserstories = userstoriesRepository.getAllUserstoriesFromProjectID(project_id);
+        userstoriesInProject = userstoriesRepository.getAllUserstoriesFromProjectID(project_id);
         model.addAttribute("userstoriesinproject",userstoriesInProject);
         System.out.println(userstoriesInProject);
 
@@ -512,7 +516,7 @@ public class MainController {
 
 
         //TODO: Find all technicalTasks for a given project and add to a model - DONE
-        for(Userstory userstory: relevantUserstories)
+        for(Userstory userstory: userstoriesInProject)
         {
             //TODO: If a userstory is released, then all technicaltasks are released
             if(userstory.getStatus() == Status.done)
@@ -554,22 +558,24 @@ public class MainController {
     }
 
     @PostMapping("/moveuserstoryleft")
-    public String moveOrUserstoryLeft(@RequestParam("userstoryid") int UserstoryID)
+    public String moveOrUserstoryLeft(@RequestParam("userstoryid") int userstoryID)
     {
         //TODO: Make functionality of moving tasks or userstories left on board
-        Userstory movingUserstory = userstoriesRepository.getSpecificUserstoryByID(UserstoryID);
+        Userstory movingUserstory = userstoriesRepository.getSpecificUserstoryByID(userstoryID);
         int status = DataHandler.convertStatusToInt(movingUserstory.getStatus());
-        userstoriesRepository.updateUserstoryWithIntStatus(movingUserstory, status--);
+        status--;
+        userstoriesRepository.updateUserstoryWithIntStatus(movingUserstory, status);
         return "redirect:/sprints";
     }
 
     @PostMapping("/moveuserstoryright")
-    public String moveUserstoryRight(@RequestParam("userstoryid") int UserstoryID)
+    public String moveUserstoryRight(@RequestParam("userstoryid") int userstoryID)
     {
         //TODO: Make functionality of moving tasks or userstories right on board
-        Userstory movingUserstory = userstoriesRepository.getSpecificUserstoryByID(UserstoryID);
+        Userstory movingUserstory = userstoriesRepository.getSpecificUserstoryByID(userstoryID);
         int status = DataHandler.convertStatusToInt(movingUserstory.getStatus());
-        userstoriesRepository.updateUserstoryWithIntStatus(movingUserstory, status++);
+        status++;
+        userstoriesRepository.updateUserstoryWithIntStatus(movingUserstory, status);
         return "redirect:/sprints";
     }
 
@@ -579,7 +585,8 @@ public class MainController {
         //TODO: Make functionality of moving tasks or userstories left on board
         TechnicalTask movingTechnicalTask = technicalTaskRepository.getSpecificTechnicalTaskFromID(TechnicaltaskID);
         int status = DataHandler.convertStatusToInt(movingTechnicalTask.getStatus());
-        userstoriesRepository.updateUserstoryWithIntStatus(movingTechnicalTask, status--);
+        status--;
+        technicalTaskRepository.updateTechnicalTaskUsingIntStatus(movingTechnicalTask, status);
         return "redirect:/sprints";
     }
 
@@ -589,7 +596,8 @@ public class MainController {
         //TODO: Make functionality of moving tasks or userstories right on board
         TechnicalTask movingTechnicalTask = technicalTaskRepository.getSpecificTechnicalTaskFromID(TechnicaltaskID);
         int status = DataHandler.convertStatusToInt(movingTechnicalTask.getStatus());
-        userstoriesRepository.updateUserstoryWithIntStatus(movingTechnicalTask, status++);
+        status++;
+        technicalTaskRepository.updateTechnicalTaskUsingIntStatus(movingTechnicalTask, status);
         return "redirect:/sprints";
     }
 
