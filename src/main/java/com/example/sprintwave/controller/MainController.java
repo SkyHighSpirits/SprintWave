@@ -670,8 +670,10 @@ public class MainController {
     }
 
     @GetMapping("/showcreatesprint")
-    public String showCreateSprint()
+    public String showCreateSprint(Model model)
     {
+        Calculations calculator = new Calculations();
+        model.addAttribute("calculator", calculator);
         return "createsprint";
     }
 
