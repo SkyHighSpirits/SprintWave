@@ -20,7 +20,7 @@ class DataHandlerTest {
         String enteredEmail = "localhost@localhost.com";
         String enteredPassword = "123456";
 
-        assertTrue(DataHandler.checkUserInformationMatch(user, enteredEmail, enteredPassword));
+        assertTrue(DataHandler.checkUserInformationMatch(user, enteredPassword, enteredEmail));
     }
 
     @Test
