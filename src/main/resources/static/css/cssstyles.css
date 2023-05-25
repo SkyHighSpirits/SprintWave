@@ -331,6 +331,12 @@ label .logo-link{
     justify-content: center;
 }
 
+#sprint-background
+{
+    background: linear-gradient(180deg, hsla(52, 74%, 51%, 1) 0%, hsla(0, 0%, 97%, 1) 100%);
+    background-repeat: no-repeat;
+}
+
 
 .overlaytitle
 {
@@ -480,7 +486,7 @@ label .logo-link{
     position: relative;
     color: black;
     background: rgb(0,128,37);
-    background: linear-gradient(90deg, rgba(0,128,37,1) 0%, rgba(46,154,63,1) 35%, rgba(158,228,168,1) 100%);
+    background: linear-gradient(180deg, hsla(52, 74%, 51%, 1) 0%, hsla(0, 0%, 97%, 1) 100%);
     font-size: 20px;
     text-align: center;
     line-height: 100px;
