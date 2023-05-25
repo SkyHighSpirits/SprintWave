@@ -622,6 +622,7 @@ public class MainController {
         else if(status == 4)
         {
             status--;
+            //TODO: FIX BUG MAKING THE TECHNICAL TASK NOT APPEAR ON RELEASED BACKLOG WHEN ONLY ONE TASK IS MOVED BACK FROM DONE
             movingTechnicalTask.setReleased(false);
             Userstory parentUserstory = userstoriesRepository.getSpecificUserstoryByID(movingTechnicalTask.getUserstory_id());
             parentUserstory.setReleased(false);

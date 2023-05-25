@@ -385,19 +385,27 @@ label .logo-link{
 {
     position: relative;
     background: white;
-    border: solid;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5);
     height: auto;
     min-height: 200px;
     width: 60%;
     padding: 20px;
-    border-radius: 1px;
     margin-bottom: 40px;
+    border-radius: 5px;
 }
+
+.columnitems:hover
+{
+    transform: scale(1.01);
+    box-shadow: 2px 20px 30px rgba(0, 0, 0, 0.5);
+    transition: 0.5s;
+}
+
 .epiccreateitem
 {
     position: relative;
     background: white;
-    border: solid;
+    box-shadow: -10px 0px 10px -10px rgba(0,0,0,0.75);
     height: auto;
     width: 60%;
     padding: 20px;
@@ -752,8 +760,16 @@ p{
     box-sizing: border-box;
     padding: 10px;
     position: relative;
+    border-radius: 1px;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.1);
     background-color: #FCF3A6;
 }
+
+.appfrontpage-project:hover {
+    transform: scale(1.01);
+    box-shadow: 3px 6px 8px rgba(0, 0, 0, 0.1);
+}
+
 
 .appfrontpage-create-project {
     width: 350px;
@@ -762,7 +778,14 @@ p{
     box-sizing: border-box;
     padding: 10px;
     position: relative;
+    border-radius: 1px;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.1);
     background-color: #FCF3A6;
+}
+
+.appfrontpage-create-project:hover {
+    transform: scale(1.01);
+    box-shadow: 3px 6px 8px rgba(0, 0, 0, 0.1);
 }
 
 .appfrontpage-project-deadline {
@@ -872,14 +895,20 @@ p{
 
 .sprint-item {
     position: relative;
-    height: 200px;
+    min-height: 200px;
+    height: auto;
     display: flex;
     flex-direction: column;
     margin: 10px 10px 10px 10px;
     background-color: #FFFFFF;
     border-radius: 5px; /* Add rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a small shadow */
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.1); /* Add a small shadow */
     padding: 5px 5px 5px 5px;
+}
+
+.sprint-item:hover {
+    transform: scale(1.01);
+    box-shadow: 3px 6px 8px rgba(0, 0, 0, 0.1); /* Add a small shadow */
 }
 
 .sprint-item-content {
