@@ -9,7 +9,7 @@ public class PasswordHashing {
     public String doHashing(String password) {
         try {
             //messageDigest bliver tilknyttet en specifik algoritme den skal bruge. Her bruges MD5 algoritmen(Message Digest)
-            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+            MessageDigest messageDigest = MessageDigest.getInstance("MD5"); //bcrypt istedet, MD5 er ikke længere sikkert.
             //password bliver lavet om til en omgang bytes
             //The data is processed through it using the update methods.
             // At any point reset can be called to reset the digest.
