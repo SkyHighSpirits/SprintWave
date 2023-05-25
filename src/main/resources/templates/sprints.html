@@ -11,6 +11,12 @@
 
     <div th:replace="fragments/navbar :: navbarthree"></div>
 
+    <div class="sprint-create">
+        <h1>Sprints</h1>
+        <a th:href="@{/showcreatesprint}" href="/createsprint"><H1>Create new Sprint</H1></a>
+    </div>
+    
+    
     <div class="sprint-board" th:each="sprint : ${sprintsinproject}">
         <div class="sprint-headline">
             <h1 th:text="${sprint.sprintName}">Hello</h1>
