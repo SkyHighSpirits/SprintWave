@@ -817,6 +817,8 @@ p{
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .sprint-headline {
