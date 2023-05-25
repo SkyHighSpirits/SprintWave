@@ -654,9 +654,13 @@ public class MainController {
     }
 
     @PostMapping("/createsprint")
-    public String createSprint(@RequestParam("sprint_id") int sprintID,
-                               @RequestParam("sprint_name") String sprintName, HttpSession session)
+    public String createSprint(@RequestParam("sprint_name") String sprintName,
+                               @RequestParam("sprint_id") int sprintID, 
+                               HttpSession session)
     {
+        System.out.println(sprintName);
+        System.out.println(sprintID);
+        
         Sprint sprint = new Sprint();
         sprint.setSprintId(sprintID);
         sprint.setSprintName(sprintName);
@@ -667,9 +671,11 @@ public class MainController {
     }
 
     @GetMapping("/showcreatesprint")
-    public String showCreateSprint()
+    public String showCreateSprint(Model model)
     {
-        return "sprintcreate";
+        Calculations calculator = new Calculations();
+        model.addAttribute("calculator", calculator);
+        return "createsprint";
     }
 
     /* END OF SPRINT BACKLOG MAPPINGS BY NICOLAI */

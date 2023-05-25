@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Sprint</title>
+    <link rel="stylesheet" th:href="@{/css/cssstyles.css}" href="../static/css/cssstyles.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body th:if="${session.currentuser}">
+    <div th:replace="fragments/navbar :: navbarthree"></div>
+
+    <div id="epiccreate-table-background">
+        <div class="epicscontainer">
+            <div class="overlaytitle">
+                <h1>Create a new sprint</h1>
+            </div>
+
+            <div class="table-container">
+                <div class="epiccreateitem">
+                    <div>
+                        <form action="createsprint" method="post">
+
+                            <p>Write Sprint Name</p>
+                            <input name="sprint_name" placeholder="SP00X" type="text"></input>
+
+                            <div class="epicbuttons">
+                                <input name="sprint_id" type="hidden" th:value="${calculator.createRandomNumber()}"></input>
+                            </div>
+                            
+                            <input class="table-link" type="submit" value="Opret Sprint"></input>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

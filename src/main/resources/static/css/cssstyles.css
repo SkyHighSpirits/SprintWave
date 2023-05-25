@@ -818,10 +818,22 @@ p{
 
 /* Start of SPRINT PAGE styling */
 
+.sprint-create {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.sprint-headline {
+    width: 80%;
+    margin: 0 auto;
+}
+
 
 .sprint-board {
-    width: 80%;
-    margin: 0 auto; /* Center horizontally */
     display: flex;
     margin-top: 20px;
     margin-bottom: 20px; /* Add bottom margin */
@@ -860,7 +872,7 @@ p{
 
 .sprint-item {
     position: relative;
-    height: 150px;
+    height: 200px;
     display: flex;
     flex-direction: column;
     margin: 10px 10px 10px 10px;
