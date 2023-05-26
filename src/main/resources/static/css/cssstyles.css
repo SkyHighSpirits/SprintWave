@@ -83,7 +83,7 @@ body{
     border: 1px solid transparent;
     padding: 6px 12px;
     font-size: 16px;
-    border-radius: .25rem;
+    border-radius: 1rem;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
@@ -444,7 +444,7 @@ label .logo-link{
     border: 1px solid transparent;
     padding: 6px 12px;
     font-size: 16px;
-    border-radius: .25rem;
+    border-radius: 1rem;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 .table-link:hover{
@@ -527,7 +527,7 @@ label .logo-link{
     border: 1px solid transparent;
     padding: 6px 12px;
     font-size: 16px;
-    border-radius: .25rem;
+    border-radius: 1rem;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
@@ -842,7 +842,7 @@ p{
     border: 1px solid transparent;
     padding: 6px 12px;
     font-size: 16px;
-    border-radius: .25rem;
+    border-radius: 1rem;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     transform: scale(0.8);
 
@@ -874,7 +874,7 @@ p{
     border: 1px solid transparent;
     padding: 6px 12px;
     font-size: 16px;
-    border-radius: .25rem;
+    border-radius: 1rem;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     transform: scale(0.8);
 }
