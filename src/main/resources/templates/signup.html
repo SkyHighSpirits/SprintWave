@@ -21,19 +21,19 @@
                 
                 <form action="createaccount" method="post">
                     <label for="workspace_name">Worskpace name</label>
-                    <p><input class="signup-input" id="workspace_name" name="workspacename" type="text" ></p>
+                    <p><input class="signup-input" id="workspace_name" name="workspacename" type="text" required></p>
 
                     <label for="first_name_field">First name</label>
-                    <p><input class="signup-input" id="first_name_field" name="firstname" type="text" th:value="${first_name}" ></p>
+                    <p><input class="signup-input" id="first_name_field" name="firstname" type="text" th:value="${first_name}" required></p>
 
                     <label for="last_name_field">Last name</label>
-                    <p><input class="signup-input" id="last_name_field" name="lastname" type="text" th:value="${last_name}"></p>
+                    <p><input class="signup-input" id="last_name_field" name="lastname" type="text" th:value="${last_name}" required></p>
 
                     <label for="email_field">Email</label>
-                    <p><input class="signup-input" id="email_field" name="email" type="text" th:value="${email}"></p>
+                    <p><input class="signup-input" id="email_field" name="email" type="text" th:value="${email}" required></p>
 
                     <label for="password_field">Password</label>
-                    <p><input class="signup-input" id="password_field" name="password" type="password" th:value="${password}"></p>
+                    <p><input class="signup-input" id="password_field" name="password" type="password" th:value="${password}" required></p>
                     <br/>
                     <button class="signup-login-button" type="submit">Create Workspace</button>
                     <!-- <p><input value="Opret Admin" type="submit"></p> -->

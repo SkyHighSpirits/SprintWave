@@ -18,16 +18,16 @@
                 <div>
                     <form action="postcreateproject" method="post">
                         <label for="project_name">Project name</label>
-                        <p><input id="project_name" name="projectname" type="text"></p>
+                        <p><input id="project_name" name="projectname" type="text" required></p>
 
                         <label for="project_description">Project Description</label>
-                        <p><input id="project_description" name="projectdescription" type="text"></p>
+                        <p><input id="project_description" name="projectdescription" type="text" required></p>
 
                         <label for="project_owner">Project Owner</label>
-                        <p><input id="project_owner" name="projectowner" type="text"></p>
+                        <p><input id="project_owner" name="projectowner" type="text" required></p>
 
                         <label for="deadline">Deadline</label>
-                        <p><input id="deadline" type="date" name="deadline" value="2000-01-01"></p>
+                        <p><input id="deadline" type="date" name="deadline" value="2000-01-01" required></p>
 
                         <p><input type="hidden" name="workspaceid" th:value="${session.currentuser.getWorkspace_id()}"></p>
                         </br>

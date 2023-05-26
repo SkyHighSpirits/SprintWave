@@ -21,15 +21,15 @@
         <div>
 
           <form action="/updatetask" method="post">
-            <input id="technicaltask_id" name="technicaltask_id" type="hidden" th:value="${technicaltask.getId()}"></input>
+            <input id="technicaltask_id" name="technicaltask_id" type="hidden" th:value="${technicaltask.getId()}" required></input>
             <p>Write Task Name</p>
-            <input id="task-name-field" name="technicaltask_name" type="text" th:value="${technicaltask.getName()}">
+            <input id="task-name-field" name="technicaltask_name" type="text" th:value="${technicaltask.getName()}" required>
             <p>Write Task Description</p>
-            <input id="task-description-field" name="technicaltask_description" type="text" th:value="${technicaltask.getDescription()}"></input>
+            <input id="task-description-field" name="technicaltask_description" type="text" th:value="${technicaltask.getDescription()}" required></input>
             <p>Reassign Points</p>
-            <input id="task-points-field" name="technicaltask_points" type="number" th:value="${technicaltask.getPoints()}"></input>
+            <input id="task-points-field" name="technicaltask_points" type="number" th:value="${technicaltask.getPoints()}" required></input>
             <p>Reassign sprint</p>
-            <input id="task-sprint-field" name="sprint_id" type="number" th:value="${technicaltask.getSprint_id()}"></input>
+            <input id="task-sprint-field" name="sprint_id" type="number" th:value="${technicaltask.getSprint_id()}" required></input>
             <div class="epicbuttons">
               <input id="userstory_id" name="userstory_id" type="hidden" th:value="${technicaltask.getUserstory_id()}"></input>
               <input id="technicaltask_released" name="technicaltask_released" type="hidden" th:value="${technicaltask.isReleased()}"></input>

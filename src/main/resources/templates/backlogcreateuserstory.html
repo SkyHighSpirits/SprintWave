@@ -19,11 +19,11 @@
 
                     <form action="/createuserstory" method="post">
                         <p>Write userstory name</p>
-                        <input id="userstory-name-field" name="userstory_name" type="text" placeholder="US001">
+                        <input id="userstory-name-field" name="userstory_name" type="text" placeholder="US001" required>
                         <p>Write userstory Description</p>
-                        <input id="userstory-description-field" name="userstory_description" type="text" placeholder="As an administrator, I want to edit user information, so that I can administrate users"></input>
+                        <input id="userstory-description-field" name="userstory_description" type="text" placeholder="As an administrator, I want to edit user information, so that I can administrate users" required></input>
                         <p>Assign Userstory Points</p>
-                        <input id="userstory-points-field" name="userstory_points" type="number" placeholder="5"></input>
+                        <input id="userstory-points-field" name="userstory_points" type="number" placeholder="5" required></input>
                         <p>Assign sprint (optional)</p>
                         <input id="task-sprint-field" name="sprint_id" type="number" placeholder="1" th:value="${1}"></input>
                         <div class="epicbuttons">
