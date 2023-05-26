@@ -22,11 +22,11 @@
                 <div>
                     <form action="/updaterequirement" method="post">
                         <p>Write title</p>
-                        <input id="requirement-name-field" name="requirement_name" type="text" th:value="${requirement.requirement_name}"></input>
+                        <input id="requirement-name-field" name="requirement_name" type="text" th:value="${requirement.requirement_name}" required></input>
                         <p>Write description</p>
-                        <input id="requirement-description-field" name="requirement_description" type="text" th:value="${requirement.requirement_description}"></input>
+                        <input id="requirement-description-field" name="requirement_description" type="text" th:value="${requirement.requirement_description}" required></input>
                         <p>Write actor</p>
-                        <input id="requirement-actor-field" name="requirement_actor" type="text" th:value="${requirement.requirement_actor}"></input>
+                        <input id="requirement-actor-field" name="requirement_actor" type="text" th:value="${requirement.requirement_actor}" required></input>
                         <p>Choose functional or non-functional</p>
                         <select id="funcNonFuncChoice" name="funcNonFuncChoice">
                             <option value="Functional">Functional</option>

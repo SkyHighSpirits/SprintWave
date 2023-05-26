@@ -19,16 +19,16 @@
           <div>
             <form action="/updateproject" method="post">
               <label for="projectname">New Project name</label>
-              <p><input id="projectname" name="projectname" type="text" th:value="${project.projectName}"></p>
+              <p><input id="projectname" name="projectname" type="text" th:value="${project.projectName}" required></p>
   
               <label for="projectdescription">New Project Description</label>
-              <p><input id="projectdescription" name="projectdescription" type="text" th:value="${project.projectDescription}"></p>
+              <p><input id="projectdescription" name="projectdescription" type="text" th:value="${project.projectDescription}" required></p>
   
               <label for="projectowner">New Project Owner</label>
-              <p><input id="projectowner" name="projectowner" type="text" th:value="${project.projectOwner}"></p>
+              <p><input id="projectowner" name="projectowner" type="text" th:value="${project.projectOwner}" required></p>
   
               <label for="deadline">New Deadline</label>
-              <p><input id="deadline" type="date" name="projectdeadline" th:value="${project.deadline}"></p>
+              <p><input id="deadline" type="date" name="projectdeadline" th:value="${project.deadline}" required></p>
   
               <p>
                 <label><input type="radio" name="projectstatus" value="true" th:checked="${project.projectStatus}"> Active</label>
