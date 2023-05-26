@@ -519,6 +519,7 @@ label .logo-link{
     padding-right: 25px;
     color: white;
     font-weight: normal;
+    text-align: left;
 }
 
 .btn{
@@ -925,11 +926,13 @@ p{
     justify-content: space-between;
     margin-top: 20px;
     margin-bottom: 20px;
+    color: white;
 }
 
 .sprint-headline {
     width: 80%;
     margin: 0 auto;
+    color: white;
 }
 
 
