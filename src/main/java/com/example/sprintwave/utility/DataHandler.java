@@ -193,4 +193,34 @@ public class DataHandler {
         }
         return status;
     }
+
+    public static String convertFuncNonFuncBooleanToString(boolean funcNonFunc)
+    {
+        String returnValue = "";
+        if(funcNonFunc)
+        {
+            returnValue = "Functional";
+        }
+        if(!funcNonFunc)
+        {
+            returnValue = "Non-functional";
+        }
+        return returnValue;
+    }
+
+    public static boolean convertFuncNonFuncStringToBoolean(String funcNonFuncChoice)
+    {
+        boolean returnValue = false;
+        if(funcNonFuncChoice.equals("Functional"))
+        {
+            returnValue = true;
+        }
+        if(funcNonFuncChoice.equals("Non-functional"))
+        {
+            returnValue = false;
+        }
+
+        return returnValue;
+    }
+
 }

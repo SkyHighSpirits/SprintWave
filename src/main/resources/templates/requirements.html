@@ -29,7 +29,6 @@
                     <p th:text="${requirement.requirement_actor}">Launch cloud service in Denmark</p>
                     <input id="project_id-field" name="project_id" type="hidden" th:value="${requirement.project_id}">
                     <input id="requirement_id-field" name="requirement_id" type="hidden" th:value="${requirement.requirement_id}">
-                    <input id="funcNonFuncChoice-field" name="funcNonFuncChoice" type="hidden" th:value="${requirement.funcNonFuncChoice}">
                     <input id="funcNonFunc-field" name="funcNonFunc" type="hidden" th:value="${requirement.funcNonFunc}">
                     <div class="epicbuttons">
                         <a class="table-link" th:href="@{'/updaterequirement/' + ${requirement.requirement_id}}" href="/requirementupdate">Update</a>
@@ -49,7 +48,6 @@
                     <p th:text="${requirement.requirement_actor}">Launch cloud service in Denmark</p>
                     <input id="project_id-field2" name="project_id" type="hidden" th:value="${requirement.project_id}">
                     <input id="requirement_id-field2" name="requirement_id" type="hidden" th:value="${requirement.requirement_id}">
-                    <input id="funcNonFuncChoice-field2" name="funcNonFuncChoice" type="hidden" th:value="${requirement.funcNonFuncChoice}">
                     <input id="funcNonFunc-field2" name="funcNonFunc" type="hidden" th:value="${requirement.funcNonFunc}">
                     <div class="epicbuttons">
                         <a class="table-link" th:href="@{'/updaterequirement/' + ${requirement.requirement_id}}" href="/requirementupdate">Update</a>

@@ -98,7 +98,7 @@ public class MainController {
         requirement.setRequirement_name(requirement_name);
         requirement.setRequirement_description(requirement_description);
         requirement.setRequirement_actor(requirement_actor);
-        requirement.setFuncNonFuncChoice(funcNonFuncChoice);
+        requirement.setFuncNonFunc(DataHandler.convertFuncNonFuncStringToBoolean(funcNonFuncChoice));
         requirementRepository.createRequirement(requirement);
         return "redirect:/requirements/" + project_id;
     }
@@ -123,7 +123,7 @@ public class MainController {
         updateRequirement.setRequirement_name(requirement_name);
         updateRequirement.setRequirement_description(requirement_description);
         updateRequirement.setRequirement_actor(requirement_actor);
-        updateRequirement.setFuncNonFuncChoice(funcNonFuncChoice);
+        updateRequirement.setFuncNonFunc(DataHandler.convertFuncNonFuncStringToBoolean(funcNonFuncChoice));
         requirementRepository.updateRequirement(updateRequirement);
         return "redirect:/requirements/" + project_id;
     }
