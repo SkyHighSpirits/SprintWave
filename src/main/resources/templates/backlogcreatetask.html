@@ -10,8 +10,8 @@
 <body th:if="${session.currentuser}">
   <div id="backlog-background2">
     <div class="epicscontainer">
-      <div class="overlaytitle2">
-        <h1>Add task to Usecase</h1>
+      <div class="overlaytitle">
+        <h1>Create technical task</h1>
       </div>
       <div class="table-container">
         <div class="columnitems">
@@ -30,6 +30,8 @@
                 <input id="project_id_field" name="userstory_id" type="hidden" th:value="${parentuserstory.getId()}"></input>
                 <input id="task_status_field" name="technicaltask_status" type="hidden" th:value="${parentuserstory.getStatus().toString()}"></input>
               </div>
+              <br/>
+              <br/>
               <input class="table-link" type="submit" value="Add Task"></input>
 
             </form>

@@ -9,6 +9,8 @@
 </head>
 <body th:if="${session.currentuser}">
 <div id="backlog-background2">
+
+
   <div class="epicscontainer">
     <div class="overlaytitle2">
       <h1>Update task <span th:text="${technicaltask.name}"></span></h1>
@@ -34,6 +36,8 @@
               <input id="technicaltask_points" name="technicaltask_released" type="hidden" th:value="${technicaltask.isReleased()}"></input>
               <input id="technicaltask_status" name="technicaltask_status" type="hidden" th:value="${technicaltask.getStatus().toString()}"></input>
             </div>
+            <br/>
+            <br/>
             <input class="table-link" type="submit" value="Update Task"></input>
 
           </form>

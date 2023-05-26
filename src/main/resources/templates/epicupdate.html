@@ -8,34 +8,32 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body th:if="${session.currentuser}">
-<div id="epiccreate-table-background">
-    <div class="epicscontainer">
-        <div class="overlaytitlestitle">
-            <h1>Opdater epic</h1>
-
-        </div>
+    <div id="epiccreate-table-background">
 
 
-        <div class="table-container">
-
-            <div class="epiccreateitem">
-                <div>
-                    <form action="/updateepic" method="post">
-                        <p>Write title</p>
-                        <input id="epic-name-field" name="epic_name" type="text" th:value="${epic.epic_name}"></input>
-                        <p>Write description</p>
-                        <input id="epic-description-field" name="epic_description" type="text" th:value="${epic.epic_description}"></input>
-                        <div class="epicbuttons">
-                            <input id="project_id-field" name="project_id" type="hidden" th:value="${session.currentproject.getProjectID()}"></input>
-                            <input id="epic_id-field" name="epic_id" type="hidden" th:value="${epic.epic_id}"></input>
-                        </div>
-                        <input class="table-link" type="submit" value="Opdater epic"></input>
-                    </form>
+        <div class="epicscontainer">
+            <div class="overlaytitle">
+                <h1>Update epic</h1>
+            </div>
+            <div class="table-container">
+                <div class="epiccreateitem">
+                    <div>
+                        <form action="/updateepic" method="post">
+                            <p>Write title</p>
+                            <input id="epic-name-field" name="epic_name" type="text" th:value="${epic.epic_name}"></input>
+                            <p>Write description</p>
+                            <input id="epic-description-field" name="epic_description" type="text" th:value="${epic.epic_description}"></input>
+                            <div class="epicbuttons">
+                                <input id="project_id-field" name="project_id" type="hidden" th:value="${session.currentproject.getProjectID()}"></input>
+                                <input id="epic_id-field" name="epic_id" type="hidden" th:value="${epic.epic_id}"></input>
+                            </div>
+                            <input class="table-link" type="submit" value="Update epic"></input>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 </body>
 </html>

@@ -16,7 +16,7 @@
 
     <div class="sprint-create">
         <div><h1>All Sprints</h1></div>
-        <div><a th:href="@{/showcreatesprint}" href="/createsprint"><H1>Create new Sprint</H1></a></div>
+        <div class="table-link"><a th:href="@{/showcreatesprint}" href="/createsprint"><p class="sprint-button">Create new Sprint<p/></a></div>
     </div>
 
     <div class="sprint-headline"  th:each="sprint : ${sprintsinproject}">

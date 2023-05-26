@@ -10,8 +10,8 @@
 <body th:if="${session.currentuser}">
 <div id="backlog-background2">
   <div class="epicscontainer">
-    <div class="overlaytitle2">
-      <h1>Update Userstory</h1>
+    <div class="overlaytitle">
+      <h1>Update user story</h1>
     </div>
     <div class="table-container">
       <div class="columnitems">
@@ -33,6 +33,8 @@
               <input id="userstory_released_field" name="userstory_released" type="hidden" th:value="${userstory.isReleased()}"></input>
               <input id="userstory_status_field" name="userstory_status" type="hidden" th:value="${userstory.getStatus().toString()}"></input>
             </div>
+            <br/>
+            <br/>
             <input class="table-link" type="submit" value="Update Userstory"></input>
           </form>
         </div>

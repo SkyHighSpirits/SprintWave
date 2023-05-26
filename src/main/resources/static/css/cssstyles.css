@@ -20,7 +20,7 @@ body{
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("https://images.unsplash.com/photo-1464030871258-a01dfd38220a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1329&q=80");
+    background-image: url("../images/signup_background.png");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -66,22 +66,31 @@ body{
     padding: 50px;
 }
 
+.sprint-button {
+    color:white;
+}
+
 .signup-login-button {
-    display: inline-block;
-    outline: 0;
-    border: none;
-    box-shadow: none;
     cursor: pointer;
-    padding: 9px 22px;
-    font-size: 22px;
-    height: 50px;
-    font-weight: 400;
+    outline: 0;
     color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
     text-align: center;
-    line-height: normal;
-    background: linear-gradient(90deg, #5522fa 0, #0074e4 100%);
-    border-radius: 50px;
-    transition: color .2s ease, background-color .2s ease, box-shadow .2s ease;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 16px;
+    border-radius: 1rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.signup-login-button:hover {
+    color: #fff;
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
 }
 
 .signup-login-input {
@@ -102,11 +111,12 @@ body{
     height: 40px;
 }
 
+
 /* END OF STYLING FOR LOGIN AND SIGNUP PAGE */
 
 
 .backgroundimg{
-    background-image: url("../images/signup_background.jpg");
+    background-image: url("../images/signup_background.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -128,6 +138,16 @@ body{
     height: 100px;
 }
 input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=password] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -363,20 +383,6 @@ label .logo-link{
     margin-bottom: 30px;
 }
 
-.overlaytitle a
-{
-    text-align: center;
-    width: 50px;
-    height: 50px;
-    margin: 0;
-    padding: 0;
-    background: lightseagreen;
-}
-
-.overlaytitle a:hover
-{
-    background: darkgreen;
-}
 
 .push-left-20
 {
@@ -428,17 +434,25 @@ label .logo-link{
 
 }
 .table-link{
-    background: linear-gradient(rgba(0,81,170,1) 0%, rgba(53,124,207,1) 35%, rgba(126,193,232,1) 100%);
-    color: white;
-    padding: 7px 13px;
-    text-align: center;
-    text-decoration: none;
+    cursor: pointer;
+    outline: 0;
+    color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
     display: inline-block;
-    border-radius: 1px;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 16px;
+    border-radius: 1rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 .table-link:hover{
-    background: linear-gradient(90deg, hsla(238, 100%, 48%, 1) 0%, hsla(204, 73%, 66%, 1) 100%);
-    transition: .5s;
+    color: #fff;
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
 }
 
 .table-container
@@ -508,14 +522,26 @@ label .logo-link{
 }
 
 .btn{
-    color: white;
-    border: none;
-    font-size: 17px;
-    margin-top: 10px;
-    padding: 8px 15px;
-    background-color: #333;
-    border-radius: 5px;
-    text-decoration: none;
+    cursor: pointer;
+    outline: 0;
+    color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 16px;
+    border-radius: 1rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.btn:hover{
+    color: #fff;
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
 }
 
 p{
@@ -546,12 +572,7 @@ p{
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
     transition: 0.5s;
 }
-.btn:hover{
-    letter-spacing: 1px;
-    transform: scale(1.03);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
-    transition: 0.5s;
-}
+
 
 /*Styling for footer*/
 .container{
@@ -830,45 +851,67 @@ p{
 
 
 .appfrontpage-project-button {
+    /* Project */
     position: absolute;
     bottom: 10px;
     right: 10px;
     display: inline-block;
     outline: 0;
-    border: none;
-    box-shadow: none;
-    cursor: pointer;
-    padding: 5px 11px;
-    font-size: 11px;
-    height: 25px; 
-    font-weight: 400;
+    
+    /* Styling */
+
+
     color: #fff;
+    background-color: #0d6efd;
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
     text-align: center;
-    line-height: normal;
-    background: linear-gradient(90deg, #5522fa 0, #0074e4 100%);
-    border-radius: 25px; 
-    transition: color .2s ease, background-color .2s ease, box-shadow .2s ease;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 16px;
+    border-radius: 1rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    transform: scale(0.8);
+
+}
+
+.appfrontpage-project-button:hover {
+    color: #fff;
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+    transform: scale(0.8);
 }
 
 .appfrontpage-modify-project-button {
+    /* Placement */
     position: absolute;
     bottom: 10px;
     right: 100px;
-    display: inline-block;
-    outline: 0;
-    border: none;
-    box-shadow: none;
+
+    /* Stylyng */
     cursor: pointer;
-    padding: 5px 11px;
-    font-size: 11px;
-    height: 25px;
-    font-weight: 400;
+    outline: 0;
     color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
     text-align: center;
-    line-height: normal;
-    background: linear-gradient(90deg, #5522fa 0, #0074e4 100%);
-    border-radius: 25px;
-    transition: color .2s ease, background-color .2s ease, box-shadow .2s ease;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 16px;
+    border-radius: 1rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    transform: scale(0.8);
+}
+
+.appfrontpage-modify-project-button:hover {
+    color: #fff;
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+    transform: scale(0.8);
 }
 
 /* END OF APP FRONT PAGE STYLING */
