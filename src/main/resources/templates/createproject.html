@@ -8,37 +8,37 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body th:if="${session.currentuser}">
-<!-- NEW CODE -->
-    <div class="signup-login-background-image">
-        <div class="signup-login-flex-container">
-            <div class="signup-login-flex-item">
-                <h1>Create new project</h1>
-                <img th:src="@{images/sprintwavewhitelogo.png}" src="../static/images/sprintwavewhitelogo.png" alt="logo" height="125px">
+<div id="backlog-background2">
+    <div class="epicscontainer">
+        <div class="overlaytitle2">
+            <h1>Add new Project</h1>
+        </div>
+        <div class="table-container">
+            <div class="columnitems">
+                <div>
+                    <form action="postcreateproject" method="post">
+                        <label for="project_name">Project name</label>
+                        <p><input id="project_name" name="projectname" type="text"></p>
 
-            </div>
-    
-            <div class="signup-login-flex-item">
-                <h1>Create Workspace</h1>
+                        <label for="project_description">Project Description</label>
+                        <p><input id="project_description" name="projectdescription" type="text"></p>
 
-                <form action="postcreateproject" method="post">
-                    <label for="project_name">Project name</label>
-                    <p><input id="project_name" name="projectname" type="text"></p>
+                        <label for="project_owner">Project Owner</label>
+                        <p><input id="project_owner" name="projectowner" type="text"></p>
 
-                    <label for="project_description">Project Description</label>
-                    <p><input id="project_description" name="projectdescription" type="text"></p>
+                        <label for="deadline">Deadline</label>
+                        <p><input id="deadline" type="date" name="deadline" value="2000-01-01"></p>
 
-                    <label for="project_owner">Project Owner</label>
-                    <p><input id="project_owner" name="projectowner" type="text"></p>
-
-                    <label for="deadline">Deadline</label>
-                    <p><input id="deadline" type="date" name="deadline" value="2000-01-01"></p>
-
-                    <p><input type="hidden" name="workspaceid" th:value="${session.currentuser.getWorkspace_id()}"></p>
-                    </br>
-                    <p><input class="signup-login-button" value="Create Project" type="submit"> </p>
-                </form>
+                        <p><input type="hidden" name="workspaceid" th:value="${session.currentuser.getWorkspace_id()}"></p>
+                        </br>
+                        <p><input class="signup-login-button" value="Create Project" type="submit"> </p>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+</div>
+
+
 </body>
 </html>
