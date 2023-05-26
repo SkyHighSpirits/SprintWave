@@ -2,7 +2,7 @@
 <nav class="navbar-one">
     <label class="logo">Sprint Wave</label>
     <ul class="nav-ul">
-        <li><a class="nav-link" th:href="@{signup}" href="signup.html">Opret</a></li>
+        <li><a class="nav-link" th:href="@{signup}" href="signup.html">Create user</a></li>
         <li><a class="nav-link" th:href="@{login}" href="login.html">Login</a></li>
     </ul>
 </nav>
@@ -12,8 +12,8 @@
     <nav class="navbar-one">
         <label class="logo">Sprint Wave</label>
         <ul class="nav-ul">
-            <li class="nav-li"><a class="nav-link" th:href="@{projects}" href="#">Projekt</a></li>
-            <li><a class="nav-link" th:href="@{login}" href="login.html">Skift Bruger</a></li>
+            <li class="nav-li"><a class="nav-link" th:href="@{'/appfrontpage/' + ${session.currentuser.getWorkspace_id()}}" href="appfrontpage.html" >Project</a></li>
+            <li><a class="nav-link" th:href="@{login}" href="login.html">Change user</a></li>
         </ul>
     </nav>
 </div>
@@ -22,9 +22,18 @@
     <nav class="navbar-one">
         <label class="logo">Sprint Wave</label>
         <ul class="nav-ul">
-            <li class="nav-li"><a class="nav-link" th:href="@{projects}" href="#">Projekt</a></li>
-            <li><a class="nav-link" th:href="@{signup}" href="signup.html">Bruger</a></li>
-            <li><a class="nav-link" th:href="@{login}" href="login.html">Skift Bruger</a></li>
+            <li class="nav-li"><a class="nav-link" th:href="@{'/appfrontpage/' + ${session.currentuser.getWorkspace_id()}}" href="appfrontpage.html" >Project</a></li>
+            <li><a class="nav-link" th:href="@{login}" href="login.html">Change user</a></li>
         </ul>
     </nav>
+</div>
+
+<div th:fragment="secondnavbar">
+    <div class="flex-container">
+        <div><a class="navtwo-link" th:href="@{'/overview/' + ${session.currentproject.getProjectID()}}" href="/overview" >Overview</a></div>
+        <div><a class="navtwo-link" th:href="@{'/epics/' + ${session.currentproject.getProjectID()}}" href="epics.html">Epics</a></div>
+        <div><a class="navtwo-link" th:href="@{'/requirements/' + ${session.currentproject.getProjectID()}}" href="requirements.html">Requirements</a></div>
+        <div><a class="navtwo-link" th:href="@{'/backlog/' + ${session.currentproject.getProjectID()}}" href="backlog.html" >Backlog</a></div>
+        <div><a class="navtwo-link" th:href="@{'/sprints'}" href="sprints.html">Sprints</a></div>
+    </div>
 </div>
