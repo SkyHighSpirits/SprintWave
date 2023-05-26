@@ -66,6 +66,10 @@ body{
     padding: 50px;
 }
 
+.sprint-button {
+    color:white;
+}
+
 .signup-login-button {
     cursor: pointer;
     outline: 0;
@@ -88,11 +92,6 @@ body{
     background-color: #0b5ed7;
     border-color: #0a58ca;
 }
-
-
-
-
-
 
 .signup-login-input {
     color: rgba(0, 0, 0, .87);
