@@ -261,9 +261,10 @@ label .logo-link{
     width: 650px;
     height: 340px;
     position: relative;
-    color: black;
+    color: white;
+    font-weight: bold;
     background: rgb(0,81,170);
-    background: linear-gradient(90deg, rgba(0,81,170,1) 0%, rgba(53,124,207,1) 35%, rgba(126,193,232,1) 100%);
+    background: linear-gradient(90deg, rgba(2,41,84,1) 0%, rgba(2,51,107,1) 40%, rgba(27,110,158,1) 100%);
     font-size: 20px;
     text-align: center;
     line-height: 100px;
@@ -273,7 +274,7 @@ label .logo-link{
 
 #table-background
 {
-    background: linear-gradient(hsla(217, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
+    background: linear-gradient(90deg, rgba(2,41,84,1) 0%, rgba(2,51,107,1) 40%, rgba(27,110,158,1) 100%);
 
     width: 100%;
 
@@ -287,8 +288,8 @@ label .logo-link{
 }
 
 #requirements-background{
-    background: rgb(231,0,0);
-    background: linear-gradient(90deg, rgba(231,0,0,1) 0%, rgba(222,64,18,1) 35%, rgba(232,192,192,1) 100%);
+    background: rgb(84,2,2);
+    background: linear-gradient(90deg, rgba(84,2,2,1) 0%, rgba(107,2,2,1) 40%, rgba(158,37,27,1) 100%);
 
     width: 100%;
 
@@ -333,7 +334,8 @@ label .logo-link{
 
 #sprint-background
 {
-    background: linear-gradient(180deg, hsla(52, 74%, 51%, 1) 0%, hsla(0, 0%, 97%, 1) 100%);
+    background: rgb(7,84,2);
+    background: linear-gradient(90deg, rgba(7,84,2,1) 0%, rgba(7,107,2,1) 54%, rgba(27,158,41,1) 100%);
     background-repeat: no-repeat;
 }
 
@@ -456,9 +458,10 @@ label .logo-link{
     width: 650px;
     height: 340px;
     position: relative;
-    color: black;
+    color: white;
+    font-weight: bold;
     background: rgb(231,0,0);
-    background: linear-gradient(90deg, rgba(231,0,0,1) 0%, rgba(222,64,18,1) 35%, rgba(232,192,192,1) 100%);
+    background: linear-gradient(90deg, rgba(84,2,2,1) 0%, rgba(107,2,2,1) 40%, rgba(158,37,27,1) 100%);
     font-size: 20px;
     text-align: center;
     line-height: 100px;
@@ -470,9 +473,10 @@ label .logo-link{
     width: 650px;
     height: 340px;
     position: relative;
-    color: black;
+    color: white;
+    font-weight: bold;
     background: rgb(231,0,212);
-    background: linear-gradient(90deg, rgba(231,0,212,1) 0%, rgba(237,87,215,1) 35%, rgba(211,158,228,1) 100%);
+    background: linear-gradient(180deg, hsla(298, 100%, 19%, 1) 0%, hsla(332, 100%, 14%, 1) 100%);
     font-size: 20px;
     text-align: center;
     line-height: 100px;
@@ -484,9 +488,10 @@ label .logo-link{
     width: 650px;
     height: 340px;
     position: relative;
-    color: black;
-    background: rgb(0,128,37);
-    background: linear-gradient(180deg, hsla(52, 74%, 51%, 1) 0%, hsla(0, 0%, 97%, 1) 100%);
+    color: white;
+    font-weight: bold;
+    background: rgb(7,84,2);
+    background: linear-gradient(90deg, rgba(7,84,2,1) 0%, rgba(7,107,2,1) 54%, rgba(27,158,41,1) 100%);
     font-size: 20px;
     text-align: center;
     line-height: 100px;
@@ -498,6 +503,8 @@ label .logo-link{
     line-height: 1.5;
     padding-left: 25px;
     padding-right: 25px;
+    color: white;
+    font-weight: normal;
 }
 
 .btn{

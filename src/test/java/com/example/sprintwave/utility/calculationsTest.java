@@ -4,7 +4,7 @@ import com.example.sprintwave.model.TechnicalTask;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static com.example.sprintwave.utility.calculations.calculateSumOfPointsOnStatus;
+import com.example.sprintwave.utility.Calculations;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.*;
@@ -17,6 +17,7 @@ class calculationsTest
     @Test
     public void calculateSumOfPointsOnStatustest ()
     {
+        Calculations calculations = new Calculations();
         TechnicalTask technicalTask1 = new TechnicalTask();
         TechnicalTask technicalTask2 = new TechnicalTask();
         TechnicalTask technicalTask3 = new TechnicalTask();

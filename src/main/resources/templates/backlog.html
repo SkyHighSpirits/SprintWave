@@ -10,6 +10,14 @@
 <body th:if="${session.currentuser}">
 <div th:replace="fragments/navbar :: navbarthree" ></div>
 
+<div class="flex-container">
+  <div><a class="navtwo-link" th:href="@{'/overview/' + ${session.currentproject.getProjectID()}}" href="/overview">Overview</a></div>
+  <div><a class="navtwo-link" th:href="@{'/epics/' + ${session.currentproject.getProjectID()}}" href="epics.html" >Epics</a></div>
+  <div><a class="navtwo-link" th:href="@{'/requirements/' + ${session.currentproject.getProjectID()}}" href="requirements.html" >Requirements</a></div>
+  <div><a class="navtwo-link" th:href="@{'/backlog/' + ${session.currentproject.getProjectID()}}" href="backlog.html" >Backlog</a></div>
+  <div><a class="navtwo-link" th:href="@{'/sprints'}" href="sprints.html">Sprints</a></div>
+</div>
+
 <div id="backlog-background">
   <div class="epicscontainer">
     <div class="overlaytitle2">
