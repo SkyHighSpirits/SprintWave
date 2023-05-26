@@ -431,10 +431,11 @@ public class MainController {
 
         System.out.println("Sprint id: " + sprint_id);
 
-        //create an empty sprint if the sprint does not exist allready
+        //create an empty sprint 1 if the sprint does not exist allready
         Project currentProject = (Project) session.getAttribute("currentproject");
         if(sprintRepository.getSprintByIDAndProjectID(1, currentProject.getProjectID()) == null)
         {
+            System.out.println("There are no sprints with this id within this project");
             Sprint defaultSprint = new Sprint(1, "SP001", currentProject.getProjectID());
             sprintRepository.createSprint(defaultSprint);
         }
@@ -519,7 +520,7 @@ public class MainController {
         for(Userstory userstory: userstoriesInProject)
         {
 
-            //TODO: If a userstory is released, then all technicaltasks are released - Test
+            //TODO: If a userstory is released, then all technicaltasks are released - Done
             if(userstory.getStatus() == Status.done)
             {
                 for(TechnicalTask technicalTask: technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstory.getId()))
@@ -533,28 +534,36 @@ public class MainController {
             }
             //TODO: If all technicaltasks are done, userstory is released - TEST
             boolean userstoryIsReleased = true;
-            for(TechnicalTask technicalTask: technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstory.getId()))
+            if(!technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstory.getId()).isEmpty())
             {
-                if(technicalTask.getStatus() != Status.done)
+                for(TechnicalTask technicalTask: technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstory.getId()))
                 {
-                    userstoryIsReleased = false;
+                    if(technicalTask.getStatus() != Status.done)
+                    {
+                        userstoryIsReleased = false;
+                    }
+                    if((technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstory.getId()).size() < 1))
+                    {
+                        userstoryIsReleased = false;
+                    }
                 }
-                if((technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstory.getId()).size() < 1))
+                userstory.setReleased(userstoryIsReleased);
+                if(userstoryIsReleased)
                 {
-                    userstoryIsReleased = false;
+                    userstory.setStatus(Status.done);
                 }
             }
-            userstory.setReleased(userstoryIsReleased);
-            if(userstoryIsReleased)
+            else if(technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstory.getId()).isEmpty() && userstory.getStatus() == Status.sprintbacklog)
             {
-                userstory.setStatus(Status.done);
+                userstory.setStatus(Status.sprintbacklog);
+                userstory.setReleased(false);
             }
+
             userstoriesRepository.updateUserstory(userstory);
 
             //As technicaltask belong to a userstory within the current project ID, we put all technicaltasks for the userstory into the arraylist
             technicaltasksInProject.addAll(technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstory.getId()));
         }
-
 
         //DONE
         model.addAttribute("technicaltasksinproject", technicaltasksInProject);

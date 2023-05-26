@@ -67,6 +67,10 @@ public class SprintRepository {
                 foundSprint.setSprintName(resultSet.getString(2));
                 foundSprint.setProjectId(resultSet.getInt(3));
             }
+            else
+            {
+                foundSprint = null;
+            }
         }
         catch(SQLException e)
         {
