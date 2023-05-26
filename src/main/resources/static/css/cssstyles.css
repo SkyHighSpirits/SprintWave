@@ -717,13 +717,19 @@ p{
 }
 .textoverpicture {
     position: absolute;
-    top: 50%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
+    color: white !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,5);
+    width: 70%;
+}
+.textoverpicture p {
     color: white;
-    text-align: center;
-    width: 80%;
+    font-weight: bold;
+    font-size: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,5);
 }
 
 .textoverpicture h2 {
@@ -739,6 +745,16 @@ p{
     .column2 {
         flex: 1 1 100%;
     }
+}
+.divtextfrontpage{
+    padding: 25%;
+}
+.header-frontpage-text{
+    font-weight: bold;
+    font-size: 40px;
+}
+.paragraph-frontpage-text{
+    font-size: 20px;
 }
 
 /* START OF APP FRONT PAGE STYLING */
