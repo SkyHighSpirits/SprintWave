@@ -8,46 +8,45 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body th:if="${session.currentuser}">
-<!-- NEW CODE -->
-<div class="signup-login-background-image">
-  <div class="signup-login-flex-container">
-    <div class="signup-login-flex-item">
-      <h1>Update project</h1>
-      <img th:src="@{images/sprintwavewhitelogo.png}" src="../static/images/sprintwavewhitelogo.png" alt="logo" height="125px">
 
-    </div>
-
-    <div class="signup-login-flex-item">
-      <h1>Update Project</h1>
-
-      <form action="/updateproject" method="post">
-        <label for="projectname">New Project name</label>
-        <p><input id="projectname" name="projectname" type="text" th:value="${project.projectName}"></p>
-
-        <label for="projectdescription">New Project Description</label>
-        <p><input id="projectdescription" name="projectdescription" type="text" th:value="${project.projectDescription}"></p>
-
-        <label for="projectowner">New Project Owner</label>
-        <p><input id="projectowner" name="projectowner" type="text" th:value="${project.projectOwner}"></p>
-
-        <label for="deadline">New Deadline</label>
-        <p><input id="deadline" type="date" name="projectdeadline" th:value="${project.deadline}"></p>
-
-        <p>
-          <label><input type="radio" name="projectstatus" value="true" th:checked="${project.projectStatus}"> Active</label>
-          <label><input type="radio" name="projectstatus" value="false" th:checked="${!project.projectStatus}"> Inactive</label>
-        </p>
-
-
-        <!--<p><input type="hidden" name="projectstatus"  th:value="${session.currentproject.isProjectStatus()}"></p>-->
-        <p><input type="hidden" name="project_id" th:value="${session.currentproject.getProjectID()}"></p>
-        <p><input type="hidden" name="workspaceID" th:value="${session.currentuser.getWorkspace_id()}"></p>
-        </br>
-        <input class="signup-login-button" type="submit" value="Update Project">
-
-      </form>
+  <div id="epiccreate-table-background">
+    <div class="epicscontainer">
+      <div class="overlaytitlestitle">
+        <h1>Update Projects</h1>
+      </div>
+      <div class="table-container">
+        <div class="epiccreateitem">
+          <div>
+            <form action="/updateproject" method="post">
+              <label for="projectname">New Project name</label>
+              <p><input id="projectname" name="projectname" type="text" th:value="${project.projectName}"></p>
+  
+              <label for="projectdescription">New Project Description</label>
+              <p><input id="projectdescription" name="projectdescription" type="text" th:value="${project.projectDescription}"></p>
+  
+              <label for="projectowner">New Project Owner</label>
+              <p><input id="projectowner" name="projectowner" type="text" th:value="${project.projectOwner}"></p>
+  
+              <label for="deadline">New Deadline</label>
+              <p><input id="deadline" type="date" name="projectdeadline" th:value="${project.deadline}"></p>
+  
+              <p>
+                <label><input type="radio" name="projectstatus" value="true" th:checked="${project.projectStatus}"> Active</label>
+                <label><input type="radio" name="projectstatus" value="false" th:checked="${!project.projectStatus}"> Inactive</label>
+              </p>
+  
+  
+              <!--<p><input type="hidden" name="projectstatus"  th:value="${session.currentproject.isProjectStatus()}"></p>-->
+              <p><input type="hidden" name="project_id" th:value="${session.currentproject.getProjectID()}"></p>
+              <p><input type="hidden" name="workspaceID" th:value="${session.currentuser.getWorkspace_id()}"></p>
+              </br>
+              <input class="signup-login-button" type="submit" value="Update Project">
+  
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 </body>
 </html>
