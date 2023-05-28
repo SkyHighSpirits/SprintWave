@@ -112,4 +112,54 @@ public class SprintRepository {
 
         return sprintList;
     }
+
+    public void updateSprint(Sprint updateSprint){
+        try {
+            //Oprette forbindelse til database
+            Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
+            //SQL statement
+            String SQL_QUERY = "UPDATE sprints SET sprint_name = ? WHERE sprint_id = ? AND project_id = ?";
+            //PreparedStatement
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
+            //set parameters
+            preparedStatement.setString(1, updateSprint.getSprintName());
+            preparedStatement.setInt(2, updateSprint.getSprintId());
+            preparedStatement.setInt(3, updateSprint.getProjectId());
+            //ExecuteStatement
+            preparedStatement.executeUpdate();
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+            System.out.println("Could not update the Sprint");
+        }
+    }
+
+    public int getMaxSprintIDFromProjectID(int projectID){
+        int highestSprintID = 0;
+        try {
+            //Oprette forbindelse til database
+            Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
+            //SQL statement
+            String SQL_QUERY = "SELECT MAX(sprint_id) FROM sprints WHERE project_id = ?";
+            //Prepared statement
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
+            //set parameters
+            preparedStatement.setInt(1, projectID);
+            //execute statement
+            ResultSet resultSet = preparedStatement.executeQuery();
+            //set resultset
+
+            while(resultSet.next()) {
+                highestSprintID = resultSet.getInt(1);
+            }
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+            System.out.println("Could not query database for sprints");
+        }
+
+        return highestSprintID;
+    }
 }

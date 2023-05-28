@@ -11,7 +11,7 @@
 <body th:if="${session.currentuser}">
     <div th:replace="fragments/navbar :: navbarthree"></div>
 
-    <div id="epiccreate-table-background">
+    <div id="sprint-background">
         <div class="epicscontainer">
             <div class="overlaytitle">
                 <h1>Create sprint</h1>
@@ -24,10 +24,6 @@
 
                             <p>Write Sprint Name</p>
                             <input name="sprint_name" placeholder="SP00X" type="text" required></input>
-
-                            <div class="epicbuttons">
-                                <input name="sprint_id" type="hidden" th:value="${calculator.createRandomNumber()}"></input>
-                            </div>
                             
                             <input class="table-link" type="submit" value="Create sprint"></input>
 

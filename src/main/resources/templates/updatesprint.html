@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Update Sprint</title>
+  <link rel="stylesheet" th:href="@{/css/cssstyles.css}" href="../static/css/cssstyles.css">
+  <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body th:if="${session.currentuser}">
+<div th:replace="fragments/navbar :: navbarthree"></div>
+
+<div id="sprint-background">
+  <div class="epicscontainer">
+    <div class="overlaytitle">
+      <h1>Update sprint</h1>
+    </div>
+
+    <div class="table-container">
+      <div class="epiccreateitem">
+        <div>
+          <form action="/updatesprint" method="post">
+
+            <p>Edit Sprint Name</p>
+            <input name="sprint_name" th:value="${sprint.getSprintName()}" type="text" required></input>
+            <input name="sprint_id" th:value="${sprint.getSprintId()}" type="hidden" required></input>
+            <input class="table-link" type="submit" value="Update"></input>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

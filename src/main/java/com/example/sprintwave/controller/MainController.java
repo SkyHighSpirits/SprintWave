@@ -415,11 +415,11 @@ public class MainController {
     }
 
     @PostMapping("/createuserstory")
-    public String createUserStory(@RequestParam("project_id") int project_id,
-                                  @RequestParam("userstory_name") String userstory_name,
-                                  @RequestParam("userstory_description") String userstory_description,
-                                  @RequestParam("userstory_points") int userstory_points,
-                                  @RequestParam("sprint_id") int sprint_id, HttpSession session) {
+    public String createUserStory(@RequestParam(value = "project_id") int project_id,
+                                  @RequestParam(value= "userstory_name") String userstory_name,
+                                  @RequestParam(value="userstory_description") String userstory_description,
+                                  @RequestParam(value="userstory_points") int userstory_points,
+                                  @RequestParam(value="sprint_id") int sprint_id, HttpSession session) {
         Userstory userstory = new Userstory();
         userstory.setProject_id(project_id);
         userstory.setName(userstory_name);
@@ -631,7 +631,6 @@ public class MainController {
         else if(status == 4)
         {
             status--;
-            //TODO: FIX BUG MAKING THE TECHNICAL TASK NOT APPEAR ON RELEASED BACKLOG WHEN ONLY ONE TASK IS MOVED BACK FROM DONE
             movingTechnicalTask.setReleased(false);
             Userstory parentUserstory = userstoriesRepository.getSpecificUserstoryByID(movingTechnicalTask.getUserstory_id());
             parentUserstory.setReleased(false);
@@ -665,16 +664,15 @@ public class MainController {
 
     @PostMapping("/createsprint")
     public String createSprint(@RequestParam("sprint_name") String sprintName,
-                               @RequestParam("sprint_id") int sprintID, 
                                HttpSession session)
     {
-        System.out.println(sprintName);
-        System.out.println(sprintID);
-        
         Sprint sprint = new Sprint();
+        Project currentproject = (Project) session.getAttribute("currentproject");
+        // Auto increment logic pr project id for sprints
+        int sprintID = sprintRepository.getMaxSprintIDFromProjectID(currentproject.getProjectID());
+        sprintID++;
         sprint.setSprintId(sprintID);
         sprint.setSprintName(sprintName);
-        Project currentproject = (Project) session.getAttribute("currentproject");
         sprint.setProjectId(currentproject.getProjectID());
         sprintRepository.createSprint(sprint);
         return "redirect:/sprints";
@@ -686,6 +684,27 @@ public class MainController {
         Calculations calculator = new Calculations();
         model.addAttribute("calculator", calculator);
         return "createsprint";
+    }
+
+    @GetMapping("/updatesprint/{sprint_id}")
+    public String showUpdateSprint(@PathVariable("sprint_id") int sprintID, HttpSession session, Model model) {
+        Project currentproject = (Project) session.getAttribute("currentproject");
+        Sprint foundSprint = sprintRepository.getSprintByIDAndProjectID(sprintID,currentproject.getProjectID());
+        model.addAttribute("sprint", foundSprint);
+        return "updatesprint";
+    }
+
+    @PostMapping("/updatesprint")
+    public String updateSprint(@RequestParam("sprint_name") String sprintName,
+                               @RequestParam("sprint_id") int sprintID,
+                               HttpSession session) {
+        Sprint updateSprint = new Sprint();
+        Project currentproject = (Project) session.getAttribute("currentproject");
+        updateSprint.setProjectId(currentproject.getProjectID());
+        updateSprint.setSprintName(sprintName);
+        updateSprint.setSprintId(sprintID);
+        sprintRepository.updateSprint(updateSprint);
+        return "redirect:/sprints";
     }
 
     /* END OF SPRINT BACKLOG MAPPINGS BY NICOLAI */

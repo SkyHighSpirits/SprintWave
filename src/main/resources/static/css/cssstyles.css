@@ -357,6 +357,7 @@ label .logo-link{
     background: rgb(7,84,2);
     background: linear-gradient(90deg, rgba(7,84,2,1) 0%, rgba(7,107,2,1) 54%, rgba(27,158,41,1) 100%);
     background-repeat: no-repeat;
+    min-height: 100vh;
 }
 
 
@@ -932,7 +933,11 @@ p{
 .sprint-headline {
     width: 80%;
     margin: 0 auto;
-    color: white;
+}
+
+.sprint-headline h1
+{
+    color: #FFFFFF;
 }
 
 

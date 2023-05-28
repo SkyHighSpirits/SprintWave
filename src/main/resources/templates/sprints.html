@@ -20,7 +20,13 @@
     </div>
 
     <div class="sprint-headline"  th:each="sprint : ${sprintsinproject}">
-        <h1 th:text="${sprint.sprintName}">Sprint Name</h1>
+        <h1>
+            <span th:text="${sprint.sprintName}">Sprint name</span>
+            <span> | </span>
+            <a th:href="@{/updatesprint/{sprintId}(sprintId=${sprint.getSprintId()})}" href="/updatesprint">Edit Name</a>
+        </h1>
+
+
 
         <div class="sprint-board">
 

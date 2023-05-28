@@ -16,14 +16,6 @@ public class Calculations {
         }
         return sum;
     }
-    
-    public int createRandomNumber(){
-        
-        double answer = Math.random() * 100000000;
-        
-        return (int) answer;
-        
-    }
 
 
 }

@@ -19,7 +19,7 @@
 
           <form action="/updateuserstory" method="post">
             <p>Write userstory name</p>
-            <input id="userstory-name-field" name="userstory_name" type="text" th:value="${userstory.getName()}">
+            <input id="userstory-name-field" name="userstory_name" type="text" th:value="${userstory.getName()}" required>
 
             <p>Write userstory Description</p>
             <input id="userstory-description-field" name="userstory_description" type="text" th:value="${userstory.getDescription()}" required></input>
