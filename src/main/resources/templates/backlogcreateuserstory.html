@@ -9,7 +9,7 @@
 </head>
 <body th:if="${session.currentuser}">
 <div id="backlog-background2">
-    <div class="epicscontainer">
+    <div class="generalcontainer">
         <div class="overlaytitle">
             <h1>Create user story</h1>
         </div>
@@ -26,7 +26,7 @@
                         <input id="userstory-points-field" name="userstory_points" type="number" placeholder="5" required></input>
                         <p>Assign sprint (Defaults to 1)</p>
                         <input id="task-sprint-field" name="sprint_id" type="number" placeholder="1" th:value="${1}" required></input>
-                        <div class="epicbuttons">
+                        <div class="generalbuttons">
                             <input id="project_id_field" name="project_id" type="hidden" th:value="${session.currentproject.getProjectID()}"></input>
                         </div>
                         <br/>

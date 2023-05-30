@@ -9,7 +9,7 @@
 </head>
 <body th:if="${session.currentuser}">
 <div id="requirements-background">
-    <div class="epicscontainer">
+    <div class="generalcontainer">
         <div class="overlaytitle">
             <h1>Update requirement</h1>
 
@@ -18,7 +18,7 @@
 
         <div class="table-container">
 
-            <div class="epiccreateitem">
+            <div class="templatecreateitem">
                 <div>
                     <form action="/updaterequirement" method="post">
                         <p>Write title</p>
@@ -32,7 +32,7 @@
                             <option value="Functional">Functional</option>
                             <option value="Non-functional">Non-functional</option>
                         </select>
-                        <div class="epicbuttons">
+                        <div class="generalbuttons">
                             <input id="project_id-field" name="project_id" type="hidden" th:value="${session.currentproject.getProjectID()}"></input>
                             <input id="requirement_id-field" name="requirement_id" type="hidden" th:value="${requirement.requirement_id}"></input>
                         </div>

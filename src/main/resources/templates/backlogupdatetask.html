@@ -11,7 +11,7 @@
 <div id="backlog-background2">
 
 
-  <div class="epicscontainer">
+  <div class="generalcontainer">
     <div class="overlaytitle2">
       <h1>Update task <span th:text="${technicaltask.name}"></span></h1>
 
@@ -30,7 +30,7 @@
             <input id="task-points-field" name="technicaltask_points" type="number" th:value="${technicaltask.getPoints()}" required></input>
             <p>Reassign sprint</p>
             <input id="task-sprint-field" name="sprint_id" type="number" th:value="${technicaltask.getSprint_id()}" required></input>
-            <div class="epicbuttons">
+            <div class="generalbuttons">
               <input id="userstory_id" name="userstory_id" type="hidden" th:value="${technicaltask.getUserstory_id()}"></input>
               <input id="technicaltask_released" name="technicaltask_released" type="hidden" th:value="${technicaltask.isReleased()}"></input>
               <input id="technicaltask_points" name="technicaltask_released" type="hidden" th:value="${technicaltask.isReleased()}"></input>

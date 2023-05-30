@@ -9,7 +9,7 @@
 </head>
 <body th:if="${session.currentuser}">
 <div id="backlog-background2">
-  <div class="epicscontainer">
+  <div class="generalcontainer">
     <div class="overlaytitle">
       <h1>Update user story</h1>
     </div>
@@ -27,7 +27,7 @@
             <input id="userstory-points-field" name="userstory_points" type="number" th:value="${userstory.getPoints()}" required></input>
             <p>Reassign sprint</p>
             <input id="task-sprint-field" name="sprint_id" type="number" th:value="${userstory.getSprint_id()}" required></input>
-            <div class="epicbuttons">
+            <div class="generalbuttons">
               <input id="project_id_field" name="project_id" type="hidden" th:value="${session.currentproject.getProjectID()}"></input>
               <input id="userstory_id_field" name="userstory_id" type="hidden" th:value="${userstory.getId()}"></input>
               <input id="userstory_released_field" name="userstory_released" type="hidden" th:value="${userstory.isReleased()}"></input>

@@ -13,7 +13,7 @@
 <div th:replace="fragments/navbar :: secondnavbar"></div>
 
 <div id="requirements-background">
-    <div class="epicscontainer">
+    <div class="generalcontainer">
         
         <div class="overlaytitle">
             <h1>Requirements</h1>
@@ -33,7 +33,7 @@
                     <input id="project_id-field" name="project_id" type="hidden" th:value="${requirement.project_id}">
                     <input id="requirement_id-field" name="requirement_id" type="hidden" th:value="${requirement.requirement_id}">
                     <input id="funcNonFunc-field" name="funcNonFunc" type="hidden" th:value="${requirement.funcNonFunc}">
-                    <div class="epicbuttons">
+                    <div class="generalbuttons">
                         <a class="table-link" th:href="@{'/updaterequirement/' + ${requirement.requirement_id}}" href="/requirementupdate">Update</a>
                         <a class="table-link" th:href="@{'/deleterequirement/' + ${requirement.requirement_id} + '/' + ${requirement.project_id}}" href="/deleterequirement">Delete</a>
                     </div>
@@ -52,7 +52,7 @@
                     <input id="project_id-field2" name="project_id" type="hidden" th:value="${requirement.project_id}">
                     <input id="requirement_id-field2" name="requirement_id" type="hidden" th:value="${requirement.requirement_id}">
                     <input id="funcNonFunc-field2" name="funcNonFunc" type="hidden" th:value="${requirement.funcNonFunc}">
-                    <div class="epicbuttons">
+                    <div class="generalbuttons">
                         <a class="table-link" th:href="@{'/updaterequirement/' + ${requirement.requirement_id}}" href="/requirementupdate">Update</a>
                         <a class="table-link" th:href="@{'/deleterequirement/' + ${requirement.requirement_id} + '/' + ${requirement.project_id}}" href="/deleterequirement">Delete</a>
                     </div>

@@ -8,8 +8,8 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body th:if="${session.currentuser}">
-<div id="epiccreate-table-background">
-  <div class="epicscontainer">
+<div id="general-table-background">
+  <div class="generalcontainer">
     <div class="overlaytitle">
       <h1>Create epic</h1>
 
@@ -18,7 +18,7 @@
 
     <div class="table-container">
 
-      <div class="epiccreateitem">
+      <div class="templatecreateitem">
         <div>
           <form action="createepic" method="post">
 
@@ -27,7 +27,7 @@
             <p>Write description</p>
             <input id="epic-description-field" name="epic_description" type="text" required></input>
 
-            <div class="epicbuttons">
+            <div class="generalbuttons">
               <input id="project_id-field" name="project_id" type="hidden" th:value="${session.currentproject.getProjectID()}"></input>
             </div>
             <input class="table-link" type="submit" value="Create epic"></input>

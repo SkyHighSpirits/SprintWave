@@ -340,7 +340,7 @@ label .logo-link{
     justify-content: center;
 }
 
-#epiccreate-table-background
+#general-table-background
 {
     background: linear-gradient(hsla(217, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
 
@@ -390,7 +390,7 @@ label .logo-link{
     margin-left: 36%;
 }
 
-.epicscontainer
+.generalcontainer
 {
     padding: 20px;
     width: 100%;
@@ -416,7 +416,7 @@ label .logo-link{
     transition: 0.5s;
 }
 
-.epiccreateitem
+.templatecreateitem
 {
     position: relative;
     background: white;
@@ -427,7 +427,7 @@ label .logo-link{
     border-radius: 10px;
     margin-bottom: 40px;
 }
-.epicbuttons
+.generalbuttons
 {
     position: absolute;
     bottom: 10px;

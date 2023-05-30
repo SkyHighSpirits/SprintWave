@@ -13,7 +13,7 @@
 <div th:replace="fragments/navbar :: secondnavbar"></div>
 
 <div id="backlog-background">
-  <div class="epicscontainer">
+  <div class="generalcontainer">
     <div class="overlaytitle2">
       <h1>Product Backlog</h1>
       <a class="table-link push-left-20" th:href="@{'/showcreateuserstory'}" href="/showcreateuserstory"><h2>New Usecase</h2></a>
@@ -37,7 +37,7 @@
                 <p th:text="${technicaltask.description}">Connect to azure database</p>
               </div>
             </div>
-            <div class="epicbuttons">
+            <div class="generalbuttons">
               <a class="table-link" th:href="@{'/showcreatetask/' + ${userstory.id}}" href="/showcreatetask">Add Task</a>
               <a class="table-link" th:href="@{'/updateuserstory/' + ${userstory.id}}" href="/updateuserstory">Update Userstory</a>
               <a class="table-link" th:href="@{'/deleteuserstory/' + ${userstory.id}}" href="/deleteuserstory">Delete Userstory</a>
@@ -60,7 +60,7 @@
                 <p th:text="${technicaltask.description}">Connect to azure database</p>
               </div>
             </div>
-            <div class="epicbuttons">
+            <div class="generalbuttons">
               <a class="table-link" th:href="@{'/updateuserstory/' + ${userstory.id}}" href="/updateuserstory">Update Usecase</a>
               <a class="table-link" th:href="@{'/deleteuserstory/' + ${userstory.id}}" href="/deleteuserstory">Delete</a>
             </div>
