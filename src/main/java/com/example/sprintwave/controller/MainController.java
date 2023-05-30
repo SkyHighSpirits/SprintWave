@@ -64,18 +64,21 @@ public class MainController {
         return currentProject;
     }
 
+    //A Getmapping for frontpage
     @GetMapping("/")
     public String getHomepage()
     {
         return "frontpage";
     }
 
+    //A Getmapping for signup page
     @GetMapping("/signup")
     public String getSignupPage()
     {
         return "signup";
     }
 
+    //A Get mapping that shows all the requirements related to a specific projectID
     @GetMapping("/requirements/{project_id}")
     public String requirement(@PathVariable("project_id") int project_id, Model model) {
         ArrayList<Requirement> requirementList = requirementRepository.getAllRequirementByProjectID(project_id);
@@ -83,10 +86,13 @@ public class MainController {
         return "requirements";
     }
 
+    //A getmapping that leads to the page where you create a requirement
     @GetMapping("/showcreaterequirement")
     public String showCreateRequirement() {
         return "requirementcreate";
     }
+
+    //A Postmapping to that takes the input from the user, creates an object with this information, shoots it to the database, and returns to an overview of the requirements based on a projectID
     @PostMapping("/createrequirement")
     public String createRequirement(@RequestParam("project_id") int project_id,
                                     @RequestParam("requirement_name") String requirement_name,
@@ -103,6 +109,7 @@ public class MainController {
         return "redirect:/requirements/" + project_id;
     }
 
+    //A getmapping that uses the requirementsId, to shoots the current information into a model to show on the update page
     @GetMapping("/updaterequirement/{requirement_id}")
     public String showUpdateRequirement(@PathVariable("requirement_id") int requirement_id, Model model) {
         Requirement foundRequirement = requirementRepository.findRequirementByID(requirement_id);
@@ -110,6 +117,7 @@ public class MainController {
         return "requirementupdate";
     }
 
+    //A Postmapping to that takes the input from the user, creates an object with this information, shoots it to the database, and returns to an overview of the requirements based on a projectID
     @PostMapping("/updaterequirement")
     public String updateRequirement(@RequestParam("project_id") int project_id,
                                     @RequestParam("requirement_id") int requirement_id,
@@ -128,6 +136,7 @@ public class MainController {
         return "redirect:/requirements/" + project_id;
     }
 
+    //A getmapping that uses the requirementId, that finds the requirement and deletes it with deleteRequirement, and return to overview of the requirements based on the projectId
     @GetMapping("/deleterequirement/{requirement_id}/{project_id}")
     public String deleteRequirement(@PathVariable("requirement_id") int requirement_id,
                                     @PathVariable("project_id") int project_id) {
@@ -136,6 +145,7 @@ public class MainController {
 
     }
 
+    //A getmapping that uses projectId to request all the epics related that, and puts it into a model to show on the page
     @GetMapping("/epics/{project_id}")
     public String epic(@PathVariable("project_id") int project_id, Model model) {
         ArrayList<Epic> epicList = epicRepository.getAllEpicByProjectID(project_id);
@@ -143,11 +153,13 @@ public class MainController {
         return "epics";
     }
 
+    //A getmapping that shows the page where you can create an epic
     @GetMapping("/showcreateepic")
     public String showCreateEpic() {
         return "epiccreate";
     }
 
+    //A postmapping that request the user input, puts it into an epic object, shoots it to the databse and returns to the overview of epics based on a projectId
     @PostMapping("/createepic")
     public String createEpic(@RequestParam("project_id") int project_id,
                              @RequestParam("epic_name") String epic_name,
@@ -160,6 +172,7 @@ public class MainController {
         return "redirect:/epics/" + project_id;
     }
 
+    //A getmapping that finds an epic based on a epicId, puts it into a model that can be shown on the update epic page
     @GetMapping("/updateepic/{epic_id}")
     public String showEpicUpdate(@PathVariable("epic_id") int updateID, Model model) {
         Epic updateEpic = epicRepository.findEpicByID(updateID);
@@ -167,6 +180,7 @@ public class MainController {
         return "epicupdate";
     }
 
+    //A postmapping that request user input, puts it into an epic object, shoots it to the database, and return the overview of epics based on a projectId
     @PostMapping("/updateepic")
     public String updateEpic(@RequestParam("project_id") int project_id,
                              @RequestParam("epic_id") int epic_id,
@@ -178,6 +192,7 @@ public class MainController {
         return "redirect:/epics/" + project_id;
     }
 
+    //A getmapping that deletes an epic based on a epicId from pathvariable, and return the epics overview based on a projectId
     @GetMapping("/deleteepic/{epic_id}/{project_id}")
     public String deleteEpic(@PathVariable("epic_id") int epic_id, @PathVariable("project_id") int project_id) {
         epicRepository.deleteEpic(epic_id);
@@ -185,6 +200,8 @@ public class MainController {
         return "redirect:/epics/" + project_id;
     }
 
+    //A postmapping the request some user input, creates a workspace and a user. A session will also be created with the user,
+    // which we use to return to appfrontpage based on a workspaceID from the session, which was just created.
     @PostMapping("/createaccount")
     public String createAccount(@RequestParam("workspacename") String workspaceName,
                                 @RequestParam("firstname") String firstName,
