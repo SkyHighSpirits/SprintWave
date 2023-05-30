@@ -25,6 +25,7 @@ public class RequirementRepository {
     String DB_PASSWORD;
 
 
+    //Takes an object parameter, and creates a preparedstatement to shoot to the database
     public void createRequirement(Requirement newRequirement) {
         try {
             //Opret forbindelse til database
@@ -51,6 +52,7 @@ public class RequirementRepository {
         }
     }
 
+    //Takes an updated requirement object and shoots it to the database as a preparedstatement
     public void updateRequirement(Requirement updateRequirement){
         try {
             //Oprette forbindelse til database
@@ -75,6 +77,7 @@ public class RequirementRepository {
         }
     }
 
+    //Takes an integer as parameter and deletes an object in the database based on this integer
     public void deleteRequirement(int deleteRequirementID){
         try {
             //Oprette forbindelse til database
@@ -95,6 +98,7 @@ public class RequirementRepository {
         }
     }
 
+    //Take a integer parameter, and finds the requirement object that has this id and creates a new object to return
     public Requirement findRequirementByID(int id){
         Requirement foundRequirement = new Requirement();
         foundRequirement.setRequirementId(id);
@@ -126,6 +130,7 @@ public class RequirementRepository {
         return foundRequirement;
     }
 
+    //Finds all requirements based on a project id and create requirement object to put into an arraylist and return that list
     public ArrayList<Requirement> getAllRequirementByProjectID(int projectID){
         ArrayList<Requirement> requirementList = new ArrayList<>();
         try {

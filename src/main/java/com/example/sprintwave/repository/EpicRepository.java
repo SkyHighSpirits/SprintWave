@@ -22,6 +22,7 @@ public class EpicRepository {
     @Value("${spring.datasource.password}")
     String DB_PASSWORD;
 
+    //Takes an object parameter, and creates a preparedstatement to shoot to the database
     public void createEpic(Epic newEpic) {
         try {
             //Opret forbindelse til database
@@ -44,6 +45,7 @@ public class EpicRepository {
         }
     }
 
+    //Takes an updated epic object and shoots it to the database as a preparedstatement
     public void updateEpic(Epic updateEpic){
         try {
             //Oprette forbindelse til database
@@ -66,6 +68,7 @@ public class EpicRepository {
         }
     }
 
+    //Takes an integer as parameter and deletes an object in the database based on this integer
     public void deleteEpic(int deleteEpicID){
         try {
             //Oprette forbindelse til database
@@ -86,6 +89,7 @@ public class EpicRepository {
         }
     }
 
+    //Take a integer parameter, and finds the epic object that has this id and creates a new object to return
     public Epic findEpicByID(int id){
         Epic foundEpic = new Epic();
         foundEpic.setEpicId(id);
@@ -119,6 +123,7 @@ public class EpicRepository {
         return foundEpic;
     }
 
+    //Finds all epic based on a project id and create epic object to put into an arraylist and return that list
     public ArrayList<Epic> getAllEpicByProjectID(int projectID){
         ArrayList<Epic> epicList = new ArrayList<>();
         try {

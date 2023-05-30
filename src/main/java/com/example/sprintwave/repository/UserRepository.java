@@ -2,6 +2,7 @@ package com.example.sprintwave.repository;
 
 import com.example.sprintwave.model.PermissionLevel;
 import com.example.sprintwave.model.User;
+import com.example.sprintwave.utility.ConnectionManager;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
@@ -22,11 +23,12 @@ public class UserRepository {
     String DB_PASSWORD;
 
 
+    //Takes a user as parameter and shoots data to the database user table, based on the information from the parameter
     public void createUser(User newUser)
     {
         try{
             // Connect to database and create CREATE_QUERY
-            Connection connection = DriverManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
+            Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
             final String CREATE_QUERY ="INSERT INTO users" +
                     "(email,user_password,firstname,lastname,permission_level,workspace_id)" +
                     "VALUES (?,?,?,?,?,?)";
@@ -47,12 +49,13 @@ public class UserRepository {
         }
     }
 
+    //Creates a List which will hold all the users from the database and put it into that list, and return it
     public List<User> getAllUsers(){
         List <User> userList = new ArrayList<>();
         
         try{
             // Connect to database
-            Connection connection = DriverManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
+            Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
             Statement statement = connection.createStatement();
             
             // Prepare statement

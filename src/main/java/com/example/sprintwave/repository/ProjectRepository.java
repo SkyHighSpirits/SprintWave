@@ -24,9 +24,10 @@ public class ProjectRepository
     @Value("${spring.datasource.password}")
     String DB_PASSWORD;
 
+    //takes a project as parameter and makes a prepared statement of information from this object, and shoots it to the database
     public void createProject(Project newProject){
         try{
-            Connection connection = DriverManager.getConnection(DB_HOSTNAME,DB_USERNAME,DB_PASSWORD);
+            Connection connection = ConnectionManager.getConnection(DB_HOSTNAME,DB_USERNAME,DB_PASSWORD);
                     final String CREATE_QUERY="INSERT INTO projects" + "(project_name, project_owner, project_deadline, project_description, workspace_id)"  + "VALUES (?,?,?,?,?)";
             //prepare QUERY
             PreparedStatement preparedStatement = connection.prepareStatement(CREATE_QUERY);
@@ -44,11 +45,12 @@ public class ProjectRepository
         }
     }
 
+    //Finds all projects based on a workspace id and create epic object to put into an arraylist and return that list
     public List<Project> findProjectByWorkspaceId(int id){
         List<Project> workspaceProjects = new ArrayList<>();
 
         try{
-            Connection connection = DriverManager.getConnection(DB_HOSTNAME,DB_USERNAME,DB_PASSWORD);
+            Connection connection = ConnectionManager.getConnection(DB_HOSTNAME,DB_USERNAME,DB_PASSWORD);
             String SQL_QUERY = "SELECT * FROM projects WHERE workspace_id =?";
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
             preparedStatement.setInt(1,id);
@@ -74,7 +76,7 @@ public class ProjectRepository
         return workspaceProjects;
     }
 
-
+    //Takes an updated project object and shoots it to the database as a preparedstatement
     public void updateProject(Project updateProject){
         try{
             Connection connection = ConnectionManager.getConnection(DB_HOSTNAME,DB_USERNAME,DB_PASSWORD);
@@ -97,6 +99,8 @@ public class ProjectRepository
             System.out.println("could not update project");
         }
     }
+
+    //Take a integer parameter, and finds the project object that has this id and creates a new object to return
     public Project findProjectByID(int id){
         Project foundProject = new Project();
         foundProject.setProjectID(id);
