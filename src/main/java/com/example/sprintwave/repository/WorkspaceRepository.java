@@ -1,6 +1,7 @@
 package com.example.sprintwave.repository;
 
 import com.example.sprintwave.model.Workspace;
+import com.example.sprintwave.utility.ConnectionManager;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
@@ -21,12 +22,11 @@ public class WorkspaceRepository {
 
 
 
-
     public Workspace getLastEntryWorkspace()
     {
         Workspace workspace = new Workspace();
         try {
-            Connection connection = DriverManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
+            Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
             Statement statement = connection.createStatement();
             final String SQL_QUERY = "SELECT * FROM workspaces ORDER BY workspace_id DESC LIMIT 1";
             ResultSet resultSet = statement.executeQuery(SQL_QUERY);
@@ -46,10 +46,12 @@ public class WorkspaceRepository {
         }
         return workspace;
     }
+
+    //Takes a workspace as parameter and shoots data to the database based on this obeject
     public void addWorkspace(Workspace newWorkspace){
         try{
             // Connect to database and create CREATE_QUERY
-            Connection connection = DriverManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
+            Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
             final String CREATE_QUERY ="INSERT INTO workspaces" +
                     "(workspace_name)" +
                     "VALUES (?)";
