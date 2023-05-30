@@ -524,7 +524,9 @@ public class MainController {
 
     /* START OF SPRINT BACKLOG MAPPINGS BY NICOLAI */
 
-
+    //GetMapping for sprints page, returns sprints page
+    //Note, sprint 4, move "sorting" logic to datahandler class
+    //Note, sprint 4, move "if case" logic to datahandler class
     @GetMapping("/sprints")
     public String showSprints(Model model, HttpSession session)
     {
