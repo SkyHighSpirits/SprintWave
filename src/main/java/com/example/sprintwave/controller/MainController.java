@@ -496,47 +496,45 @@ public class MainController {
         return "redirect:/backlog/" + ((Project) session.getAttribute("currentproject")).getProjectID();
     }
 
-
     /* END OF USERSTORY MAPPINGS BY NICOLAI */
-
 
     /* START OF SPRINT BACKLOG MAPPINGS BY NICOLAI */
 
     @GetMapping("/sprints")
     public String showSprints(Model model, HttpSession session)
     {
-        //TODO: Get the project id of the current opened project - TEST
+        //Get the project id of the current opened project
         Project currentProject = (Project) session.getAttribute("currentproject");
         int project_id = currentProject.getProjectID();
 
-        //TODO: Define and initialize arrays for models - DONE
+        //Define and initialize arrays for models
         ArrayList<Sprint> sprintsInProject;
 
         ArrayList<TechnicalTask> technicaltasksInProject = new ArrayList<>();
 
         ArrayList<Userstory> userstoriesInProject = new ArrayList<>();
 
-        //TODO: Find all sprints for a given project and add to a model - DONE
+        //Find all sprints for a given project and add to a model
         sprintsInProject = sprintRepository.getAllSprintsByProjectID(project_id);
         model.addAttribute("sprintsinproject", sprintsInProject);
 
-        //TODO: Find all userstories for a given project and add to a model - TEST
+        //Find all userstories for a given project and add to a model
         userstoriesInProject = userstoriesRepository.getAllUserstoriesFromProjectID(project_id);
         model.addAttribute("userstoriesinproject",userstoriesInProject);
         System.out.println(userstoriesInProject);
 
-        //TODO: Get an send an object of Datahandler and Calculator
+        //Get and send an object of Datahandler and Calculator
         DataHandler datahandler = new DataHandler();
         model.addAttribute("datahandler", datahandler);
         Calculations calculations = new Calculations();
         model.addAttribute("calculator", calculations);
 
 
-        //TODO: Find all technicalTasks for a given project and add to a model - DONE
+        //find all technicalTasks for a given project and add to a model
         for(Userstory userstory: userstoriesInProject)
         {
 
-            //TODO: If a userstory is released, then all technicaltasks are released - Done
+            //If a userstory is released, then all technicaltasks are released
             if(userstory.getStatus() == Status.done)
             {
                 for(TechnicalTask technicalTask: technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstory.getId()))
@@ -548,7 +546,7 @@ public class MainController {
                     technicalTaskRepository.updateTechnicalTaskReleasedAndStatus(technicalTask);
                 }
             }
-            //TODO: If all technicaltasks are done, userstory is released - TEST
+            //If all technicaltasks are done, userstory is released
             boolean userstoryIsReleased = true;
             if(!technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstory.getId()).isEmpty())
             {
@@ -590,7 +588,7 @@ public class MainController {
     @PostMapping("/moveuserstoryleft")
     public String moveUserstoryLeft(@RequestParam("userstoryid") int userstoryID)
     {
-        //TODO: Make functionality of moving tasks or userstories left on board
+        //Functionality of moving tasks or userstories left on board
         Userstory movingUserstory = userstoriesRepository.getSpecificUserstoryByID(userstoryID);
         int status = DataHandler.convertStatusToInt(movingUserstory.getStatus());
         if(status == 1)
@@ -619,7 +617,7 @@ public class MainController {
     @PostMapping("/moveuserstoryright")
     public String moveUserstoryRight(@RequestParam("userstoryid") int userstoryID)
     {
-        //TODO: Make functionality of moving tasks or userstories right on board
+        //Functionality of moving tasks or userstories right on board
         Userstory movingUserstory = userstoriesRepository.getSpecificUserstoryByID(userstoryID);
         int status = DataHandler.convertStatusToInt(movingUserstory.getStatus());
         if(status == 4)
@@ -637,7 +635,7 @@ public class MainController {
     @PostMapping("/movetechnicaltaskleft")
     public String moveTechnicaltaskLeft(@RequestParam("technicaltaskid") int TechnicaltaskID)
     {
-        //TODO: Make functionality of moving tasks or userstories left on board
+        //functionality of moving tasks or userstories left on board
         TechnicalTask movingTechnicalTask = technicalTaskRepository.getSpecificTechnicalTaskFromID(TechnicaltaskID);
         int status = DataHandler.convertStatusToInt(movingTechnicalTask.getStatus());
         if(status == 1)
@@ -663,7 +661,7 @@ public class MainController {
     @PostMapping("/movetechnicaltaskright")
     public String moveTechnicaltaskRight(@RequestParam("technicaltaskid") int TechnicaltaskID)
     {
-        //TODO: Make functionality of moving tasks or userstories right on board
+        //functionality of moving tasks or userstories right on board
         TechnicalTask movingTechnicalTask = technicalTaskRepository.getSpecificTechnicalTaskFromID(TechnicaltaskID);
         int status = DataHandler.convertStatusToInt(movingTechnicalTask.getStatus());
         if(status == 4)
