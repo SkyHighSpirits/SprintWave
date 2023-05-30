@@ -5,8 +5,12 @@ import com.example.sprintwave.repository.WorkspaceRepository;
 
 import java.util.ArrayList;
 
+//Class responsible for handeling data sorting, conversion and object creation
+//NOTE sprint 4, put all sorting and object creation from mainController in this class instead
 public class DataHandler {
 
+
+    // Method for checking if user login values are correct
     public static boolean checkUserInformationMatch(User checkUser, String enteredPassword, String enteredEmail)
     {
             // TO DO: Create CHECK for user.
@@ -24,6 +28,8 @@ public class DataHandler {
             }
     }
 
+    //Method to populate a user object with information and returning it
+    //Note, sprint 4, should be done the same way for all model objects created in MainController
     public static User populateUserWithInformation(String email, String password, String firstname, String lastname, String workspacename, WorkspaceRepository workspaceRepository)
     {
         User user = new User();
@@ -39,6 +45,7 @@ public class DataHandler {
         return user;
     }
 
+    //Puts a limit on how many storypoints a userstory or technicaltask can have
     public static int limitPoints(int points)
     {
         if(points > 100)
@@ -55,6 +62,7 @@ public class DataHandler {
         }
     }
 
+    //Converts an int status representation to a Status
     public static Status convertIntToStatus(int status_index) {
         Status status = null;
         switch (status_index) {
@@ -76,10 +84,10 @@ public class DataHandler {
         return status;
     }
 
-
+    //Method for deviding technicaltask arraylists into arrayslists only containing technicaltasks with a specific status
     public ArrayList<TechnicalTask> divideArrayIntoStatusSpecificArrays(ArrayList<TechnicalTask> allTechnicalTasks, String status, Sprint sprint)
     {
-        // TODO: If we have the time, make this method more efficient and shorter
+        // Note: If we have the time, make this method more efficient and shorter
         ArrayList<TechnicalTask> newListOfTasksForSpecificStatus = new ArrayList<>();
         for (TechnicalTask technicalTask: allTechnicalTasks)
         {
@@ -126,7 +134,7 @@ public class DataHandler {
         return newListOfTasksForSpecificStatus;
     }
 
-
+    //Method for converting status to an int representation of status (1-4)
     public static int convertStatusToInt(Status status)
     {
         int statusIndex = 0;
@@ -160,6 +168,7 @@ public class DataHandler {
         return statusIndex;
     }
 
+    //Method for converting String representation of status to a status.
     public static Status convertStringToStatus(String Stringstatus)
     {
         Status status = null;
@@ -193,6 +202,7 @@ public class DataHandler {
         return status;
     }
 
+    //Method for converting boolean funcNonFunc to a String representation of funcNonFunc
     public static String convertFuncNonFuncBooleanToString(boolean funcNonFunc)
     {
         String returnValue = "";
@@ -207,6 +217,7 @@ public class DataHandler {
         return returnValue;
     }
 
+    //Method for converting String Representation of funcNonFunc to boolean
     public static boolean convertFuncNonFuncStringToBoolean(String funcNonFuncChoice)
     {
         boolean returnValue = false;
