@@ -223,7 +223,7 @@ public class MainController {
         return "redirect:/appfrontpage/" + currentuser.getWorkspace_id();
     }
 
-    // Login User
+    //A postmapping that request user input and check if the entered emails and passwords hashed version matches with the database
     @PostMapping("/loginuser")
     public String loginUser(@RequestParam("email") String enteredEmail,
                             @RequestParam("password") String enteredPassword,
@@ -246,12 +246,14 @@ public class MainController {
         return "login";
     }
 
+    //A getmapping that showss the login page
     @GetMapping("/login")
     public String getLoginPage()
     {
         return "login";
     }
 
+    //A getmapping that shows the overview page
     @GetMapping("/overview/{projectID}")
     public String overview(@PathVariable("projectID") int projectID, HttpSession session, Model model) {
         Project currentproject = projectRepository.findProjectByID(projectID);
@@ -261,9 +263,11 @@ public class MainController {
         return "overview";
     }
 
+    //A getmapping that shows the create project page
     @GetMapping("/createproject")
     public String getCreateproject() {return "createproject";}
 
+    //A postmapping that request user input and creates a project object with that information. Return project page based on a workspaceId
     @PostMapping("/postcreateproject")
     public String createProject(@RequestParam("projectname") String projectName,
                                 @RequestParam("projectowner") String projectOwner,
@@ -281,6 +285,7 @@ public class MainController {
         return "redirect:/appfrontpage/" + workspaceID;
     }
 
+    //A getmapping that finds a project by a projectId and puts it into a model, to be able to show it on the page
     @GetMapping("/updateproject/{projectID}")
     public String showUpdateProject(@PathVariable("projectID") int updateID, Model model, HttpSession session){
         Project updateProject = projectRepository.findProjectByID(updateID);
@@ -289,7 +294,7 @@ public class MainController {
         return "/modifyproject";
     }
 
-
+    //A postmapping that request user input and shoots the updated version of the project to the database. Return appfrontpage based on a workspaceId
     @PostMapping("/updateproject")
     public String updateProject(@RequestParam("project_id") int projectID,
                                 @RequestParam("projectname") String projectName,
@@ -307,6 +312,7 @@ public class MainController {
     
     
     /* START OF PROJECT MAPPINGS BY STEFFEN */
+    //A getmapping that shows all projects based on a workspaceId, puts the objects into an arrayList and into a model that show the projects on the page
     @GetMapping("/appfrontpage/{workspace_id}")
     public String getAppFrontpage(@PathVariable("workspace_id") int workspace_id, Model model){
        ArrayList projectList = (ArrayList)projectRepository.findProjectByWorkspaceId(workspace_id); //TODO Skal opdateres til getAllProjectsByWorkspaceID
@@ -362,6 +368,7 @@ public class MainController {
         return "/backlog";
     }
 
+    //A getmapping that deletes a userstory based on a userstoryId, and returns backlogs page based on a projectId
     @GetMapping("/deleteuserstory/{userstory_id}")
     public String deleteUserstory(@PathVariable("userstory_id") int userstory_id) {
         int backlogProjectId = userstoriesRepository.getSpecificUserstoryByID(userstory_id).getProject_id();
@@ -370,6 +377,7 @@ public class MainController {
         return "redirect:/backlog/" + backlogProjectId;
     }
 
+    //A postmapping that request user input to create a technicalTask object and shoot it to the database. Return backlog based on a projectID
     @PostMapping("/createtask")
     public String createTask(@RequestParam("userstory_id") int userstory_id,
                              @RequestParam("technicaltask_name") String technicaltask_name,
@@ -389,6 +397,7 @@ public class MainController {
         return "redirect:/backlog/" + ((Project) session.getAttribute("currentproject")).getProjectID();
     }
 
+
     @GetMapping("/showcreatetask/{userstory_id}")
     public String showCreateTask(@PathVariable("userstory_id") int userstory_id, Model model) {
         model.addAttribute("parentuserstory", userstoriesRepository.getSpecificUserstoryByID(userstory_id));
@@ -403,6 +412,7 @@ public class MainController {
         return "backlogupdatetask";
     }
 
+    //A postmapping that request user input to update the specific technicalTask, shoots it to the database and returns the backlog based on a projectId
     @PostMapping("/updatetask")
     public String updateTechnicalTask(@RequestParam("technicaltask_id") int technicaltask_id,
                              @RequestParam("userstory_id") int userstory_id,
@@ -420,12 +430,14 @@ public class MainController {
         return "redirect:/backlog/" + ((Project) session.getAttribute("currentproject")).getProjectID();
     }
 
+    //A getmapping that deletes a technicalTask based on a technicalTaskId from pathvariable and return to backlog based on a projectId
     @GetMapping("/deletetask/{technicaltask_id}")
     public String deleteTechnicalTask(@PathVariable("technicaltask_id") int task_id, HttpSession session) {
         technicalTaskRepository.deleteTechnicalTask(task_id);
         return "redirect:/backlog/" + ((Project) session.getAttribute("currentproject")).getProjectID();
     }
 
+    //A getmapping that shows the page to create a userstory
     @GetMapping("/showcreateuserstory")
     public String showCreateUserstory() {
         return "backlogcreateuserstory";
@@ -461,6 +473,7 @@ public class MainController {
         return "redirect:/backlog/" + currentProject.getProjectID();
     }
 
+    //A postmapping that request user input and creates an updated userstory object to shoots to the database, and return the backlog page based on a projectId
     @PostMapping("/updateuserstory")
     public String updateUserstory(@RequestParam("userstory_id") int userstory_id,
                                   @RequestParam("project_id") int project_id,
@@ -479,6 +492,7 @@ public class MainController {
 
         return "redirect:/backlog/" + ((Project) session.getAttribute("currentproject")).getProjectID();
     }
+
 
     @GetMapping("/updateuserstory/{userstory_id}")
     public String showUpdateUserstory(@PathVariable("userstory_id") int userstory_id, Model model) {
