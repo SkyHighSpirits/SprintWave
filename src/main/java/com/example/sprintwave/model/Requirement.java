@@ -1,20 +1,20 @@
 package com.example.sprintwave.model;
 
 public class Requirement {
-    private int project_id;
-    private int requirement_id;
-    private String requirement_name;
-    private String requirement_description;
-    private String requirement_actor;
+    private int projectId;
+    private int requirementId;
+    private String requirementName;
+    private String requirementDescription;
+    private String requirementActor;
     private boolean funcNonFunc = false;
 
 
-    public Requirement(int project_id, int requirement_id, String requirement_name, String requirement_description, String requirement_actor, boolean funcNonFunc) {
-        this.project_id = project_id;
-        this.requirement_id = requirement_id;
-        this.requirement_name = requirement_name;
-        this.requirement_description = requirement_description;
-        this.requirement_actor = requirement_actor;
+    public Requirement(int projectId, int requirementId, String requirementName, String requirementDescription, String requirementActor, boolean funcNonFunc) {
+        this.projectId = projectId;
+        this.requirementId = requirementId;
+        this.requirementName = requirementName;
+        this.requirementDescription = requirementDescription;
+        this.requirementActor = requirementActor;
         this.funcNonFunc = funcNonFunc;
 
     }
@@ -22,44 +22,44 @@ public class Requirement {
     public Requirement() {
     }
 
-    public int getProject_id() {
-        return project_id;
+    public int getProjectId() {
+        return projectId;
     }
 
-    public void setProject_id(int project_id) {
-        this.project_id = project_id;
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
     }
 
-    public int getRequirement_id() {
-        return requirement_id;
+    public int getRequirementId() {
+        return requirementId;
     }
 
-    public void setRequirement_id(int requirement_id) {
-        this.requirement_id = requirement_id;
+    public void setRequirementId(int requirementId) {
+        this.requirementId = requirementId;
     }
 
-    public String getRequirement_name() {
-        return requirement_name;
+    public String getRequirementName() {
+        return requirementName;
     }
 
-    public void setRequirement_name(String requirement_name) {
-        this.requirement_name = requirement_name;
+    public void setRequirementName(String requirementName) {
+        this.requirementName = requirementName;
     }
 
-    public String getRequirement_description() {
-        return requirement_description;
+    public String getRequirementDescription() {
+        return requirementDescription;
     }
 
-    public void setRequirement_description(String requirement_description) {
-        this.requirement_description = requirement_description;
+    public void setRequirementDescription(String requirementDescription) {
+        this.requirementDescription = requirementDescription;
     }
 
-    public String getRequirement_actor() {
-        return requirement_actor;
+    public String getRequirementActor() {
+        return requirementActor;
     }
 
-    public void setRequirement_actor(String requirement_actor) {
-        this.requirement_actor = requirement_actor;
+    public void setRequirementActor(String requirementActor) {
+        this.requirementActor = requirementActor;
     }
 
     public boolean isFuncNonFunc() {
@@ -75,11 +75,11 @@ public class Requirement {
     @Override
     public String toString() {
         return "Requirement{" +
-                "project_id=" + project_id +
-                ", requirement_id=" + requirement_id +
-                ", requirement_name='" + requirement_name + '\'' +
-                ", requirement_description='" + requirement_description + '\'' +
-                ", requirement_actor='" + requirement_actor + '\'' +
+                "projectId=" + projectId +
+                ", requirement_id=" + requirementId +
+                ", requirementName='" + requirementName + '\'' +
+                ", requirement_description='" + requirementDescription + '\'' +
+                ", requirementActor='" + requirementActor + '\'' +
                 ", funcNonFunc=" + funcNonFunc +
                 '}';
     }

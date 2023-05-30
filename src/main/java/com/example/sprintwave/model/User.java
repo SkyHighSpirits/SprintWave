@@ -1,23 +1,23 @@
 package com.example.sprintwave.model;
 
 public class User {
-    private int user_id;
+    private int userId;
     private String email;
-    private String user_password;
+    private String userPassword;
     private String firstName;
     private String lastName;
-    private int workspace_id;
+    private int workspaceId;
     PermissionLevel permissionLevel;
 
-    public User(int user_id, String email, String user_password, String firstName, String lastName, PermissionLevel permissionLevel, int workspace_id)
+    public User(int userId, String email, String userPassword, String firstName, String lastName, PermissionLevel permissionLevel, int workspaceId)
     {
-        this.user_id = user_id;
+        this.userId = userId;
         this.email = email;
-        this.user_password = user_password;
+        this.userPassword = userPassword;
         this.firstName = firstName;
         this.lastName = lastName;
         this.permissionLevel = permissionLevel;
-        this.workspace_id = workspace_id;
+        this.workspaceId = workspaceId;
     }
 
     public User()
@@ -25,14 +25,14 @@ public class User {
     }
 
 
-    public int getUser_id()
+    public int getUserId()
     {
-        return user_id;
+        return userId;
     }
 
-    public void setUser_id(int user_id)
+    public void setUserId(int userId)
     {
-        this.user_id = user_id;
+        this.userId = userId;
     }
 
     public String getEmail()
@@ -45,14 +45,14 @@ public class User {
         this.email = email;
     }
 
-    public String getUser_password()
+    public String getUserPassword()
     {
-        return user_password;
+        return userPassword;
     }
 
-    public void setUser_password(String user_password)
+    public void setUserPassword(String userPassword)
     {
-        this.user_password = user_password;
+        this.userPassword = userPassword;
     }
 
     public String getFirstName()
@@ -75,14 +75,14 @@ public class User {
         this.lastName = lastName;
     }
 
-    public int getWorkspace_id()
+    public int getWorkspaceId()
     {
-        return workspace_id;
+        return workspaceId;
     }
 
-    public void setWorkspace_id(int workspace_id)
+    public void setWorkspaceId(int workspaceId)
     {
-        this.workspace_id = workspace_id;
+        this.workspaceId = workspaceId;
     }
 
     public PermissionLevel getPermessionLevel()
@@ -99,12 +99,12 @@ public class User {
     public String toString()
     {
         return "User{" +
-                "user_id=" + user_id +
+                "userId=" + userId +
                 ", email='" + email + '\'' +
-                ", user_password='" + user_password + '\'' +
+                ", userPassword='" + userPassword + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", workspace_id=" + workspace_id +
+                ", workspaceId=" + workspaceId +
                 ", permessionLevel=" + permissionLevel +
                 '}';
     }

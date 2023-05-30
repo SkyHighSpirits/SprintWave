@@ -25,13 +25,13 @@
 
                 <div class="columnitems" th:each="epic : ${epics}">
                     <div>
-                        <h2 th:text="${epic.epic_name}">EP001</h2>
-                        <p th:text="${epic.epic_description}">Launch cloud service in Denmark</p>
-                        <input id="project_id-field" name="project_id" type="hidden" th:value="${epic.project_id}">
-                        <input id="epic_id-field" name="epic_id" type="hidden" th:value="${epic.epic_id}">
+                        <h2 th:text="${epic.epicName}">EP001</h2>
+                        <p th:text="${epic.epicDescription}">Launch cloud service in Denmark</p>
+                        <input id="project_id-field" name="projectId" type="hidden" th:value="${epic.projectId}">
+                        <input id="epic_id-field" name="epicId" type="hidden" th:value="${epic.epicId}">
                         <div class="generalbuttons">
-                            <a class="table-link" th:href="@{'/updateepic/' + ${epic.epic_id}}" href="/epicupdate">Update</a>
-                            <a class="table-link" th:href="@{'/deleteepic/' + ${epic.epic_id} + '/' + ${epic.project_id}}" href="/deleteepic">Delete</a>
+                            <a class="table-link" th:href="@{'/updateepic/' + ${epic.epicId}}" href="/epicupdate">Update</a>
+                            <a class="table-link" th:href="@{'/deleteepic/' + ${epic.epicId} + '/' + ${epic.projectId}}" href="/deleteepic">Delete</a>
                         </div>
                     </div>
                 </div>

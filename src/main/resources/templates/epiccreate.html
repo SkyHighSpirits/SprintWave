@@ -23,12 +23,12 @@
           <form action="createepic" method="post">
 
             <p>Write title</p>
-            <input id="epic-name-field" name="epic_name" type="text" required></input>
+            <input id="epic-name-field" name="epicName" type="text" required></input>
             <p>Write description</p>
-            <input id="epic-description-field" name="epic_description" type="text" required></input>
+            <input id="epic-description-field" name="epicDescription" type="text" required></input>
 
             <div class="generalbuttons">
-              <input id="project_id-field" name="project_id" type="hidden" th:value="${session.currentproject.getProjectID()}"></input>
+              <input id="project_id-field" name="projectId" type="hidden" th:value="${session.currentproject.getProjectID()}"></input>
             </div>
             <input class="table-link" type="submit" value="Create epic"></input>
 

@@ -3,34 +3,29 @@ package com.example.sprintwave.model;
 public class Userstory {
 
     private int id;
-    private int project_id;
+    private int projectId;
     private String name;
     private String description;
     private boolean released;
     private int points;
     private Status status;
 
-    private int sprint_id;
+    private int sprintId;
 
     public Userstory()
     {
 
     }
 
-    public Userstory(int id, int project_id, String name, String description, boolean released, int points, Status status, int sprint_id) {
+    public Userstory(int id, int projectId, String name, String description, boolean released, int points, Status status, int sprintId) {
         this.id = id;
-        this.project_id = project_id;
+        this.projectId = projectId;
         this.name = name;
         this.description = description;
         this.released = released;
         this.points = points;
         this.status = status;
-        this.sprint_id = sprint_id;
-    }
-
-    public String getStatusAsString()
-    {
-        return getStatus().toString();
+        this.sprintId = sprintId;
     }
 
     public boolean isReleased() {
@@ -49,12 +44,12 @@ public class Userstory {
         this.id = id;
     }
 
-    public int getProject_id() {
-        return project_id;
+    public int getProjectId() {
+        return projectId;
     }
 
-    public void setProject_id(int project_id) {
-        this.project_id = project_id;
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
     }
 
     public String getName() {
@@ -90,19 +85,19 @@ public class Userstory {
     }
 
 
-    public int getSprint_id() {
-        return sprint_id;
+    public int getSprintId() {
+        return sprintId;
     }
 
-    public void setSprint_id(int sprint_id) {
-        this.sprint_id = sprint_id;
+    public void setSprintId(int sprintId) {
+        this.sprintId = sprintId;
     }
 
     @Override
     public String toString() {
         return "Userstory{" +
                 "id=" + id +
-                ", project_id=" + project_id +
+                ", projectId=" + projectId +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", released=" + released +

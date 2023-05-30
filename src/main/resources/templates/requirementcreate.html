@@ -23,18 +23,18 @@
                     <form action="createrequirement" method="post">
 
                         <p>Write title</p>
-                        <input id="requirement-name-field" name="requirement_name" type="text" required></input>
+                        <input id="requirement-name-field" name="requirementName" type="text" required></input>
                         <p>Write description</p>
-                        <input id="requirement-description-field" name="requirement_description" type="text" required></input>
+                        <input id="requirement-description-field" name="requirementDescription" type="text" required></input>
                         <p>Write actor</p>
-                        <input id="requirement-actor-field" name="requirement_actor" type="text" required></input>
+                        <input id="requirement-actor-field" name="requirementActor" type="text" required></input>
                         <p>Choose functional or non-functional</p>
                         <select name="funcNonFuncChoice" id="funcNonFuncChoice">
                             <option value="Functional">Functional</option>
                             <option value="Non-functional">Non-functional</option>
                         </select>
                         <div class="generalbuttons">
-                            <input id="project_id-field" name="project_id" type="hidden" th:value="${session.currentproject.getProjectID()}"></input>
+                            <input id="project_id-field" name="projectId" type="hidden" th:value="${session.currentproject.getProjectID()}"></input>
                         </div>
                         <br/>
                         <br/>

@@ -21,20 +21,19 @@
         <div>
 
           <form action="/updatetask" method="post">
-            <input id="technicaltask_id" name="technicaltask_id" type="hidden" th:value="${technicaltask.getId()}" required></input>
+            <input id="technicaltask_id" name="technicaltaskId" type="hidden" th:value="${technicaltask.getId()}" required></input>
             <p>Write Task Name</p>
-            <input id="task-name-field" name="technicaltask_name" type="text" th:value="${technicaltask.getName()}" required>
+            <input id="task-name-field" name="technicaltaskName" type="text" th:value="${technicaltask.getName()}" required>
             <p>Write Task Description</p>
-            <input id="task-description-field" name="technicaltask_description" type="text" th:value="${technicaltask.getDescription()}" required></input>
+            <input id="task-description-field" name="technicaltaskDescription" type="text" th:value="${technicaltask.getDescription()}" required></input>
             <p>Reassign Points</p>
-            <input id="task-points-field" name="technicaltask_points" type="number" th:value="${technicaltask.getPoints()}" required></input>
+            <input id="task-points-field" name="technicaltaskPoints" type="number" th:value="${technicaltask.getPoints()}" required></input>
             <p>Reassign sprint</p>
-            <input id="task-sprint-field" name="sprint_id" type="number" th:value="${technicaltask.getSprint_id()}" required></input>
+            <input id="task-sprint-field" name="sprintId" type="number" th:value="${technicaltask.getSprintId()}" required></input>
             <div class="generalbuttons">
-              <input id="userstory_id" name="userstory_id" type="hidden" th:value="${technicaltask.getUserstory_id()}"></input>
-              <input id="technicaltask_released" name="technicaltask_released" type="hidden" th:value="${technicaltask.isReleased()}"></input>
-              <input id="technicaltask_points" name="technicaltask_released" type="hidden" th:value="${technicaltask.isReleased()}"></input>
-              <input id="technicaltask_status" name="technicaltask_status" type="hidden" th:value="${technicaltask.getStatus().toString()}"></input>
+              <input id="userstory_id" name="userstoryId" type="hidden" th:value="${technicaltask.getUserstoryId()}"></input>
+              <input id="technicaltask_released" name="technicaltaskReleased" type="hidden" th:value="${technicaltask.isReleased()}"></input>
+              <input id="technicaltask_status" name="technicaltaskStatus" type="hidden" th:value="${technicaltask.getStatus().toString()}"></input>
             </div>
             <br/>
             <br/>

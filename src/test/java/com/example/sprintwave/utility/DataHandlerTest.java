@@ -16,7 +16,7 @@ class DataHandlerTest {
     void checkUserInformationMatchtester() {
         User user = new User();
         user.setEmail("localhost@localhost.com");
-        user.setUser_password("123456");
+        user.setUserPassword("123456");
         String enteredEmail = "localhost@localhost.com";
         String enteredPassword = "123456";
 
@@ -27,7 +27,7 @@ class DataHandlerTest {
     void checkUserInformationMatchtesternumbertwo() {
         User user = new User();
         user.setEmail("localhost@localhost.com");
-        user.setUser_password("123456");
+        user.setUserPassword("123456");
         String enteredEmail = "bobo";
         String enteredPassword = "bibi";
 

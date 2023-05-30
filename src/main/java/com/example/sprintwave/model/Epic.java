@@ -1,61 +1,61 @@
 package com.example.sprintwave.model;
 
 public class Epic {
-    private int project_id;
-    private int epic_id;
-    private String epic_name;
-    private String epic_description;
+    private int projectId;
+    private int epicId;
+    private String epicName;
+    private String epicDescription;
 
     public Epic() {
 
     }
 
-    public Epic(int project_id, int epic_id, String epic_name, String epic_description) {
-        this.project_id = project_id;
-        this.epic_id = epic_id;
-        this.epic_name = epic_name;
-        this.epic_description = epic_description;
+    public Epic(int projectId, int epicId, String epicName, String epicDescription) {
+        this.projectId = projectId;
+        this.epicId = epicId;
+        this.epicName = epicName;
+        this.epicDescription = epicDescription;
     }
 
-    public int getProject_id() {
-        return project_id;
+    public int getProjectId() {
+        return projectId;
     }
 
-    public void setProject_id(int project_id) {
-        this.project_id = project_id;
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
     }
 
-    public int getEpic_id() {
-        return epic_id;
+    public int getEpicId() {
+        return epicId;
     }
 
-    public void setEpic_id(int epic_id) {
-        this.epic_id = epic_id;
+    public void setEpicId(int epicId) {
+        this.epicId = epicId;
     }
 
-    public String getEpic_name() {
-        return epic_name;
+    public String getEpicName() {
+        return epicName;
     }
 
-    public void setEpic_name(String epic_name) {
-        this.epic_name = epic_name;
+    public void setEpicName(String epicName) {
+        this.epicName = epicName;
     }
 
-    public String getEpic_description() {
-        return epic_description;
+    public String getEpicDescription() {
+        return epicDescription;
     }
 
-    public void setEpic_description(String epic_description) {
-        this.epic_description = epic_description;
+    public void setEpicDescription(String epicDescription) {
+        this.epicDescription = epicDescription;
     }
 
     @Override
     public String toString() {
         return "Epic{" +
-                "project_id=" + project_id +
-                ", epic_id=" + epic_id +
-                ", epic_name='" + epic_name + '\'' +
-                ", epic_description='" + epic_description + '\'' +
+                "projectId=" + projectId +
+                ", epicId=" + epicId +
+                ", epicName='" + epicName + '\'' +
+                ", epicDescription='" + epicDescription + '\'' +
                 '}';
     }
 }

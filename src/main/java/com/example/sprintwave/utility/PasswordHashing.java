@@ -35,18 +35,3 @@ public class PasswordHashing {
 
 }
 
-    /*public String doHash(String password) {
-        try {
-            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
-            messageDigest.update(password.getBytes());
-            return DatatypeConverter.printHexBinary(messageDigest.digest());
-        }
-        catch (NoSuchAlgorithmException e)
-        {
-            e.printStackTrace();
-        }
-          return "";
-    }
-}
-     */
-

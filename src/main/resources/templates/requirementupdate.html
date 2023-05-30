@@ -22,19 +22,19 @@
                 <div>
                     <form action="/updaterequirement" method="post">
                         <p>Write title</p>
-                        <input id="requirement-name-field" name="requirement_name" type="text" th:value="${requirement.requirement_name}" required></input>
+                        <input id="requirement-name-field" name="requirementName" type="text" th:value="${requirement.requirementName}" required></input>
                         <p>Write description</p>
-                        <input id="requirement-description-field" name="requirement_description" type="text" th:value="${requirement.requirement_description}" required></input>
+                        <input id="requirement-description-field" name="requirementDescription" type="text" th:value="${requirement.requirementDescription}" required></input>
                         <p>Write actor</p>
-                        <input id="requirement-actor-field" name="requirement_actor" type="text" th:value="${requirement.requirement_actor}" required></input>
+                        <input id="requirement-actor-field" name="requirementActor" type="text" th:value="${requirement.requirementActor}" required></input>
                         <p>Choose functional or non-functional</p>
                         <select id="funcNonFuncChoice" name="funcNonFuncChoice">
                             <option value="Functional">Functional</option>
                             <option value="Non-functional">Non-functional</option>
                         </select>
                         <div class="generalbuttons">
-                            <input id="project_id-field" name="project_id" type="hidden" th:value="${session.currentproject.getProjectID()}"></input>
-                            <input id="requirement_id-field" name="requirement_id" type="hidden" th:value="${requirement.requirement_id}"></input>
+                            <input id="project_id-field" name="projectId" type="hidden" th:value="${session.currentproject.getProjectID()}"></input>
+                            <input id="requirement_id-field" name="requirementId" type="hidden" th:value="${requirement.requirementId}"></input>
                         </div>
                         <br/>
                         <br/>

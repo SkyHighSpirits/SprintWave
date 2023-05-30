@@ -19,16 +19,16 @@
 
             <form action="/createtask" method="post">
               <p>Write Task Name</p>
-              <input id="task-name-field" name="technicaltask_name" type="text" placeholder="TEC001" required>
+              <input id="task-name-field" name="technicaltaskName" type="text" placeholder="TEC001" required>
               <p>Write Task Description</p>
-              <input id="task-description-field" name="technicaltask_description" type="text" placeholder="Create HTML Frontpage" required></input>
+              <input id="task-description-field" name="technicaltaskDescription" type="text" placeholder="Create HTML Frontpage" required></input>
               <p>Assign storypoints</p>
-              <input id="task-point-field" name="technicaltask_points" type="number" placeholder="13" required></input>
+              <input id="task-point-field" name="technicaltaskPoints" type="number" placeholder="13" required></input>
               <p>Assign sprint (optional)</p>
-              <input id="task-sprint-field" name="sprint_id" type="number" th:value="${parentuserstory.getSprint_id()}" required></input>
+              <input id="task-sprint-field" name="sprintId" type="number" th:value="${parentuserstory.getSprintId()}" required></input>
               <div class="generalbuttons">
-                <input id="project_id_field" name="userstory_id" type="hidden" th:value="${parentuserstory.getId()}"></input>
-                <input id="task_status_field" name="technicaltask_status" type="hidden" th:value="${parentuserstory.getStatus().toString()}"></input>
+                <input id="project_id_field" name="userstoryId" type="hidden" th:value="${parentuserstory.getId()}"></input>
+                <input id="task_status_field" name="technicaltaskStatus" type="hidden" th:value="${parentuserstory.getStatus().toString()}"></input>
               </div>
               <br/>
               <br/>

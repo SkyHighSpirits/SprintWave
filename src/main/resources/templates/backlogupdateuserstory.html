@@ -19,19 +19,19 @@
 
           <form action="/updateuserstory" method="post">
             <p>Write userstory name</p>
-            <input id="userstory-name-field" name="userstory_name" type="text" th:value="${userstory.getName()}" required>
+            <input id="userstory-name-field" name="userstoryName" type="text" th:value="${userstory.getName()}" required>
 
             <p>Write userstory Description</p>
-            <input id="userstory-description-field" name="userstory_description" type="text" th:value="${userstory.getDescription()}" required></input>
+            <input id="userstory-description-field" name="userstoryDescription" type="text" th:value="${userstory.getDescription()}" required></input>
             <p>Assign Storypoints</p>
-            <input id="userstory-points-field" name="userstory_points" type="number" th:value="${userstory.getPoints()}" required></input>
+            <input id="userstory-points-field" name="userstoryPoints" type="number" th:value="${userstory.getPoints()}" required></input>
             <p>Reassign sprint</p>
-            <input id="task-sprint-field" name="sprint_id" type="number" th:value="${userstory.getSprint_id()}" required></input>
+            <input id="task-sprint-field" name="sprintId" type="number" th:value="${userstory.getSprintId()}" required></input>
             <div class="generalbuttons">
-              <input id="project_id_field" name="project_id" type="hidden" th:value="${session.currentproject.getProjectID()}"></input>
-              <input id="userstory_id_field" name="userstory_id" type="hidden" th:value="${userstory.getId()}"></input>
-              <input id="userstory_released_field" name="userstory_released" type="hidden" th:value="${userstory.isReleased()}"></input>
-              <input id="userstory_status_field" name="userstory_status" type="hidden" th:value="${userstory.getStatus().toString()}"></input>
+              <input id="project_id_field" name="projectId" type="hidden" th:value="${session.currentproject.getProjectID()}"></input>
+              <input id="userstory_id_field" name="userstoryId" type="hidden" th:value="${userstory.getId()}"></input>
+              <input id="userstory_released_field" name="userstoryReleased" type="hidden" th:value="${userstory.isReleased()}"></input>
+              <input id="userstory_status_field" name="userstoryStatus" type="hidden" th:value="${userstory.getStatus().toString()}"></input>
             </div>
             <br/>
             <br/>

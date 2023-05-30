@@ -19,15 +19,15 @@
 
                     <form action="/createuserstory" method="post">
                         <p>Write userstory name</p>
-                        <input id="userstory-name-field" name="userstory_name" type="text" placeholder="US001" required>
+                        <input id="userstory-name-field" name="userstoryName" type="text" placeholder="US001" required>
                         <p>Write userstory Description</p>
-                        <input id="userstory-description-field" name="userstory_description" type="text" placeholder="As an administrator, I want to edit user information, so that I can administrate users" required></input>
+                        <input id="userstory-description-field" name="userstoryDescription" type="text" placeholder="As an administrator, I want to edit user information, so that I can administrate users" required></input>
                         <p>Assign Userstory Points</p>
-                        <input id="userstory-points-field" name="userstory_points" type="number" placeholder="5" required></input>
+                        <input id="userstory-points-field" name="userstoryPoints" type="number" placeholder="5" required></input>
                         <p>Assign sprint (Defaults to 1)</p>
-                        <input id="task-sprint-field" name="sprint_id" type="number" placeholder="1" th:value="${1}" required></input>
+                        <input id="task-sprint-field" name="sprintId" type="number" placeholder="1" th:value="${1}" required></input>
                         <div class="generalbuttons">
-                            <input id="project_id_field" name="project_id" type="hidden" th:value="${session.currentproject.getProjectID()}"></input>
+                            <input id="project_id_field" name="projectId" type="hidden" th:value="${session.currentproject.getProjectID()}"></input>
                         </div>
                         <br/>
                         <br/>

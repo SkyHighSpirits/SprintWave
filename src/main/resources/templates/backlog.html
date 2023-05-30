@@ -24,7 +24,7 @@
             <h1 th:text="${userstory.name} + ' | ' + ${userstory.getPoints()} + ' Points ' ">US001 | 20 Points</h1>
             <p th:text="${userstory.description}">As an administrator I want to see the database, so that I can edit the database</p>
             <div th:each="technicaltask : ${notreleasedtechnicaltasks}">
-              <div th:if="${userstory.id} == ${technicaltask.getUserstory_id()}">
+              <div th:if="${userstory.id} == ${technicaltask.getUserstoryId()}">
                 <h3>
                   <span th:text="${technicaltask.name} + ' | ' + ${technicaltask.getPoints()} + ' Points |' ">TEC001</span>
                   <span>
@@ -55,7 +55,7 @@
             <h1 th:text="${userstory.name} + ' | ' + ${userstory.getPoints()} + ' Points ' ">US001</h1>
             <p th:text="${userstory.description}">As an administrator I want to see the database, so that I can edit the database</p>
             <div th:each="technicaltask : ${releasedtechnicaltasks}">
-              <div th:if="${userstory.id} == ${technicaltask.getUserstory_id()}">
+              <div th:if="${userstory.id} == ${technicaltask.getUserstoryId()}">
                 <h3 th:text="${technicaltask.name} + ' | ' + ${technicaltask.getPoints()} + ' Points |' ">TEC001</h3>
                 <p th:text="${technicaltask.description}">Connect to azure database</p>
               </div>

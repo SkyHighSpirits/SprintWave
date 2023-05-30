@@ -37,13 +37,13 @@ public class UserstoriesRepository {
             {
                 Userstory userstory = new Userstory();
                 userstory.setId(resultSet.getInt(1));
-                userstory.setProject_id(resultSet.getInt(2));
+                userstory.setProjectId(resultSet.getInt(2));
                 userstory.setName(resultSet.getString(3));
                 userstory.setDescription(resultSet.getString(4));
                 userstory.setReleased(resultSet.getBoolean(5));
                 userstory.setPoints(resultSet.getInt(6));
                 userstory.setStatus(DataHandler.convertIntToStatus(resultSet.getInt(7)));
-                userstory.setSprint_id(resultSet.getInt(8));
+                userstory.setSprintId(resultSet.getInt(8));
                 userstories.add(userstory);
             }
         }
@@ -63,13 +63,13 @@ public class UserstoriesRepository {
                     "(project_id,userstory_name,userstory_description, userstory_released, userstory_points, userstory_status, sprint_id)" +
                     "VALUES (?,?,?,?,?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE);
-            preparedStatement.setInt(1, userstory.getProject_id());
+            preparedStatement.setInt(1, userstory.getProjectId());
             preparedStatement.setString(2, userstory.getName());
             preparedStatement.setString(3, userstory.getDescription());
             preparedStatement.setBoolean(4, userstory.isReleased());
             preparedStatement.setInt(5, userstory.getPoints());
             preparedStatement.setInt(6, DataHandler.convertStatusToInt(userstory.getStatus()));
-            preparedStatement.setInt(7, userstory.getSprint_id());
+            preparedStatement.setInt(7, userstory.getSprintId());
             preparedStatement.executeUpdate();
         }
         catch (SQLException e)
@@ -93,13 +93,13 @@ public class UserstoriesRepository {
             if(resultSet.next())
             {
                 userstory.setId(resultSet.getInt(1));
-                userstory.setProject_id(resultSet.getInt(2));
+                userstory.setProjectId(resultSet.getInt(2));
                 userstory.setName(resultSet.getString(3));
                 userstory.setDescription(resultSet.getString(4));
                 userstory.setReleased(resultSet.getBoolean(5));
                 userstory.setPoints(resultSet.getInt(6));
                 userstory.setStatus(DataHandler.convertIntToStatus(resultSet.getInt(7)));
-                userstory.setSprint_id(resultSet.getInt(8));
+                userstory.setSprintId(resultSet.getInt(8));
             }
         }
         catch(SQLException e)
@@ -126,7 +126,7 @@ public class UserstoriesRepository {
             preparedStatement.setBoolean(3, userstory.isReleased());
             preparedStatement.setInt(4, userstory.getPoints());
             preparedStatement.setInt(5, DataHandler.convertStatusToInt(userstory.getStatus()));
-            preparedStatement.setInt(6, userstory.getSprint_id());
+            preparedStatement.setInt(6, userstory.getSprintId());
             preparedStatement.setInt(7, userstory.getId());
 
             //ExecuteStatement
@@ -154,7 +154,7 @@ public class UserstoriesRepository {
             preparedStatement.setBoolean(3, userstory.isReleased());
             preparedStatement.setInt(4, userstory.getPoints());
             preparedStatement.setInt(5, status);
-            preparedStatement.setInt(6, userstory.getSprint_id());
+            preparedStatement.setInt(6, userstory.getSprintId());
             preparedStatement.setInt(7, userstory.getId());
 
             //ExecuteStatement

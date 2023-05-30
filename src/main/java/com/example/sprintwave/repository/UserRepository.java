@@ -34,11 +34,11 @@ public class UserRepository {
             // Prepare CREATE QUERY
             PreparedStatement preparedStatement = connection.prepareStatement(CREATE_QUERY);
             preparedStatement.setString(1, newUser.getEmail());
-            preparedStatement.setString(2, newUser.getUser_password());
+            preparedStatement.setString(2, newUser.getUserPassword());
             preparedStatement.setString(3, newUser.getFirstName());
             preparedStatement.setString(4, newUser.getLastName());
             preparedStatement.setString(5, String.valueOf(newUser.getPermessionLevel()));
-            preparedStatement.setInt(6, newUser.getWorkspace_id());
+            preparedStatement.setInt(6, newUser.getWorkspaceId());
             // Execute CREATE QUERY
             preparedStatement.executeUpdate();
         } catch(SQLException e){

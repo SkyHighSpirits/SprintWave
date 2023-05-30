@@ -27,15 +27,15 @@
             <h3 class="funcNonFunctext">Functional requirements</h3>
             <div class="columnitems" th:each="requirement : ${requirements}" th:block th:if="${requirement.funcNonFunc}">
                 <div>
-                    <h2 th:text="${requirement.requirement_name}">EP001</h2>
-                    <p th:text="${requirement.requirement_description}">Launch cloud service in Denmark</p>
-                    <p th:text="${requirement.requirement_actor}">Launch cloud service in Denmark</p>
-                    <input id="project_id-field" name="project_id" type="hidden" th:value="${requirement.project_id}">
-                    <input id="requirement_id-field" name="requirement_id" type="hidden" th:value="${requirement.requirement_id}">
+                    <h2 th:text="${requirement.requirementName}">EP001</h2>
+                    <p th:text="${requirement.requirementDescription}">Launch cloud service in Denmark</p>
+                    <p th:text="${requirement.requirementActor}">Launch cloud service in Denmark</p>
+                    <input id="project_id-field" name="project_id" type="hidden" th:value="${requirement.projectId}">
+                    <input id="requirement_id-field" name="requirement_id" type="hidden" th:value="${requirement.requirementId}">
                     <input id="funcNonFunc-field" name="funcNonFunc" type="hidden" th:value="${requirement.funcNonFunc}">
                     <div class="generalbuttons">
-                        <a class="table-link" th:href="@{'/updaterequirement/' + ${requirement.requirement_id}}" href="/requirementupdate">Update</a>
-                        <a class="table-link" th:href="@{'/deleterequirement/' + ${requirement.requirement_id} + '/' + ${requirement.project_id}}" href="/deleterequirement">Delete</a>
+                        <a class="table-link" th:href="@{'/updaterequirement/' + ${requirement.requirementId}}" href="/requirementupdate">Update</a>
+                        <a class="table-link" th:href="@{'/deleterequirement/' + ${requirement.requirementId} + '/' + ${requirement.projectId}}" href="/deleterequirement">Delete</a>
                     </div>
                 </div>
             </div>
@@ -46,15 +46,15 @@
             <h3 class="funcNonFunctext">Non-functional requirements</h3>
             <div class="columnitems" th:each="requirement : ${requirements}" th:unless="${requirement.funcNonFunc}">
                 <div>
-                    <h2 th:text="${requirement.requirement_name}">EP001</h2>
-                    <p th:text="${requirement.requirement_description}">Launch cloud service in Denmark</p>
-                    <p th:text="${requirement.requirement_actor}">Launch cloud service in Denmark</p>
-                    <input id="project_id-field2" name="project_id" type="hidden" th:value="${requirement.project_id}">
-                    <input id="requirement_id-field2" name="requirement_id" type="hidden" th:value="${requirement.requirement_id}">
+                    <h2 th:text="${requirement.requirementName}">EP001</h2>
+                    <p th:text="${requirement.requirementDescription}">Launch cloud service in Denmark</p>
+                    <p th:text="${requirement.requirementActor}">Launch cloud service in Denmark</p>
+                    <input id="project_id-field2" name="project_id" type="hidden" th:value="${requirement.projectId}">
+                    <input id="requirement_id-field2" name="requirement_id" type="hidden" th:value="${requirement.requirementId}">
                     <input id="funcNonFunc-field2" name="funcNonFunc" type="hidden" th:value="${requirement.funcNonFunc}">
                     <div class="generalbuttons">
-                        <a class="table-link" th:href="@{'/updaterequirement/' + ${requirement.requirement_id}}" href="/requirementupdate">Update</a>
-                        <a class="table-link" th:href="@{'/deleterequirement/' + ${requirement.requirement_id} + '/' + ${requirement.project_id}}" href="/deleterequirement">Delete</a>
+                        <a class="table-link" th:href="@{'/updaterequirement/' + ${requirement.requirementId}}" href="/requirementupdate">Update</a>
+                        <a class="table-link" th:href="@{'/deleterequirement/' + ${requirement.requirementId} + '/' + ${requirement.projectId}}" href="/deleterequirement">Delete</a>
                     </div>
                 </div>
             </div>

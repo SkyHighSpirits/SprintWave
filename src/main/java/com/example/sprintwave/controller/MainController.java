@@ -5,7 +5,6 @@ import com.example.sprintwave.repository.*;
 
 import com.example.sprintwave.utility.Calculations;
 import com.example.sprintwave.utility.DataHandler;
-import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.HTML;
 import java.util.ArrayList;
 
 import java.time.LocalDate;
@@ -79,9 +77,9 @@ public class MainController {
     }
 
     //A Get mapping that shows all the requirements related to a specific projectID
-    @GetMapping("/requirements/{project_id}")
-    public String requirement(@PathVariable("project_id") int project_id, Model model) {
-        ArrayList<Requirement> requirementList = requirementRepository.getAllRequirementByProjectID(project_id);
+    @GetMapping("/requirements/{projectid}")
+    public String requirement(@PathVariable("projectid") int projectId, Model model) {
+        ArrayList<Requirement> requirementList = requirementRepository.getAllRequirementByProjectID(projectId);
         model.addAttribute("requirements", requirementList);
         return "requirements";
     }
@@ -94,19 +92,19 @@ public class MainController {
 
     //A Postmapping to that takes the input from the user, creates an object with this information, shoots it to the database, and returns to an overview of the requirements based on a projectID
     @PostMapping("/createrequirement")
-    public String createRequirement(@RequestParam("project_id") int project_id,
-                                    @RequestParam("requirement_name") String requirement_name,
-                                    @RequestParam("requirement_description") String requirement_description,
-                                    @RequestParam("requirement_actor") String requirement_actor,
+    public String createRequirement(@RequestParam("projectId") int projectId,
+                                    @RequestParam("requirementName") String requirementName,
+                                    @RequestParam("requirementDescription") String requirementDescription,
+                                    @RequestParam("requirementActor") String requirementActor,
                                     @RequestParam("funcNonFuncChoice") String funcNonFuncChoice) {
         Requirement requirement = new Requirement();
-        requirement.setProject_id(project_id);
-        requirement.setRequirement_name(requirement_name);
-        requirement.setRequirement_description(requirement_description);
-        requirement.setRequirement_actor(requirement_actor);
+        requirement.setProjectId(projectId);
+        requirement.setRequirementName(requirementName);
+        requirement.setRequirementDescription(requirementDescription);
+        requirement.setRequirementActor(requirementActor);
         requirement.setFuncNonFunc(DataHandler.convertFuncNonFuncStringToBoolean(funcNonFuncChoice));
         requirementRepository.createRequirement(requirement);
-        return "redirect:/requirements/" + project_id;
+        return "redirect:/requirements/" + projectId;
     }
 
     //A getmapping that uses the requirementsId, to shoots the current information into a model to show on the update page
@@ -119,36 +117,36 @@ public class MainController {
 
     //A Postmapping to that takes the input from the user, creates an object with this information, shoots it to the database, and returns to an overview of the requirements based on a projectID
     @PostMapping("/updaterequirement")
-    public String updateRequirement(@RequestParam("project_id") int project_id,
-                                    @RequestParam("requirement_id") int requirement_id,
-                                    @RequestParam("requirement_name") String requirement_name,
-                                    @RequestParam("requirement_description") String requirement_description,
-                                    @RequestParam("requirement_actor") String requirement_actor,
+    public String updateRequirement(@RequestParam("projectId") int projectId,
+                                    @RequestParam("requirementId") int requirementId,
+                                    @RequestParam("requirementName") String requirementName,
+                                    @RequestParam("requirementDescription") String requirementDescription,
+                                    @RequestParam("requirementActor") String requirementActor,
                                     @RequestParam("funcNonFuncChoice") String funcNonFuncChoice) {
         Requirement updateRequirement = new Requirement();
-        updateRequirement.setProject_id(project_id);
-        updateRequirement.setRequirement_id(requirement_id);
-        updateRequirement.setRequirement_name(requirement_name);
-        updateRequirement.setRequirement_description(requirement_description);
-        updateRequirement.setRequirement_actor(requirement_actor);
+        updateRequirement.setProjectId(projectId);
+        updateRequirement.setRequirementId(requirementId);
+        updateRequirement.setRequirementName(requirementName);
+        updateRequirement.setRequirementDescription(requirementDescription);
+        updateRequirement.setRequirementActor(requirementActor);
         updateRequirement.setFuncNonFunc(DataHandler.convertFuncNonFuncStringToBoolean(funcNonFuncChoice));
         requirementRepository.updateRequirement(updateRequirement);
-        return "redirect:/requirements/" + project_id;
+        return "redirect:/requirements/" + projectId;
     }
 
     //A getmapping that uses the requirementId, that finds the requirement and deletes it with deleteRequirement, and return to overview of the requirements based on the projectId
-    @GetMapping("/deleterequirement/{requirement_id}/{project_id}")
-    public String deleteRequirement(@PathVariable("requirement_id") int requirement_id,
-                                    @PathVariable("project_id") int project_id) {
-        requirementRepository.deleteRequirement(requirement_id);
-        return "redirect:/requirements/" + project_id;
+    @GetMapping("/deleterequirement/{requirementId}/{projectId}")
+    public String deleteRequirement(@PathVariable("requirementId") int requirementId,
+                                    @PathVariable("projectId") int projectId) {
+        requirementRepository.deleteRequirement(requirementId);
+        return "redirect:/requirements/" + projectId;
 
     }
 
     //A getmapping that uses projectId to request all the epics related that, and puts it into a model to show on the page
-    @GetMapping("/epics/{project_id}")
-    public String epic(@PathVariable("project_id") int project_id, Model model) {
-        ArrayList<Epic> epicList = epicRepository.getAllEpicByProjectID(project_id);
+    @GetMapping("/epics/{projectId}")
+    public String epic(@PathVariable("projectId") int projectId, Model model) {
+        ArrayList<Epic> epicList = epicRepository.getAllEpicByProjectID(projectId);
         model.addAttribute("epics", epicList);
         return "epics";
     }
@@ -161,20 +159,20 @@ public class MainController {
 
     //A postmapping that request the user input, puts it into an epic object, shoots it to the databse and returns to the overview of epics based on a projectId
     @PostMapping("/createepic")
-    public String createEpic(@RequestParam("project_id") int project_id,
-                             @RequestParam("epic_name") String epic_name,
-                             @RequestParam("epic_description") String epic_description) {
+    public String createEpic(@RequestParam("projectId") int projectId,
+                             @RequestParam("epicName") String epicName,
+                             @RequestParam("epicDescription") String epicDescription) {
         Epic epic = new Epic();
-        epic.setProject_id(project_id);
-        epic.setEpic_name(epic_name);
-        epic.setEpic_description(epic_description);
+        epic.setProjectId(projectId);
+        epic.setEpicName(epicName);
+        epic.setEpicDescription(epicDescription);
         epicRepository.createEpic(epic);
-        return "redirect:/epics/" + project_id;
+        return "redirect:/epics/" + projectId;
     }
 
     //A getmapping that finds an epic based on a epicId, puts it into a model that can be shown on the update epic page
-    @GetMapping("/updateepic/{epic_id}")
-    public String showEpicUpdate(@PathVariable("epic_id") int updateID, Model model) {
+    @GetMapping("/updateepic/{epicId}")
+    public String showEpicUpdate(@PathVariable("epicId") int updateID, Model model) {
         Epic updateEpic = epicRepository.findEpicByID(updateID);
         model.addAttribute("epic", updateEpic);
         return "epicupdate";
@@ -182,22 +180,22 @@ public class MainController {
 
     //A postmapping that request user input, puts it into an epic object, shoots it to the database, and return the overview of epics based on a projectId
     @PostMapping("/updateepic")
-    public String updateEpic(@RequestParam("project_id") int project_id,
-                             @RequestParam("epic_id") int epic_id,
-                             @RequestParam("epic_name") String epic_name,
-                             @RequestParam("epic_description") String epic_description) {
-        Epic updateEpic = new Epic(project_id, epic_id, epic_name, epic_description);
+    public String updateEpic(@RequestParam("projectId") int projectId,
+                             @RequestParam("epicId") int epicId,
+                             @RequestParam("epicName") String epicName,
+                             @RequestParam("epicDescription") String epicDescription) {
+        Epic updateEpic = new Epic(projectId, epicId, epicName, epicDescription);
         epicRepository.updateEpic(updateEpic);
 
-        return "redirect:/epics/" + project_id;
+        return "redirect:/epics/" + projectId;
     }
 
     //A getmapping that deletes an epic based on a epicId from pathvariable, and return the epics overview based on a projectId
-    @GetMapping("/deleteepic/{epic_id}/{project_id}")
-    public String deleteEpic(@PathVariable("epic_id") int epic_id, @PathVariable("project_id") int project_id) {
-        epicRepository.deleteEpic(epic_id);
+    @GetMapping("/deleteepic/{epicId}/{projectId}")
+    public String deleteEpic(@PathVariable("epicId") int epicId, @PathVariable("projectId") int projectId) {
+        epicRepository.deleteEpic(epicId);
 
-        return "redirect:/epics/" + project_id;
+        return "redirect:/epics/" + projectId;
     }
 
     //A postmapping the request some user input, creates a workspace and a user. A session will also be created with the user,
@@ -220,7 +218,7 @@ public class MainController {
         model.addAttribute("currentuser",user);
         session.setAttribute("currentuser", user);
         User currentuser = (User) session.getAttribute("currentuser");
-        return "redirect:/appfrontpage/" + currentuser.getWorkspace_id();
+        return "redirect:/appfrontpage/" + currentuser.getWorkspaceId();
     }
 
     //A postmapping that request user input and check if the entered emails and passwords hashed version matches with the database
@@ -240,7 +238,7 @@ public class MainController {
                 session.setAttribute("currentuser", checkUser);
                 User currentuser = (User) session.getAttribute("currentuser");
 
-                return "redirect:/appfrontpage/" + currentuser.getWorkspace_id();
+                return "redirect:/appfrontpage/" + currentuser.getWorkspaceId();
             }
         }
         return "login";
@@ -314,8 +312,8 @@ public class MainController {
     /* START OF PROJECT MAPPINGS BY STEFFEN */
     //A getmapping that shows all projects based on a workspaceId, puts the objects into an arrayList and into a model that show the projects on the page
     @GetMapping("/appfrontpage/{workspace_id}")
-    public String getAppFrontpage(@PathVariable("workspace_id") int workspace_id, Model model){
-       ArrayList projectList = (ArrayList)projectRepository.findProjectByWorkspaceId(workspace_id); //TODO Skal opdateres til getAllProjectsByWorkspaceID
+    public String getAppFrontpage(@PathVariable("workspace_id") int workspaceId, Model model){
+       ArrayList projectList = (ArrayList)projectRepository.findProjectByWorkspaceId(workspaceId); //TODO Skal opdateres til getAllProjectsByWorkspaceID
        model.addAttribute("projects", projectList);
         return "appfrontpage";
     }
@@ -323,11 +321,11 @@ public class MainController {
     /* END OF PROJECT MAPPINGS BY STEFFEN */
 
     /* START OF USERSTORY MAPPINGS BY NICOLAI */
-    @GetMapping("/backlog/{project_id}")
-    public String showBacklogPage(@PathVariable("project_id") int project_id, Model model)
+    @GetMapping("/backlog/{projectId}")
+    public String showBacklogPage(@PathVariable("projectId") int projectId, Model model)
     {
 
-        ArrayList<Userstory> relevantUserstories = userstoriesRepository.getAllUserstoriesFromProjectID(project_id);
+        ArrayList<Userstory> relevantUserstories = userstoriesRepository.getAllUserstoriesFromProjectID(projectId);
         ArrayList<Userstory> notreleasedUserstories = new ArrayList<>();
         ArrayList<Userstory> notreleasedTechnicalTasks = new ArrayList<>();
         ArrayList<Userstory> releasedUserstories = new ArrayList<>();
@@ -369,73 +367,15 @@ public class MainController {
     }
 
     //A getmapping that deletes a userstory based on a userstoryId, and returns backlogs page based on a projectId
-    @GetMapping("/deleteuserstory/{userstory_id}")
-    public String deleteUserstory(@PathVariable("userstory_id") int userstory_id) {
-        int backlogProjectId = userstoriesRepository.getSpecificUserstoryByID(userstory_id).getProject_id();
-        userstoriesRepository.deleteUserstory(userstory_id);
+    @GetMapping("/deleteuserstory/{userstoryId}")
+    public String deleteUserstory(@PathVariable("userstoryId") int userstoryId) {
+        int backlogProjectId = userstoriesRepository.getSpecificUserstoryByID(userstoryId).getProjectId();
+        userstoriesRepository.deleteUserstory(userstoryId);
 
         return "redirect:/backlog/" + backlogProjectId;
     }
 
     //A postmapping that request user input to create a technicalTask object and shoot it to the database. Return backlog based on a projectID
-    @PostMapping("/createtask")
-    public String createTask(@RequestParam("userstory_id") int userstory_id,
-                             @RequestParam("technicaltask_name") String technicaltask_name,
-                             @RequestParam("technicaltask_points") int technicaltask_points,
-                             @RequestParam("technicaltask_description") String technicaltask_description,
-                             @RequestParam("technicaltask_status") String technicaltask_status,
-                             @RequestParam("sprint_id") int sprint_id, HttpSession session) {
-        TechnicalTask technicalTask = new TechnicalTask();
-        technicalTask.setUserstory_id(userstory_id);
-        technicalTask.setName(technicaltask_name);
-        technicalTask.setDescription(technicaltask_description);
-        technicalTask.setReleased(false);
-        technicalTask.setPoints(DataHandler.limitPoints(technicaltask_points));
-        technicalTask.setStatus(DataHandler.convertStringToStatus(technicaltask_status));
-        technicalTask.setSprint_id(sprint_id);
-        technicalTaskRepository.createNewTecnicalTask(technicalTask);
-        return "redirect:/backlog/" + ((Project) session.getAttribute("currentproject")).getProjectID();
-    }
-
-
-    @GetMapping("/showcreatetask/{userstory_id}")
-    public String showCreateTask(@PathVariable("userstory_id") int userstory_id, Model model) {
-        model.addAttribute("parentuserstory", userstoriesRepository.getSpecificUserstoryByID(userstory_id));
-
-        return "backlogcreatetask";
-    }
-
-    @GetMapping("/updatetask/{technicaltask_id}")
-    public String showUpdateTask(@PathVariable("technicaltask_id") int task_id, Model model) {
-        model.addAttribute("technicaltask", technicalTaskRepository.getSpecificTechnicalTaskFromID(task_id));
-
-        return "backlogupdatetask";
-    }
-
-    //A postmapping that request user input to update the specific technicalTask, shoots it to the database and returns the backlog based on a projectId
-    @PostMapping("/updatetask")
-    public String updateTechnicalTask(@RequestParam("technicaltask_id") int technicaltask_id,
-                             @RequestParam("userstory_id") int userstory_id,
-                             @RequestParam("technicaltask_name") String technicaltask_name,
-                             @RequestParam("technicaltask_description") String technicaltask_description,
-                             @RequestParam("technicaltask_released") Boolean technicaltask_released,
-                             @RequestParam("technicaltask_points") int technicaltask_points,
-                             @RequestParam("technicaltask_status") String technicaltask_status,
-                             @RequestParam("sprint_id") int sprint_id, HttpSession session)
-    {
-        TechnicalTask technicalTask = new TechnicalTask(technicaltask_id, userstory_id, technicaltask_name, technicaltask_description, technicaltask_released, technicaltask_points, DataHandler.convertStringToStatus(technicaltask_status), sprint_id);
-        technicalTask.setSprint_id(sprint_id);
-        technicalTaskRepository.updateTechnicalTask(technicalTask);
-
-        return "redirect:/backlog/" + ((Project) session.getAttribute("currentproject")).getProjectID();
-    }
-
-    //A getmapping that deletes a technicalTask based on a technicalTaskId from pathvariable and return to backlog based on a projectId
-    @GetMapping("/deletetask/{technicaltask_id}")
-    public String deleteTechnicalTask(@PathVariable("technicaltask_id") int task_id, HttpSession session) {
-        technicalTaskRepository.deleteTechnicalTask(task_id);
-        return "redirect:/backlog/" + ((Project) session.getAttribute("currentproject")).getProjectID();
-    }
 
     //A getmapping that shows the page to create a userstory
     @GetMapping("/showcreateuserstory")
@@ -444,21 +384,21 @@ public class MainController {
     }
 
     @PostMapping("/createuserstory")
-    public String createUserStory(@RequestParam(value = "project_id") int project_id,
-                                  @RequestParam(value= "userstory_name") String userstory_name,
-                                  @RequestParam(value="userstory_description") String userstory_description,
-                                  @RequestParam(value="userstory_points") int userstory_points,
-                                  @RequestParam(value="sprint_id") int sprint_id, HttpSession session) {
+    public String createUserStory(@RequestParam("projectId") int projectId,
+                                  @RequestParam("userstoryName") String userstoryName,
+                                  @RequestParam("userstoryDescription") String userstoryDescription,
+                                  @RequestParam("userstoryPoints") int userstoryPoints,
+                                  @RequestParam("sprintId") int sprintId, HttpSession session) {
         Userstory userstory = new Userstory();
-        userstory.setProject_id(project_id);
-        userstory.setName(userstory_name);
-        userstory.setDescription(userstory_description);
-        userstory.setPoints(DataHandler.limitPoints(userstory_points));
+        userstory.setProjectId(projectId);
+        userstory.setName(userstoryName);
+        userstory.setDescription(userstoryDescription);
+        userstory.setPoints(DataHandler.limitPoints(userstoryPoints));
         userstory.setStatus(Status.sprintbacklog);
         userstory.setReleased(false);
-        userstory.setSprint_id(sprint_id);
+        userstory.setSprintId(sprintId);
 
-        System.out.println("Sprint id: " + sprint_id);
+        System.out.println("Sprint id: " + sprintId);
 
         //create an empty sprint 1 if the sprint does not exist allready
         Project currentProject = (Project) session.getAttribute("currentproject");
@@ -475,44 +415,89 @@ public class MainController {
 
     //A postmapping that request user input and creates an updated userstory object to shoots to the database, and return the backlog page based on a projectId
     @PostMapping("/updateuserstory")
-    public String updateUserstory(@RequestParam("userstory_id") int userstory_id,
-                                  @RequestParam("project_id") int project_id,
-                                  @RequestParam("userstory_name") String userstory_name,
-                                  @RequestParam("userstory_description") String userstory_description,
-                                  @RequestParam("userstory_released") Boolean userstory_released,
-                                  @RequestParam("userstory_points") int userstory_points,
-                                  @RequestParam("userstory_status") String userstory_status,
-                                  @RequestParam("sprint_id") int sprint_id,
+    public String updateUserstory(@RequestParam("userstoryId") int userstoryId,
+                                  @RequestParam("projectId") int projectId,
+                                  @RequestParam("userstoryName") String userstoryName,
+                                  @RequestParam("userstoryDescription") String userstoryDescription,
+                                  @RequestParam("userstoryReleased") Boolean userstoryReleased,
+                                  @RequestParam("userstoryPoints") int userstoryPoints,
+                                  @RequestParam("userstoryStatus") String userstoryStatus,
+                                  @RequestParam("sprintId") int sprintId,
                                   HttpSession session)
     {
-        Userstory userstory = new TechnicalTask(userstory_id, project_id, userstory_name, userstory_description, userstory_released, userstory_points, DataHandler.convertStringToStatus(userstory_status), sprint_id);
-        userstory.setSprint_id(sprint_id);
-        System.out.println("Sprint id: " + sprint_id);
+        Userstory userstory = new TechnicalTask(userstoryId, projectId, userstoryName, userstoryDescription, userstoryReleased, userstoryPoints, DataHandler.convertStringToStatus(userstoryStatus), sprintId);
+        userstory.setSprintId(sprintId);
+        System.out.println("Sprint id: " + sprintId);
         userstoriesRepository.updateUserstory(userstory);
 
         return "redirect:/backlog/" + ((Project) session.getAttribute("currentproject")).getProjectID();
     }
 
-
-    @GetMapping("/updateuserstory/{userstory_id}")
-    public String showUpdateUserstory(@PathVariable("userstory_id") int userstory_id, Model model) {
-        model.addAttribute("userstory", userstoriesRepository.getSpecificUserstoryByID(userstory_id));
+    @GetMapping("/updateuserstory/{userstoryId}")
+    public String showUpdateUserstory(@PathVariable("userstoryId") int userstoryId, Model model) {
+        model.addAttribute("userstory", userstoriesRepository.getSpecificUserstoryByID(userstoryId));
 
         return "backlogupdateuserstory";
     }
 
-    /* END OF USERSTORY MAPPINGS BY NICOLAI */
-
-    /*
-    @PostMapping("/createsprint")
-    public String createDefaultSprintIfNotExists(@RequestParam("spint_id") int newSprintID, @RequestParam("spint_name") String newSprintName, HttpSession session)
-    {
-        Project currentProject = (Project) session.getAttribute("currentproject");
-        Sprint newSprint = new Sprint(newSprintID, newSprintName, currentProject.getProjectID());
-        sprintRepository.createSprint(newSprint);
-        return "redirect:/backlog/" + currentProject.getProjectID();
+    @PostMapping("/createtask")
+    public String createTask(@RequestParam("userstoryId") int userstoryId,
+                             @RequestParam("technicaltaskName") String technicaltaskName,
+                             @RequestParam("technicaltaskPoints") int technicaltaskPoints,
+                             @RequestParam("technicaltaskDescription") String technicaltaskDescription,
+                             @RequestParam("technicaltaskStatus") String technicaltaskStatus,
+                             @RequestParam("sprintId") int sprintId, HttpSession session) {
+        TechnicalTask technicalTask = new TechnicalTask();
+        technicalTask.setUserstoryId(userstoryId);
+        technicalTask.setName(technicaltaskName);
+        technicalTask.setDescription(technicaltaskDescription);
+        technicalTask.setReleased(false);
+        technicalTask.setPoints(DataHandler.limitPoints(technicaltaskPoints));
+        technicalTask.setStatus(DataHandler.convertStringToStatus(technicaltaskStatus));
+        technicalTask.setSprintId(sprintId);
+        technicalTaskRepository.createNewTecnicalTask(technicalTask);
+        return "redirect:/backlog/" + ((Project) session.getAttribute("currentproject")).getProjectID();
     }
-    */
+
+    @GetMapping("/showcreatetask/{userstoryId}")
+    public String showCreateTask(@PathVariable("userstoryId") int userstoryId, Model model) {
+        model.addAttribute("parentuserstory", userstoriesRepository.getSpecificUserstoryByID(userstoryId));
+
+        return "backlogcreatetask";
+    }
+
+    @GetMapping("/updatetask/{technicaltaskId}")
+    public String showUpdateTask(@PathVariable("technicaltaskId") int taskId, Model model) {
+        model.addAttribute("technicaltask", technicalTaskRepository.getSpecificTechnicalTaskFromID(taskId));
+
+        return "backlogupdatetask";
+    }
+
+    @PostMapping("/updatetask")
+    public String updateTechnicalTask(@RequestParam("technicaltaskId") int technicaltaskId,
+                                      @RequestParam("userstoryId") int userstoryId,
+                                      @RequestParam("technicaltaskName") String technicaltaskName,
+                                      @RequestParam("technicaltaskDescription") String technicaltaskDescription,
+                                      @RequestParam("technicaltaskReleased") Boolean technicaltaskReleased,
+                                      @RequestParam("technicaltaskPoints") int technicaltaskPoints,
+                                      @RequestParam("technicaltaskStatus") String technicaltaskStatus,
+                                      @RequestParam("sprintId") int sprintId, HttpSession session)
+    {
+        TechnicalTask technicalTask = new TechnicalTask(technicaltaskId, userstoryId, technicaltaskName, technicaltaskDescription, technicaltaskReleased, technicaltaskPoints, DataHandler.convertStringToStatus(technicaltaskStatus), sprintId);
+        technicalTask.setSprintId(sprintId);
+        technicalTaskRepository.updateTechnicalTask(technicalTask);
+
+        return "redirect:/backlog/" + ((Project) session.getAttribute("currentproject")).getProjectID();
+    }
+
+    @GetMapping("/deletetask/{technicaltaskId}")
+    public String deleteTechnicalTask(@PathVariable("technicaltaskId") int taskId, HttpSession session) {
+        technicalTaskRepository.deleteTechnicalTask(taskId);
+        return "redirect:/backlog/" + ((Project) session.getAttribute("currentproject")).getProjectID();
+    }
+
+
+    /* END OF USERSTORY MAPPINGS BY NICOLAI */
 
 
     /* START OF SPRINT BACKLOG MAPPINGS BY NICOLAI */
@@ -663,7 +648,7 @@ public class MainController {
         {
             status--;
             movingTechnicalTask.setReleased(false);
-            Userstory parentUserstory = userstoriesRepository.getSpecificUserstoryByID(movingTechnicalTask.getUserstory_id());
+            Userstory parentUserstory = userstoriesRepository.getSpecificUserstoryByID(movingTechnicalTask.getUserstoryId());
             parentUserstory.setReleased(false);
             userstoriesRepository.updateUserstoryWithIntStatus(parentUserstory, status);
         }
@@ -717,8 +702,8 @@ public class MainController {
         return "createsprint";
     }
 
-    @GetMapping("/updatesprint/{sprint_id}")
-    public String showUpdateSprint(@PathVariable("sprint_id") int sprintID, HttpSession session, Model model) {
+    @GetMapping("/updatesprint/{sprintId}")
+    public String showUpdateSprint(@PathVariable("sprintId") int sprintID, HttpSession session, Model model) {
         Project currentproject = (Project) session.getAttribute("currentproject");
         Sprint foundSprint = sprintRepository.getSprintByIDAndProjectID(sprintID,currentproject.getProjectID());
         model.addAttribute("sprint", foundSprint);
@@ -726,8 +711,8 @@ public class MainController {
     }
 
     @PostMapping("/updatesprint")
-    public String updateSprint(@RequestParam("sprint_name") String sprintName,
-                               @RequestParam("sprint_id") int sprintID,
+    public String updateSprint(@RequestParam("sprintName") String sprintName,
+                               @RequestParam("sprintId") int sprintID,
                                HttpSession session) {
         Sprint updateSprint = new Sprint();
         Project currentproject = (Project) session.getAttribute("currentproject");

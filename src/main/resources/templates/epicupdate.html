@@ -20,12 +20,12 @@
                     <div>
                         <form action="/updateepic" method="post">
                             <p>Write title</p>
-                            <input id="epic-name-field" name="epic_name" type="text" th:value="${epic.epic_name}" required></input>
+                            <input id="epic-name-field" name="epicName" type="text" th:value="${epic.epicName}" required></input>
                             <p>Write description</p>
-                            <input id="epic-description-field" name="epic_description" type="text" th:value="${epic.epic_description}" required></input>
+                            <input id="epic-description-field" name="epicDescription" type="text" th:value="${epic.epicDescription}" required></input>
                             <div class="generalbuttons">
-                                <input id="project_id-field" name="project_id" type="hidden" th:value="${session.currentproject.getProjectID()}"></input>
-                                <input id="epic_id-field" name="epic_id" type="hidden" th:value="${epic.epic_id}"></input>
+                                <input id="project_id-field" name="projectId" type="hidden" th:value="${session.currentproject.getProjectID()}"></input>
+                                <input id="epic_id-field" name="epicId" type="hidden" th:value="${epic.epicId}"></input>
                             </div>
                             <input class="table-link" type="submit" value="Update epic"></input>
                         </form>

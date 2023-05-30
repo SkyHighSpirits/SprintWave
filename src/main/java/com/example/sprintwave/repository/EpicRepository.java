@@ -11,7 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 @Repository
 public class EpicRepository {
@@ -32,9 +31,9 @@ public class EpicRepository {
             //prepared statement
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
             //set parameters
-            preparedStatement.setInt(1, newEpic.getProject_id());
-            preparedStatement.setString(2, newEpic.getEpic_name());
-            preparedStatement.setString(3, newEpic.getEpic_description());
+            preparedStatement.setInt(1, newEpic.getProjectId());
+            preparedStatement.setString(2, newEpic.getEpicName());
+            preparedStatement.setString(3, newEpic.getEpicDescription());
             //execute query
             preparedStatement.executeUpdate();
         }
@@ -54,9 +53,9 @@ public class EpicRepository {
             //PreparedStatement
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
             //set parameters
-            preparedStatement.setString(1, updateEpic.getEpic_name());
-            preparedStatement.setString(2, updateEpic.getEpic_description());
-            preparedStatement.setInt(3, updateEpic.getEpic_id());
+            preparedStatement.setString(1, updateEpic.getEpicName());
+            preparedStatement.setString(2, updateEpic.getEpicDescription());
+            preparedStatement.setInt(3, updateEpic.getEpicId());
             //ExecuteStatement
             preparedStatement.executeUpdate();
         }
@@ -89,7 +88,7 @@ public class EpicRepository {
 
     public Epic findEpicByID(int id){
         Epic foundEpic = new Epic();
-        foundEpic.setEpic_id(id);
+        foundEpic.setEpicId(id);
         try {
             //Oprette forbindelse til database
             Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
@@ -105,10 +104,10 @@ public class EpicRepository {
             if(resultSet.next())
             {
                 //Få et epic ud fra databasen
-                foundEpic.setProject_id(resultSet.getInt(1));
-                foundEpic.setEpic_id(resultSet.getInt(2));
-                foundEpic.setEpic_name(resultSet.getString(3));
-                foundEpic.setEpic_description(resultSet.getString(4));
+                foundEpic.setProjectId(resultSet.getInt(1));
+                foundEpic.setEpicId(resultSet.getInt(2));
+                foundEpic.setEpicName(resultSet.getString(3));
+                foundEpic.setEpicDescription(resultSet.getString(4));
             }
 
         }
@@ -137,10 +136,10 @@ public class EpicRepository {
 
             while(resultSet.next()) {
                 Epic foundEpic = new Epic();
-                foundEpic.setProject_id(projectID);
-                foundEpic.setEpic_id(resultSet.getInt(2));
-                foundEpic.setEpic_name(resultSet.getString(3));
-                foundEpic.setEpic_description(resultSet.getString(4));
+                foundEpic.setProjectId(projectID);
+                foundEpic.setEpicId(resultSet.getInt(2));
+                foundEpic.setEpicName(resultSet.getString(3));
+                foundEpic.setEpicDescription(resultSet.getString(4));
                 epicList.add(foundEpic);
             }
         }

@@ -34,10 +34,10 @@ public class RequirementRepository {
             //prepared statement
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
             //set parameters
-            preparedStatement.setInt(1, newRequirement.getProject_id());
-            preparedStatement.setString(2, newRequirement.getRequirement_name());
-            preparedStatement.setString(3, newRequirement.getRequirement_description());
-            preparedStatement.setString(4, newRequirement.getRequirement_actor());
+            preparedStatement.setInt(1, newRequirement.getProjectId());
+            preparedStatement.setString(2, newRequirement.getRequirementName());
+            preparedStatement.setString(3, newRequirement.getRequirementDescription());
+            preparedStatement.setString(4, newRequirement.getRequirementActor());
 
             preparedStatement.setString(5, DataHandler.convertFuncNonFuncBooleanToString(newRequirement.isFuncNonFunc()));
 
@@ -60,11 +60,11 @@ public class RequirementRepository {
             //PreparedStatement
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
             //set parameters
-            preparedStatement.setString(1, updateRequirement.getRequirement_name());
-            preparedStatement.setString(2, updateRequirement.getRequirement_description());
-            preparedStatement.setString(3, updateRequirement.getRequirement_actor());
+            preparedStatement.setString(1, updateRequirement.getRequirementName());
+            preparedStatement.setString(2, updateRequirement.getRequirementDescription());
+            preparedStatement.setString(3, updateRequirement.getRequirementActor());
             preparedStatement.setString(4, DataHandler.convertFuncNonFuncBooleanToString(updateRequirement.isFuncNonFunc()));
-            preparedStatement.setInt(5, updateRequirement.getRequirement_id());
+            preparedStatement.setInt(5, updateRequirement.getRequirementId());
             //ExecuteStatement
             preparedStatement.executeUpdate();
         }
@@ -97,7 +97,7 @@ public class RequirementRepository {
 
     public Requirement findRequirementByID(int id){
         Requirement foundRequirement = new Requirement();
-        foundRequirement.setRequirement_id(id);
+        foundRequirement.setRequirementId(id);
         try {
             //Oprette forbindelse til database
             Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
@@ -111,10 +111,10 @@ public class RequirementRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
             //Få et epic ud fra databasen
             if(resultSet.next()) {
-                foundRequirement.setProject_id(resultSet.getInt(1));
-                foundRequirement.setRequirement_name(resultSet.getString(3));
-                foundRequirement.setRequirement_description(resultSet.getString(4));
-                foundRequirement.setRequirement_actor(resultSet.getString(5));
+                foundRequirement.setProjectId(resultSet.getInt(1));
+                foundRequirement.setRequirementName(resultSet.getString(3));
+                foundRequirement.setRequirementDescription(resultSet.getString(4));
+                foundRequirement.setRequirementActor(resultSet.getString(5));
                 foundRequirement.setFuncNonFunc(DataHandler.convertFuncNonFuncStringToBoolean(resultSet.getString(6)));
             }
         }
@@ -143,11 +143,11 @@ public class RequirementRepository {
 
             while(resultSet.next()) {
                 Requirement foundRequirement = new Requirement();
-                foundRequirement.setProject_id(projectID);
-                foundRequirement.setRequirement_id(resultSet.getInt(2));
-                foundRequirement.setRequirement_name(resultSet.getString(3));
-                foundRequirement.setRequirement_description(resultSet.getString(4));
-                foundRequirement.setRequirement_actor(resultSet.getString(5));
+                foundRequirement.setProjectId(projectID);
+                foundRequirement.setRequirementId(resultSet.getInt(2));
+                foundRequirement.setRequirementName(resultSet.getString(3));
+                foundRequirement.setRequirementDescription(resultSet.getString(4));
+                foundRequirement.setRequirementActor(resultSet.getString(5));
                 foundRequirement.setFuncNonFunc(DataHandler.convertFuncNonFuncStringToBoolean(resultSet.getString(6)));
                 requirementList.add(foundRequirement);
             }
