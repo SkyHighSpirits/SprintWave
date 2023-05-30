@@ -321,11 +321,14 @@ public class MainController {
     /* END OF PROJECT MAPPINGS BY STEFFEN */
 
     /* START OF USERSTORY MAPPINGS BY NICOLAI */
+
+    //Getmapping for backlog page, requires a projectId as a pathvariable, shows all userstories and attributed technicalTasks
     @GetMapping("/backlog/{projectId}")
     public String showBacklogPage(@PathVariable("projectId") int projectId, Model model)
     {
-
+        //Get all userstories that belong to the current project and put it in relevantUserstories arraylist
         ArrayList<Userstory> relevantUserstories = userstoriesRepository.getAllUserstoriesFromProjectID(projectId);
+        //Initialize needed arraylists for sorting and result
         ArrayList<Userstory> notreleasedUserstories = new ArrayList<>();
         ArrayList<Userstory> notreleasedTechnicalTasks = new ArrayList<>();
         ArrayList<Userstory> releasedUserstories = new ArrayList<>();
@@ -333,9 +336,13 @@ public class MainController {
 
         ArrayList<TechnicalTask> temporarytasks = new ArrayList<>();
 
+        //For all userstories in the project, add all attributed technicaltasks to temporaryTasks
         for(Userstory userstory: relevantUserstories)
         {
             temporarytasks.addAll(technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstory.getId()));
+            //Sort each userstory for wether it is a released userstory or not
+            //If userstory is released, add it to released userstory array
+            //If userstory is not released add it to not released userstory array
             if(!userstory.isReleased())
             {
                 notreleasedUserstories.add(userstory);
@@ -345,8 +352,12 @@ public class MainController {
                 releasedUserstories.add(userstory);
             }
         }
+        //Go through each technicaltask that was added to temporary tasks, which should now contain all the technicaltasks that belong to a Userstory in the project
         for(TechnicalTask technicalTask: temporarytasks)
         {
+            //Do the same logic as before
+            //If technicaltask is released add it to released technicaltask array
+            //If not add it to not released technicaltasks array
             if(!technicalTask.isReleased())
             {
                 notreleasedTechnicalTasks.add(technicalTask);
@@ -357,7 +368,11 @@ public class MainController {
             }
 
         }
-
+        /*
+        Now that all userstories and tasks have been added to the arraylists we need on the webpage,
+        we can add them via thymeleaf using model.addAttribute one arraylist at a time
+        so that we can access them later
+         */
         model.addAttribute("notreleaseduserstories", notreleasedUserstories);
         model.addAttribute("notreleasedtechnicaltasks", notreleasedTechnicalTasks);
         model.addAttribute("releaseduserstories", releasedUserstories);
@@ -366,7 +381,8 @@ public class MainController {
         return "/backlog";
     }
 
-    //A getmapping that deletes a userstory based on a userstoryId, and returns backlogs page based on a projectId
+    //Getmapping that deletes a userstory based on a userstoryId, and returns backlogs page for the current project
+    //NOTE in sprint 4 or if more time is available, get project id from sessions currentproject instead of getting it from userstory
     @GetMapping("/deleteuserstory/{userstoryId}")
     public String deleteUserstory(@PathVariable("userstoryId") int userstoryId) {
         int backlogProjectId = userstoriesRepository.getSpecificUserstoryByID(userstoryId).getProjectId();
@@ -375,14 +391,13 @@ public class MainController {
         return "redirect:/backlog/" + backlogProjectId;
     }
 
-    //A postmapping that request user input to create a technicalTask object and shoot it to the database. Return backlog based on a projectID
-
     //A getmapping that shows the page to create a userstory
     @GetMapping("/showcreateuserstory")
     public String showCreateUserstory() {
         return "backlogcreateuserstory";
     }
 
+    //A post mapping that takes parameters from userinput on the backlogcreateuserstory page, populates a userstory object, then sends it to the repository
     @PostMapping("/createuserstory")
     public String createUserStory(@RequestParam("projectId") int projectId,
                                   @RequestParam("userstoryName") String userstoryName,
@@ -401,6 +416,7 @@ public class MainController {
         System.out.println("Sprint id: " + sprintId);
 
         //create an empty sprint 1 if the sprint does not exist allready
+        //NOTE for sprint 4, can be changed to automatically make new sprints if a not existing sprint_id is entered
         Project currentProject = (Project) session.getAttribute("currentproject");
         if(sprintRepository.getSprintByIDAndProjectID(1, currentProject.getProjectID()) == null)
         {
@@ -433,6 +449,7 @@ public class MainController {
         return "redirect:/backlog/" + ((Project) session.getAttribute("currentproject")).getProjectID();
     }
 
+    //Getmapping for returning the backlogupdateuserstory page and adding the userstory that is getting updated as a thymeleaf attribute "userstory"
     @GetMapping("/updateuserstory/{userstoryId}")
     public String showUpdateUserstory(@PathVariable("userstoryId") int userstoryId, Model model) {
         model.addAttribute("userstory", userstoriesRepository.getSpecificUserstoryByID(userstoryId));
@@ -440,6 +457,7 @@ public class MainController {
         return "backlogupdateuserstory";
     }
 
+    //Postmapping for creating a task, takes parameters, makes a new technicaltask object, populates it and sends it to technicaltask repository
     @PostMapping("/createtask")
     public String createTask(@RequestParam("userstoryId") int userstoryId,
                              @RequestParam("technicaltaskName") String technicaltaskName,
@@ -459,20 +477,25 @@ public class MainController {
         return "redirect:/backlog/" + ((Project) session.getAttribute("currentproject")).getProjectID();
     }
 
+    //Getmapping to returning backlogcreatetask page, needs the parent userstory of the task
     @GetMapping("/showcreatetask/{userstoryId}")
     public String showCreateTask(@PathVariable("userstoryId") int userstoryId, Model model) {
+        //We have the userstory id from the pathvariable, it is then used to get the parent userstory by ID.
         model.addAttribute("parentuserstory", userstoriesRepository.getSpecificUserstoryByID(userstoryId));
 
         return "backlogcreatetask";
     }
 
+    //Getmapping that returns the backlogupdatetask page. Also sends the technicaltask that gets updated via model
     @GetMapping("/updatetask/{technicaltaskId}")
     public String showUpdateTask(@PathVariable("technicaltaskId") int taskId, Model model) {
+        //Get specific tehcnicaltask with provided id
         model.addAttribute("technicaltask", technicalTaskRepository.getSpecificTechnicalTaskFromID(taskId));
 
         return "backlogupdatetask";
     }
 
+    //Postmapping for updating task, gets parameters from backlogupdatetask as input, makes a technicaltask object, then sends it to technicaltask repository
     @PostMapping("/updatetask")
     public String updateTechnicalTask(@RequestParam("technicaltaskId") int technicaltaskId,
                                       @RequestParam("userstoryId") int userstoryId,
@@ -490,6 +513,7 @@ public class MainController {
         return "redirect:/backlog/" + ((Project) session.getAttribute("currentproject")).getProjectID();
     }
 
+    //Getmapping for deleting a technicaltask, needs the technicaltask id, then commands the repository to delete the task
     @GetMapping("/deletetask/{technicaltaskId}")
     public String deleteTechnicalTask(@PathVariable("technicaltaskId") int taskId, HttpSession session) {
         technicalTaskRepository.deleteTechnicalTask(taskId);
@@ -499,6 +523,7 @@ public class MainController {
     /* END OF USERSTORY MAPPINGS BY NICOLAI */
 
     /* START OF SPRINT BACKLOG MAPPINGS BY NICOLAI */
+
 
     @GetMapping("/sprints")
     public String showSprints(Model model, HttpSession session)
@@ -567,24 +592,26 @@ public class MainController {
                     userstory.setStatus(Status.done);
                 }
             }
+            //Else if there are no technicaltaks in the userstory, and userstory status is "sprintbacklog" the userstory is not released
             else if(technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstory.getId()).isEmpty() && userstory.getStatus() == Status.sprintbacklog)
             {
-                userstory.setStatus(Status.sprintbacklog);
-                userstory.setReleased(false);
+                userstory.setStatus(Status.sprintbacklog); //is this used? Test in sprint 4
+                userstory.setReleased(false); //Set released false, so userstory is not prematurely released if there are no tasks in it
             }
-
+            //apply changes to the userstory, does nothing if there are no changes made
             userstoriesRepository.updateUserstory(userstory);
 
             //As technicaltask belong to a userstory within the current project ID, we put all technicaltasks for the userstory into the arraylist
             technicaltasksInProject.addAll(technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstory.getId()));
         }
 
-        //DONE
+        //Make tehcnicaltasksinproject accessible via thymeleaf on sprints page.
         model.addAttribute("technicaltasksinproject", technicaltasksInProject);
 
         return "sprints";
     }
 
+    //Postmapping method for moving userstory left
     @PostMapping("/moveuserstoryleft")
     public String moveUserstoryLeft(@RequestParam("userstoryid") int userstoryID)
     {
@@ -593,11 +620,13 @@ public class MainController {
         int status = DataHandler.convertStatusToInt(movingUserstory.getStatus());
         if(status == 1)
         {
-            //Do nothing
+            //Do nothing, in order to keep within bounds
         }
         else if(status == 4)
         {
+            //Move userstory left
             status--;
+            //Update child technicaltaks to not be released any more, as the userstory is no longer "done"
             for(TechnicalTask technicalTask: technicalTaskRepository.getAllTechnicalTasksFromUserstoryID(userstoryID))
             {
                 technicalTask.setReleased(false);
@@ -607,13 +636,17 @@ public class MainController {
         }
         else
         {
+            //Do base functionality for moving the userstory, if no special case is valid
+            //move left
             status--;
         }
+        //update the userstory in database
         userstoriesRepository.updateUserstoryWithIntStatus(movingUserstory, status);
 
         return "redirect:/sprints";
     }
 
+    //Postmapping method for moving userstory right
     @PostMapping("/moveuserstoryright")
     public String moveUserstoryRight(@RequestParam("userstoryid") int userstoryID)
     {
@@ -622,16 +655,19 @@ public class MainController {
         int status = DataHandler.convertStatusToInt(movingUserstory.getStatus());
         if(status == 4)
         {
-            //Do nothing
+            //Do nothing, in order to keep within bounds
         }
         else
         {
+            //Do base functionality for moving the userstory right, if no special case is valid
             status++;
         }
+        //update the userstory in database
         userstoriesRepository.updateUserstoryWithIntStatus(movingUserstory, status);
         return "redirect:/sprints";
     }
 
+    //functionality for moving technicaltask left
     @PostMapping("/movetechnicaltaskleft")
     public String moveTechnicaltaskLeft(@RequestParam("technicaltaskid") int TechnicaltaskID)
     {
@@ -640,24 +676,30 @@ public class MainController {
         int status = DataHandler.convertStatusToInt(movingTechnicalTask.getStatus());
         if(status == 1)
         {
-            //Do nothing
+            //Do nothing, in order to keep within bounds
         }
         else if(status == 4)
         {
+            //Move technicaltask left
             status--;
+            //update parentuserstory and tehcnicaltask to set it as no longer released if one of the child taks has moved left from "done"
             movingTechnicalTask.setReleased(false);
+            //update the parent userstory
             Userstory parentUserstory = userstoriesRepository.getSpecificUserstoryByID(movingTechnicalTask.getUserstoryId());
             parentUserstory.setReleased(false);
             userstoriesRepository.updateUserstoryWithIntStatus(parentUserstory, status);
         }
         else
         {
+            //If no special circumstances are encountered do base functionality by movin left
             status--;
         }
+        //update the technicaltask in the database
         technicalTaskRepository.updateTechnicalTaskUsingIntStatus(movingTechnicalTask, status);
         return "redirect:/sprints";
     }
 
+    //functionality for moving technicaltask right
     @PostMapping("/movetechnicaltaskright")
     public String moveTechnicaltaskRight(@RequestParam("technicaltaskid") int TechnicaltaskID)
     {
@@ -666,16 +708,19 @@ public class MainController {
         int status = DataHandler.convertStatusToInt(movingTechnicalTask.getStatus());
         if(status == 4)
         {
-            //Do nothing
+            //Do nothing, in order to keep within bounds
         }
         else
         {
+            //move technicaltask right on the board
             status++;
         }
+        //update the task in repository
         technicalTaskRepository.updateTechnicalTaskUsingIntStatus(movingTechnicalTask, status);
         return "redirect:/sprints";
     }
 
+    //Postmapping that only takes name as parameter, and gets other needed information, populates a sprint object, then sends it to its repository.
     @PostMapping("/createsprint")
     public String createSprint(@RequestParam("sprint_name") String sprintName,
                                HttpSession session)
@@ -683,6 +728,7 @@ public class MainController {
         Sprint sprint = new Sprint();
         Project currentproject = (Project) session.getAttribute("currentproject");
         // Auto increment logic pr project id for sprints
+        //Gets the highest sprintID for the project, then increments it by one, and uses this as the new sprintID
         int sprintID = sprintRepository.getMaxSprintIDFromProjectID(currentproject.getProjectID());
         sprintID++;
         sprint.setSprintId(sprintID);
@@ -692,14 +738,16 @@ public class MainController {
         return "redirect:/sprints";
     }
 
+    //Returns createsprint page
     @GetMapping("/showcreatesprint")
     public String showCreateSprint(Model model)
     {
         Calculations calculator = new Calculations();
-        model.addAttribute("calculator", calculator);
+        model.addAttribute("calculator", calculator); //not used in final version
         return "createsprint";
     }
 
+    //Getmapping for returning the updatesprint page. Also makes sprint object accessible on updatesprint page
     @GetMapping("/updatesprint/{sprintId}")
     public String showUpdateSprint(@PathVariable("sprintId") int sprintID, HttpSession session, Model model) {
         Project currentproject = (Project) session.getAttribute("currentproject");
@@ -708,6 +756,7 @@ public class MainController {
         return "updatesprint";
     }
 
+    //Update sprint, takes parameters from input on updatesprint page, populates a sprint object, then sends it to be updated via sprintRepository
     @PostMapping("/updatesprint")
     public String updateSprint(@RequestParam("sprintName") String sprintName,
                                @RequestParam("sprintId") int sprintID,
