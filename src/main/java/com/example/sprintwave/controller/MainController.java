@@ -46,6 +46,7 @@ public class MainController {
         this.sprintRepository = sprintRepository;
     }
 
+    //Session currentuser getMethod
     @ModelAttribute("currentuser")
     public User getCurrentUser(HttpServletRequest request)
     {
@@ -54,6 +55,7 @@ public class MainController {
         return currentUser;
     }
 
+    //Session currentproject getMethod
     @ModelAttribute("currentproject")
     public Project getCurrentProject(HttpServletRequest request)
     {
