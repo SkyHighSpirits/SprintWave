@@ -1,3 +1,4 @@
+
 /* Create and use database */
 DROP DATABASE IF EXISTS sprintwavedatabase;
 CREATE DATABASE sprintwavedatabase;
@@ -125,12 +126,12 @@ VALUES
     (1, 'EP003: Reporting and Analytics', 'Develop comprehensive reporting and analytics capabilities, enabling the sales team to gain valuable insights and make data-driven decisions for improved performance.');
 
 INSERT INTO requirements
-(project_id, requirement_id, requirement_name, requirement_description, requirement_actor, funcNonFuncChoice, funcNonFunc)
+(project_id, requirement_id, requirement_name, requirement_description, requirement_actor, funcNonFuncChoice)
 VALUES
-    (1, 1, 'FR001: Customer Data Management', 'The CRM system should allow the sales team to create, update, and store customer information, including contact details, purchase history, and interactions.', 'Actor: Sales team','Functional', 1),
-    (1, 2, 'FR002: Sales Pipeline Tracking', 'The CRM system should provide a visual representation of the sales pipeline, allowing the sales team to track the progress of leads and opportunities through different stages, such as prospecting, qualification, negotiation, and closure.', 'Actor: Sales team', 'Functional', 1),
-    (1, 3, 'NFR001: Performance','The CRM system should have a response time of less than 2 seconds for common operations, such as searching for customer records or updating contact information.','Actor: Sales team','Non-functional', 0),
-    (1, 4, 'NFR002: Security','The CRM system should implement robust security measures to ensure the confidentiality and integrity of customer data, including user authentication, data encryption, and role-based access control.','Actor: Sales team','Non-functional',0);
+    (1, 1, 'FR001: Customer Data Management', 'The CRM system should allow the sales team to create, update, and store customer information, including contact details, purchase history, and interactions.', 'Actor: Sales team','Functional'),
+    (1, 2, 'FR002: Sales Pipeline Tracking', 'The CRM system should provide a visual representation of the sales pipeline, allowing the sales team to track the progress of leads and opportunities through different stages, such as prospecting, qualification, negotiation, and closure.', 'Actor: Sales team', 'Functional'),
+    (1, 3, 'NFR001: Performance','The CRM system should have a response time of less than 2 seconds for common operations, such as searching for customer records or updating contact information.','Actor: Sales team','Non-functional'),
+    (1, 4, 'NFR002: Security','The CRM system should implement robust security measures to ensure the confidentiality and integrity of customer data, including user authentication, data encryption, and role-based access control.','Actor: Sales team','Non-functional');
 
 INSERT INTO sprints
 (sprint_id, sprint_name, project_id)
