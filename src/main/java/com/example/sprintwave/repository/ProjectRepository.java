@@ -74,34 +74,6 @@ public class ProjectRepository
         return workspaceProjects;
     }
 
-    public List<Project> getAllProjects()
-    {
-        List<Project> projects = new ArrayList<>();
-        try{
-            Connection connection = DriverManager.getConnection(DB_HOSTNAME,DB_USERNAME,DB_PASSWORD);
-            Statement statement = connection.createStatement();
-            final String SQL_QUERY ="SELECT * FROM projects";
-            ResultSet resultSet = statement.executeQuery(SQL_QUERY);
-            while(resultSet.next()){
-                int projectID = resultSet.getInt(1);
-                String projectName = resultSet.getString(2);
-                String projectDescription = resultSet.getString(3);
-                String projectOwner = resultSet.getString(4);
-                boolean projectStatus = resultSet.getBoolean(5);
-                java.sql.Date deadlineDate = resultSet.getDate(6);
-                LocalDate deadline = deadlineDate.toLocalDate(); // skal testes!!!
-                int workspaceID = resultSet.getInt(7);
-                Project project = new Project(projectID, projectName, projectDescription, projectOwner, projectStatus, deadline, workspaceID);
-                projects.add(project);
-                System.out.println(project);
-            }
-
-        }catch(SQLException e){
-            System.out.println("Could not add Query");
-            e.printStackTrace();
-    }
-        return projects;
-    }
 
     public void updateProject(Project updateProject){
         try{

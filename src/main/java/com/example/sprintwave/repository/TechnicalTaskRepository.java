@@ -56,37 +56,7 @@ public class TechnicalTaskRepository {
         return technicalTasks;
     }
 
-    public ArrayList<TechnicalTask> getAllTechnicalTasks()
-    {
-        ArrayList<TechnicalTask> technicaltasks = new ArrayList<>();
-        try
-        {
-            Connection connection = ConnectionManager.getConnection(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
-            final String SQL_QUERY = "SELECT * FROM technicaltasks";
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
-            ResultSet resultSet = preparedStatement.executeQuery();
 
-            while(resultSet.next())
-            {
-                TechnicalTask technicalTask = new TechnicalTask();
-                technicalTask.setId(resultSet.getInt(1));
-                technicalTask.setUserstory_id(resultSet.getInt(2));
-                technicalTask.setName(resultSet.getString(3));
-                technicalTask.setDescription(resultSet.getString(4));
-                technicalTask.setReleased(resultSet.getBoolean(5));
-                technicalTask.setPoints(resultSet.getInt(6));
-                technicalTask.setStatus(DataHandler.convertIntToStatus(resultSet.getInt(7)));
-                technicalTask.setSprint_id(resultSet.getInt(8));
-                technicaltasks.add(technicalTask);
-            }
-        }
-        catch(SQLException e)
-        {
-            System.out.println("Could not query userstories from database");
-            e.printStackTrace();
-        }
-        return technicaltasks;
-    }
 
     public void createNewTecnicalTask(TechnicalTask technicalTask)
     {
