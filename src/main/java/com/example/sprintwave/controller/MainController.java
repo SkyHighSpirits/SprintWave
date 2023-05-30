@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 import java.time.LocalDate;
 
+//ControllerAdvice autowire sets this controller to be a global controller, enabling use of ModelAttributes for sessions
 @ControllerAdvice
 @Controller
 public class MainController {
