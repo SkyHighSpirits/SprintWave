@@ -20,7 +20,7 @@
       <div class="columnitems">
         <div>
 
-          <form action="updatetask" method="post">
+          <form action="/updatetask" method="post">
             <input id="technicaltask_id" name="technicaltaskId" type="hidden" th:value="${technicaltask.getId()}" required></input>
             <p>Write Task Name</p>
             <input id="task-name-field" name="technicaltaskName" type="text" th:value="${technicaltask.getName()}" required>
