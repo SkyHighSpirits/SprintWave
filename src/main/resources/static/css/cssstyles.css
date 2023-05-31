@@ -696,6 +696,7 @@ p{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    width: 100vw;
 }
 .column2 {
     position: relative;

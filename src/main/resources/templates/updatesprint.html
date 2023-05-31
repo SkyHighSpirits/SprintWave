@@ -23,8 +23,8 @@
           <form action="/updatesprint" method="post">
 
             <p>Edit Sprint Name</p>
-            <input name="sprint_name" th:value="${sprint.getSprintName()}" type="text" required></input>
-            <input name="sprint_id" th:value="${sprint.getSprintId()}" type="hidden" required></input>
+            <input name="sprintName" th:value="${sprint.getSprintName()}" type="text" required></input>
+            <input name="sprintId" th:value="${sprint.getSprintId()}" type="hidden" required></input>
             <input class="table-link" type="submit" value="Update"></input>
 
           </form>
