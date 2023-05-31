@@ -3,7 +3,6 @@ package com.example.sprintwave.utility;
 import com.example.sprintwave.model.TechnicalTask;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Calculations {
 

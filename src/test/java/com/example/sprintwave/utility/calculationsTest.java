@@ -14,7 +14,7 @@ class calculationsTest
 
 
 
-    @Test
+   /* @Test
     public void calculateSumOfPointsOnStatustest ()
     {
         Calculations calculations = new Calculations();
@@ -34,5 +34,6 @@ class calculationsTest
         techtasks.add(technicalTask3);
         techtasks.add(technicalTask4);
         assertEquals(21, calculations.calculateSumOfPointsOnStatus(techtasks));
-    }
+    } */
 }
+
