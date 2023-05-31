@@ -292,7 +292,7 @@ public class MainController {
         Project updateProject = projectRepository.findProjectByID(updateID);
         model.addAttribute("project", updateProject);
         session.setAttribute("currentproject", updateProject);
-        return "/modifyproject";
+        return "modifyproject";
     }
 
     //A postmapping that request user input and shoots the updated version of the project to the database. Return appfrontpage based on a workspaceId
