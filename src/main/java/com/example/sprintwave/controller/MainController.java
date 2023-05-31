@@ -297,7 +297,7 @@ public class MainController {
 
     //A postmapping that request user input and shoots the updated version of the project to the database. Return appfrontpage based on a workspaceId
     @PostMapping("/updateproject")
-    public String updateProject(@RequestParam("project_id") int projectID,
+    public String updateProject(@RequestParam("projectId") int projectID,
                                 @RequestParam("projectname") String projectName,
                                 @RequestParam("projectdescription") String projectDescription,
                                 @RequestParam("projectowner") String projectOwner,

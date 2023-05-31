@@ -37,7 +37,7 @@
   
   
               <!--<p><input type="hidden" name="projectstatus"  th:value="${session.currentproject.isProjectStatus()}"></p>-->
-              <p><input type="hidden" name="projectId" th:value="${session.currentproject.getProjectID()}"></p>
+              <p><input type="hidden" name="projectId" th:value="${project.projectID}"></p>
               <p><input type="hidden" name="workspaceID" th:value="${session.currentuser.getWorkspaceId()}"></p>
               </br>
               <input class="signup-login-button" type="submit" value="Update project">
