@@ -287,7 +287,7 @@ public class MainController {
     }
 
     //A getmapping that finds a project by a projectId and puts it into a model, to be able to show it on the page
-    @GetMapping("/updateproject/{projectID}")
+    @GetMapping("/modifyproject/{projectID}")
     public String showUpdateProject(@PathVariable("projectID") int updateID, Model model, HttpSession session){
         Project updateProject = projectRepository.findProjectByID(updateID);
         model.addAttribute("project", updateProject);
