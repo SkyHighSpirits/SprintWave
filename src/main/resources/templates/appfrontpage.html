@@ -20,7 +20,7 @@
                 <p th:text="${project.deadline}"></p>
                 <div class="appfrontpage-project-deadline"><p th:text="${project.deadline}"></p></div>
 
-                <a class="appfrontpage-modify-project-button"  th:href="@{'/updateproject/' + ${project.projectID}}" href="modifyproject"> Modify Project</a>
+                <a class="appfrontpage-modify-project-button"  th:href="@{'/updateproject/' + ${project.projectID}}" href="/modifyproject"> Modify Project</a>
                 <a class="appfrontpage-project-button" th:href="@{'/overview/' + ${project.projectID}}" href="/overview">Go to project</a>
                     </th:block>
             </div>            
