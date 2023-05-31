@@ -381,7 +381,7 @@ public class MainController {
         model.addAttribute("releaseduserstories", releasedUserstories);
         model.addAttribute("releasedtechnicaltasks", releasedTechnicalTasks);
 
-        return "/backlog";
+        return "backlog";
     }
 
     //Getmapping that deletes a userstory based on a userstoryId, and returns backlogs page for the current project
