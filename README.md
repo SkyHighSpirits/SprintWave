@@ -14,3 +14,4 @@ Denne bruger har både Epics, Requirements, Backlog Items og et Sprint board.
 Brugernavn: steffen@localhost.com
 Adgangskode: 123456
 
+MySQL Create Database ligger under ressources.
